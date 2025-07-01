@@ -1,13 +1,29 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+import SecondFile from './SecondFile'
+import VideoHome from './VideoHome/VideoHome';
+import BackGround from './VideoHome/wp-coponents/BackGround.js'
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+import MyImage2 from '/Users/cesarbarrera/my-react-app/src/VideoHome/assets/istockphoto-1560833158-1024x1024.jpg'; // adjust path as needed
+
+import { Carousel } from '../node_modules/react-bootstrap/';
+import { CarouselItem } from '../node_modules/react-bootstrap/';
+import { CarouselCaption } from '../node_modules/react-bootstrap/';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+
+
+    <VideoHome>
+
+    </VideoHome>
+
+
+
   </React.StrictMode>
 );
 

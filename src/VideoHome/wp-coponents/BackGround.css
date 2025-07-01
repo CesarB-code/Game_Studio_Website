@@ -1,0 +1,12 @@
+.background-container {
+  background-image: './image/istockphoto-1560833158-1024x1024.jpg';
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0 ;
+  
+  
+}
