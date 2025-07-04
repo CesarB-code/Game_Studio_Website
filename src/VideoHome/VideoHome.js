@@ -1,6 +1,7 @@
 
 import MyImage from '/Users/cesarbarrera/my-react-app/src/VideoHome/assets/lhon-karwan-HwGWwQwtpgg-unsplash.jpg'; // adjust path as needed
 import MyImage2 from './assets/maha-khairy-3uuLWb6aQXc-unsplash.jpg'
+import MyImage3 from './assets/sufyan-5NrbL6F68V0-unsplash.jpg'
 import Pac from './assets/GifPac.webp';
 import BackGround from './wp-coponents/BackGround.js'
 import logo from './assets/istockphoto-1560833158-1024x1024.jpg'
@@ -130,7 +131,22 @@ function VideoHome() {
         </Col>
       </Row>
       <Row className='bg-dark'>
-        <img src={MyImage2} style={{ height: 200, width: 300 }} alt="Background" />
+        <Col style={{ bottom: 100 }}>
+          <img src={MyImage3} style={{ height: 100, width: 100 }} alt="Background" />
+        </Col>
+        <Col>
+          <Row>
+            <a href='#' className='link' >Carrers</a>
+          </Row>
+          <Row>
+            <a href='#' className='link' >Carrers</a>
+          </Row>          <a href='#' className='link' >Carrers</a>
+          <Row>
+            <a href='#' className='link' >Carrers</a>
+          </Row>          <a href='#' className='link' >Carrers</a>
+          <Row>
+            <a href='#' className='link' >Carrers</a>
+          </Row>        </Col>
       </Row>
 
 

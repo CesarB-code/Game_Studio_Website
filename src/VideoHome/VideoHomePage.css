@@ -117,3 +117,14 @@ font-family: 'Island Moments', cursive;
     width:70%
   }
 }
+
+.link{
+  color: grey;
+  text-decoration: none;
+
+
+
+}
+.link:hover{
+    color: white;
+  }
