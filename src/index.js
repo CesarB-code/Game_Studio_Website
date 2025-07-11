@@ -12,6 +12,7 @@ import MyImage2 from '/Users/cesarbarrera/my-react-app/src/VideoHome/assets/isto
 import { Carousel } from '../node_modules/react-bootstrap/';
 import { CarouselItem } from '../node_modules/react-bootstrap/';
 import { CarouselCaption } from '../node_modules/react-bootstrap/';
+import draw from './VideoHome/VideoHome.js';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

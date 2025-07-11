@@ -7,6 +7,8 @@ import BackGround from './wp-coponents/BackGround.js'
 import logo from './assets/istockphoto-1560833158-1024x1024.jpg'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Card from 'react-bootstrap/Card';
+import React, { useRef, useEffect } from 'react';
+
 import {
   Row, Col,
   Carousel, Image,
@@ -22,21 +24,114 @@ import {
 import './VideoHomePage.css';
 
 function VideoHome() {
+  const canvasRef = useRef(null);
 
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    const gl = canvas.getContext('webgl');
+
+    if (!gl) {
+      console.error('WebGL not supported');
+      return;
+    }
+
+    // Vertex Shader
+    const vsSource = `
+      attribute vec2 aPosition;
+      uniform float uOffset;
+      void main() {
+        gl_Position = vec4(aPosition.x + uOffset, aPosition.y, 0.0, 1.0);
+      }
+    `;
+
+    // Fragment Shader
+    const fsSource = `
+      void main() {
+        gl_FragColor = vec4(1.0, 0.4, 0.2, 1.0); // Orange color
+      }
+    `;
+
+    // Shader compiler
+    function compileShader(type, source) {
+      const shader = gl.createShader(type);
+      gl.shaderSource(shader, source);
+      gl.compileShader(shader);
+      if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+        console.error(gl.getShaderInfoLog(shader));
+        gl.deleteShader(shader);
+      }
+      return shader;
+    }
+
+    const vertexShader = compileShader(gl.VERTEX_SHADER, vsSource);
+    const fragmentShader = compileShader(gl.FRAGMENT_SHADER, fsSource);
+
+    // Program
+    const program = gl.createProgram();
+    gl.attachShader(program, vertexShader);
+    gl.attachShader(program, fragmentShader);
+    gl.linkProgram(program);
+    gl.useProgram(program);
+
+    // Triangle vertices
+    const vertices = new Float32Array([
+      0, 0.5,
+      -0.5, -0.5,
+      0.5, -0.5
+    ]);
+    const buffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+    gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
+
+    const aPosition = gl.getAttribLocation(program, 'aPosition');
+    gl.enableVertexAttribArray(aPosition);
+    gl.vertexAttribPointer(aPosition, 2, gl.FLOAT, false, 0, 0);
+
+    const uOffset = gl.getUniformLocation(program, 'uOffset');
+
+    let offset = -1.0;
+    let direction = 1;
+
+    function animate() {
+      // Clear canvas
+      gl.clearColor(0.95, 0.95, 0.95, 1);
+      gl.clear(gl.COLOR_BUFFER_BIT);
+
+      // Update offset
+      offset += 0.01 * direction;
+      if (offset > 1.0 || offset < -1.0) {
+        direction *= -1;
+      }
+
+      // Send updated offset to shader
+      gl.uniform1f(uOffset, offset);
+
+      // Draw triangle
+      gl.drawArrays(gl.TRIANGLES, 0, 3);
+
+      // Loop
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+
+
+  }, []);
+  // Call the draw function to render the canvas
   return (
 
 
     <Container fluid style={{ padding: 0, margin: 0 }}>
 
-      <Navbar expand="xl" className=" bg-body-tertiary fixedTop  " bg="dark" data-bs-theme="dark" fixed='top' style={{ padding: 0 }} >
+      <Navbar expand="md" className=" bg-body-tertiary fixedTop  " bg="dark" data-bs-theme="dark" fixed='top' style={{ padding: 0 }} >
 
 
 
 
-        <Navbar.Brand href="#home" className="webHeader" style={{ fontFamily: 'fantasy' }}  >Cyclone</Navbar.Brand>
+        <Navbar.Brand href="#home" className="webHeader" style={{ fontFamily: 'fantasy' }}  >Cyclone<sup style={{ fontSize: 15 }}>TM</sup></Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
+          <Nav className="me-ame-auto my-2 my-lg-0uto">
             <Nav.Link href="#home">Home</Nav.Link>
             <Nav.Link href="#link">Link</Nav.Link>
             <NavDropdown title="Dropdown" id="basic-nav-dropdown">
@@ -87,12 +182,12 @@ function VideoHome() {
         <CarouselItem>
           <img
             className="d-block w-100 carousel-img"
-            src={MyImage}
+            src={MyImage3}
             alt="Third slide"
 
           />
           <CarouselCaption style={{ bottom: 100, right: 700, inlineBlock: 'true', width: '50%' }}>
-            <h3 style={{ fontSize: '300%' }}><b> Apply now and see what is instore for you </b></h3>
+            <h3 style={{ fontSize: '300%' }}><b> Apply now and see what is in store for you </b></h3>
             <p style={{ fontFamily: 'fantasy' }} >Want to join the cylcone and help create amazing games</p>
           </CarouselCaption>
         </CarouselItem>
@@ -129,24 +224,90 @@ function VideoHome() {
 
           </Card>
         </Col>
+
+        <canvas
+          ref={canvasRef}
+          width={640}
+          height={400}
+          style={{ border: '1px solid black' }}
+        />
+
       </Row>
       <Row className='bg-dark'>
         <Col style={{ bottom: 100 }}>
-          <img src={MyImage3} style={{ height: 100, width: 100 }} alt="Background" />
+          <img src={MyImage3} style={{ height: 50, width: 50 }} alt="Background" />
+
+          <a style={{ color: 'white', fontFamily: 'fantasy', fontSize: 30, marginTop: 30 }}>Cyclone</a>
+
         </Col>
+
         <Col>
           <Row>
-            <a href='#' className='link' >Carrers</a>
+            <Col className='col-3 '>
+              <p style={{ color: 'white', fontSize: 15 }}>Social Media</p>
+            </Col>
+            <Col className='col-3 '>
+              <p style={{ color: 'white' }} >Company</p>
+            </Col>
+            <Col className='col-3 '>
+              <p style={{ color: 'white' }} >Store</p>
+            </Col>
           </Row>
+          <Row></Row>
           <Row>
-            <a href='#' className='link' >Carrers</a>
-          </Row>          <a href='#' className='link' >Carrers</a>
+            <Col className='col-3 '>
+              <a href='#' className='link' >Twitter</a>
+            </Col>
+            <Col className='col-3 '>
+              <a href='#' className='link' >Carrers</a>
+
+            </Col>
+            <Col className='col-3 '>
+              <a href='#' className='link' >Events</a>
+            </Col>          </Row>
           <Row>
-            <a href='#' className='link' >Carrers</a>
-          </Row>          <a href='#' className='link' >Carrers</a>
+
+            <Col className='col-3 '>
+              <a href='#' className='link' >Tiktok</a>
+            </Col>
+            <Col className='col-3 '>
+              <a href='#' className='link' >FAQ</a>
+
+            </Col>
+            <Col className='col-3 '>
+              <a href='#' className='link' >Youtube</a>
+            </Col>
+
+          </Row>
+
+
           <Row>
-            <a href='#' className='link' >Carrers</a>
-          </Row>        </Col>
+            <Col className='col-3 '>
+              <a href='#' className='link' >Instagram</a>
+            </Col>
+            <Col className='col-3 '>
+              <a href='#' className='link' >Location</a>
+
+            </Col>
+            <Col className='col-3 '>
+              <a href='#' className='link' >Games</a>
+
+            </Col>
+          </Row>
+
+          <Row>
+            <Col className='col-3 '>
+              <a href='#' className='link' >Discord</a>
+            </Col>
+            <Col className='col-3 '>
+              <a href='#' className='link' >About</a>
+
+            </Col>
+            <Col className='col-3 '>
+              <a href='#' className='link' >Merch</a>
+            </Col>
+          </Row>
+        </Col>
       </Row>
 
 
@@ -157,7 +318,6 @@ function VideoHome() {
 
   )
 }
-
 
 
 export default VideoHome;
