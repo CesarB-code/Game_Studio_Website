@@ -40,7 +40,7 @@ function VideoHome() {
       attribute vec2 aPosition;
       uniform float uOffset;
       void main() {
-        gl_Position = vec4(aPosition.x + uOffset, aPosition.y, 0.0, 1.0);
+        gl_Position = vec4(aPosition.x + uOffset, aPosition.y + uOffset, 0.0, 1.0);
       }
     `;
 
@@ -75,9 +75,12 @@ function VideoHome() {
 
     // Triangle vertices
     const vertices = new Float32Array([
-      0, 0.5,
-      -0.5, -0.5,
-      0.5, -0.5
+      0.0, 0.25,
+      0.25, 0.0,
+      -0.25, 0.0,
+      0.0, 0.25,
+      0.25, 0.5,
+      0.25, 0.0
     ]);
     const buffer = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
@@ -106,8 +109,13 @@ function VideoHome() {
       // Send updated offset to shader
       gl.uniform1f(uOffset, offset);
 
-      // Draw triangle
+      // Draw triangle draw arrays do not read the start index
       gl.drawArrays(gl.TRIANGLES, 0, 3);
+      gl.drawArrays(gl.TRIANGLES, 3, 3);
+
+
+
+
 
       // Loop
       requestAnimationFrame(animate);
