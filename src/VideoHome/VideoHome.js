@@ -38,17 +38,19 @@ function VideoHome() {
     // Vertex Shader
     const vsSource = `
       attribute vec2 aPosition;
-      uniform float uOffset;
-      void main() {
-        gl_Position = vec4(aPosition.x + uOffset, aPosition.y + uOffset, 0.0, 1.0);
-      }
+  uniform vec2 uOffset;
+  void main() {
+    gl_Position = vec4(aPosition + uOffset, 0.0, 1.0);
+  }
     `;
 
     // Fragment Shader
     const fsSource = `
-      void main() {
-        gl_FragColor = vec4(1.0, 0.4, 0.2, 1.0); // Orange color
-      }
+       precision mediump float;
+  uniform vec3 uColor;
+  void main() {
+    gl_FragColor = vec4(uColor, 1.0);
+  }
     `;
 
     // Shader compiler
@@ -78,10 +80,21 @@ function VideoHome() {
       0.0, 0.25,
       0.25, 0.0,
       -0.25, 0.0,
-      0.0, 0.25,
-      0.25, 0.5,
-      0.25, 0.0
+
     ]);
+
+    const objects = [
+      {
+        offset: { x: -0.7, y: 0 },
+        color: [1.0, 0.0, 0.0],
+        speed: 0.01
+      },
+      {
+        offset: { x: 0.7, y: 0 },
+        color: [0.0, 1.0, 0.0],
+        speed: -0.015
+      }
+    ];
     const buffer = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
     gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
@@ -90,9 +103,10 @@ function VideoHome() {
     gl.enableVertexAttribArray(aPosition);
     gl.vertexAttribPointer(aPosition, 2, gl.FLOAT, false, 0, 0);
 
-    const uOffset = gl.getUniformLocation(program, 'uOffset');
+    const uOffset = gl.getUniformLocation(program, "uOffset");
+    const uColor = gl.getUniformLocation(program, "uColor");
 
-    let offset = -1.0;
+    let offset = 0.02;
     let direction = 1;
 
     function animate() {
@@ -101,18 +115,18 @@ function VideoHome() {
       gl.clear(gl.COLOR_BUFFER_BIT);
 
       // Update offset
-      offset += 0.01 * direction;
-      if (offset > 1.0 || offset < -1.0) {
-        direction *= -1;
+      for (let obj of objects) {
+        // Move object
+        obj.offset.y += obj.speed;
+        if (Math.abs(obj.offset.y) > 1) obj.speed *= -1;
+
+        // Set uniforms for this object
+        gl.uniform2f(uOffset, obj.offset.x, obj.offset.y);
+        gl.uniform3fv(uColor, obj.color);
+
+        // Draw triangle
+        gl.drawArrays(gl.TRIANGLES, 0, 3);
       }
-
-      // Send updated offset to shader
-      gl.uniform1f(uOffset, offset);
-
-      // Draw triangle draw arrays do not read the start index
-      gl.drawArrays(gl.TRIANGLES, 0, 3);
-      gl.drawArrays(gl.TRIANGLES, 3, 3);
-
 
 
 
@@ -122,7 +136,12 @@ function VideoHome() {
     }
 
     animate();
+    canvas.addEventListener('click', (e) => {
+      const rect = canvas.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
 
+    });
 
   }, []);
   // Call the draw function to render the canvas
