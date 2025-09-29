@@ -94,11 +94,11 @@ Mac
 
 
 ## Usage
-
+<html>
 <div style="text-align: center;">
   <img src="Terminal.png" alt="Centered image" style="display: block; margin: 0 auto;">
 </div>
-
+</html>
 ##Contributing
 
 
