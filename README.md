@@ -1,5 +1,5 @@
 # Game Studio Website
-Mockup game studio website that use frrontend framework bootstrap , React libray and webGL API.
+Mockup game studio website that use frontend framework bootstrap , React libray and webGL API.
 
 ---
 
@@ -8,9 +8,9 @@ Mockup game studio website that use frrontend framework bootstrap , React libray
 - [Features](#25)
 - [Technologies](#32)
 - [Installation](#40)
-- [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
+- [Usage](#100)
+
+
 
 ---
 
@@ -27,6 +27,7 @@ Include its purpose, target users, or any unique aspects.
     Website navigation bar and links 
     - Feature 3
     Boostraop cards for company and game industry information.
+    
 
 ---
 
@@ -36,17 +37,16 @@ Include its purpose, target users, or any unique aspects.
 - **Other:** Figma , WebGL
 
 ---
-
 ## Installation
 Step-by-step instructions to run the project locally:
 
 1. Clone the repository:
 
 Mac
-   ```bash
+
    git clone https://github.com/CesarB-code/Game_Studio_Website.git
    
-## Install Node.js
+2.Install Node.js
     1. Download the Installer:
     Navigate to the official Node.js website (nodejs.org).
     Download the Long Term Support (LTS) version installer appropriate for your operating system (Windows, macOS, or a Linux distribution). The LTS version is recommended for stability.
@@ -92,9 +92,24 @@ Mac
 
         npm start
 
+--- 
 
-## Usage
-![Alt text](Terminal.png)
-##Contributing
+## Usage 
+Once installation procces is complete website does not need any login credintials 
+
+---
+
+## API References
+
+ -WebGL2.0
+ 
+ --- 
+
+ 
+
+
+
+
+
 
 
