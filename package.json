@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@babylonjs/core": "^8.34.0",
     "@fontsource/island-moments": "^5.2.5",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
@@ -11,6 +12,9 @@
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
     "bootstrap": "^5.3.6",
+    "mathjs": "^15.0.0",
+    "mathjs-simple-integral": "^0.1.1",
+    "nerdamer": "^1.1.13",
     "react": "^19.1.0",
     "react-bootstrap": "^2.10.10",
     "react-dom": "^19.1.0",
