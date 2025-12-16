@@ -1,34 +1,62 @@
 
-import MyImage from '/Users/cesarbarrera/my-react-app/src/VideoHome/assets/lhon-karwan-HwGWwQwtpgg-unsplash.jpg'; // adjust path as needed
+import MyImage from './assets/maha-khairy-3uuLWb6aQXc-unsplash.jpg'
 import MyImage2 from './assets/maha-khairy-3uuLWb6aQXc-unsplash.jpg'
 import MyImage3 from './assets/sufyan-5NrbL6F68V0-unsplash.jpg'
 import Pac from './assets/GifPac.webp';
-import BackGround from './wp-coponents/BackGround.js'
 import logo from './assets/istockphoto-1560833158-1024x1024.jpg'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Card from 'react-bootstrap/Card';
 import React, { useRef, useEffect } from 'react';
+import nerdamer from 'nerdamer/all.min.js';
+import { elipseAnimation, circleAnimation, curveAnimation, lineAnimation, triangleAnimation, rectangleAnimation } from '/Users/cesarbarrera/Desktop/Game_Studio_Website-master/src/VideoHome/wp-coponents/DrawingFunctions.js';
 
 import {
   Row, Col,
-  Carousel, Image,
+  Carousel,
   CarouselItem,
   CarouselCaption,
   Nav,
   Navbar,
-  NavbarCollapse,
-  NavbarBrand,
+
   NavDropdown,
   Container
 } from 'react-bootstrap';
 import './VideoHomePage.css';
 
+export let gl;
+export let canvas;
+// Triangle vertices
+export let vertices = new Float32Array([
+  0.0, 0.0,
+  0.0, 0.0,
+  0.0, 0.0
+]);
+export let elispeVertices = new Float32Array([
+  0.0, 0.0,
+  0.0, 0.0,
+  0.0, 0.0
+]);
+export let curveVertices = new Float32Array([
+  0.0, 0.0,
+  0.0, 0.0,
+  0.0, 0.0
+]);
+// Object properties
+const objects = [
+  {
+    offset: { x: -0.7, y: 0 },
+    color: [0.988, 0.906, 0.839],
+    speed: 0.01
+  }
+
+
+];
 function VideoHome() {
   const canvasRef = useRef(null);
 
   useEffect(() => {
-    const canvas = canvasRef.current;
-    const gl = canvas.getContext('webgl');
+    canvas = canvasRef.current;
+    gl = canvas.getContext('webgl');
 
     if (!gl) {
       console.error('WebGL not supported');
@@ -38,20 +66,27 @@ function VideoHome() {
     // Vertex Shader
     const vsSource = `
       attribute vec2 aPosition;
-  uniform vec2 uOffset;
+  varying vec2 vPosition;
   void main() {
-    gl_Position = vec4(aPosition + uOffset, 0.0, 1.0);
+  vPosition = aPosition;
+    gl_Position = vec4(aPosition , 0.0, 1.0);
   }
     `;
 
     // Fragment Shader
     const fsSource = `
        precision mediump float;
-  uniform vec3 uColor;
+       varying vec2 vPosition;
+       uniform vec3 uColor1;
+      uniform vec3 uColor2;
   void main() {
-    gl_FragColor = vec4(uColor, 1.0);
+  vec2 uv = (vPosition + 1.0) * 0.5;
+  vec3 color= mix(uColor1, uColor2, uv.y);
+    gl_FragColor = vec4(color, 1.0);
   }
     `;
+
+
 
     // Shader compiler
     function compileShader(type, source) {
@@ -75,67 +110,150 @@ function VideoHome() {
     gl.linkProgram(program);
     gl.useProgram(program);
 
-    // Triangle vertices
-    const vertices = new Float32Array([
-      0.0, 0.25,
-      0.25, 0.0,
-      -0.25, 0.0,
 
-    ]);
 
-    const objects = [
-      {
-        offset: { x: -0.7, y: 0 },
-        color: [1.0, 0.0, 0.0],
-        speed: 0.01
-      },
-      {
-        offset: { x: 0.7, y: 0 },
-        color: [0.0, 1.0, 0.0],
-        speed: -0.015
-      }
-    ];
-    const buffer = gl.createBuffer();
-    gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
-    gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
+    const triangleBuffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, triangleBuffer);
+    gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.DYNAMIC_DRAW);
+    const elipseBuffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, elipseBuffer);
+    gl.bufferData(gl.ARRAY_BUFFER, elispeVertices, gl.DYNAMIC_DRAW);
+    const curveBuffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, curveBuffer);
+    gl.bufferData(gl.ARRAY_BUFFER, curveVertices, gl.DYNAMIC_DRAW);
+
 
     const aPosition = gl.getAttribLocation(program, 'aPosition');
     gl.enableVertexAttribArray(aPosition);
     gl.vertexAttribPointer(aPosition, 2, gl.FLOAT, false, 0, 0);
 
-    const uOffset = gl.getUniformLocation(program, "uOffset");
-    const uColor = gl.getUniformLocation(program, "uColor");
 
-    let offset = 0.02;
-    let direction = 1;
+    const uColor2 = gl.getUniformLocation(program, "uColor2");
+    const uColor1 = gl.getUniformLocation(program, "uColor1");
 
-    function animate() {
+    // Animation for unchanged frame
+    function animateUnchangedFrame() {
       // Clear canvas
-      gl.clearColor(0.95, 0.95, 0.95, 1);
+      gl.clearColor(0.1, 0.1, 0.1, 1.0);
       gl.clear(gl.COLOR_BUFFER_BIT);
 
-      // Update offset
-      for (let obj of objects) {
-        // Move object
-        obj.offset.y += obj.speed;
-        if (Math.abs(obj.offset.y) > 1) obj.speed *= -1;
 
-        // Set uniforms for this object
-        gl.uniform2f(uOffset, obj.offset.x, obj.offset.y);
-        gl.uniform3fv(uColor, obj.color);
+      // Face Drawing 
+      gl.uniform3fv(uColor1, [0.988, 0.906, 0.839]);
+      gl.uniform3fv(uColor2, [(0.988 * 0.3), (0.906 * 0.3), (0.839 * 0.3)]);
+      elipseAnimation(60, 0.525, 0.9, 0.0, 0.0);
+      // whites eye drawing
+      gl.uniform3fv(uColor1, [1, 1, 1]);
+      gl.uniform3fv(uColor2, [(1 * 0.3), (1 * 0.3), (1 * 0.3)]);
+      elipseAnimation(60, 0.1, 0.15, 0.25, 0.1);
+      elipseAnimation(60, 0.1, 0.15, -0.25, 0.1);
+      //eye iris drawing
+      gl.uniform3fv(uColor1, [0, 0, 0]);
+      gl.uniform3fv(uColor2, [0, 0, 0]);
+      elipseAnimation(50, 0.07, 0.15, 0.25, 0.1);
+      elipseAnimation(50, 0.07, 0.15, -0.25, 0.1);
+      //eye shine drawing
+      gl.uniform3fv(uColor1, [1, 1, 1]);
+      gl.uniform3fv(uColor2, [(1 * 0.3), (1 * 0.3), (1 * 0.3)]);
+      circleAnimation(100, 0.02, 0.22, 0.22);
+      circleAnimation(100, 0.02, -0.280, 0.22);
+      //eye color drawing
+      gl.uniform3fv(uColor1, [0.386, 0.738, 0.990]);
+      gl.uniform3fv(uColor2, [0.386 * 0.5, 0.738 * 0.5, 0.990 * 0.5]);
+      circleAnimation(50, 0.04, 0.25, -0.02);
+      circleAnimation(50, 0.04, -0.25, -0.02);
 
-        // Draw triangle
-        gl.drawArrays(gl.TRIANGLES, 0, 3);
+
+
+      //hair drawing
+      gl.uniform3fv(uColor1, [0, 0, 0]);
+      gl.uniform3fv(uColor2, [0, 0, 0]);
+      for (let i = 40, a = 0.1, b = 0.3; i > 0; i--, a += 0.01) {
+        curveAnimation(10, 0, 0.91, a, b, 1, 1, 4, 0);
+      }
+      for (let i = 40, a = -0.1, b = 0.3; i > 0; i--, a -= 0.01) {
+        curveAnimation(10, 0, 0.91, a, b, 1, 1, 4, 0);
       }
 
+      //Right Eye drawing
+      for (let startVX = 0.25, startVY = 0.25, endVX = 0.35, endVY = 0.05, copies = 0; copies < 10; copies++, startVX += 0.0001, startVY += 0.001, endVX += 0.003, endVY += 0.005) {
+
+        curveAnimation(10, startVX, startVY, endVX, endVY, 1, 1, 4, 0);
+      }
+      for (let startVX = 0.38, startVY = 0.1, endVX = 0.33, endVY = 0.02, copies = 0; copies < 10; copies++, startVX += 0.001, startVY -= 0.005, endVX += 0.001, endVY -= 0.001) {
+        lineAnimation(startVX, startVY, endVX, endVY);
+      }
+      for (let startVX = 0.25, startVY = 0.25, endVX = 0.14, endVY = 0.15, copies = 0; copies < 10; copies++, startVX -= 0.0001, startVY += 0.001, endVX -= 0.001, endVY += 0.004) {
+
+        curveAnimation(10, startVX, startVY, endVX, endVY, 1, 1, 2, 0);
+      }
+      for (let startVX = 0.14, startVY = 0.30, endVX = 0.25, endVY = 0.30, copies = 0; copies < 5; copies++, startVX -= 0.001, startVY += 0.001, endVX += 0.001, endVY += 0.001) {
+
+        curveAnimation(10, startVX, startVY, endVX, endVY, 1, 1, 4, 0);
+      }
+      for (let startVX = 0.21, startVY = -0.05, endVX = 0.29, endVY = -0.05, copies = 0; copies < 10; copies++, startVX -= 0.001, startVY -= 0.001, endVX += 0.001, endVY -= 0.001) {
+
+        lineAnimation(startVX, startVY, endVX, endVY);
+
+      }
+      lineAnimation(0.14, 0.30, 0.10, 0.25);
+
+      //Left Eye drawing
+      for (let startVX = -0.25, startVY = 0.25, endVX = -0.35, endVY = 0.05, copies = 0; copies < 10; copies++, startVX += 0.001, startVY += 0.001, endVX -= 0.003, endVY += 0.005) {
+
+        curveAnimation(10, startVX, startVY, endVX, endVY, 1, 1, 4, 0);
+
+      }
+      for (let startVX = -0.38, startVY = 0.1, endVX = -0.34, endVY = 0.03, copies = 0; copies < 10; copies++, startVX -= 0.001, startVY -= 0.005, endVX -= 0.001, endVY -= 0.001) {
+        lineAnimation(startVX, startVY, endVX, endVY);
+      }
+      for (let startVX = -0.25, startVY = 0.25, endVX = -0.14, endVY = 0.15, copies = 0; copies < 10; copies++, startVX -= 0.0001, startVY += 0.001, endVX += 0.001, endVY += 0.004) {
+
+        curveAnimation(10, startVX, startVY, endVX, endVY, 1, 1, 4, 0);
+      }
+      for (let startVX = -0.14, startVY = 0.30, endVX = -0.25, endVY = 0.30, copies = 0; copies < 10; copies++, startVX += 0.001, startVY += 0.001, endVX += 0.001, endVY += 0.001) {
+        curveAnimation(10, startVX, startVY, endVX, endVY, 1, 1, 4, 0);
+      }
+      for (let startVX = -0.21, startVY = -0.05, endVX = - 0.29, endVY = -0.05, copies = 0; copies < 10; copies++, startVX += 0.001, startVY -= 0.001, endVX -= 0.001, endVY -= 0.001) {
+
+        lineAnimation(startVX, startVY, endVX, endVY);
+
+      }
+      lineAnimation(-0.14, 0.30, -0.10, 0.25);
+
+      //Nose Drawing
+      lineAnimation(0.0, -0.09, 0.03, -0.20);
+      lineAnimation(0.03, -0.20, 0, -0.23);
+
+      // Mouth rawing
+      curveAnimation(10, 0.0, -0.5, -0.10, -0.45, 1, 1, 3, 0);
+      curveAnimation(10, 0.0, -0.5, 0.10, - 0.45, 1, 1, 1, 0);
+      curveAnimation(10, 0.0, -0.54, -0.035, -0.52, 1, 1, 3, 0);
+      curveAnimation(10, 0.0, -0.54, 0.03, - 0.52, 1, 1, 1, 0);
 
 
+      gl.uniform3fv(uColor1, [0.8, 0.1, 0.1]);
+      gl.uniform3fv(uColor2, [0.1, 0.1, 0.1]);
+      // sketch line left check
+      for (let startVX = 0, startVY = -0.9, endVX = - 0.44, endVY = -0.45, copies = 0; copies < 30; copies++, startVX -= 0.001, startVY -= 0.001, endVX -= 0.001, endVY -= 0.001) {
 
-      // Loop
-      requestAnimationFrame(animate);
+
+        curveAnimation(10, startVX, startVY, endVX, endVY, 0.9, 0.9, 3, 0.5);
+      }
+      // ssketch line right check
+      curveAnimation(10, 0, -0.9, 0.44, -0.45, 0.9, 0.9, 1, 0.5);
+      //triangleAnimation(0.0, 0.0, 0.3, 0.0, 0.0, 0.3);
+      //rectangleAnimation(-0.5, 0.0, 0.5, 0.0, -0.5, 0.5, 0.5, 0.5);
+      // request changed frame
+      requestAnimationFrame(animateUnchangedFrame);
+    }
+    function animateChangedFrame() {
+
     }
 
-    animate();
+
+    animateUnchangedFrame();
+
     canvas.addEventListener('click', (e) => {
       const rect = canvas.getBoundingClientRect();
       const x = e.clientX - rect.left;
@@ -160,16 +278,16 @@ function VideoHome() {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-ame-auto my-2 my-lg-0uto">
             <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#link">Link</Nav.Link>
-            <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+            <Nav.Link href="#link">Account</Nav.Link>
+            <NavDropdown title="Company" id="basic-nav-dropdown">
+              <NavDropdown.Item href="#action/3.1">About</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">
-                Another action
+                Team Members
               </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.3">Events</NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item href="#action/3.4">
-                Separated link
+                Store
               </NavDropdown.Item>
             </NavDropdown>
           </Nav>
@@ -228,10 +346,13 @@ function VideoHome() {
             <Card.Body>
               <Card.Title>The New PacMan of our Generation</Card.Title>
               <Card.Text>
-                Some quick example text to build on the card title and make up the bulk of the card's content.
+                Cyclone has been in production of a new  concept of how to take PacMan game stlye to the next level .
+                We have implemented new AI tech to make the game more challenging and fun for all ages. The AI of the game will not
+                only adapt to your playing style but also learn from it  making each game unique and exciting. To increase replayability
+                no one playthrough of the game will be the same.
               </Card.Text>
-              <Card.Link href="#">The new pacman of our generation</Card.Link>
-              <Card.Link href="#">Another Link</Card.Link>
+              <Card.Link href="#">NYTimes Report</Card.Link>
+              <Card.Link href="#"></Card.Link>
             </Card.Body>
 
           </Card>
@@ -242,8 +363,8 @@ function VideoHome() {
             <Card.Img variant="top" src={logo} />
             <Card.Body>
               <Card.Title>Newest Console has arrived</Card.Title>
-              <Card.Text style={{ fontFamily: 'fantasy' }} >
-                <b> quick example text to build on the card title and make up the bulk of the card's content.</b>
+              <Card.Text  >
+                <b> Cyclone studio has made an effort to keep up with the lateest </b>
               </Card.Text>
               <Card.Link href="#">Card Link</Card.Link>
               <Card.Link href="#">Another Link</Card.Link>
