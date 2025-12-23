@@ -7,8 +7,8 @@ import logo from './assets/istockphoto-1560833158-1024x1024.jpg'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Card from 'react-bootstrap/Card';
 import React, { useRef, useEffect } from 'react';
-import nerdamer from 'nerdamer/all.min.js';
 import { elipseAnimation, circleAnimation, curveAnimation, lineAnimation, triangleAnimation, rectangleAnimation } from '/Users/cesarbarrera/Desktop/Game_Studio_Website-master/src/VideoHome/wp-coponents/DrawingFunctions.js';
+import { DrawEar } from "/Users/cesarbarrera/Desktop/Game_Studio_Website-master/src/VideoHome/wp-coponents/FaceFunctions.js";
 
 import {
   Row, Col,
@@ -41,16 +41,7 @@ export let curveVertices = new Float32Array([
   0.0, 0.0,
   0.0, 0.0
 ]);
-// Object properties
-const objects = [
-  {
-    offset: { x: -0.7, y: 0 },
-    color: [0.988, 0.906, 0.839],
-    speed: 0.01
-  }
 
-
-];
 function VideoHome() {
   const canvasRef = useRef(null);
 
@@ -141,17 +132,17 @@ function VideoHome() {
       // Face Drawing 
       gl.uniform3fv(uColor1, [0.988, 0.906, 0.839]);
       gl.uniform3fv(uColor2, [(0.988 * 0.3), (0.906 * 0.3), (0.839 * 0.3)]);
-      elipseAnimation(60, 0.525, 0.9, 0.0, 0.0);
+      elipseAnimation(30, 0.525, 0.9, 0.0, 0.0);
       // whites eye drawing
       gl.uniform3fv(uColor1, [1, 1, 1]);
       gl.uniform3fv(uColor2, [(1 * 0.3), (1 * 0.3), (1 * 0.3)]);
-      elipseAnimation(60, 0.1, 0.15, 0.25, 0.1);
-      elipseAnimation(60, 0.1, 0.15, -0.25, 0.1);
+      elipseAnimation(40, 0.1, 0.15, 0.25, 0.1);
+      elipseAnimation(40, 0.1, 0.15, -0.25, 0.1);
       //eye iris drawing
       gl.uniform3fv(uColor1, [0, 0, 0]);
       gl.uniform3fv(uColor2, [0, 0, 0]);
-      elipseAnimation(50, 0.07, 0.15, 0.25, 0.1);
-      elipseAnimation(50, 0.07, 0.15, -0.25, 0.1);
+      elipseAnimation(20, 0.07, 0.15, 0.25, 0.1);
+      elipseAnimation(20, 0.07, 0.15, -0.25, 0.1);
       //eye shine drawing
       gl.uniform3fv(uColor1, [1, 1, 1]);
       gl.uniform3fv(uColor2, [(1 * 0.3), (1 * 0.3), (1 * 0.3)]);
@@ -166,16 +157,22 @@ function VideoHome() {
 
 
       //hair drawing
-      gl.uniform3fv(uColor1, [0, 0, 0]);
-      gl.uniform3fv(uColor2, [0, 0, 0]);
+      gl.uniform3fv(uColor1, [0.647, 0.165, 0.165]);
+      gl.uniform3fv(uColor2, [0.647, 0.165, 0.165]);
+      /*
       for (let i = 40, a = 0.1, b = 0.3; i > 0; i--, a += 0.01) {
         curveAnimation(10, 0, 0.91, a, b, 1, 1, 4, 0);
       }
       for (let i = 40, a = -0.1, b = 0.3; i > 0; i--, a -= 0.01) {
         curveAnimation(10, 0, 0.91, a, b, 1, 1, 4, 0);
       }
-
+*/
       //Right Eye drawing
+      //right eyebrow line
+      gl.uniform3fv(uColor1, [0, 0, 0]);
+      gl.uniform3fv(uColor2, [0, 0, 0]);
+      curveAnimation(10, 0.13, 0.50, 0.38, 0.45, 1, 1, 4, 0);
+
       for (let startVX = 0.25, startVY = 0.25, endVX = 0.35, endVY = 0.05, copies = 0; copies < 10; copies++, startVX += 0.0001, startVY += 0.001, endVX += 0.003, endVY += 0.005) {
 
         curveAnimation(10, startVX, startVY, endVX, endVY, 1, 1, 4, 0);
@@ -187,61 +184,87 @@ function VideoHome() {
 
         curveAnimation(10, startVX, startVY, endVX, endVY, 1, 1, 2, 0);
       }
-      for (let startVX = 0.14, startVY = 0.30, endVX = 0.25, endVY = 0.30, copies = 0; copies < 5; copies++, startVX -= 0.001, startVY += 0.001, endVX += 0.001, endVY += 0.001) {
+      for (let startVX = 0.15, startVY = 0.30, endVX = 0.35, endVY = 0.25, copies = 0; copies < 5; copies++, startVX -= 0.001, startVY += 0.001, endVX += 0.001, endVY += 0.001) {
 
         curveAnimation(10, startVX, startVY, endVX, endVY, 1, 1, 4, 0);
       }
+      lineAnimation(0.15, 0.30, 0.12, 0.25);
       for (let startVX = 0.21, startVY = -0.05, endVX = 0.29, endVY = -0.05, copies = 0; copies < 10; copies++, startVX -= 0.001, startVY -= 0.001, endVX += 0.001, endVY -= 0.001) {
 
         lineAnimation(startVX, startVY, endVX, endVY);
 
       }
-      lineAnimation(0.14, 0.30, 0.10, 0.25);
 
-      //Left Eye drawing
+
+      //Left Eye drawing\
+
+      //left eyebrow line
+      curveAnimation(10, -0.13, 0.50, -0.38, 0.45, 1, 1, 2, 0);
+      //left eyelashes right half curve
       for (let startVX = -0.25, startVY = 0.25, endVX = -0.35, endVY = 0.05, copies = 0; copies < 10; copies++, startVX += 0.001, startVY += 0.001, endVX -= 0.003, endVY += 0.005) {
 
         curveAnimation(10, startVX, startVY, endVX, endVY, 1, 1, 4, 0);
 
       }
+      //left eyelashes left half line
       for (let startVX = -0.38, startVY = 0.1, endVX = -0.34, endVY = 0.03, copies = 0; copies < 10; copies++, startVX -= 0.001, startVY -= 0.005, endVX -= 0.001, endVY -= 0.001) {
         lineAnimation(startVX, startVY, endVX, endVY);
       }
+      //left eyelashes left half curve
       for (let startVX = -0.25, startVY = 0.25, endVX = -0.14, endVY = 0.15, copies = 0; copies < 10; copies++, startVX -= 0.0001, startVY += 0.001, endVX += 0.001, endVY += 0.004) {
 
         curveAnimation(10, startVX, startVY, endVX, endVY, 1, 1, 4, 0);
       }
-      for (let startVX = -0.14, startVY = 0.30, endVX = -0.25, endVY = 0.30, copies = 0; copies < 10; copies++, startVX += 0.001, startVY += 0.001, endVX += 0.001, endVY += 0.001) {
-        curveAnimation(10, startVX, startVY, endVX, endVY, 1, 1, 4, 0);
+      //eye upper line
+      for (let startVX = -0.15, startVY = 0.30, endVX = -0.35, endVY = 0.25, copies = 0; copies < 10; copies++, startVX += 0.001, startVY += 0.001, endVX += 0.001, endVY += 0.001) {
+        curveAnimation(10, startVX, startVY, endVX, endVY, 1, 1, 3, 0);
       }
+      lineAnimation(-0.15, 0.30, -0.12, 0.25);
+      //eye lower line
       for (let startVX = -0.21, startVY = -0.05, endVX = - 0.29, endVY = -0.05, copies = 0; copies < 10; copies++, startVX += 0.001, startVY -= 0.001, endVX -= 0.001, endVY -= 0.001) {
 
         lineAnimation(startVX, startVY, endVX, endVY);
 
       }
-      lineAnimation(-0.14, 0.30, -0.10, 0.25);
+
 
       //Nose Drawing
-      lineAnimation(0.0, -0.09, 0.03, -0.20);
-      lineAnimation(0.03, -0.20, 0, -0.23);
+      lineAnimation(0.0, -0.19, 0.03, -0.30);
+      lineAnimation(0.03, -0.30, 0, -0.33);
 
-      // Mouth rawing
-      curveAnimation(10, 0.0, -0.5, -0.10, -0.45, 1, 1, 3, 0);
-      curveAnimation(10, 0.0, -0.5, 0.10, - 0.45, 1, 1, 1, 0);
-      curveAnimation(10, 0.0, -0.54, -0.035, -0.52, 1, 1, 3, 0);
-      curveAnimation(10, 0.0, -0.54, 0.03, - 0.52, 1, 1, 1, 0);
+      // Mouth drawing
+      curveAnimation(10, 0.0, -0.5, -0.10, -0.48, 1, 1, 3, 0);
+      curveAnimation(10, 0.0, -0.5, 0.10, - 0.48, 1, 1, 1, 0);
+      curveAnimation(10, 0.0, -0.54, -0.035, -0.53, 1, 1, 3, 0);
+      curveAnimation(10, 0.0, -0.54, 0.03, - 0.53, 1, 1, 1, 0);
 
-
-      gl.uniform3fv(uColor1, [0.8, 0.1, 0.1]);
+      gl.uniform3fv(uColor1, [0.1, 0.1, 0.1]);
       gl.uniform3fv(uColor2, [0.1, 0.1, 0.1]);
       // sketch line left check
-      for (let startVX = 0, startVY = -0.9, endVX = - 0.44, endVY = -0.45, copies = 0; copies < 30; copies++, startVX -= 0.001, startVY -= 0.001, endVX -= 0.001, endVY -= 0.001) {
+      for (let startVX = 0, startVY = -0.9, endVX = - 0.46, endVY = -0.44, copies = 0; copies < 30; copies++, startVX -= 0.001, startVY -= 0.001, endVX -= 0.001, endVY -= 0.001) {
 
 
         curveAnimation(10, startVX, startVY, endVX, endVY, 0.9, 0.9, 3, 0.5);
       }
-      // ssketch line right check
-      curveAnimation(10, 0, -0.9, 0.44, -0.45, 0.9, 0.9, 1, 0.5);
+      for (let startVX = -0.45, startVY = -0.45, endVX = - 0.52, endVY = -0.05, copies = 0; copies < 30; copies++, startVX -= 0.001, startVY -= 0.001, endVX -= 0.001, endVY -= 0.001) {
+
+
+        curveAnimation(10, startVX, startVY, endVX, endVY, 0.9, 0.9, 3, 0.7);
+      }
+      // sketch line right check
+      gl.uniform3fv(uColor1, [0.1, 0.1, 0.1]);
+      gl.uniform3fv(uColor2, [0.1, 0.1, 0.1]);
+      for (let startVX = 0, startVY = -0.9, endVX = 0.46, endVY = -0.44, copies = 0; copies < 30; copies++, startVX += 0.001, startVY -= 0.001, endVX += 0.001, endVY -= 0.001) {
+        curveAnimation(10, startVX, startVY, endVX, endVY, 0.9, 0.9, 1, 0.5);
+      }
+      for (let startVX = 0.46, startVY = -0.45, endVX = 0.53, endVY = 0.05, copies = 0; copies < 30; copies++, startVX += 0.001, startVY -= 0.001, endVX += 0.001, endVY -= 0.001) {
+
+
+
+        curveAnimation(10, startVX, startVY, endVX, endVY, 0.9, 0.9, 1, 0.7);
+      }
+
+
       //triangleAnimation(0.0, 0.0, 0.3, 0.0, 0.0, 0.3);
       //rectangleAnimation(-0.5, 0.0, 0.5, 0.0, -0.5, 0.5, 0.5, 0.5);
       // request changed frame
