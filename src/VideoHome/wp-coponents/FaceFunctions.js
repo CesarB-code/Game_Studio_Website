@@ -23,4 +23,9 @@ function DrawEar() {
     gl.fill();
     gl.closePath();
 }
-export { HairType1Drawing, DrawEar };
+function DrawFace(copies, a, b, h, k) {
+    gl.uniform3fv(uColor1, [0.988, 0.906, 0.839]);
+    gl.uniform3fv(uColor2, [(0.988 * 0.3), (0.906 * 0.3), (0.839 * 0.3)]);
+    elipseAnimation(copies, a, b, h, k);
+}
+export { HairType1Drawing, DrawEar, DrawFace };
