@@ -7,9 +7,7 @@ import logo from './assets/istockphoto-1560833158-1024x1024.jpg'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Card from 'react-bootstrap/Card';
 import React, { useRef, useEffect } from 'react';
-import { elipseAnimation, circleAnimation, curveAnimation, lineAnimation, triangleAnimation, rectangleAnimation } from '/Users/cesarbarrera/Desktop/Game_Studio_Website-master/src/VideoHome/wp-coponents/DrawingFunctions.js';
-import { DrawEar } from "/Users/cesarbarrera/Desktop/Game_Studio_Website-master/src/VideoHome/wp-coponents/FaceFunctions.js";
-
+import { elipseAnimation, circleAnimation, curveAnimation, lineAnimation, triangleAnimation, rectangleAnimation } from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/VideoHome/wp-coponents/DrawingFunctions.js';
 import {
   Row, Col,
   Carousel,

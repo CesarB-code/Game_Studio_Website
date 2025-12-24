@@ -1,6 +1,5 @@
 
-import { gl } from '/Users/cesarbarrera/Desktop/Game_Studio_Website-master/src/VideoHome/VideoHome.js';
-
+import { gl } from "/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/VideoHome/VideoHome.js";
 // Triangle vertices
 let vertices = new Float32Array([
     0.0, 0.0,
