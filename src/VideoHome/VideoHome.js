@@ -7,7 +7,8 @@ import logo from './assets/istockphoto-1560833158-1024x1024.jpg'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Card from 'react-bootstrap/Card';
 import React, { useRef, useEffect } from 'react';
-import { elipseAnimation, circleAnimation, curveAnimation, lineAnimation, triangleAnimation, rectangleAnimation } from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/VideoHome/wp-coponents/DrawingFunctions.js';
+import { elipseAnimation, circleAnimation, curveAnimation, lineAnimation, triangleAnimation, rectangleAnimation }
+  from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/VideoHome/wp-coponents/DrawingFunctions.js';
 import {
   Row, Col,
   Carousel,
@@ -20,9 +21,13 @@ import {
   Container
 } from 'react-bootstrap';
 import './VideoHomePage.css';
+import { DrawEar, DrawFace, EditFace, DrawNose, DrawMouth } from "/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/VideoHome/wp-coponents/FaceFunctions.js";
+
 
 export let gl;
 export let canvas;
+export let uColor2;
+export let uColor1;
 // Triangle vertices
 export let vertices = new Float32Array([
   0.0, 0.0,
@@ -117,8 +122,8 @@ function VideoHome() {
     gl.vertexAttribPointer(aPosition, 2, gl.FLOAT, false, 0, 0);
 
 
-    const uColor2 = gl.getUniformLocation(program, "uColor2");
-    const uColor1 = gl.getUniformLocation(program, "uColor1");
+    uColor2 = gl.getUniformLocation(program, "uColor2");
+    uColor1 = gl.getUniformLocation(program, "uColor1");
 
     // Animation for unchanged frame
     function animateUnchangedFrame() {
@@ -128,14 +133,9 @@ function VideoHome() {
 
 
       // Face Drawing 
-      gl.uniform3fv(uColor1, [0.988, 0.906, 0.839]);
-      gl.uniform3fv(uColor2, [(0.988 * 0.3), (0.906 * 0.3), (0.839 * 0.3)]);
-      elipseAnimation(30, 0.525, 0.9, 0.0, 0.0);
+      DrawFace(30, 0.525, 0.9, 0.0, 0.0);
       // whites eye drawing
-      gl.uniform3fv(uColor1, [1, 1, 1]);
-      gl.uniform3fv(uColor2, [(1 * 0.3), (1 * 0.3), (1 * 0.3)]);
-      elipseAnimation(40, 0.1, 0.15, 0.25, 0.1);
-      elipseAnimation(40, 0.1, 0.15, -0.25, 0.1);
+
       //eye iris drawing
       gl.uniform3fv(uColor1, [0, 0, 0]);
       gl.uniform3fv(uColor2, [0, 0, 0]);
@@ -227,40 +227,13 @@ function VideoHome() {
 
 
       //Nose Drawing
-      lineAnimation(0.0, -0.19, 0.03, -0.30);
-      lineAnimation(0.03, -0.30, 0, -0.33);
+      DrawNose(0.0, 0.03, -0.19, -0.30, 0.03, -0.30, 0, -0.33);
 
       // Mouth drawing
-      curveAnimation(10, 0.0, -0.5, -0.10, -0.48, 1, 1, 3, 0);
-      curveAnimation(10, 0.0, -0.5, 0.10, - 0.48, 1, 1, 1, 0);
-      curveAnimation(10, 0.0, -0.54, -0.035, -0.53, 1, 1, 3, 0);
-      curveAnimation(10, 0.0, -0.54, 0.03, - 0.53, 1, 1, 1, 0);
+      DrawMouth();
 
-      gl.uniform3fv(uColor1, [0.1, 0.1, 0.1]);
-      gl.uniform3fv(uColor2, [0.1, 0.1, 0.1]);
-      // sketch line left check
-      for (let startVX = 0, startVY = -0.9, endVX = - 0.46, endVY = -0.44, copies = 0; copies < 30; copies++, startVX -= 0.001, startVY -= 0.001, endVX -= 0.001, endVY -= 0.001) {
-
-
-        curveAnimation(10, startVX, startVY, endVX, endVY, 0.9, 0.9, 3, 0.5);
-      }
-      for (let startVX = -0.45, startVY = -0.45, endVX = - 0.52, endVY = -0.05, copies = 0; copies < 30; copies++, startVX -= 0.001, startVY -= 0.001, endVX -= 0.001, endVY -= 0.001) {
-
-
-        curveAnimation(10, startVX, startVY, endVX, endVY, 0.9, 0.9, 3, 0.7);
-      }
-      // sketch line right check
-      gl.uniform3fv(uColor1, [0.1, 0.1, 0.1]);
-      gl.uniform3fv(uColor2, [0.1, 0.1, 0.1]);
-      for (let startVX = 0, startVY = -0.9, endVX = 0.46, endVY = -0.44, copies = 0; copies < 30; copies++, startVX += 0.001, startVY -= 0.001, endVX += 0.001, endVY -= 0.001) {
-        curveAnimation(10, startVX, startVY, endVX, endVY, 0.9, 0.9, 1, 0.5);
-      }
-      for (let startVX = 0.46, startVY = -0.45, endVX = 0.53, endVY = 0.05, copies = 0; copies < 30; copies++, startVX += 0.001, startVY -= 0.001, endVX += 0.001, endVY -= 0.001) {
-
-
-
-        curveAnimation(10, startVX, startVY, endVX, endVY, 0.9, 0.9, 1, 0.7);
-      }
+      // Cheeks drawing
+      EditFace();
 
 
       //triangleAnimation(0.0, 0.0, 0.3, 0.0, 0.0, 0.3);
