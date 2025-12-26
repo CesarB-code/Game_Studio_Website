@@ -235,6 +235,10 @@ function VideoHome() {
       // Cheeks drawing
       EditFace();
 
+      // Ear Drawing
+      //DrawEar("left");
+      //DrawEar("right");
+
 
       //triangleAnimation(0.0, 0.0, 0.3, 0.0, 0.0, 0.3);
       //rectangleAnimation(-0.5, 0.0, 0.5, 0.0, -0.5, 0.5, 0.5, 0.5);
@@ -250,8 +254,7 @@ function VideoHome() {
 
     canvas.addEventListener('click', (e) => {
       const rect = canvas.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
+
 
     });
 
@@ -379,7 +382,7 @@ function VideoHome() {
         <Col style={{ bottom: 100 }}>
           <img src={MyImage3} style={{ height: 50, width: 50 }} alt="Background" />
 
-          <a style={{ color: 'white', fontFamily: 'fantasy', fontSize: 30, marginTop: 30 }}>Cyclone</a>
+          <a href="#" style={{ color: 'white', fontFamily: 'fantasy', fontSize: 30, marginTop: 30 }}>Cyclone</a>
 
         </Col>
 
