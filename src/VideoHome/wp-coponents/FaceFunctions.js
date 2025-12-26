@@ -2,7 +2,7 @@ import { triangleAnimation, rectangleAnimation, curveAnimation, lineAnimation, c
     '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/VideoHome/wp-coponents/DrawingFunctions.js';
 import { gl, uColor1, uColor2 } from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/VideoHome/VideoHome.js';
 
-let eyeHeight;
+let eyeHeight, noseHeight, FaceColor, HairColor, EyeColor;
 
 function HairType1Drawing() {
     HairType1TopPart();
@@ -20,9 +20,14 @@ function HairType1Strands() {
 function DrawEye() {
 
 }
-function DrawEar(k) {
+function DrawEar(eyePosition) {
+    if (eyePosition == "left") {
+        curveAnimation(30, -0.7, eyeHeight, -0.5, 0.5, 0.5, 0.5, 3, 0.5);
+
+    } else if (eyePosition == "right") {
+
+    }
     // Drawing the ear using WebGL
-    curveAnimation(30, -0.7, k, -0.5, 0.5, 0.5, 0.5, 3, 0.5);
 
 
 
@@ -67,8 +72,9 @@ function DrawWhitesEye(copies, a, b, h, k) {
 }
 function DrawNose(first1, first2, second1, second2, third1, third2, fourth1, fourth2) {
     // Drawing the nose using WebGL
-    lineAnimation(first1, second1, third1, fourth1);
-    lineAnimation(first2, second2, third2, fourth2);
+    noseHeight = fourth1;
+    lineAnimation(first1, first2, second1, second2);
+    lineAnimation(third1, third2, fourth1, fourth2);
 }
 function DrawMouth() {
     curveAnimation(10, 0.0, -0.5, -0.10, -0.48, 1, 1, 3, 0);

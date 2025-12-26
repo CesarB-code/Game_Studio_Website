@@ -227,7 +227,7 @@ function VideoHome() {
 
 
       //Nose Drawing
-      DrawNose(0.0, 0.03, -0.19, -0.30, 0.03, -0.30, 0, -0.33);
+      DrawNose(0.0, -0.25, 0.01, -0.30, 0.01, -0.30, 0, -0.33);
 
       // Mouth drawing
       DrawMouth();
