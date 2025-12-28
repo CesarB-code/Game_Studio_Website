@@ -1,8 +1,12 @@
 import { triangleAnimation, rectangleAnimation, curveAnimation, lineAnimation, circleAnimation, semiCircleAnimation, elipseAnimation } from
     '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/VideoHome/wp-coponents/DrawingFunctions.js';
 import { gl, uColor1, uColor2 } from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/VideoHome/VideoHome.js';
+import { e } from 'mathjs';
 
-let eyeHeight, noseHeight, EarPosition, FaceColor, HairColor, EyeColor;
+let eyeHeight, noseHeight, EarPosition,
+    FaceColor, HairColor, EyeColor, theta
+    , earMiddle, earPoints = new Float32Array([]);
+
 
 function HairType1Drawing() {
     HairType1TopPart();
@@ -21,12 +25,27 @@ function DrawEye() {
 
 }
 function DrawEar(eyePosition) {
+    gl.uniform3fv(uColor1, [0.988, 0.906, 0.839]);
+    gl.uniform3fv(uColor2, [(0.988 * 0.3), (0.906 * 0.3), (0.839 * 0.3)]);
+    earMiddle = noseHeight > 1 ? eyeHeight - noseHeight : Math.abs(eyeHeight + noseHeight);
     if (eyePosition === "left") {
-        curveAnimation(30, EarPosition, eyeHeight, -0.5, 0.5, 0.5, 0.5, 3, 0);
-        curveAnimation(30, -0.7, 0, -0.5, noseHeight, 0.5, 0.5, 3, 0);
+        curveAnimation(30, (-1 * EarPosition) - 0.05, eyeHeight + 0.05, (-1 * EarPosition), eyeHeight,
+            0.5, 0.5, 4, 0.7);
+        curveAnimation(30, (-1 * EarPosition) - 0.05, eyeHeight + 0.05, (-1 * EarPosition) - 0.1, eyeHeight,
+            0.5, 0.5, 2, 0.5);
+        curveAnimation(30, (-1 * EarPosition) - 0.08, noseHeight + earMiddle, (-1 * EarPosition) - 0.1, eyeHeight,
+            0.5, 0.5, 3, 0.5);
+        curveAnimation(30, (-1 * EarPosition), noseHeight - 0.03, (-1 * EarPosition) - 0.08, noseHeight + earMiddle,
+            0.5, 0.5, 3, 0.5);
+
+
 
 
     } else if (eyePosition === "right") {
+        curveAnimation(30, (-1 * EarPosition) - 0.05, eyeHeight + 0.05, (-1 * EarPosition), eyeHeight,
+            0.5, 0.5, 4, 0);
+        curveAnimation(30, (-1 * EarPosition) - 0.05, eyeHeight + 0.05, (-1 * EarPosition) - 0.1, eyeHeight, 0.5, 0.5, 2, 0);
+
 
     }
     // Drawing the ear using WebGL
@@ -37,13 +56,15 @@ function DrawEar(eyePosition) {
 function DrawFace(copies, a, b, h, k) {
     gl.uniform3fv(uColor1, [0.988, 0.906, 0.839]);
     gl.uniform3fv(uColor2, [(0.988 * 0.3), (0.906 * 0.3), (0.839 * 0.3)]);
+    theta = Math.sinh((eyeHeight - k) / b);
+    EarPosition = h + a * Math.cos(theta);
     elipseAnimation(copies, a, b, h, k);
-    EarPosition = h + a;
     DrawWhitesEye(40, 0.1, 0.15, 0.25, 0.1);
 }
 function EditFace() {
     gl.uniform3fv(uColor1, [0.1, 0.1, 0.1]);
     gl.uniform3fv(uColor2, [0.1, 0.1, 0.1]);
+
     // sketch line left check
     for (let startVX = 0, startVY = -0.9, endVX = - 0.46, endVY = -0.44, copies = 0; copies < 30; copies++, startVX -= 0.001, startVY -= 0.001, endVX -= 0.001, endVY -= 0.001) {
 
@@ -67,7 +88,8 @@ function EditFace() {
     }
 }
 function DrawWhitesEye(copies, a, b, h, k) {
-    eyeHeight = k + b;
+    eyeHeight = k;
+
     gl.uniform3fv(uColor1, [1, 1, 1]);
     gl.uniform3fv(uColor2, [(1 * 0.3), (1 * 0.3), (1 * 0.3)]);
     elipseAnimation(copies, a, b, h, k);
@@ -76,6 +98,7 @@ function DrawWhitesEye(copies, a, b, h, k) {
 function DrawNose(first1, first2, second1, second2, third1, third2, fourth1, fourth2) {
     // Drawing the nose using WebGL
     noseHeight = second2;
+
     lineAnimation(first1, first2, second1, second2);
     lineAnimation(third1, third2, fourth1, fourth2);
 }

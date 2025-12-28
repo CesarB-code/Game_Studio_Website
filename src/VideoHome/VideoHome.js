@@ -133,7 +133,7 @@ function VideoHome() {
 
 
       // Face Drawing 
-      DrawFace(30, 0.525, 0.9, 0.0, 0.0);
+      DrawFace(35, 0.525, 0.9, 0.0, 0.0);
       // whites eye drawing
 
       //eye iris drawing
@@ -236,8 +236,8 @@ function VideoHome() {
       EditFace();
 
       // Ear Drawing
-      //DrawEar("left");
-      //DrawEar("right");
+      DrawEar("left");
+      // DrawEar("right");
 
 
       //triangleAnimation(0.0, 0.0, 0.3, 0.0, 0.0, 0.3);
