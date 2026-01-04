@@ -45,13 +45,13 @@ function DrawEar(eyePosition) {
         }
         earLeftPoints.push((-1 * UpperEarPosition) - 0.08, noseHeight + earMiddle);
 
-        for (let curvePart = 0.7; curvePart <= 1; curvePart += 0.01) {
+        for (let curvePart = 0.6; curvePart <= 1; curvePart += 0.01) {
 
             curveAnimation(30, (-1 * UpperEarPosition) - 0.08, noseHeight + earMiddle, (-1 * UpperEarPosition) - 0.1, eyeHeight,
-                0.5, 0.5, 3, curvePart);
+                1.5, 0.8, 3, curvePart);
         }
         earLeftPoints.push((-1 * UpperEarPosition) - 0.1, eyeHeight);
-        for (let curvePart = 0.4; curvePart <= 1; curvePart += 0.01) {
+        for (let curvePart = 0.3; curvePart <= 1; curvePart += 0.01) {
 
             curveAnimation(30, (-1 * UpperEarPosition) - 0.05, eyeHeight + 0.05, (-1 * UpperEarPosition) - 0.1, eyeHeight,
                 0.5, 0.5, 2, curvePart);
@@ -65,6 +65,8 @@ function DrawEar(eyePosition) {
         }
         earLeftPoints.push((-1 * UpperEarPosition), eyeHeight);
         fillEar("left");
+        InnerEarDetails(earLeftPoints, "left");
+
         earLeftPoints = [];
 
 
@@ -104,7 +106,6 @@ function DrawEar(eyePosition) {
         }
         earRightPoints.push((UpperEarPosition), eyeHeight);
         fillEar("right");
-        console.log(earRightPoints);
         earRightPoints = [];
 
     }
@@ -129,6 +130,53 @@ function DrawEar(eyePosition) {
         }
 
 
+
+    }
+}
+function InnerEarDetails(earPointDetails, eartype) {
+    if (eartype === "left") {
+        gl.uniform3fv(uColor1, [0.1, 0.1, 0.01]);
+        gl.uniform3fv(uColor2, [0.1, 0.1, 0.1]);
+
+        for (let point = earPointDetails.length - 1; point >= 9; point -= 2) {
+            if (point > 11) {
+                curveAnimation(20, earPointDetails[point - 3], earPointDetails[point - 2] - 0.04, earPointDetails[point - 1] - 0.01, earPointDetails[point] - 0.1
+                    , 0.5, 0.5, 4, 0.3);
+                curveAnimation(20, earPointDetails[0] - 0.015, earPointDetails[1] - 0.115, earPointDetails[point - 1] - 0.01, earPointDetails[point] - 0.1,
+                    3, 3, 1, 0);
+            }
+            else if (point > 9) {
+                curveAnimation(20, earPointDetails[point - 1], earPointDetails[point] - 0.04, earPointDetails[point - 3] + 0.01, earPointDetails[point - 2] - 0.04,
+                    0.5, 0.5, 2, 0.5);
+            }
+
+
+        }
+
+
+        curveAnimation(20, earPointDetails[10], earPointDetails[11] - 0.18, earPointDetails[12] - 0.01, earPointDetails[13] - 0.1,
+            0.5, 0.5, 1, 0);
+        curveAnimation(20, earPointDetails[10], earPointDetails[11] - 0.18, earPointDetails[8] + 0.02, earPointDetails[9] - 0.1,
+            0.5, 0.5, 3, 0);
+        curveAnimation(20, earPointDetails[4] - 0.01, earPointDetails[5] + 0.08, earPointDetails[0] - 0.015, earPointDetails[1] - 0.115,
+            1, 0.2, 3, 0);
+        curveAnimation(20, earPointDetails[4] - 0.01, earPointDetails[5] + 0.08, earPointDetails[0] - 0.04, earPointDetails[1] - 0.115,
+            1, 0.4, 3, 0);
+        curveAnimation(20, earPointDetails[0] - 0.01, earPointDetails[1] - 0.01, earPointDetails[0] - 0.04, earPointDetails[1] - 0.115,
+            1, 0.4, 3, 0);
+
+
+    } else if (eartype === "right") {
+        for (let point = earPointDetails.length - 1; point >= 2; point -= 2) {
+            if (point > 11) {
+                curveAnimation(20, earPointDetails[point - 3], earPointDetails[point - 2], earPointDetails[point - 1], earPointDetails[point]
+                    , 0.5, 0.5, 1, 1);
+            }
+            else if (point > 9) {
+                curveAnimation(20, earPointDetails[point - 1], earPointDetails[point], earPointDetails[point - 3], earPointDetails[point - 2],
+                    0.5, 0.5, 3, 1);
+            }
+        }
 
     }
 }
