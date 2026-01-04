@@ -8,7 +8,17 @@ let eyeHeight, noseHeight, UpperEarPosition, LowerEarPosition,
     earMiddle, earLeftPoints = [], earRightPoints = [];
 
 
-function HairType1Drawing() {
+function DrawHair() {
+    //hair drawing
+    gl.uniform3fv(uColor1, [0.647, 0.165, 0.165]);
+    gl.uniform3fv(uColor2, [0.647, 0.165, 0.165]);
+
+    for (let i = 40, a = 0.1, b = 0.3; i > 0; i--, a += 0.01) {
+        curveAnimation(10, 0, 0.91, a, b, 1, 1, 4, 0);
+    }
+    for (let i = 40, a = -0.1, b = 0.3; i > 0; i--, a -= 0.01) {
+        curveAnimation(10, 0, 0.91, a, b, 1, 1, 4, 0);
+    }
     HairType1TopPart();
     HairType1Strands();
 }
@@ -244,4 +254,4 @@ function DrawMouth() {
     curveAnimation(10, 0.0, -0.54, 0.03, - 0.53, 1, 1, 1, 0);
 
 }
-export { HairType1Drawing, DrawEar, DrawFace, EditFace, DrawNose, DrawMouth, DrawEye };
+export { DrawHair, DrawEar, DrawFace, EditFace, DrawNose, DrawMouth, DrawEye };

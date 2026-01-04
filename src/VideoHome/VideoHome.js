@@ -21,7 +21,7 @@ import {
   Container
 } from 'react-bootstrap';
 import './VideoHomePage.css';
-import { DrawEar, DrawFace, EditFace, DrawNose, DrawMouth } from "/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/VideoHome/wp-coponents/FaceFunctions.js";
+import { DrawEar, DrawFace, EditFace, DrawNose, DrawMouth, DrawHair } from "/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/VideoHome/wp-coponents/FaceFunctions.js";
 
 
 export let gl;
@@ -152,19 +152,10 @@ function VideoHome() {
       circleAnimation(50, 0.04, 0.25, -0.02);
       circleAnimation(50, 0.04, -0.25, -0.02);
 
+      // Hair Drawing
 
+      DrawHair();
 
-      //hair drawing
-      gl.uniform3fv(uColor1, [0.647, 0.165, 0.165]);
-      gl.uniform3fv(uColor2, [0.647, 0.165, 0.165]);
-      /*
-      for (let i = 40, a = 0.1, b = 0.3; i > 0; i--, a += 0.01) {
-        curveAnimation(10, 0, 0.91, a, b, 1, 1, 4, 0);
-      }
-      for (let i = 40, a = -0.1, b = 0.3; i > 0; i--, a -= 0.01) {
-        curveAnimation(10, 0, 0.91, a, b, 1, 1, 4, 0);
-      }
-*/
       //Right Eye drawing
       //right eyebrow line
       gl.uniform3fv(uColor1, [0, 0, 0]);
