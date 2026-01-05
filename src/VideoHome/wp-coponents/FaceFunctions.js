@@ -116,6 +116,7 @@ function DrawEar(eyePosition) {
         }
         earRightPoints.push((UpperEarPosition), eyeHeight);
         fillEar("right");
+        InnerEarDetails(earRightPoints, "right")
         earRightPoints = [];
 
     }
@@ -163,11 +164,12 @@ function InnerEarDetails(earPointDetails, eartype) {
 
         }
 
-
+        // inner curve
         curveAnimation(20, earPointDetails[10], earPointDetails[11] - 0.18, earPointDetails[12] - 0.01, earPointDetails[13] - 0.1,
             0.5, 0.5, 1, 0);
         curveAnimation(20, earPointDetails[10], earPointDetails[11] - 0.18, earPointDetails[8] + 0.02, earPointDetails[9] - 0.1,
             0.5, 0.5, 3, 0);
+        //
         curveAnimation(20, earPointDetails[4] - 0.01, earPointDetails[5] + 0.08, earPointDetails[0] - 0.015, earPointDetails[1] - 0.115,
             1, 0.2, 3, 0);
         curveAnimation(20, earPointDetails[4] - 0.01, earPointDetails[5] + 0.08, earPointDetails[0] - 0.04, earPointDetails[1] - 0.115,
@@ -177,16 +179,38 @@ function InnerEarDetails(earPointDetails, eartype) {
 
 
     } else if (eartype === "right") {
-        for (let point = earPointDetails.length - 1; point >= 2; point -= 2) {
+        gl.uniform3fv(uColor1, [0.1, 0.1, 0.01]);
+        gl.uniform3fv(uColor2, [0.1, 0.1, 0.1]);
+
+        for (let point = earPointDetails.length - 1; point >= 9; point -= 2) {
             if (point > 11) {
-                curveAnimation(20, earPointDetails[point - 3], earPointDetails[point - 2], earPointDetails[point - 1], earPointDetails[point]
-                    , 0.5, 0.5, 1, 1);
+                curveAnimation(20, earPointDetails[point - 3], earPointDetails[point - 2] - 0.04, earPointDetails[point - 1] + 0.01, earPointDetails[point] - 0.1
+                    , 0.5, 0.5, 2, 0.3);
+                curveAnimation(20, earPointDetails[0], earPointDetails[1] - 0.115, earPointDetails[point - 1] + 0.01, earPointDetails[point] - 0.1,
+                    3, 3, 3, 0);
             }
             else if (point > 9) {
-                curveAnimation(20, earPointDetails[point - 1], earPointDetails[point], earPointDetails[point - 3], earPointDetails[point - 2],
-                    0.5, 0.5, 3, 1);
+                curveAnimation(20, earPointDetails[point - 1], earPointDetails[point] - 0.04, earPointDetails[point - 3] - 0.01, earPointDetails[point - 2] - 0.04,
+                    0.5, 0.5, 4, 0.5);
             }
+
+
         }
+
+        // inner curve
+        curveAnimation(20, earPointDetails[10], earPointDetails[11] - 0.18, earPointDetails[12] + 0.01, earPointDetails[13] - 0.1,
+            0.5, 0.5, 3, 0);
+        curveAnimation(20, earPointDetails[10], earPointDetails[11] - 0.18, earPointDetails[8] - 0.02, earPointDetails[9] - 0.1,
+            0.5, 0.5, 1, 0);
+        //lower inner curve
+        curveAnimation(20, earPointDetails[4] + 0.01, earPointDetails[5] + 0.08, earPointDetails[0], earPointDetails[1] - 0.115,
+            1, 0.2, 1, 0);
+        //first half lower inner curve
+        curveAnimation(20, earPointDetails[4] + 0.01, earPointDetails[5] + 0.08, earPointDetails[0] + 0.025, earPointDetails[1] - 0.2,
+            1, 0.4, 1, 0);
+        //second half upper inner curve
+        curveAnimation(20, earPointDetails[0], earPointDetails[1] - 0.12, earPointDetails[0] + 0.025, earPointDetails[1] - 0.2,
+            1, 0.4, 4, 0);
 
     }
 }
