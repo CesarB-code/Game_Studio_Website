@@ -21,7 +21,7 @@ import {
   Container
 } from 'react-bootstrap';
 import './VideoHomePage.css';
-import { DrawEar, DrawFace, EditFace, DrawNose, DrawMouth, DrawHair } from "/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/VideoHome/wp-coponents/FaceFunctions.js";
+import { DrawEar, DrawFace, EditFace, DrawNose, DrawMouth, DrawHair, DrawEye, DrawEyeBrows } from "/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/VideoHome/wp-coponents/FaceFunctions.js";
 
 
 export let gl;
@@ -136,87 +136,14 @@ function VideoHome() {
       DrawFace(35, 0.525, 0.9, 0.0, 0.0);
       // whites eye drawing
 
-      //eye iris drawing
-      gl.uniform3fv(uColor1, [0, 0, 0]);
-      gl.uniform3fv(uColor2, [0, 0, 0]);
-      elipseAnimation(20, 0.07, 0.15, 0.25, 0.1);
-      elipseAnimation(20, 0.07, 0.15, -0.25, 0.1);
-      //eye shine drawing
-      gl.uniform3fv(uColor1, [1, 1, 1]);
-      gl.uniform3fv(uColor2, [(1 * 0.3), (1 * 0.3), (1 * 0.3)]);
-      circleAnimation(100, 0.02, 0.22, 0.22);
-      circleAnimation(100, 0.02, -0.280, 0.22);
-      //eye color drawing
-      gl.uniform3fv(uColor1, [0.386, 0.738, 0.990]);
-      gl.uniform3fv(uColor2, [0.386 * 0.5, 0.738 * 0.5, 0.990 * 0.5]);
-      circleAnimation(50, 0.04, 0.25, -0.02);
-      circleAnimation(50, 0.04, -0.25, -0.02);
+      DrawEye();
 
-      // Hair Drawing
+
+
+      DrawEyeBrows();
+
 
       DrawHair();
-
-      //Right Eye drawing
-      //right eyebrow line
-      gl.uniform3fv(uColor1, [0, 0, 0]);
-      gl.uniform3fv(uColor2, [0, 0, 0]);
-      curveAnimation(10, 0.13, 0.50, 0.38, 0.45, 1, 1, 4, 0);
-
-      for (let startVX = 0.25, startVY = 0.25, endVX = 0.35, endVY = 0.05, copies = 0; copies < 10; copies++, startVX += 0.0001, startVY += 0.001, endVX += 0.003, endVY += 0.005) {
-
-        curveAnimation(10, startVX, startVY, endVX, endVY, 1, 1, 4, 0);
-      }
-      for (let startVX = 0.38, startVY = 0.1, endVX = 0.33, endVY = 0.02, copies = 0; copies < 10; copies++, startVX += 0.001, startVY -= 0.005, endVX += 0.001, endVY -= 0.001) {
-        lineAnimation(startVX, startVY, endVX, endVY);
-      }
-      for (let startVX = 0.25, startVY = 0.25, endVX = 0.14, endVY = 0.15, copies = 0; copies < 10; copies++, startVX -= 0.0001, startVY += 0.001, endVX -= 0.001, endVY += 0.004) {
-
-        curveAnimation(10, startVX, startVY, endVX, endVY, 1, 1, 2, 0);
-      }
-      for (let startVX = 0.15, startVY = 0.30, endVX = 0.35, endVY = 0.25, copies = 0; copies < 5; copies++, startVX -= 0.001, startVY += 0.001, endVX += 0.001, endVY += 0.001) {
-
-        curveAnimation(10, startVX, startVY, endVX, endVY, 1, 1, 4, 0);
-      }
-      lineAnimation(0.15, 0.30, 0.12, 0.25);
-      for (let startVX = 0.21, startVY = -0.05, endVX = 0.29, endVY = -0.05, copies = 0; copies < 10; copies++, startVX -= 0.001, startVY -= 0.001, endVX += 0.001, endVY -= 0.001) {
-
-        lineAnimation(startVX, startVY, endVX, endVY);
-
-      }
-
-
-      //Left Eye drawing\
-
-      //left eyebrow line
-      curveAnimation(10, -0.13, 0.50, -0.38, 0.45, 1, 1, 2, 0);
-      //left eyelashes right half curve
-      for (let startVX = -0.25, startVY = 0.25, endVX = -0.35, endVY = 0.05, copies = 0; copies < 10; copies++, startVX += 0.001, startVY += 0.001, endVX -= 0.003, endVY += 0.005) {
-
-        curveAnimation(10, startVX, startVY, endVX, endVY, 1, 1, 4, 0);
-
-      }
-      //left eyelashes left half line
-      for (let startVX = -0.38, startVY = 0.1, endVX = -0.34, endVY = 0.03, copies = 0; copies < 10; copies++, startVX -= 0.001, startVY -= 0.005, endVX -= 0.001, endVY -= 0.001) {
-        lineAnimation(startVX, startVY, endVX, endVY);
-      }
-      //left eyelashes left half curve
-      for (let startVX = -0.25, startVY = 0.25, endVX = -0.14, endVY = 0.15, copies = 0; copies < 10; copies++, startVX -= 0.0001, startVY += 0.001, endVX += 0.001, endVY += 0.004) {
-
-        curveAnimation(10, startVX, startVY, endVX, endVY, 1, 1, 4, 0);
-      }
-      //eye upper line
-      for (let startVX = -0.15, startVY = 0.30, endVX = -0.35, endVY = 0.25, copies = 0; copies < 10; copies++, startVX += 0.001, startVY += 0.001, endVX += 0.001, endVY += 0.001) {
-        curveAnimation(10, startVX, startVY, endVX, endVY, 1, 1, 3, 0);
-      }
-      lineAnimation(-0.15, 0.30, -0.12, 0.25);
-      //eye lower line
-      for (let startVX = -0.21, startVY = -0.05, endVX = - 0.29, endVY = -0.05, copies = 0; copies < 10; copies++, startVX += 0.001, startVY -= 0.001, endVX -= 0.001, endVY -= 0.001) {
-
-        lineAnimation(startVX, startVY, endVX, endVY);
-
-      }
-
-
       //Nose Drawing
       DrawNose(0.0, -0.25, 0.01, -0.30, 0.01, -0.30, 0, -0.33);
 

@@ -1,7 +1,6 @@
 import { triangleAnimation, rectangleAnimation, curveAnimation, lineAnimation, circleAnimation, semiCircleAnimation, elipseAnimation } from
     '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/VideoHome/wp-coponents/DrawingFunctions.js';
 import { gl, uColor1, uColor2 } from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/VideoHome/VideoHome.js';
-import { e } from 'mathjs';
 
 let eyeHeight, noseHeight, UpperEarPosition, LowerEarPosition,
     FaceColor, HairColor, EyeColor, UpperTheta, LowerTheta,
@@ -13,27 +12,24 @@ function DrawHair() {
     gl.uniform3fv(uColor1, [0.647, 0.165, 0.165]);
     gl.uniform3fv(uColor2, [0.647, 0.165, 0.165]);
 
-    for (let i = 40, a = 0.1, b = 0.3; i > 0; i--, a += 0.01) {
-        curveAnimation(10, 0, 0.91, a, b, 1, 1, 4, 0);
-    }
-    for (let i = 40, a = -0.1, b = 0.3; i > 0; i--, a -= 0.01) {
-        curveAnimation(10, 0, 0.91, a, b, 1, 1, 4, 0);
-    }
-    HairType1TopPart();
+
+    HairType1BasePart();
     HairType1Strands();
-}
-function HairType1TopPart() {
-    HairType1BottomPart();
-}
-function HairType1BottomPart() {
+    function HairType1BasePart() {
+        for (let i = 40, a = 0.2, b = 0.0; i > 0; i--, a += 0.001) {
+            curveAnimation(10, 0, 0.98, a, b, 1, 1, 4, 0);
+        }
+        for (let i = 40, a = -0.2, b = 0.0; i > 0; i--, a -= 0.001) {
+            curveAnimation(10, 0, 0.98, a, b, 1, 1, 2, 0);
+        }
+    }
 
-}
-function HairType1Strands() {
+    function HairType1Strands() {
 
+    }
 }
-function DrawEye() {
 
-}
+
 function DrawEar(eyePosition) {
     gl.uniform3fv(uColor1, [0.988, 0.906, 0.839]);
     gl.uniform3fv(uColor2, [(0.988 * 0.3), (0.906 * 0.3), (0.839 * 0.3)]);
@@ -146,7 +142,7 @@ function DrawEar(eyePosition) {
 }
 function InnerEarDetails(earPointDetails, eartype) {
     if (eartype === "left") {
-        gl.uniform3fv(uColor1, [0.1, 0.1, 0.01]);
+        gl.uniform3fv(uColor1, [0.1, 0.1, 0.1]);
         gl.uniform3fv(uColor2, [0.1, 0.1, 0.1]);
 
         for (let point = earPointDetails.length - 1; point >= 9; point -= 2) {
@@ -179,7 +175,7 @@ function InnerEarDetails(earPointDetails, eartype) {
 
 
     } else if (eartype === "right") {
-        gl.uniform3fv(uColor1, [0.1, 0.1, 0.01]);
+        gl.uniform3fv(uColor1, [0.1, 0.1, 0.1]);
         gl.uniform3fv(uColor2, [0.1, 0.1, 0.1]);
 
         for (let point = earPointDetails.length - 1; point >= 9; point -= 2) {
@@ -219,7 +215,6 @@ function DrawFace(copies, a, b, h, k) {
     gl.uniform3fv(uColor2, [(0.988 * 0.3), (0.906 * 0.3), (0.839 * 0.3)]);
 
     elipseAnimation(copies, a, b, h, k);
-    DrawWhitesEye(40, 0.1, 0.15, 0.25, 0.1);
     UpperTheta = Math.sinh((eyeHeight - k) / b);
     UpperEarPosition = h + a * Math.cos(UpperTheta);
     LowerTheta = Math.sinh((noseHeight - k) / b);
@@ -256,26 +251,128 @@ function EditFace() {
         curveAnimation(10, startVX, startVY, endVX, endVY, 0.9, 0.9, 1, 0.7);
     }
 }
-function DrawWhitesEye(copies, a, b, h, k) {
-    eyeHeight = k;
 
-    gl.uniform3fv(uColor1, [1, 1, 1]);
-    gl.uniform3fv(uColor2, [(1 * 0.3), (1 * 0.3), (1 * 0.3)]);
-    elipseAnimation(copies, a, b, h, k);
-    elipseAnimation(copies, a, b, (-1 * h), k);
-}
 function DrawNose(first1, first2, second1, second2, third1, third2, fourth1, fourth2) {
     // Drawing the nose using WebGL
     noseHeight = second2;
-
+    gl.uniform3fv(uColor1, [0.1, 0.1, 0.1]);
+    gl.uniform3fv(uColor2, [0.1, 0.1, 0.1])
     lineAnimation(first1, first2, second1, second2);
     lineAnimation(third1, third2, fourth1, fourth2);
 }
 function DrawMouth() {
+    gl.uniform3fv(uColor1, [0.1, 0.1, 0.1]);
+    gl.uniform3fv(uColor2, [0.1, 0.1, 0.1])
     curveAnimation(10, 0.0, -0.5, -0.10, -0.48, 1, 1, 3, 0);
     curveAnimation(10, 0.0, -0.5, 0.10, - 0.48, 1, 1, 1, 0);
     curveAnimation(10, 0.0, -0.54, -0.035, -0.53, 1, 1, 3, 0);
     curveAnimation(10, 0.0, -0.54, 0.03, - 0.53, 1, 1, 1, 0);
 
 }
-export { DrawHair, DrawEar, DrawFace, EditFace, DrawNose, DrawMouth, DrawEye };
+function DrawEye() {
+    DrawWhitesEye(40, 0.1, 0.15, 0.25, 0.1);
+
+    //eye iris drawing
+    gl.uniform3fv(uColor1, [0, 0, 0]);
+    gl.uniform3fv(uColor2, [0, 0, 0]);
+    elipseAnimation(20, 0.07, 0.15, 0.25, 0.1);
+    elipseAnimation(20, 0.07, 0.15, -0.25, 0.1);
+    //eye shine drawing
+    gl.uniform3fv(uColor1, [1, 1, 1]);
+    gl.uniform3fv(uColor2, [(1 * 0.3), (1 * 0.3), (1 * 0.3)]);
+    circleAnimation(100, 0.02, 0.22, 0.22);
+    circleAnimation(100, 0.02, -0.280, 0.22);
+    //eye color drawing
+    gl.uniform3fv(uColor1, [0.386, 0.738, 0.990]);
+    gl.uniform3fv(uColor2, [0.386 * 0.5, 0.738 * 0.5, 0.990 * 0.5]);
+    circleAnimation(50, 0.04, 0.25, -0.02);
+    circleAnimation(50, 0.04, -0.25, -0.02);
+    //Right eye
+    gl.uniform3fv(uColor1, [0, 0, 0]);
+    gl.uniform3fv(uColor2, [0, 0, 0])
+    //right eyelashes left half line
+
+    for (let startVX = 0.25, startVY = 0.25, endVX = 0.35, endVY = 0.05, copies = 0; copies < 10; copies++, startVX += 0.0001, startVY += 0.001, endVX += 0.003, endVY += 0.005) {
+
+        curveAnimation(10, startVX, startVY, endVX, endVY, 1, 1, 4, 0);
+    }
+    //right eyelashes left half line
+
+    for (let startVX = 0.38, startVY = 0.1, endVX = 0.33, endVY = 0.02, copies = 0; copies < 10; copies++, startVX += 0.001, startVY -= 0.005, endVX += 0.001, endVY -= 0.001) {
+        lineAnimation(startVX, startVY, endVX, endVY);
+    }
+    //right eyelashes left half curve
+
+    for (let startVX = 0.25, startVY = 0.25, endVX = 0.14, endVY = 0.15, copies = 0; copies < 10; copies++, startVX -= 0.0001, startVY += 0.001, endVX -= 0.001, endVY += 0.004) {
+
+        curveAnimation(10, startVX, startVY, endVX, endVY, 1, 1, 2, 0);
+    }
+    //eye upper line
+
+    for (let startVX = 0.15, startVY = 0.30, endVX = 0.35, endVY = 0.25, copies = 0; copies < 5; copies++, startVX -= 0.001, startVY += 0.001, endVX += 0.001, endVY += 0.001) {
+
+        curveAnimation(10, startVX, startVY, endVX, endVY, 1, 1, 4, 0);
+    }
+    lineAnimation(0.15, 0.30, 0.12, 0.25);
+    //eye lower line
+
+    for (let startVX = 0.21, startVY = -0.05, endVX = 0.29, endVY = -0.05, copies = 0; copies < 10; copies++, startVX -= 0.001, startVY -= 0.001, endVX += 0.001, endVY -= 0.001) {
+
+        lineAnimation(startVX, startVY, endVX, endVY);
+
+    }
+
+    //left eyelashes left half curve
+    for (let startVX = -0.25, startVY = 0.25, endVX = -0.35, endVY = 0.05, copies = 0; copies < 10; copies++, startVX += 0.001, startVY += 0.001, endVX -= 0.003, endVY += 0.005) {
+
+        curveAnimation(10, startVX, startVY, endVX, endVY, 1, 1, 4, 0);
+
+    }
+    //left eyelashes left half line
+    for (let startVX = -0.38, startVY = 0.1, endVX = -0.34, endVY = 0.03, copies = 0; copies < 10; copies++, startVX -= 0.001, startVY -= 0.005, endVX -= 0.001, endVY -= 0.001) {
+        lineAnimation(startVX, startVY, endVX, endVY);
+    }
+    //left eyelashes left half curve
+    for (let startVX = -0.25, startVY = 0.25, endVX = -0.14, endVY = 0.15, copies = 0; copies < 10; copies++, startVX -= 0.0001, startVY += 0.001, endVX += 0.001, endVY += 0.004) {
+
+        curveAnimation(10, startVX, startVY, endVX, endVY, 1, 1, 4, 0);
+    }
+    //eye upper line
+    for (let startVX = -0.15, startVY = 0.30, endVX = -0.35, endVY = 0.25, copies = 0; copies < 10; copies++, startVX += 0.001, startVY += 0.001, endVX += 0.001, endVY += 0.001) {
+        curveAnimation(10, startVX, startVY, endVX, endVY, 1, 1, 3, 0);
+    }
+    lineAnimation(-0.15, 0.30, -0.12, 0.25);
+    //eye lower line
+    for (let startVX = -0.21, startVY = -0.05, endVX = - 0.29, endVY = -0.05, copies = 0; copies < 10; copies++, startVX += 0.001, startVY -= 0.001, endVX -= 0.001, endVY -= 0.001) {
+
+        lineAnimation(startVX, startVY, endVX, endVY);
+
+    }
+
+    function DrawWhitesEye(copies, a, b, h, k) {
+        eyeHeight = k;
+
+        gl.uniform3fv(uColor1, [1, 1, 1]);
+        gl.uniform3fv(uColor2, [(1 * 0.3), (1 * 0.3), (1 * 0.3)]);
+        elipseAnimation(copies, a, b, h, k);
+        elipseAnimation(copies, a, b, (-1 * h), k);
+    }
+
+}
+function DrawEyeBrows() {
+    //right eyebrow line
+    gl.uniform3fv(uColor1, [0, 0, 0]);
+    gl.uniform3fv(uColor2, [0, 0, 0]);
+    //right eyebrow line
+
+    curveAnimation(10, 0.13, 0.50, 0.38, 0.45, 1, 1, 4, 0);
+
+
+
+    //Left Eye drawing\
+
+    //left eyebrow line
+    curveAnimation(10, -0.13, 0.50, -0.38, 0.45, 1, 1, 2, 0);
+
+}
+export { DrawHair, DrawEar, DrawFace, EditFace, DrawNose, DrawMouth, DrawEye, DrawEyeBrows };
