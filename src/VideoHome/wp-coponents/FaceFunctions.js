@@ -2,9 +2,11 @@ import { triangleAnimation, rectangleAnimation, curveAnimation, lineAnimation, c
     '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/VideoHome/wp-coponents/DrawingFunctions.js';
 import { gl, uColor1, uColor2 } from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/VideoHome/VideoHome.js';
 
+export let hairPoints = [], hairRecorded = false;
 let eyeHeight, noseHeight, UpperEarPosition, LowerEarPosition,
     FaceColor, HairColor, EyeColor, UpperTheta, LowerTheta,
     earMiddle, earLeftPoints = [], earRightPoints = [];
+
 
 
 function DrawHair() {
@@ -27,6 +29,8 @@ function DrawHair() {
     function HairType1Strands() {
 
     }
+    console.log(hairPoints);
+    hairPoints = [];
 }
 
 
@@ -43,6 +47,7 @@ function DrawEar(eyePosition) {
 
         earLeftPoints.push((-1 * LowerEarPosition) + 0.015, noseHeight);
         earLeftPoints.push((-1 * LowerEarPosition) - 0.01, noseHeight - 0.03);
+        hairPoints.push((-1 * LowerEarPosition) - 0.01, noseHeight - 0.03);
 
         for (let curvePart = 0.5; curvePart <= 1; curvePart += 0.01) {
 
@@ -85,6 +90,7 @@ function DrawEar(eyePosition) {
         earRightPoints.push((LowerEarPosition) - 0.015, noseHeight);
 
         earRightPoints.push((LowerEarPosition) + 0.01, noseHeight - 0.03);
+        hairPoints.push((LowerEarPosition) + 0.01, noseHeight - 0.03);
 
         for (let curvePart = 0.5; curvePart <= 1; curvePart += 0.01) {
 
@@ -213,12 +219,14 @@ function InnerEarDetails(earPointDetails, eartype) {
 function DrawFace(copies, a, b, h, k) {
     gl.uniform3fv(uColor1, [0.988, 0.906, 0.839]);
     gl.uniform3fv(uColor2, [(0.988 * 0.3), (0.906 * 0.3), (0.839 * 0.3)]);
-
+    hairPoints[0] = 0;
+    hairPoints[1] = (k - b);
     elipseAnimation(copies, a, b, h, k);
     UpperTheta = Math.sinh((eyeHeight - k) / b);
     UpperEarPosition = h + a * Math.cos(UpperTheta);
     LowerTheta = Math.sinh((noseHeight - k) / b);
     LowerEarPosition = h + a * Math.cos(LowerTheta);
+
 }
 function EditFace() {
     gl.uniform3fv(uColor1, [0.1, 0.1, 0.1]);
@@ -277,6 +285,8 @@ function DrawEye() {
     gl.uniform3fv(uColor2, [0, 0, 0]);
     elipseAnimation(20, 0.07, 0.15, 0.25, 0.1);
     elipseAnimation(20, 0.07, 0.15, -0.25, 0.1);
+    hairPoints.push(0.25, 0.1);
+    hairPoints.push(-0.25, 0.1);
     //eye shine drawing
     gl.uniform3fv(uColor1, [1, 1, 1]);
     gl.uniform3fv(uColor2, [(1 * 0.3), (1 * 0.3), (1 * 0.3)]);

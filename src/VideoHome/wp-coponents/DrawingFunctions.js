@@ -1,5 +1,10 @@
 
 import { gl } from "/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/VideoHome/VideoHome.js";
+import { hairPoints } from "./FaceFunctions";
+
+//temp array
+let temp = [];
+
 // Triangle vertices
 let vertices = new Float32Array([
     0.0, 0.0,
@@ -26,7 +31,6 @@ let curvePoints = new Float32Array([
 ]);;
 
 let vertex;
-let once = true;
 function triangleAnimation(point1X, point1Y, point2X, point2Y, point3X, point3Y) {
     triangle[0] = point1X;
     triangle[1] = point1Y;
@@ -192,8 +196,9 @@ function elipseAnimation(number, a, b, h, k) {
             let FirstX = Math.round(x * 100) / 100;
             let FirstY = Math.round(y * 100) / 100;
             let SecondX = Math.round((h + a) * 100) / 100;
-
             let SecondY = Math.round(k * 100) / 100;
+
+
 
             gl.bufferSubData(gl.ARRAY_BUFFER, 0, vertices);
             gl.drawArrays(gl.TRIANGLES, 0, 3);
@@ -234,6 +239,18 @@ function elipseAnimation(number, a, b, h, k) {
             let FirstY = Math.round(temp2 * 100) / 100;
             let SecondX = Math.round((x) * 100) / 100;
             let SecondY = Math.round(y * 100) / 100;
+
+            if (((angle <= (135 * Math.PI / 180)) && (angle >= 45 * Math.PI / 180)) && (hairPoints.length == 2)) {
+
+                temp.push(SecondX, SecondY);
+            }
+            else if ((hairPoints.length == 2)) {
+                hairPoints.push(...temp);
+                temp = [];
+            }
+
+
+
             if ((0 <= angle) && (angle <= (90 * Math.PI / 180))) {
                 for (let copies = 0; copies < 10; copies++, SecondX -= 0.001, SecondY -= 0.001, FirstX -= 0.001, FirstY -= 0.001) {
                     curveAnimation(10, SecondX, SecondY, FirstX, FirstY, 1, 1, 4, 0.8);
@@ -260,6 +277,7 @@ function elipseAnimation(number, a, b, h, k) {
 
         }
         angle += (360 / number) * (Math.PI / 180);
+
     }
 
 

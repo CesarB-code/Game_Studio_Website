@@ -134,14 +134,21 @@ function VideoHome() {
 
       // Face Drawing 
       DrawFace(35, 0.525, 0.9, 0.0, 0.0);
-      // whites eye drawing
+      EditFace();
+      // Ear Drawing
+
+      DrawEar("left");
+      DrawEar("right");
+
+      // Eye Drawing
 
       DrawEye();
 
-
+      // Eyebrows Drawing
 
       DrawEyeBrows();
 
+      // Hair Drawing
 
       DrawHair();
       //Nose Drawing
@@ -151,12 +158,8 @@ function VideoHome() {
       DrawMouth();
 
       // Cheeks drawing
-      EditFace();
 
 
-      // Ear Drawing
-      DrawEar("left");
-      DrawEar("right");
 
 
 
