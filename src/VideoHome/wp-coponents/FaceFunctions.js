@@ -2,7 +2,7 @@ import { triangleAnimation, rectangleAnimation, curveAnimation, lineAnimation, c
     '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/VideoHome/wp-coponents/DrawingFunctions.js';
 import { gl, uColor1, uColor2 } from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/VideoHome/VideoHome.js';
 
-export let hairPoints = [], hairRecorded = false;
+export let hairPoints = [];
 let eyeHeight, noseHeight, UpperEarPosition, LowerEarPosition,
     FaceColor, HairColor, EyeColor, UpperTheta, LowerTheta,
     earMiddle, earLeftPoints = [], earRightPoints = [];
@@ -14,25 +14,61 @@ function DrawHair() {
     gl.uniform3fv(uColor1, [0.647, 0.165, 0.165]);
     gl.uniform3fv(uColor2, [0.647, 0.165, 0.165]);
 
-
+    console.log(hairPoints);
     HairType1BasePart();
     HairType1Strands();
     function HairType1BasePart() {
-        for (let i = 40, a = 0.2, b = 0.0; i > 0; i--, a += 0.001) {
-            curveAnimation(10, 0, 0.98, a, b, 1, 1, 4, 0);
+        let tempArray = [];
+        //right side hair
+        for (let hairMove1 = 0.005, hairCenter = 0.98, hairPosition = hairPoints[hairPoints.length - 6]; hairPosition > hairPoints[hairPoints.length - 8]; hairPosition -= hairMove1, hairCenter > 0.9 ? hairCenter -= hairMove1 : hairCenter -= 0) {
+            curveAnimation(10, 0, hairCenter, hairPosition, hairPoints[hairPoints.length - 5], 6, 0.7, 4, 0);
+            curveAnimation(10, hairPosition + 0.01, hairPoints[1], hairPosition, hairPoints[hairPoints.length - 5], 6, 0.7, 4, 0);
+        };
+        //left side hair
+        for (let hairMove1 = 0.005, hairCenter = 0.98, hairPosition = hairPoints[hairPoints.length - 10]; hairPosition < hairPoints[hairPoints.length - 12]; hairPosition += hairMove1, hairCenter > 0.9 ? hairCenter -= hairMove1 : hairCenter -= 0) {
+            curveAnimation(10, 0, hairCenter, hairPosition, hairPoints[hairPoints.length - 9], 6, 0.7, 2, 0);
+            curveAnimation(10, hairPosition - 0.01, hairPoints[1], hairPosition, hairPoints[hairPoints.length - 9], 6, 0.7, 3, 0);
+            if (hairPosition + hairMove1 > hairPoints[hairPoints.length - 12]) {
+                tempArray.push(hairPosition, hairPoints[hairPoints.length - 9]);
+            }
         }
-        for (let i = 40, a = -0.2, b = 0.0; i > 0; i--, a -= 0.001) {
-            curveAnimation(10, 0, 0.98, a, b, 1, 1, 2, 0);
-        }
+        gl.uniform3fv(uColor1, [0.1, 0.1, 0.1]);
+        gl.uniform3fv(uColor2, [0.1, 0.1, 0.1]);
+        curveAnimation(10, hairPoints[26] - 0.05, 0, tempArray[0], tempArray[1], 6, 0.7, 3, 0.5);
+        curveAnimation(10, hairPoints[26] - 0.025, tempArray[1] + 0.2, hairPoints[26] - 0.05, 0, 6, 0.7, 2, 0);
+        curveAnimation(10, hairPoints[24] - 0.08, 0.5, hairPoints[26] - 0.025, tempArray[1] + 0.2, 6, 0.7, 2, 0);
+
+        curveAnimation(10, hairPoints[24], 0, hairPoints[26] - 0.025, tempArray[1] + 0.2, 6, 0.7, 3, 0);
+        curveAnimation(10, hairPoints[24] + 0.05, 0.4, hairPoints[24], 0, 6, 0.7, 2, 0);
+        curveAnimation(10, hairPoints[22], 0.7, hairPoints[24] + 0.05, 0.4, 6, 0.7, 2, 0);
+        curveAnimation(10, hairPoints[20] + 0.05, 0.15, hairPoints[24] + 0.05, 0.4, 6, 0.7, 3, 0);
+        curveAnimation(10, hairPoints[22], 0.7, hairPoints[24] + 0.05, 0.4, 6, 0.7, 2, 0);
+        curveAnimation(10, hairPoints[20] + 0.1, 0.4, hairPoints[20] + 0.05, 0.15, 6, 0.7, 2, 0);
+        curveAnimation(10, hairPoints[18] + 0.15, -0.1, hairPoints[20] + 0.1, 0.4, 6, 0.7, 3, 0);
+        curveAnimation(10, hairPoints[16] + 0.1, 0.4, hairPoints[18] + 0.15, -0.1, 6, 0.7, 2, 0);
+        curveAnimation(10, hairPoints[16] + 0.1, 0.4, hairPoints[14] + 0.15, 0.05, 6, 0.7, 4, 0);
+        curveAnimation(10, hairPoints[14] + 0.15, 0.05, hairPoints[12] + 0.15, 0.4, 6, 0.7, 1, 0);
+        curveAnimation(10, hairPoints[12] + 0.15, 0.4, hairPoints[10] + 0.15, 0.05, 6, 0.7, 4, 0);
+        curveAnimation(10, hairPoints[10] + 0.15, 0.05, hairPoints[8] + 0.15, 0.4, 6, 0.7, 1, 0);
+
+
+
+
+
+
+
     }
+
+
+
 
     function HairType1Strands() {
 
     }
-    console.log(hairPoints);
-    hairPoints = [];
-}
 
+    hairPoints = [];
+
+}
 
 function DrawEar(eyePosition) {
     gl.uniform3fv(uColor1, [0.988, 0.906, 0.839]);
@@ -49,6 +85,7 @@ function DrawEar(eyePosition) {
         earLeftPoints.push((-1 * LowerEarPosition) - 0.01, noseHeight - 0.03);
         hairPoints.push((-1 * LowerEarPosition) - 0.01, noseHeight - 0.03);
 
+
         for (let curvePart = 0.5; curvePart <= 1; curvePart += 0.01) {
 
             curveAnimation(30, (-1 * LowerEarPosition) - 0.01, noseHeight - 0.03, (-1 * UpperEarPosition) - 0.08, noseHeight + earMiddle,
@@ -62,6 +99,8 @@ function DrawEar(eyePosition) {
                 1.5, 0.8, 3, curvePart);
         }
         earLeftPoints.push((-1 * UpperEarPosition) - 0.1, eyeHeight);
+        hairPoints.push((-1 * UpperEarPosition) - 0.1, eyeHeight);
+
         for (let curvePart = 0.3; curvePart <= 1; curvePart += 0.01) {
 
             curveAnimation(30, (-1 * UpperEarPosition) - 0.05, eyeHeight + 0.05, (-1 * UpperEarPosition) - 0.1, eyeHeight,
@@ -92,6 +131,7 @@ function DrawEar(eyePosition) {
         earRightPoints.push((LowerEarPosition) + 0.01, noseHeight - 0.03);
         hairPoints.push((LowerEarPosition) + 0.01, noseHeight - 0.03);
 
+
         for (let curvePart = 0.5; curvePart <= 1; curvePart += 0.01) {
 
             curveAnimation(30, (LowerEarPosition) + 0.01, noseHeight - 0.03, (UpperEarPosition) + 0.08, noseHeight + earMiddle,
@@ -105,6 +145,8 @@ function DrawEar(eyePosition) {
                 0.5, 0.5, 1, curvePart);
         }
         earRightPoints.push((UpperEarPosition) + 0.1, eyeHeight);
+        hairPoints.push((UpperEarPosition) + 0.1, eyeHeight);
+
         for (let curvePart = 0.4; curvePart <= 1; curvePart += 0.01) {
 
             curveAnimation(30, (UpperEarPosition) + 0.05, eyeHeight + 0.05, (UpperEarPosition) + 0.1, eyeHeight,

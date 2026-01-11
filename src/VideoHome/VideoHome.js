@@ -148,9 +148,8 @@ function VideoHome() {
 
       DrawEyeBrows();
 
-      // Hair Drawing
 
-      DrawHair();
+
       //Nose Drawing
       DrawNose(0.0, -0.25, 0.01, -0.30, 0.01, -0.30, 0, -0.33);
 
@@ -158,8 +157,9 @@ function VideoHome() {
       DrawMouth();
 
       // Cheeks drawing
+      // Hair Drawing
 
-
+      DrawHair();
 
 
 

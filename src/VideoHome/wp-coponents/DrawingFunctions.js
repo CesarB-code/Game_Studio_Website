@@ -240,7 +240,7 @@ function elipseAnimation(number, a, b, h, k) {
             let SecondX = Math.round((x) * 100) / 100;
             let SecondY = Math.round(y * 100) / 100;
 
-            if (((angle <= (135 * Math.PI / 180)) && (angle >= 45 * Math.PI / 180)) && (hairPoints.length == 2)) {
+            if (((angle <= (180 * Math.PI / 180)) && (angle >= 0 * Math.PI / 180)) && (hairPoints.length == 2)) {
 
                 temp.push(SecondX, SecondY);
             }
