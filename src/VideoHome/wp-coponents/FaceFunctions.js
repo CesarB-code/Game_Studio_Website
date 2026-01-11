@@ -23,6 +23,9 @@ function DrawHair() {
         for (let hairMove1 = 0.005, hairCenter = 0.98, hairPosition = hairPoints[hairPoints.length - 6]; hairPosition > hairPoints[hairPoints.length - 8]; hairPosition -= hairMove1, hairCenter > 0.9 ? hairCenter -= hairMove1 : hairCenter -= 0) {
             curveAnimation(10, 0, hairCenter, hairPosition, hairPoints[hairPoints.length - 5], 6, 0.7, 4, 0);
             curveAnimation(10, hairPosition + 0.01, hairPoints[1], hairPosition, hairPoints[hairPoints.length - 5], 6, 0.7, 4, 0);
+            if (hairPosition - hairMove1 < hairPoints[hairPoints.length - 8]) {
+                tempArray.push(hairPosition, hairPoints[hairPoints.length - 5]);
+            }
         };
         //left side hair
         for (let hairMove1 = 0.005, hairCenter = 0.98, hairPosition = hairPoints[hairPoints.length - 10]; hairPosition < hairPoints[hairPoints.length - 12]; hairPosition += hairMove1, hairCenter > 0.9 ? hairCenter -= hairMove1 : hairCenter -= 0) {
@@ -34,11 +37,14 @@ function DrawHair() {
         }
         gl.uniform3fv(uColor1, [0.1, 0.1, 0.1]);
         gl.uniform3fv(uColor2, [0.1, 0.1, 0.1]);
-        curveAnimation(10, hairPoints[26] - 0.05, 0, tempArray[0], tempArray[1], 6, 0.7, 3, 0.5);
-        curveAnimation(10, hairPoints[26] - 0.025, tempArray[1] + 0.2, hairPoints[26] - 0.05, 0, 6, 0.7, 2, 0);
-        curveAnimation(10, hairPoints[24] - 0.08, 0.5, hairPoints[26] - 0.025, tempArray[1] + 0.2, 6, 0.7, 2, 0);
+        curveAnimation(10, hairPoints[24] - 0.05, -0.50, tempArray[2], tempArray[3], 6, 0.7, 3, 0.5);
+        curveAnimation(10, hairPoints[24] - 0.05, -0.50, tempArray[2] - 0.05, tempArray[3], 6, 0.7, 3, 0.5);
 
-        curveAnimation(10, hairPoints[24], 0, hairPoints[26] - 0.025, tempArray[1] + 0.2, 6, 0.7, 3, 0);
+        curveAnimation(10, hairPoints[26] - 0.05, 0, tempArray[2], tempArray[3], 6, 0.7, 3, 0.5);
+        curveAnimation(10, hairPoints[26] - 0.025, tempArray[3] + 0.2, hairPoints[26] - 0.05, 0, 6, 0.7, 2, 0);
+        curveAnimation(10, hairPoints[24] - 0.08, 0.5, hairPoints[26] - 0.025, tempArray[3] + 0.2, 6, 0.7, 2, 0);
+
+        curveAnimation(10, hairPoints[24], 0, hairPoints[26] - 0.025, tempArray[3] + 0.2, 6, 0.7, 3, 0);
         curveAnimation(10, hairPoints[24] + 0.05, 0.4, hairPoints[24], 0, 6, 0.7, 2, 0);
         curveAnimation(10, hairPoints[22], 0.7, hairPoints[24] + 0.05, 0.4, 6, 0.7, 2, 0);
         curveAnimation(10, hairPoints[20] + 0.05, 0.15, hairPoints[24] + 0.05, 0.4, 6, 0.7, 3, 0);
@@ -50,6 +56,9 @@ function DrawHair() {
         curveAnimation(10, hairPoints[14] + 0.15, 0.05, hairPoints[12] + 0.15, 0.4, 6, 0.7, 1, 0);
         curveAnimation(10, hairPoints[12] + 0.15, 0.4, hairPoints[10] + 0.15, 0.05, 6, 0.7, 4, 0);
         curveAnimation(10, hairPoints[10] + 0.15, 0.05, hairPoints[8] + 0.15, 0.4, 6, 0.7, 1, 0);
+        curveAnimation(10, hairPoints[10] + 0.15, -0.54, hairPoints[8] + 0.15, 0.4, 6, 0.7, 1, 0);
+        curveAnimation(10, hairPoints[10] + 0.15, -0.54, tempArray[0], 0.3, 6, 0.7, 1, 0);
+
 
 
 
