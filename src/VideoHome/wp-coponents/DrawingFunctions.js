@@ -80,7 +80,7 @@ function curveAnimation(lineCount, startX, startY, EndX, EndY, shiftMoreX, shift
     shrIStrX = values[0];
     shrIStrY = values[1];
 
-    CurveSeriesPointsDrawing(startX, startY, EndX, EndY, shrIStrX, shrIStrY, lineCountOffset, lineCount, shiftMoreX, shiftMoreY, curveType, shrinkCruve);
+    CurveSeriesPointsDrawing(startX, startY, EndX, EndY, shrIStrX, shiftMoreX, shrIStrY, shiftMoreY, lineCountOffset, lineCount, curveType, shrinkCruve);
 
 
 
@@ -283,15 +283,15 @@ function elipseAnimation(number, a, b, h, k) {
 
 }
 // curve drawing function ** y=
-function curveLineSegment(k1, k2, startX, startY, EndX, EndY, shrIStrX, shrIStrY, curveType, lineCountOffset, shrinkCruve) {
+function curveLineSegment(k1, k2, startX, startY, EndX, EndY, shrIStrX, shiftMoreX, shrIStrY, shiftMoreY, curveType, lineCountOffset, shrinkCruve) {
     let y, x, m1, m2;
     if (curveType == 1) {
 
         //type 1 curve
         m1 = ((k1) - 1) / (k1);
         m2 = ((k2) - 1) / (k2);
-        x = ((((m1 - m2) * shrIStrX * startX) + ((m1 - m2) * lineCountOffset) - k1 + k2) / ((m1 - m2) * shrIStrX));
-        y = shrIStrY * ((m1 * ((shrIStrX * ((-x) + startX)) + lineCountOffset)) + 1 - k1) + startY;
+        x = ((((m1 - m2) * shrIStrX * shiftMoreX * startX) + ((m1 - m2) * lineCountOffset) - k1 + k2) / ((m1 - m2) * shiftMoreX * shrIStrX));
+        y = shrIStrY * shiftMoreY * ((m1 * ((shrIStrX * shiftMoreX * ((-x) + startX)) + lineCountOffset)) + 1 - k1) + startY;
         if (shrinkCruve > 0) {
             let newVertx = curveShrink(x, y, startX, startY, EndX, EndY, shrinkCruve, curveType);
             vertex = [newVertx[0], newVertx[1]];
@@ -310,8 +310,8 @@ function curveLineSegment(k1, k2, startX, startY, EndX, EndY, shrIStrX, shrIStrY
         //type 2 curve
         m1 = (-k1 + 1) / (k1);
         m2 = (-k2 + 1) / (k2);
-        x = (((m2 - m1) * (shrIStrX) * (startX)) + ((m1 - m2) * lineCountOffset) + k1 - k2) / ((m2 - m1) * shrIStrX);
-        y = shrIStrY * ((m1 * ((shrIStrX * (x - startX)) + lineCountOffset)) - 1 + k1) + startY;
+        x = (((m2 - m1) * (shrIStrX) * shiftMoreX * (startX)) + ((m1 - m2) * lineCountOffset) + k1 - k2) / ((m2 - m1) * shrIStrX * shiftMoreX);
+        y = shrIStrY * shiftMoreY * ((m1 * ((shrIStrX * shiftMoreX * (x - startX)) + lineCountOffset)) - 1 + k1) + startY;
         if (shrinkCruve > 0) {
             let newVertx = curveShrink(x, y, startX, startY, EndX, EndY, shrinkCruve, curveType);
             vertex = [newVertx[0], newVertx[1]];
@@ -328,8 +328,8 @@ function curveLineSegment(k1, k2, startX, startY, EndX, EndY, shrIStrX, shrIStrY
         //type 3 curve
         m1 = ((k1) - 1) / (k1);
         m2 = ((k2) - 1) / (k2);
-        x = ((((m1 - m2) * lineCountOffset) - ((m1 - m2) * (shrIStrX) * startX) - k1 + k2) / ((m2 - m1) * shrIStrX));
-        y = shrIStrY * (((m1) * ((shrIStrX * (x - startX)) + lineCountOffset)) + 1 - k1) + startY;
+        x = ((((m1 - m2) * lineCountOffset) - ((m1 - m2) * (shrIStrX) * shiftMoreX * startX) - k1 + k2) / ((m2 - m1) * shrIStrX * shiftMoreX));
+        y = shrIStrY * shiftMoreY * (((m1) * ((shrIStrX * shiftMoreX * (x - startX)) + lineCountOffset)) + 1 - k1) + startY;
         if (shrinkCruve > 0) {
             let newVertx = curveShrink(x, y, startX, startY, EndX, EndY, shrinkCruve, curveType);
             vertex = [newVertx[0], newVertx[1]];
@@ -347,8 +347,8 @@ function curveLineSegment(k1, k2, startX, startY, EndX, EndY, shrIStrX, shrIStrY
         //type 4 curve
         m1 = (-k1 + 1) / (k1);
         m2 = (-k2 + 1) / (k2);
-        x = (-1) * ((((m1 - m2) * lineCountOffset) + ((m1 - m2) * shrIStrX * startX) + k1 - k2) / ((m2 - m1) * shrIStrX));
-        y = shrIStrY * ((m1 * ((shrIStrX * ((-1 * x) + startX)) + lineCountOffset)) - 1 + k1) + startY;
+        x = (-1) * ((((m1 - m2) * lineCountOffset) + ((m1 - m2) * shrIStrX * shiftMoreX * startX) + k1 - k2) / ((m2 - m1) * shrIStrX * shiftMoreX));
+        y = shrIStrY * shiftMoreY * ((m1 * ((shrIStrX * shiftMoreX * ((-1 * x) + startX)) + lineCountOffset)) - 1 + k1) + startY;
         if (shrinkCruve > 0) {
             let newVertx = curveShrink(x, y, startX, startY, EndX, EndY, shrinkCruve, curveType);
             vertex = [newVertx[0], newVertx[1]];
@@ -365,7 +365,7 @@ function curveLineSegment(k1, k2, startX, startY, EndX, EndY, shrIStrX, shrIStrY
 
 
 
-function CurveSeriesPointsDrawing(startX, startY, EndX, EndY, shrIStrX, shrIStrY, lineCountOffset, lineCount, shiftMoreX, shiftMoreY, curveType, shrinkCruve) {
+function CurveSeriesPointsDrawing(startX, startY, EndX, EndY, shrIStrX, shiftMoreX, shrIStrY, shiftMoreY, lineCountOffset, lineCount, curveType, shrinkCruve) {
 
     let k1, k2;
 
@@ -381,7 +381,7 @@ function CurveSeriesPointsDrawing(startX, startY, EndX, EndY, shrIStrX, shrIStrY
             k1 = n / lineCount;
             k2 = (n - 1) / lineCount;
 
-            curveLineSegment(k1, k2, startX, startY, EndX, EndY, shrIStrX, shrIStrY, curveType, lineCountOffset, shrinkCruve);
+            curveLineSegment(k1, k2, startX, startY, EndX, EndY, shrIStrX, shiftMoreX, shrIStrY, shiftMoreY, curveType, lineCountOffset, shrinkCruve);
 
             curvePoints[2] = vertex[0];
             curvePoints[3] = vertex[1];
