@@ -2,10 +2,10 @@ import { triangleAnimation, rectangleAnimation, curveAnimation, lineAnimation, c
     '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/VideoHome/wp-coponents/DrawingFunctions.js';
 import { gl, uColor1, uColor2 } from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/VideoHome/VideoHome.js';
 
-export let hairPoints = [];
+export let hairPoints = [], leftEarPotentialHairBounds, rightEarPotentialHairBounds;
 let eyeHeight, noseHeight, UpperEarPosition, LowerEarPosition,
-    FaceColor, HairColor, EyeColor, UpperTheta, LowerTheta,
-    earMiddle, earLeftPoints = [], earRightPoints = [];
+    UpperTheta, LowerTheta,
+    earMiddle, earLeftPoints = [], earRightPoints = [], earPointCount = 0;
 
 
 
@@ -13,53 +13,75 @@ function DrawHair() {
     //hair drawing
     gl.uniform3fv(uColor1, [0.647, 0.165, 0.165]);
     gl.uniform3fv(uColor2, [0.647, 0.165, 0.165]);
-
-    console.log(hairPoints);
+    curveAnimation(30, leftEarPotentialHairBounds[2], leftEarPotentialHairBounds[3], leftEarPotentialHairBounds[0], leftEarPotentialHairBounds[1], 1, 1, 2, 0, 0, 0, 0, 0);
+    console.log(leftEarPotentialHairBounds);
     HairType1BasePart();
     HairType1Strands();
     function HairType1BasePart() {
         let tempArray = [];
         //right side hair
-        for (let hairMove1 = 0.005, hairCenter = 0.98, hairPosition = hairPoints[hairPoints.length - 6]; hairPosition > hairPoints[hairPoints.length - 8]; hairPosition -= hairMove1, hairCenter > 0.9 ? hairCenter -= hairMove1 : hairCenter -= 0) {
-            curveAnimation(10, 0, hairCenter, hairPosition, hairPoints[hairPoints.length - 5], 1, 1, 4, 0);
-            curveAnimation(10, hairPosition + 0.01, hairPoints[1], hairPosition, hairPoints[hairPoints.length - 5], 1, 1, 4, 0);
+        for (let hairMove1 = 0.001, count = 0, hairCenter = 0.98, hairPosition = hairPoints[hairPoints.length - 6]; hairPosition > hairPoints[hairPoints.length - 8];
+            hairPosition -= hairMove1, hairCenter > 0.9 ? hairCenter -= hairMove1 : hairCenter -= 0, count++) {
+            if (count >= 1 && count <= 6) {
+                hairMove1 = 0.01;
+                curveAnimation(10, 0, hairCenter, hairPosition, hairPoints[hairPoints.length - 5], 1, 1, 4, 0, 0, 0, 0, 0);
+                curveAnimation(10, hairPosition + 0.01, hairPoints[1], hairPosition, hairPoints[hairPoints.length - 5], 1, 1, 4, 0, 0, 0, 0, 0);
+            }
+            else {
+                hairMove1 = 0.001;
+                curveAnimation(10, 0, hairCenter, hairPosition, hairPoints[hairPoints.length - 5], 1, 1, 4, 0, 0, 0, 0, 0);
+                curveAnimation(10, hairPosition + 0.01, hairPoints[1], hairPosition, hairPoints[hairPoints.length - 5], 1, 1, 4, 0, 0, 0, 0, 0);
+            }
+
             if (hairPosition - hairMove1 < hairPoints[hairPoints.length - 8]) {
                 tempArray.push(hairPosition, hairPoints[hairPoints.length - 5]);
             }
         };
         //left side hair
-        for (let hairMove1 = 0.005, hairCenter = 0.98, hairPosition = hairPoints[hairPoints.length - 10]; hairPosition < hairPoints[hairPoints.length - 12]; hairPosition += hairMove1, hairCenter > 0.9 ? hairCenter -= hairMove1 : hairCenter -= 0) {
-            curveAnimation(10, 0, hairCenter, hairPosition, hairPoints[hairPoints.length - 9], 1, 1, 2, 0);
-            curveAnimation(10, hairPosition - 0.01, hairPoints[1], hairPosition, hairPoints[hairPoints.length - 9], 1, 1, 3, 0);
+        for (let hairMove1 = 0.001, count = 0, hairCenter = 0.98, hairPosition = hairPoints[hairPoints.length - 10]; hairPosition < hairPoints[hairPoints.length - 12];
+            hairPosition += hairMove1, hairCenter > 0.9 ? hairCenter -= hairMove1 : hairCenter -= 0, count++) {
+            if (count >= 1 && count <= 6) {
+                hairMove1 = 0.01;
+                curveAnimation(10, 0, hairCenter, hairPosition, hairPoints[hairPoints.length - 9], 1, 1, 2, 0, leftEarPotentialHairBounds[0], leftEarPotentialHairBounds[2], leftEarPotentialHairBounds[3], leftEarPotentialHairBounds[1]);
+                curveAnimation(10, hairPosition - 0.01, hairPoints[1], hairPosition, hairPoints[hairPoints.length - 9], 1, 1, 3, 0, 0, 0, 0, 0);
+
+
+            }
+            else {
+                hairMove1 = 0.001;
+                curveAnimation(10, 0, hairCenter, hairPosition, hairPoints[hairPoints.length - 9], 1, 1, 2, 0, 0, 0, 0, 0);
+                curveAnimation(10, hairPosition - 0.01, hairPoints[1], hairPosition, hairPoints[hairPoints.length - 9], 1, 1, 3, 0, 0, 0, 0, 0);
+
+
+            }
+
             if (hairPosition + hairMove1 > hairPoints[hairPoints.length - 12]) {
                 tempArray.push(hairPosition, hairPoints[hairPoints.length - 9]);
             }
         }
         gl.uniform3fv(uColor1, [0.1, 0.1, 0.1]);
         gl.uniform3fv(uColor2, [0.1, 0.1, 0.1]);
-        curveAnimation(10, hairPoints[24] - 0.05, -0.50, tempArray[2], tempArray[3], 1, 1, 3, 0.5);
-        curveAnimation(10, hairPoints[24] - 0.05, -0.50, tempArray[2] - 0.05, tempArray[3], 1, 1, 3, 0.5);
+        curveAnimation(10, hairPoints[24] - 0.05, -0.50, tempArray[2], tempArray[3], 1, 1, 3, 0.5, 0, 0, 0, 0);
+        curveAnimation(10, hairPoints[24] - 0.05, -0.50, tempArray[2] - 0.05, tempArray[3], 1, 1, 3, 0.5, 0, 0, 0, 0);
 
-        curveAnimation(10, hairPoints[26] - 0.05, 0, tempArray[2], tempArray[3], 1, 1, 3, 0.5);
-        curveAnimation(10, hairPoints[26] - 0.025, tempArray[3] + 0.2, hairPoints[26] - 0.05, 0, 1, 1, 2, 0);
-        curveAnimation(10, hairPoints[24] - 0.08, 0.5, hairPoints[26] - 0.025, tempArray[3] + 0.2, 1, 1, 2, 0);
+        curveAnimation(10, hairPoints[26] - 0.05, 0, tempArray[2], tempArray[3], 1, 1, 3, 0.5, 0, 0, 0, 0);
+        curveAnimation(10, hairPoints[26] - 0.025, tempArray[3] + 0.2, hairPoints[26] - 0.05, 0, 1, 1, 2, 0, 0, 0, 0, 0);
+        curveAnimation(10, hairPoints[24] - 0.08, 0.5, hairPoints[26] - 0.025, tempArray[3] + 0.2, 1, 1, 2, 0, 0, 0, 0, 0);
 
-        curveAnimation(10, hairPoints[24], 0, hairPoints[26] - 0.025, tempArray[3] + 0.2, 1, 1, 3, 0);
-        curveAnimation(10, hairPoints[24] + 0.05, 0.4, hairPoints[24], 0, 1, 1, 2, 0);
-        curveAnimation(10, hairPoints[22], 0.7, hairPoints[24] + 0.05, 0.4, 1, 1, 2, 0);
-        curveAnimation(10, hairPoints[20] + 0.05, 0.15, hairPoints[24] + 0.05, 0.4, 1, 1, 3, 0);
-        curveAnimation(10, hairPoints[22], 0.7, hairPoints[24] + 0.05, 0.4, 1, 1, 2, 0);
-        curveAnimation(10, hairPoints[20] + 0.1, 0.4, hairPoints[20] + 0.05, 0.15, 1, 1, 2, 0);
-        curveAnimation(10, hairPoints[18] + 0.15, -0.1, hairPoints[20] + 0.1, 0.4, 1, 1, 3, 0);
-        curveAnimation(10, hairPoints[16] + 0.1, 0.4, hairPoints[18] + 0.15, -0.1, 1, 1, 2, 0);
-        curveAnimation(10, hairPoints[16] + 0.1, 0.4, hairPoints[14] + 0.15, 0.05, 1, 1, 4, 0);
-        curveAnimation(10, hairPoints[14] + 0.15, 0.05, hairPoints[12] + 0.15, 0.4, 1, 1, 1, 0);
-        curveAnimation(10, hairPoints[12] + 0.15, 0.4, hairPoints[10] + 0.15, 0.05, 1, 1, 4, 0);
-        curveAnimation(10, hairPoints[10] + 0.15, 0.05, hairPoints[8] + 0.15, 0.4, 1, 1, 1, 0);
-        curveAnimation(10, hairPoints[10] + 0.15, -0.54, hairPoints[8] + 0.15, 0.4, 1, 1, 1, 0);
-        curveAnimation(10, hairPoints[10] + 0.15, -0.54, tempArray[0], tempArray[1], 1, 1, 1, 0);
-
-
+        curveAnimation(10, hairPoints[24], 0, hairPoints[26] - 0.025, tempArray[3] + 0.2, 1, 1, 3, 0, 0, 0, 0, 0);
+        curveAnimation(10, hairPoints[24] + 0.05, 0.4, hairPoints[24], 0, 1, 1, 2, 0, 0, 0, 0, 0);
+        curveAnimation(10, hairPoints[22], 0.7, hairPoints[24] + 0.05, 0.4, 1, 1, 2, 0, 0, 0, 0, 0);
+        curveAnimation(10, hairPoints[20] + 0.05, 0.15, hairPoints[24] + 0.05, 0.4, 1, 1, 3, 0, 0, 0, 0, 0);
+        curveAnimation(10, hairPoints[22], 0.7, hairPoints[24] + 0.05, 0.4, 1, 1, 2, 0, 0, 0, 0, 0);
+        curveAnimation(10, hairPoints[20] + 0.1, 0.4, hairPoints[20] + 0.05, 0.15, 1, 1, 2, 0, 0, 0, 0, 0);
+        curveAnimation(10, hairPoints[18] + 0.15, -0.1, hairPoints[20] + 0.1, 0.4, 1, 1, 3, 0, 0, 0, 0, 0);
+        curveAnimation(10, hairPoints[16] + 0.1, 0.4, hairPoints[18] + 0.15, -0.1, 1, 1, 2, 0, 0, 0, 0, 0);
+        curveAnimation(10, hairPoints[16] + 0.1, 0.4, hairPoints[14] + 0.15, 0.05, 1, 1, 4, 0, 0, 0, 0, 0);
+        curveAnimation(10, hairPoints[14] + 0.15, 0.05, hairPoints[12] + 0.15, 0.4, 1, 1, 1, 0, 0, 0, 0, 0);
+        curveAnimation(10, hairPoints[12] + 0.15, 0.4, hairPoints[10] + 0.15, 0.05, 1, 1, 4, 0, 0, 0, 0, 0);
+        curveAnimation(10, hairPoints[10] + 0.15, 0.05, hairPoints[8] + 0.15, 0.4, 1, 1, 1, 0, 0, 0, 0, 0);
+        curveAnimation(10, hairPoints[10] + 0.15, -0.54, hairPoints[8] + 0.15, 0.4, 1, 1, 1, 0, 0, 0, 0, 0);
+        curveAnimation(10, hairPoints[10] + 0.15, -0.54, tempArray[0], tempArray[1], 1, 1, 1, 0, 0, 0, 0, 0);
 
 
 
@@ -79,15 +101,16 @@ function DrawHair() {
 
 }
 
-function DrawEar(eyePosition) {
+function DrawEar(eyePosition, curvePointsQuantity) {
+    earPointCount = curvePointsQuantity;
     gl.uniform3fv(uColor1, [0.988, 0.906, 0.839]);
     gl.uniform3fv(uColor2, [(0.988 * 0.3), (0.906 * 0.3), (0.839 * 0.3)]);
     earMiddle = noseHeight > 1 ? eyeHeight - noseHeight : Math.abs(eyeHeight + noseHeight);
     if (eyePosition === "left") {
         //bottom
         for (let curvePart = 0.5; curvePart <= 1; curvePart += 0.01) {
-            curveAnimation(30, (-1 * LowerEarPosition) - 0.01, noseHeight - 0.03, (-1 * LowerEarPosition) + 0.015, noseHeight,
-                1, 1, 1, curvePart);
+            curveAnimation(curvePointsQuantity, (-1 * LowerEarPosition) - 0.01, noseHeight - 0.03, (-1 * LowerEarPosition) + 0.015, noseHeight,
+                1, 1, 1, curvePart, 0, 0, 0, 0);
         }
 
         earLeftPoints.push((-1 * LowerEarPosition) + 0.015, noseHeight);
@@ -97,43 +120,44 @@ function DrawEar(eyePosition) {
 
         for (let curvePart = 0.5; curvePart <= 1; curvePart += 0.01) {
 
-            curveAnimation(30, (-1 * LowerEarPosition) - 0.01, noseHeight - 0.03, (-1 * UpperEarPosition) - 0.08, noseHeight + earMiddle,
-                1, 1, 3, curvePart);
+            curveAnimation(curvePointsQuantity, (-1 * LowerEarPosition) - 0.01, noseHeight - 0.03, (-1 * UpperEarPosition) - 0.08, noseHeight + earMiddle,
+                1, 1, 3, curvePart, 0, 0, 0, 0);
         }
         earLeftPoints.push((-1 * UpperEarPosition) - 0.08, noseHeight + earMiddle);
 
         for (let curvePart = 0.6; curvePart <= 1; curvePart += 0.01) {
 
-            curveAnimation(30, (-1 * UpperEarPosition) - 0.08, noseHeight + earMiddle, (-1 * UpperEarPosition) - 0.1, eyeHeight,
-                1, 1, 3, curvePart);
+            curveAnimation(curvePointsQuantity, (-1 * UpperEarPosition) - 0.08, noseHeight + earMiddle, (-1 * UpperEarPosition) - 0.1, eyeHeight,
+                1, 1, 3, curvePart, 0, 0, 0, 0);
         }
         earLeftPoints.push((-1 * UpperEarPosition) - 0.1, eyeHeight);
         hairPoints.push((-1 * UpperEarPosition) - 0.1, eyeHeight);
 
         for (let curvePart = 0.3; curvePart <= 1; curvePart += 0.01) {
 
-            curveAnimation(30, (-1 * UpperEarPosition) - 0.05, eyeHeight + 0.05, (-1 * UpperEarPosition) - 0.1, eyeHeight,
-                1, 1, 2, curvePart);
+            curveAnimation(curvePointsQuantity, (-1 * UpperEarPosition) - 0.05, eyeHeight + 0.05, (-1 * UpperEarPosition) - 0.1, eyeHeight,
+                1, 1, 2, curvePart, 0, 0, 0, 0);
         }
         earLeftPoints.push((-1 * UpperEarPosition) - 0.05, eyeHeight + 0.05);
         //top
         for (let curvePart = 0.7; curvePart <= 1; curvePart += 0.01) {
 
-            curveAnimation(30, (-1 * UpperEarPosition) - 0.05, eyeHeight + 0.05, (-1 * UpperEarPosition), eyeHeight,
-                1, 1, 4, curvePart);
+            curveAnimation(curvePointsQuantity, (-1 * UpperEarPosition) - 0.05, eyeHeight + 0.05, (-1 * UpperEarPosition), eyeHeight,
+                1, 1, 4, curvePart, 0, 0);
         }
         earLeftPoints.push((-1 * UpperEarPosition), eyeHeight);
         fillEar("left");
         InnerEarDetails(earLeftPoints, "left");
-
+        leftEarPotentialHairBounds = earLeftPoints.slice(8);
         earLeftPoints = [];
+
 
 
     } else if (eyePosition === "right") {
         //bottom
         for (let curvePart = 0.5; curvePart <= 1; curvePart += 0.01) {
-            curveAnimation(30, (LowerEarPosition) + 0.01, noseHeight - 0.03, (LowerEarPosition) - 0.015, noseHeight,
-                1, 1, 3, curvePart);
+            curveAnimation(curvePointsQuantity, (LowerEarPosition) + 0.01, noseHeight - 0.03, (LowerEarPosition) - 0.015, noseHeight,
+                1, 1, 3, curvePart, 0, 0, 0, 0);
         }
         earRightPoints.push((LowerEarPosition) - 0.015, noseHeight);
 
@@ -143,34 +167,36 @@ function DrawEar(eyePosition) {
 
         for (let curvePart = 0.5; curvePart <= 1; curvePart += 0.01) {
 
-            curveAnimation(30, (LowerEarPosition) + 0.01, noseHeight - 0.03, (UpperEarPosition) + 0.08, noseHeight + earMiddle,
-                1, 1, 1, curvePart);
+            curveAnimation(curvePointsQuantity, (LowerEarPosition) + 0.01, noseHeight - 0.03, (UpperEarPosition) + 0.08, noseHeight + earMiddle,
+                1, 1, 1, curvePart, 0, 0, 0, 0);
         }
         earRightPoints.push((UpperEarPosition) + 0.08, noseHeight + earMiddle);
 
         for (let curvePart = 0.7; curvePart <= 1; curvePart += 0.01) {
 
-            curveAnimation(30, (UpperEarPosition) + 0.08, noseHeight + earMiddle, (UpperEarPosition) + 0.1, eyeHeight,
-                1, 1, 1, curvePart);
+            curveAnimation(curvePointsQuantity, (UpperEarPosition) + 0.08, noseHeight + earMiddle, (UpperEarPosition) + 0.1, eyeHeight,
+                1, 1, 1, curvePart, 0, 0, 0, 0);
         }
         earRightPoints.push((UpperEarPosition) + 0.1, eyeHeight);
         hairPoints.push((UpperEarPosition) + 0.1, eyeHeight);
 
         for (let curvePart = 0.4; curvePart <= 1; curvePart += 0.01) {
 
-            curveAnimation(30, (UpperEarPosition) + 0.05, eyeHeight + 0.05, (UpperEarPosition) + 0.1, eyeHeight,
-                1, 1, 4, curvePart);
+            curveAnimation(curvePointsQuantity, (UpperEarPosition) + 0.05, eyeHeight + 0.05, (UpperEarPosition) + 0.1, eyeHeight,
+                1, 1, 4, curvePart, 0, 0, 0, 0);
         }
         earRightPoints.push((UpperEarPosition) + 0.05, eyeHeight + 0.05);
         for (let curvePart = 0.7; curvePart <= 1; curvePart += 0.01) {
 
-            curveAnimation(30, (UpperEarPosition) + 0.05, eyeHeight + 0.05, (UpperEarPosition), eyeHeight,
-                1, 1, 2, curvePart);
+            curveAnimation(curvePointsQuantity, (UpperEarPosition) + 0.05, eyeHeight + 0.05, (UpperEarPosition), eyeHeight,
+                1, 1, 2, curvePart, 0, 0, 0, 0);
         }
         earRightPoints.push((UpperEarPosition), eyeHeight);
         fillEar("right");
         InnerEarDetails(earRightPoints, "right")
+        rightEarPotentialHairBounds = earRightPoints.slice(8);
         earRightPoints = [];
+
 
     }
     function fillEar(earside) {
@@ -205,13 +231,13 @@ function InnerEarDetails(earPointDetails, eartype) {
         for (let point = earPointDetails.length - 1; point >= 9; point -= 2) {
             if (point > 11) {
                 curveAnimation(20, earPointDetails[point - 3], earPointDetails[point - 2] - 0.04, earPointDetails[point - 1] - 0.01, earPointDetails[point] - 0.1
-                    , 1, 1, 4, 0.3);
+                    , 1, 1, 4, 0.3, 0, 0, 0, 0);
                 curveAnimation(20, earPointDetails[0] - 0.015, earPointDetails[1] - 0.115, earPointDetails[point - 1] - 0.01, earPointDetails[point] - 0.1,
-                    1, 1, 1, 0);
+                    1, 1, 1, 0, 0, 0, 0, 0);
             }
             else if (point > 9) {
                 curveAnimation(20, earPointDetails[point - 1], earPointDetails[point] - 0.04, earPointDetails[point - 3] + 0.01, earPointDetails[point - 2] - 0.04,
-                    1, 1, 2, 0.5);
+                    1, 1, 2, 0.5, 0, 0, 0, 0);
             }
 
 
@@ -219,16 +245,16 @@ function InnerEarDetails(earPointDetails, eartype) {
 
         // inner curve
         curveAnimation(20, earPointDetails[10], earPointDetails[11] - 0.18, earPointDetails[12] - 0.01, earPointDetails[13] - 0.1,
-            1, 1, 1, 0);
+            1, 1, 1, 0, 0, 0, 0, 0);
         curveAnimation(20, earPointDetails[10], earPointDetails[11] - 0.18, earPointDetails[8] + 0.02, earPointDetails[9] - 0.1,
-            1, 1, 3, 0);
+            1, 1, 3, 0, 0, 0, 0, 0);
         //
         curveAnimation(20, earPointDetails[4] - 0.01, earPointDetails[5] + 0.08, earPointDetails[0] - 0.015, earPointDetails[1] - 0.115,
-            1, 1, 3, 0);
+            1, 1, 3, 0, 0, 0, 0, 0);
         curveAnimation(20, earPointDetails[4] - 0.01, earPointDetails[5] + 0.08, earPointDetails[0] - 0.04, earPointDetails[1] - 0.115,
-            1, 1, 3, 0);
+            1, 1, 3, 0, 0, 0, 0, 0);
         curveAnimation(20, earPointDetails[0] - 0.01, earPointDetails[1] - 0.01, earPointDetails[0] - 0.04, earPointDetails[1] - 0.115,
-            1, 1, 3, 0);
+            1, 1, 3, 0, 0, 0, 0, 0);
 
 
     } else if (eartype === "right") {
@@ -238,13 +264,13 @@ function InnerEarDetails(earPointDetails, eartype) {
         for (let point = earPointDetails.length - 1; point >= 9; point -= 2) {
             if (point > 11) {
                 curveAnimation(20, earPointDetails[point - 3], earPointDetails[point - 2] - 0.04, earPointDetails[point - 1] + 0.01, earPointDetails[point] - 0.1
-                    , 1, 1, 2, 0.3);
+                    , 1, 1, 2, 0.3, 0, 0, 0, 0);
                 curveAnimation(20, earPointDetails[0], earPointDetails[1] - 0.115, earPointDetails[point - 1] + 0.01, earPointDetails[point] - 0.1,
-                    1, 1, 3, 0);
+                    1, 1, 3, 0, 0, 0, 0, 0);
             }
             else if (point > 9) {
                 curveAnimation(20, earPointDetails[point - 1], earPointDetails[point] - 0.04, earPointDetails[point - 3] - 0.01, earPointDetails[point - 2] - 0.04,
-                    1, 1, 4, 0.5);
+                    1, 1, 4, 0.5, 0, 0, 0, 0);
             }
 
 
@@ -252,18 +278,18 @@ function InnerEarDetails(earPointDetails, eartype) {
 
         // inner curve
         curveAnimation(20, earPointDetails[10], earPointDetails[11] - 0.18, earPointDetails[12] + 0.01, earPointDetails[13] - 0.1,
-            1, 1, 3, 0);
+            1, 1, 3, 0, 0, 0, 0, 0);
         curveAnimation(20, earPointDetails[10], earPointDetails[11] - 0.18, earPointDetails[8] - 0.02, earPointDetails[9] - 0.1,
             1, 1, 1, 0);
         //lower inner curve
         curveAnimation(20, earPointDetails[4] + 0.01, earPointDetails[5] + 0.08, earPointDetails[0], earPointDetails[1] - 0.115,
-            1, 1, 1, 0);
+            1, 1, 1, 0, 0, 0, 0, 0);
         //first half lower inner curve
         curveAnimation(20, earPointDetails[4] + 0.01, earPointDetails[5] + 0.08, earPointDetails[0] + 0.025, earPointDetails[1] - 0.2,
-            1, 1, 1, 0);
+            1, 1, 1, 0, 0, 0, 0, 0);
         //second half upper inner curve
         curveAnimation(20, earPointDetails[0], earPointDetails[1] - 0.12, earPointDetails[0] + 0.025, earPointDetails[1] - 0.2,
-            1, 1, 4, 0);
+            1, 1, 4, 0, 0, 0, 0, 0);
 
     }
 }
@@ -287,18 +313,18 @@ function EditFace() {
     for (let startVX = 0, startVY = -0.9, endVX = - 0.46, endVY = -0.44, copies = 0; copies < 30; copies++, startVX -= 0.001, startVY -= 0.001, endVX -= 0.001, endVY -= 0.001) {
 
 
-        curveAnimation(10, startVX, startVY, endVX, endVY, 1, 1, 3, 0.48);
+        curveAnimation(10, startVX, startVY, endVX, endVY, 1, 1, 3, 0.48, 0, 0, 0, 0);
     }
     for (let startVX = -0.45, startVY = -0.45, endVX = - 0.52, endVY = -0.05, copies = 0; copies < 30; copies++, startVX -= 0.001, startVY -= 0.001, endVX -= 0.001, endVY -= 0.001) {
 
         if (copies == 0) {
             earLeftPoints.push(endVX, endVY);
         }
-        curveAnimation(10, startVX, startVY, endVX, endVY, 1, 1, 3, 0.7);
+        curveAnimation(10, startVX, startVY, endVX, endVY, 1, 1, 3, 0.7, 0, 0, 0, 0);
     }
     // sketch line right check
     for (let startVX = 0, startVY = -0.9, endVX = 0.46, endVY = -0.44, copies = 0; copies < 30; copies++, startVX += 0.001, startVY -= 0.001, endVX += 0.001, endVY -= 0.001) {
-        curveAnimation(10, startVX, startVY, endVX, endVY, 1, 1, 1, 0.5);
+        curveAnimation(10, startVX, startVY, endVX, endVY, 1, 1, 1, 0.5, 0, 0, 0, 0);
     }
     for (let startVX = 0.46, startVY = -0.45, endVX = 0.53, endVY = 0.05, copies = 0; copies < 30; copies++, startVX += 0.001, startVY -= 0.001, endVX += 0.001, endVY -= 0.001) {
 
@@ -307,7 +333,7 @@ function EditFace() {
             earRightPoints.push(endVX, endVY);
         }
 
-        curveAnimation(10, startVX, startVY, endVX, endVY, 1, 1, 1, 0.7);
+        curveAnimation(10, startVX, startVY, endVX, endVY, 1, 1, 1, 0.7, 0, 0, 0, 0);
     }
 }
 
@@ -322,10 +348,10 @@ function DrawNose(first1, first2, second1, second2, third1, third2, fourth1, fou
 function DrawMouth() {
     gl.uniform3fv(uColor1, [0.1, 0.1, 0.1]);
     gl.uniform3fv(uColor2, [0.1, 0.1, 0.1])
-    curveAnimation(10, 0.0, -0.5, -0.10, -0.48, 1, 1, 3, 0);
-    curveAnimation(10, 0.0, -0.5, 0.10, - 0.48, 1, 1, 1, 0);
-    curveAnimation(10, 0.0, -0.54, -0.035, -0.53, 1, 1, 3, 0);
-    curveAnimation(10, 0.0, -0.54, 0.03, - 0.53, 1, 1, 1, 0);
+    curveAnimation(10, 0.0, -0.5, -0.10, -0.48, 1, 1, 3, 0, 0, 0, 0);
+    curveAnimation(10, 0.0, -0.5, 0.10, - 0.48, 1, 1, 1, 0, 0, 0, 0);
+    curveAnimation(10, 0.0, -0.54, -0.035, -0.53, 1, 1, 3, 0, 0, 0, 0);
+    curveAnimation(10, 0.0, -0.54, 0.03, - 0.53, 1, 1, 1, 0, 0, 0, 0);
 
 }
 function DrawEye() {
@@ -355,7 +381,7 @@ function DrawEye() {
 
     for (let startVX = 0.25, startVY = 0.25, endVX = 0.35, endVY = 0.05, copies = 0; copies < 10; copies++, startVX += 0.0001, startVY += 0.001, endVX += 0.003, endVY += 0.005) {
 
-        curveAnimation(10, startVX, startVY, endVX, endVY, 1, 1, 4, 0);
+        curveAnimation(10, startVX, startVY, endVX, endVY, 1, 1, 4, 0, 0, 0, 0, 0);
     }
     //right eyelashes left half line
 
@@ -366,13 +392,13 @@ function DrawEye() {
 
     for (let startVX = 0.25, startVY = 0.25, endVX = 0.14, endVY = 0.15, copies = 0; copies < 10; copies++, startVX -= 0.0001, startVY += 0.001, endVX -= 0.001, endVY += 0.004) {
 
-        curveAnimation(10, startVX, startVY, endVX, endVY, 1, 1, 2, 0);
+        curveAnimation(10, startVX, startVY, endVX, endVY, 1, 1, 2, 0, 0, 0, 0, 0);
     }
     //eye upper line
 
     for (let startVX = 0.15, startVY = 0.30, endVX = 0.35, endVY = 0.25, copies = 0; copies < 5; copies++, startVX -= 0.001, startVY += 0.001, endVX += 0.001, endVY += 0.001) {
 
-        curveAnimation(10, startVX, startVY, endVX, endVY, 1, 1, 4, 0);
+        curveAnimation(10, startVX, startVY, endVX, endVY, 1, 1, 4, 0, 0, 0, 0, 0);
     }
     lineAnimation(0.15, 0.30, 0.12, 0.25);
     //eye lower line
@@ -386,7 +412,7 @@ function DrawEye() {
     //left eyelashes left half curve
     for (let startVX = -0.25, startVY = 0.25, endVX = -0.35, endVY = 0.05, copies = 0; copies < 10; copies++, startVX += 0.001, startVY += 0.001, endVX -= 0.003, endVY += 0.005) {
 
-        curveAnimation(10, startVX, startVY, endVX, endVY, 1, 1, 4, 0);
+        curveAnimation(10, startVX, startVY, endVX, endVY, 1, 1, 4, 0, 0, 0, 0, 0);
 
     }
     //left eyelashes left half line
@@ -396,11 +422,11 @@ function DrawEye() {
     //left eyelashes left half curve
     for (let startVX = -0.25, startVY = 0.25, endVX = -0.14, endVY = 0.15, copies = 0; copies < 10; copies++, startVX -= 0.0001, startVY += 0.001, endVX += 0.001, endVY += 0.004) {
 
-        curveAnimation(10, startVX, startVY, endVX, endVY, 1, 1, 4, 0);
+        curveAnimation(10, startVX, startVY, endVX, endVY, 1, 1, 4, 0, 0, 0, 0, 0);
     }
     //eye upper line
     for (let startVX = -0.15, startVY = 0.30, endVX = -0.35, endVY = 0.25, copies = 0; copies < 10; copies++, startVX += 0.001, startVY += 0.001, endVX += 0.001, endVY += 0.001) {
-        curveAnimation(10, startVX, startVY, endVX, endVY, 1, 1, 3, 0);
+        curveAnimation(10, startVX, startVY, endVX, endVY, 1, 1, 3, 0, 0, 0, 0, 0);
     }
     lineAnimation(-0.15, 0.30, -0.12, 0.25);
     //eye lower line
@@ -426,13 +452,13 @@ function DrawEyeBrows() {
     gl.uniform3fv(uColor2, [0, 0, 0]);
     //right eyebrow line
 
-    curveAnimation(10, 0.13, 0.50, 0.38, 0.45, 1, 1, 4, 0);
+    curveAnimation(10, 0.13, 0.50, 0.38, 0.45, 1, 1, 4, 0, 0, 0, 0, 0);
 
 
     //Left Eye drawing\
 
     //left eyebrow line
-    curveAnimation(10, -0.13, 0.50, -0.38, 0.45, 1, 1, 2, 0);
+    curveAnimation(10, -0.13, 0.50, -0.38, 0.45, 1, 1, 2, 0, 0, 0, 0, 0);
 
 }
 export { DrawHair, DrawEar, DrawFace, EditFace, DrawNose, DrawMouth, DrawEye, DrawEyeBrows };

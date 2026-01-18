@@ -7,8 +7,7 @@ import logo from './assets/istockphoto-1560833158-1024x1024.jpg'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Card from 'react-bootstrap/Card';
 import React, { useRef, useEffect } from 'react';
-import { elipseAnimation, circleAnimation, curveAnimation, lineAnimation, triangleAnimation, rectangleAnimation }
-  from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/VideoHome/wp-coponents/DrawingFunctions.js';
+
 import {
   Row, Col,
   Carousel,
@@ -21,7 +20,7 @@ import {
   Container
 } from 'react-bootstrap';
 import './VideoHomePage.css';
-import { DrawEar, DrawFace, EditFace, DrawNose, DrawMouth, DrawHair, DrawEye, DrawEyeBrows } from "/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/VideoHome/wp-coponents/FaceFunctions.js";
+import { DrawEar, DrawFace, EditFace, DrawNose, DrawMouth, DrawHair, DrawEye, DrawEyeBrows, hairPoints, leftEarPotentialHairBounds } from "/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/VideoHome/wp-coponents/FaceFunctions.js";
 
 
 export let gl;
@@ -50,7 +49,7 @@ function VideoHome() {
 
   useEffect(() => {
     canvas = canvasRef.current;
-    gl = canvas.getContext('webgl');
+    gl = canvas.getContext('webgl', { preserveDrawingBuffer: true });
 
     if (!gl) {
       console.error('WebGL not supported');
@@ -106,12 +105,7 @@ function VideoHome() {
 
 
 
-    const triangleBuffer = gl.createBuffer();
-    gl.bindBuffer(gl.ARRAY_BUFFER, triangleBuffer);
-    gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.DYNAMIC_DRAW);
-    const elipseBuffer = gl.createBuffer();
-    gl.bindBuffer(gl.ARRAY_BUFFER, elipseBuffer);
-    gl.bufferData(gl.ARRAY_BUFFER, elispeVertices, gl.DYNAMIC_DRAW);
+
     const curveBuffer = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, curveBuffer);
     gl.bufferData(gl.ARRAY_BUFFER, curveVertices, gl.DYNAMIC_DRAW);
@@ -137,8 +131,8 @@ function VideoHome() {
       EditFace();
       // Ear Drawing
 
-      DrawEar("left");
-      DrawEar("right");
+      DrawEar("left", 30);
+      DrawEar("right", 30);
 
       // Eye Drawing
 
@@ -162,11 +156,10 @@ function VideoHome() {
       DrawHair();
 
 
-
       //triangleAnimation(0.0, 0.0, 0.3, 0.0, 0.0, 0.3);
       //rectangleAnimation(-0.5, 0.0, 0.5, 0.0, -0.5, 0.5, 0.5, 0.5);
       // request changed frame
-      requestAnimationFrame(animateUnchangedFrame);
+      requestAnimationFrame(animateChangedFrame);
     }
     function animateChangedFrame() {
 

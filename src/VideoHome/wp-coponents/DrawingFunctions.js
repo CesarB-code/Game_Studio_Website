@@ -11,19 +11,7 @@ let vertices = new Float32Array([
     0.0, 0.0,
     0.0, 0.0
 ]);
-let triangle = new Float32Array([
-    0.0, 0.0,
-    0.0, 0.0,
-    0.0, 0.0
-]);
-let rectangle = new Float32Array([
-    0.0, 0.0,
-    0.0, 0.0,
-    0.0, 0.0,
-    0.0, 0.0,
-    0.0, 0.0,
-    0.0, 0.0
-]);
+
 
 let curvePoints = new Float32Array([
     0.0, 0.0,
@@ -32,17 +20,20 @@ let curvePoints = new Float32Array([
 
 let vertex;
 function triangleAnimation(point1X, point1Y, point2X, point2Y, point3X, point3Y) {
-    triangle[0] = point1X;
-    triangle[1] = point1Y;
-    triangle[2] = point2X;
-    triangle[3] = point2Y;
-    triangle[4] = point3X;
-    triangle[5] = point3Y;
+    let triangle = new Float32Array(6);
+    triangle[0] = parseFloat(point1X);
+    triangle[1] = parseFloat(point1Y);
+    triangle[2] = parseFloat(point2X);
+    triangle[3] = parseFloat(point2Y);
+    triangle[4] = parseFloat(point3X);
+    triangle[5] = parseFloat(point3Y);
     gl.bufferSubData(gl.ARRAY_BUFFER, 0, triangle);
     gl.drawArrays(gl.TRIANGLES, 0, 3);
 }
 // rectangle drawing function
-function rectangleAnimation(point1X, point1Y, point2X, point2Y, point3X, point3Y, point4X, point4Y, point5X, point5Y, point6X, point6Y) {
+function rectangleAnimation(point1X, point1Y, point2X, point2Y, point3X, point3Y, point4X, point4Y) {
+    let rectangle = new Float32Array(8);
+
     rectangle[0] = point1X;
     rectangle[1] = point1Y;
     rectangle[2] = point2X;
@@ -59,7 +50,13 @@ function rectangleAnimation(point1X, point1Y, point2X, point2Y, point3X, point3Y
 
 }
 // curve drawing function
-function curveAnimation(lineCount, startX, startY, EndX, EndY, shiftMoreX, shiftMoreY, curveType, shrinkCruve) {
+function curveAnimation(lineCount,
+    startX, startY,
+    EndX, EndY,
+    shiftMoreX, shiftMoreY,
+    curveType, shrinkCruve,
+    stopDrawAtXBound1, stopDrawAtXBound2,
+    stopDrawAtYBound1, stopDrawAtYBound2, boundObjectInfo) {
 
 
     let shrIStrX, shrIStrY, values, k1, k2, m1, m2, lineCountOffset;
@@ -80,9 +77,259 @@ function curveAnimation(lineCount, startX, startY, EndX, EndY, shiftMoreX, shift
     shrIStrX = values[0];
     shrIStrY = values[1];
 
-    CurveSeriesPointsDrawing(startX, startY, EndX, EndY, shrIStrX, shiftMoreX, shrIStrY, shiftMoreY, lineCountOffset, lineCount, curveType, shrinkCruve);
+    CurveSeriesPointsDrawing(startX, startY,
+        EndX, EndY,
+        shrIStrX, shiftMoreX,
+        shrIStrY, shiftMoreY,
+        lineCountOffset, lineCount,
+        curveType, shrinkCruve,
+        stopDrawAtXBound1, stopDrawAtXBound2,
+        stopDrawAtYBound1, stopDrawAtYBound2);
+
+    function CurveSeriesPointsDrawing(
+        startX, startY,
+        EndX, EndY,
+        shrIStrX, shiftMoreX,
+        shrIStrY, shiftMoreY,
+        lineCountOffset, lineCount,
+        curveType, shrinkCruve,
+        stopDrawAtXBound1, stopDrawAtXBound2,
+        stopDrawAtYBound1, stopDrawAtYBound2) {
+
+        let k1, k2;
+
+        let boundXYTouched = false
+
+        for (let n = lineCount; n > 1; n--) {
 
 
+            if (n == lineCount) {
+
+                curvePoints[0] = startX;
+                curvePoints[1] = startY;
+            }
+
+            else {
+                k1 = n / lineCount;
+                k2 = (n - 1) / lineCount;
+
+                curveLineSegment(k1, k2, startX, startY, EndX, EndY, shrIStrX, shiftMoreX, shrIStrY, shiftMoreY, curveType, lineCountOffset, shrinkCruve);
+
+                curvePoints[2] = vertex[0];
+                curvePoints[3] = vertex[1];
+                if (((stopDrawAtXBound1 != 0 && stopDrawAtXBound2 != 0) && (stopDrawAtYBound1 != 0 && stopDrawAtYBound2 != 0))) {
+                    if (((curvePoints[2] > stopDrawAtXBound1) && (curvePoints[2] < stopDrawAtXBound2)) && ((curvePoints[3] < stopDrawAtYBound1) && (curvePoints[3] > stopDrawAtYBound2))) {
+
+                        if (boundXYTouched == false) {
+                            //m = CP3-CP1/CP2-CP0 , Y-CP3 = M(X-CP2), X= (Y-CP3)/M + CP2
+                            // instaed find thhe shape at , 
+                            let m = (curvePoints[3] - curvePoints[1]) / (curvePoints[2] - curvePoints[0]);
+                            let newX = ((stopDrawAtYBound1 - curvePoints[3]) / m) + curvePoints[2];
+                            lineAnimation(curvePoints[0], curvePoints[1], newX, stopDrawAtYBound1);
+
+                            boundXYTouched = true;
+                        }
+                        gl.lineWidth(3.0);
+                        gl.bufferSubData(gl.ARRAY_BUFFER, 0, curvePoints);
+
+
+
+
+                    }
+                    else {
+                        gl.bufferSubData(gl.ARRAY_BUFFER, 0, curvePoints);
+                        gl.lineWidth(3.0);
+                        gl.drawArrays(gl.LINE_STRIP, 0, 2);
+                    }
+
+
+
+
+                }
+                else {
+                    gl.bufferSubData(gl.ARRAY_BUFFER, 0, curvePoints);
+                    gl.lineWidth(3.0);
+                    gl.drawArrays(gl.LINE_STRIP, 0, 2);
+
+                }
+
+
+                curvePoints[0] = curvePoints[2];
+                curvePoints[1] = curvePoints[3];
+
+
+            }
+        }
+    }
+    function shiftNumbers(startX, startY, EndX, EndY, k1, k2, m1, m2, lineCountOffset, lineCount, curveType) {
+
+        let shrinkX, shrinkY;
+        let arrayNumbers = new Array(2);
+
+        if (curveType == 1) {
+            shrinkX = (((m1 - m2) * (lineCountOffset)) - k1 + k2) / (((m1 - m2) * EndX) + ((m2 - m1) * startX));
+            arrayNumbers[0] = shrinkX;
+            shrinkY = (EndY - startY) / ((m1 * ((shrinkX * (startX - EndX)) + lineCountOffset)) + 1 - k1);
+            arrayNumbers[1] = shrinkY;
+        }
+        else if (curveType == 2) {
+            shrinkX = (((m1 - m2) * (lineCountOffset)) + k1 - k2) / ((((m2 - m1) * (EndX)) + ((m1 - m2) * startX)));
+            arrayNumbers[0] = shrinkX;
+            shrinkY = (EndY - startY) / ((m1 * ((shrinkX * (EndX - startX)) + lineCountOffset)) - 1 + k1);
+            arrayNumbers[1] = shrinkY;
+
+        }
+        else if (curveType == 3) {
+            shrinkX = (((m1 - m2) * (lineCountOffset)) - k1 + k2) / (((m2 - m1) * EndX) + ((m1 - m2) * startX));
+            arrayNumbers[0] = shrinkX;
+            shrinkY = (EndY - startY) / ((m1 * ((shrinkX * (EndX - startX)) + lineCountOffset)) + 1 - k1);
+            arrayNumbers[1] = shrinkY;
+        }
+        else if (curveType == 4) {
+            shrinkX = (((m1 - m2) * (lineCountOffset)) + k1 - k2) / (((m1 - m2) * EndX) + ((m2 - m1) * startX));
+            arrayNumbers[0] = shrinkX;
+            shrinkY = (EndY - startY) / ((m1 * ((shrinkX * (startX - EndX)) + lineCountOffset)) - 1 + k1);
+            arrayNumbers[1] = shrinkY;
+        }
+
+        return arrayNumbers;
+    }
+
+    // curve drawing function ** y=
+    function curveLineSegment(k1, k2, startX, startY, EndX, EndY, shrIStrX, shiftMoreX, shrIStrY, shiftMoreY, curveType, lineCountOffset, shrinkCruve) {
+        let y, x, m1, m2;
+        if (curveType == 1) {
+
+            //type 1 curve
+            m1 = ((k1) - 1) / (k1);
+            m2 = ((k2) - 1) / (k2);
+            x = ((((m1 - m2) * shrIStrX * shiftMoreX * startX) + ((m1 - m2) * lineCountOffset) - k1 + k2) / ((m1 - m2) * shiftMoreX * shrIStrX));
+            y = shrIStrY * shiftMoreY * ((m1 * ((shrIStrX * shiftMoreX * ((-x) + startX)) + lineCountOffset)) + 1 - k1) + startY;
+            if (shrinkCruve > 0) {
+                let newVertx = curveShrink(x, y, startX, startY, EndX, EndY, shrinkCruve, curveType);
+                vertex = [newVertx[0], newVertx[1]];
+
+            }
+            else {
+                vertex = [x, y];
+            }
+
+
+
+
+
+        }
+        else if (curveType == 2) {
+            //type 2 curve
+            m1 = (-k1 + 1) / (k1);
+            m2 = (-k2 + 1) / (k2);
+            x = (((m2 - m1) * (shrIStrX) * shiftMoreX * (startX)) + ((m1 - m2) * lineCountOffset) + k1 - k2) / ((m2 - m1) * shrIStrX * shiftMoreX);
+            y = shrIStrY * shiftMoreY * ((m1 * ((shrIStrX * shiftMoreX * (x - startX)) + lineCountOffset)) - 1 + k1) + startY;
+            if (shrinkCruve > 0) {
+                let newVertx = curveShrink(x, y, startX, startY, EndX, EndY, shrinkCruve, curveType);
+                vertex = [newVertx[0], newVertx[1]];
+
+            }
+            else {
+                vertex = [x, y];
+            }
+
+
+
+        }
+        else if (curveType == 3) {
+            //type 3 curve
+            m1 = ((k1) - 1) / (k1);
+            m2 = ((k2) - 1) / (k2);
+            x = ((((m1 - m2) * lineCountOffset) - ((m1 - m2) * (shrIStrX) * shiftMoreX * startX) - k1 + k2) / ((m2 - m1) * shrIStrX * shiftMoreX));
+            y = shrIStrY * shiftMoreY * (((m1) * ((shrIStrX * shiftMoreX * (x - startX)) + lineCountOffset)) + 1 - k1) + startY;
+            if (shrinkCruve > 0) {
+                let newVertx = curveShrink(x, y, startX, startY, EndX, EndY, shrinkCruve, curveType);
+                vertex = [newVertx[0], newVertx[1]];
+
+            }
+            else {
+                vertex = [x, y];
+            }
+
+
+
+
+        }
+        else if (curveType == 4) {
+            //type 4 curve
+            m1 = (-k1 + 1) / (k1);
+            m2 = (-k2 + 1) / (k2);
+            x = (-1) * ((((m1 - m2) * lineCountOffset) + ((m1 - m2) * shrIStrX * shiftMoreX * startX) + k1 - k2) / ((m2 - m1) * shrIStrX * shiftMoreX));
+            y = shrIStrY * shiftMoreY * ((m1 * ((shrIStrX * shiftMoreX * ((-1 * x) + startX)) + lineCountOffset)) - 1 + k1) + startY;
+            if (shrinkCruve > 0) {
+                let newVertx = curveShrink(x, y, startX, startY, EndX, EndY, shrinkCruve, curveType);
+                vertex = [newVertx[0], newVertx[1]];
+            }
+            else {
+                vertex = [x, y];
+            }
+
+
+        }
+
+    }
+
+
+
+
+
+    //curve shrink function 
+    function curveShrink(curveX, curveY, startX, startY, EndX, EndY, shrinkAmount, curveType) {
+
+        //First line is y-curveY =m1(x-curveX)
+        //Second line is y-StartY = m2(x-startX)
+
+        let newX, newY, m2, m1, x, y, deltaX, deltaY;
+        if (curveType == 1) {
+            m2 = (EndY - startY) / (EndX - startX);
+            m1 = -1;
+            x = ((m2 * startX) - (m1 * curveX) + curveY - startY) / (m2 - m1);
+            y = m2 * (x - startX) + startY;
+            deltaX = Math.abs(x - curveX);
+            deltaY = Math.abs(y - curveY);
+            newX = curveX - (deltaX * shrinkAmount);
+            newY = curveY + (deltaY * shrinkAmount);
+
+        }
+        else if (curveType == 2) {
+            m2 = (EndY - startY) / (EndX - startX)
+            m1 = -1;
+            x = ((m2 * startX) - (m1 * curveX) + curveY - startY) / (m2 - m1);
+            y = m2 * (x - startX) + startY;
+            deltaX = Math.abs(x - curveX);
+            deltaY = Math.abs(y - curveY);
+            newX = curveX + (deltaX * shrinkAmount);
+            newY = curveY - (deltaY * shrinkAmount);
+
+        }
+        else if (curveType == 3) {
+            m2 = (EndY - startY) / (EndX - startX);
+            m1 = 1;
+            x = ((m2 * startX) - (m1 * curveX) + curveY - startY) / (m2 - m1);
+            y = m2 * (x - startX) + startY;
+            deltaX = Math.abs(x - curveX);
+            deltaY = Math.abs(y - curveY);
+            newX = curveX + (deltaX * shrinkAmount);
+            newY = curveY + (deltaY * shrinkAmount);
+        }
+        else if (curveType == 4) {
+            m2 = (EndY - startY) / (EndX - startX);
+            m1 = 1;
+            x = ((m2 * startX) - (m1 * curveX) + curveY - startY) / (m2 - m1);
+            y = m2 * (x - startX) + startY;
+            deltaX = Math.abs(x - curveX);
+            deltaY = Math.abs(y - curveY);
+            newX = curveX - (deltaX * shrinkAmount);
+            newY = curveY - (deltaY * shrinkAmount)
+        }
+        return [newX, newY];
+    }
 
 
 }
@@ -204,7 +451,7 @@ function elipseAnimation(number, a, b, h, k) {
             gl.drawArrays(gl.TRIANGLES, 0, 3);
             for (let copies = 0; copies < 10; copies++, SecondX -= 0.001, SecondY -= 0.001, FirstX -= 0.001, FirstY -= 0.001) {
 
-                curveAnimation(10, FirstX, FirstY, SecondX, SecondY, 1, 1, 4, 0.6);
+                curveAnimation(10, FirstX, FirstY, SecondX, SecondY, 1, 1, 4, 0.6, 0, 0, 0, 0);
             }
         } else if (i == number - 1) {
             let x = h + (a * Math.cos(0));
@@ -219,7 +466,7 @@ function elipseAnimation(number, a, b, h, k) {
             gl.drawArrays(gl.TRIANGLES, 0, 3);
             for (let copies = 0; copies < 10; copies++, SecondX -= 0.001, SecondY += 0.001, FirstX -= 0.001, FirstY += 0.001) {
 
-                curveAnimation(10, FirstX, FirstY, SecondX, SecondY, 1, 1, 1, 0.6);
+                curveAnimation(10, FirstX, FirstY, SecondX, SecondY, 1, 1, 1, 0.6, 0, 0, 0, 0);
             }
 
         } else {
@@ -240,7 +487,7 @@ function elipseAnimation(number, a, b, h, k) {
             let SecondX = Math.round((x) * 100) / 100;
             let SecondY = Math.round(y * 100) / 100;
 
-            if (((angle <= (180 * Math.PI / 180)) && (angle >= 0 * Math.PI / 180)) && (hairPoints.length == 2)) {
+            if (((angle < (180 * Math.PI / 180)) && (angle > 0 * Math.PI / 180)) && (hairPoints.length == 2)) {
 
                 temp.push(SecondX, SecondY);
             }
@@ -253,25 +500,25 @@ function elipseAnimation(number, a, b, h, k) {
 
             if ((0 <= angle) && (angle <= (90 * Math.PI / 180))) {
                 for (let copies = 0; copies < 10; copies++, SecondX -= 0.001, SecondY -= 0.001, FirstX -= 0.001, FirstY -= 0.001) {
-                    curveAnimation(10, SecondX, SecondY, FirstX, FirstY, 1, 1, 4, 0.8);
+                    curveAnimation(10, SecondX, SecondY, FirstX, FirstY, 1, 1, 4, 0.8, 0, 0, 0, 0);
                 }
             }
             else if (((90 * Math.PI / 180) <= angle) && (angle <= (180 * Math.PI / 180))) {
                 for (let copies = 0; copies < 10; copies++, SecondX += 0.001, SecondY -= 0.001, FirstX += 0.001, FirstY -= 0.001) {
 
-                    curveAnimation(10, FirstX, FirstY, SecondX, SecondY, 1, 1, 2, 0.8);
+                    curveAnimation(10, FirstX, FirstY, SecondX, SecondY, 1, 1, 2, 0.8, 0, 0, 0, 0);
                 }
             }
             else if (((180 * Math.PI / 180) <= angle) && (angle <= (270 * Math.PI / 180))) {
                 for (let copies = 0; copies < 10; copies++, SecondX += 0.001, SecondY += 0.001, FirstX += 0.001, FirstY += 0.001) {
 
-                    curveAnimation(10, SecondX, SecondY, FirstX, FirstY, 1, 1, 3, 0.8);
+                    curveAnimation(10, SecondX, SecondY, FirstX, FirstY, 1, 1, 3, 0.8, 0, 0, 0, 0);
                 }
             }
             else if (((270 * Math.PI / 180) <= angle) && (angle <= (360 * Math.PI / 180))) {
                 for (let copies = 0; copies < 10; copies++, SecondX -= 0.001, SecondY += 0.001, FirstX -= 0.001, FirstY += 0.001) {
 
-                    curveAnimation(10, FirstX, FirstY, SecondX, SecondY, 1, 1, 1, 0.8);
+                    curveAnimation(10, FirstX, FirstY, SecondX, SecondY, 1, 1, 1, 0.8, 0, 0, 0, 0);
                 }
             }
 
@@ -282,207 +529,11 @@ function elipseAnimation(number, a, b, h, k) {
 
 
 }
-// curve drawing function ** y=
-function curveLineSegment(k1, k2, startX, startY, EndX, EndY, shrIStrX, shiftMoreX, shrIStrY, shiftMoreY, curveType, lineCountOffset, shrinkCruve) {
-    let y, x, m1, m2;
-    if (curveType == 1) {
-
-        //type 1 curve
-        m1 = ((k1) - 1) / (k1);
-        m2 = ((k2) - 1) / (k2);
-        x = ((((m1 - m2) * shrIStrX * shiftMoreX * startX) + ((m1 - m2) * lineCountOffset) - k1 + k2) / ((m1 - m2) * shiftMoreX * shrIStrX));
-        y = shrIStrY * shiftMoreY * ((m1 * ((shrIStrX * shiftMoreX * ((-x) + startX)) + lineCountOffset)) + 1 - k1) + startY;
-        if (shrinkCruve > 0) {
-            let newVertx = curveShrink(x, y, startX, startY, EndX, EndY, shrinkCruve, curveType);
-            vertex = [newVertx[0], newVertx[1]];
-
-        }
-        else {
-            vertex = [x, y];
-        }
-
-
-
-
-
-    }
-    else if (curveType == 2) {
-        //type 2 curve
-        m1 = (-k1 + 1) / (k1);
-        m2 = (-k2 + 1) / (k2);
-        x = (((m2 - m1) * (shrIStrX) * shiftMoreX * (startX)) + ((m1 - m2) * lineCountOffset) + k1 - k2) / ((m2 - m1) * shrIStrX * shiftMoreX);
-        y = shrIStrY * shiftMoreY * ((m1 * ((shrIStrX * shiftMoreX * (x - startX)) + lineCountOffset)) - 1 + k1) + startY;
-        if (shrinkCruve > 0) {
-            let newVertx = curveShrink(x, y, startX, startY, EndX, EndY, shrinkCruve, curveType);
-            vertex = [newVertx[0], newVertx[1]];
-
-        }
-        else {
-            vertex = [x, y];
-        }
-
-
-
-    }
-    else if (curveType == 3) {
-        //type 3 curve
-        m1 = ((k1) - 1) / (k1);
-        m2 = ((k2) - 1) / (k2);
-        x = ((((m1 - m2) * lineCountOffset) - ((m1 - m2) * (shrIStrX) * shiftMoreX * startX) - k1 + k2) / ((m2 - m1) * shrIStrX * shiftMoreX));
-        y = shrIStrY * shiftMoreY * (((m1) * ((shrIStrX * shiftMoreX * (x - startX)) + lineCountOffset)) + 1 - k1) + startY;
-        if (shrinkCruve > 0) {
-            let newVertx = curveShrink(x, y, startX, startY, EndX, EndY, shrinkCruve, curveType);
-            vertex = [newVertx[0], newVertx[1]];
-
-        }
-        else {
-            vertex = [x, y];
-        }
-
-
-
-
-    }
-    else if (curveType == 4) {
-        //type 4 curve
-        m1 = (-k1 + 1) / (k1);
-        m2 = (-k2 + 1) / (k2);
-        x = (-1) * ((((m1 - m2) * lineCountOffset) + ((m1 - m2) * shrIStrX * shiftMoreX * startX) + k1 - k2) / ((m2 - m1) * shrIStrX * shiftMoreX));
-        y = shrIStrY * shiftMoreY * ((m1 * ((shrIStrX * shiftMoreX * ((-1 * x) + startX)) + lineCountOffset)) - 1 + k1) + startY;
-        if (shrinkCruve > 0) {
-            let newVertx = curveShrink(x, y, startX, startY, EndX, EndY, shrinkCruve, curveType);
-            vertex = [newVertx[0], newVertx[1]];
-        }
-        else {
-            vertex = [x, y];
-        }
-
-
-    }
-
+function checkBoundaries(x, y, boundObjectInfo) {
+    let withinXBounds = false;
+    let withinYBounds = false;
 }
 
-
-
-
-function CurveSeriesPointsDrawing(startX, startY, EndX, EndY, shrIStrX, shiftMoreX, shrIStrY, shiftMoreY, lineCountOffset, lineCount, curveType, shrinkCruve) {
-
-    let k1, k2;
-
-
-    for (let n = lineCount; n > 1; n--) {
-        // console.log(n);
-        if (n == lineCount) {
-            curvePoints[0] = startX;
-            curvePoints[1] = startY;
-        }
-
-        else {
-            k1 = n / lineCount;
-            k2 = (n - 1) / lineCount;
-
-            curveLineSegment(k1, k2, startX, startY, EndX, EndY, shrIStrX, shiftMoreX, shrIStrY, shiftMoreY, curveType, lineCountOffset, shrinkCruve);
-
-            curvePoints[2] = vertex[0];
-            curvePoints[3] = vertex[1];
-
-            gl.bufferSubData(gl.ARRAY_BUFFER, 0, curvePoints);
-            gl.lineWidth(3.0);
-            gl.drawArrays(gl.LINE_STRIP, 0, 2);
-            curvePoints[0] = curvePoints[2];
-            curvePoints[1] = curvePoints[3];
-        }
-
-    }
-
-
-
-
-}
-function shiftNumbers(startX, startY, EndX, EndY, k1, k2, m1, m2, lineCountOffset, lineCount, curveType) {
-
-    let shrinkX, shrinkY;
-    let arrayNumbers = new Array(2);
-
-    if (curveType == 1) {
-        shrinkX = (((m1 - m2) * (lineCountOffset)) - k1 + k2) / (((m1 - m2) * EndX) + ((m2 - m1) * startX));
-        arrayNumbers[0] = shrinkX;
-        shrinkY = (EndY - startY) / ((m1 * ((shrinkX * (startX - EndX)) + lineCountOffset)) + 1 - k1);
-        arrayNumbers[1] = shrinkY;
-    }
-    else if (curveType == 2) {
-        shrinkX = (((m1 - m2) * (lineCountOffset)) + k1 - k2) / ((((m2 - m1) * (EndX)) + ((m1 - m2) * startX)));
-        arrayNumbers[0] = shrinkX;
-        shrinkY = (EndY - startY) / ((m1 * ((shrinkX * (EndX - startX)) + lineCountOffset)) - 1 + k1);
-        arrayNumbers[1] = shrinkY;
-
-    }
-    else if (curveType == 3) {
-        shrinkX = (((m1 - m2) * (lineCountOffset)) - k1 + k2) / (((m2 - m1) * EndX) + ((m1 - m2) * startX));
-        arrayNumbers[0] = shrinkX;
-        shrinkY = (EndY - startY) / ((m1 * ((shrinkX * (EndX - startX)) + lineCountOffset)) + 1 - k1);
-        arrayNumbers[1] = shrinkY;
-    }
-    else if (curveType == 4) {
-        shrinkX = (((m1 - m2) * (lineCountOffset)) + k1 - k2) / (((m1 - m2) * EndX) + ((m2 - m1) * startX));
-        arrayNumbers[0] = shrinkX;
-        shrinkY = (EndY - startY) / ((m1 * ((shrinkX * (startX - EndX)) + lineCountOffset)) - 1 + k1);
-        arrayNumbers[1] = shrinkY;
-    }
-
-    return arrayNumbers;
-}
-//curve shrink function 
-function curveShrink(curveX, curveY, startX, startY, EndX, EndY, shrinkAmount, curveType) {
-
-    //First line is y-curveY =m1(x-curveX)
-    //Second line is y-StartY = m2(x-startX)
-
-    let newX, newY, m2, m1, x, y, deltaX, deltaY;
-    if (curveType == 1) {
-        m2 = (EndY - startY) / (EndX - startX);
-        m1 = -1;
-        x = ((m2 * startX) - (m1 * curveX) + curveY - startY) / (m2 - m1);
-        y = m2 * (x - startX) + startY;
-        deltaX = Math.abs(x - curveX);
-        deltaY = Math.abs(y - curveY);
-        newX = curveX - (deltaX * shrinkAmount);
-        newY = curveY + (deltaY * shrinkAmount);
-
-    }
-    else if (curveType == 2) {
-        m2 = (EndY - startY) / (EndX - startX)
-        m1 = -1;
-        x = ((m2 * startX) - (m1 * curveX) + curveY - startY) / (m2 - m1);
-        y = m2 * (x - startX) + startY;
-        deltaX = Math.abs(x - curveX);
-        deltaY = Math.abs(y - curveY);
-        newX = curveX + (deltaX * shrinkAmount);
-        newY = curveY - (deltaY * shrinkAmount);
-
-    }
-    else if (curveType == 3) {
-        m2 = (EndY - startY) / (EndX - startX);
-        m1 = 1;
-        x = ((m2 * startX) - (m1 * curveX) + curveY - startY) / (m2 - m1);
-        y = m2 * (x - startX) + startY;
-        deltaX = Math.abs(x - curveX);
-        deltaY = Math.abs(y - curveY);
-        newX = curveX + (deltaX * shrinkAmount);
-        newY = curveY + (deltaY * shrinkAmount);
-    }
-    else if (curveType == 4) {
-        m2 = (EndY - startY) / (EndX - startX);
-        m1 = 1;
-        x = ((m2 * startX) - (m1 * curveX) + curveY - startY) / (m2 - m1);
-        y = m2 * (x - startX) + startY;
-        deltaX = Math.abs(x - curveX);
-        deltaY = Math.abs(y - curveY);
-        newX = curveX - (deltaX * shrinkAmount);
-        newY = curveY - (deltaY * shrinkAmount)
-    }
-    return [newX, newY];
-}
 
 
 
