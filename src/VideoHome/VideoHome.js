@@ -20,7 +20,7 @@ import {
   Container
 } from 'react-bootstrap';
 import './VideoHomePage.css';
-import { DrawEar, DrawFace, EditFace, DrawNose, DrawMouth, DrawHair, DrawEye, DrawEyeBrows, hairPoints, leftEarPotentialHairBounds } from "/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/VideoHome/wp-coponents/FaceFunctions.js";
+import { DrawEar, DrawFace, DrawNose, DrawMouth, DrawHair, DrawEye, DrawEyeBrows, hairPoints, leftEarPotentialHairBounds } from "/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/VideoHome/wp-coponents/FaceFunctions.js";
 
 
 export let gl;
@@ -128,11 +128,11 @@ function VideoHome() {
 
       // Face Drawing 
       DrawFace(35, 0.525, 0.9, 0.0, 0.0);
-      EditFace();
+
       // Ear Drawing
 
-      DrawEar("left", 30);
-      DrawEar("right", 30);
+      DrawEar("left", 30, 0.5, 0.5, 0.6, 0.3, 0.7);
+      DrawEar("right", 30, 0.5, 0.5, 0.7, 0.4, 0.7);
 
       // Eye Drawing
 
@@ -153,7 +153,7 @@ function VideoHome() {
       // Cheeks drawing
       // Hair Drawing
 
-      DrawHair();
+      DrawHair(20, 0.1, 0.001, 0.98);
 
 
       //triangleAnimation(0.0, 0.0, 0.3, 0.0, 0.0, 0.3);

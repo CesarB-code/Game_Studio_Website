@@ -19,6 +19,13 @@ let curvePoints = new Float32Array([
 ]);;
 
 let vertex;
+// line drawing function
+function lineAnimation(startX, startY, EndX, EndY) {
+    vertices = new Float32Array([startX, startY, EndX, EndY]);
+    gl.bufferSubData(gl.ARRAY_BUFFER, 0, vertices);
+    gl.drawArrays(gl.LINE_STRIP, 0, 2);
+
+}
 function triangleAnimation(point1X, point1Y, point2X, point2Y, point3X, point3Y) {
     let triangle = new Float32Array(6);
     triangle[0] = parseFloat(point1X);
@@ -73,7 +80,7 @@ function curveAnimation(lineCount,
 
     lineCountOffset = (lineCount - 1) / lineCount;
 
-    values = shiftNumbers(startX, startY, EndX, EndY, k1, k2, m1, m2, lineCountOffset, lineCount, curveType);
+    values = shiftNumbers(startX, startY, EndX, EndY, k1, k2, m1, m2, lineCountOffset, curveType);
     shrIStrX = values[0];
     shrIStrY = values[1];
 
@@ -84,7 +91,7 @@ function curveAnimation(lineCount,
         lineCountOffset, lineCount,
         curveType, shrinkCruve,
         stopDrawAtXBound1, stopDrawAtXBound2,
-        stopDrawAtYBound1, stopDrawAtYBound2);
+        stopDrawAtYBound1, stopDrawAtYBound2, boundObjectInfo);
 
     function CurveSeriesPointsDrawing(
         startX, startY,
@@ -94,7 +101,7 @@ function curveAnimation(lineCount,
         lineCountOffset, lineCount,
         curveType, shrinkCruve,
         stopDrawAtXBound1, stopDrawAtXBound2,
-        stopDrawAtYBound1, stopDrawAtYBound2) {
+        stopDrawAtYBound1, stopDrawAtYBound2, boundObjectInfo) {
 
         let k1, k2;
 
@@ -118,17 +125,55 @@ function curveAnimation(lineCount,
                 curvePoints[2] = vertex[0];
                 curvePoints[3] = vertex[1];
                 if (((stopDrawAtXBound1 != 0 && stopDrawAtXBound2 != 0) && (stopDrawAtYBound1 != 0 && stopDrawAtYBound2 != 0))) {
-                    if (((curvePoints[2] > stopDrawAtXBound1) && (curvePoints[2] < stopDrawAtXBound2)) && ((curvePoints[3] < stopDrawAtYBound1) && (curvePoints[3] > stopDrawAtYBound2))) {
+                    if (((curvePoints[2] > (Math.floor(stopDrawAtXBound1 * 100) / 100)) && (curvePoints[2] < (Math.floor(stopDrawAtXBound2 * 100) / 100)))
+                        && ((curvePoints[3] < (Math.floor(stopDrawAtYBound1 * 100) / 100)) && (curvePoints[3] > (Math.floor(stopDrawAtYBound2 * 100) / 100)))) {
 
                         if (boundXYTouched == false) {
+                            let m, newX, newY;
                             //m = CP3-CP1/CP2-CP0 , Y-CP3 = M(X-CP2), X= (Y-CP3)/M + CP2
                             // instaed find thhe shape at , 
-                            let m = (curvePoints[3] - curvePoints[1]) / (curvePoints[2] - curvePoints[0]);
-                            let newX = ((stopDrawAtYBound1 - curvePoints[3]) / m) + curvePoints[2];
-                            lineAnimation(curvePoints[0], curvePoints[1], newX, stopDrawAtYBound1);
+                            if (((curvePoints[0] > (Math.floor(stopDrawAtXBound1 * 100) / 100)) && (curvePoints[0] < (Math.floor(stopDrawAtXBound2 * 100) / 100)))
+                                && ((curvePoints[1] < (Math.floor(stopDrawAtYBound1 * 100) / 100)) && (curvePoints[1] > (Math.floor(stopDrawAtYBound2 * 100) / 100))
+                                    && boundObjectInfo == null)
+                            ) {
+                                boundXYTouched = true;
 
-                            boundXYTouched = true;
+                            }
+                            else if (boundObjectInfo == null) {
+
+
+                                if (curveType == 2 || curveType == 4) {
+                                    m = (curvePoints[3] - curvePoints[1]) / (curvePoints[2] - curvePoints[0]);
+                                    newX = ((stopDrawAtYBound1 - curvePoints[3]) / m) + curvePoints[2];
+                                    newY = (m * (newX - curvePoints[2])) + curvePoints[3];
+                                    lineAnimation(curvePoints[0], curvePoints[1], newX, newY);
+                                }
+                                else if (curveType == 1 || curveType == 3) {
+                                    m = (curvePoints[3] - curvePoints[1]) / (curvePoints[2] - curvePoints[0]);
+                                    newX = ((stopDrawAtYBound2 - curvePoints[3]) / m) + curvePoints[2];
+                                    newY = (m * (newX - curvePoints[2])) + curvePoints[3];
+                                    lineAnimation(curvePoints[0], curvePoints[1], newX, newY);
+                                }
+
+                                boundXYTouched = true;
+
+                            }
+                            else {
+
+
+
+                                let y = boundObjectInfo.coordinate_array.toString();
+                                console.log(y);
+                                boundXYTouched = checkBoundariesIntersection(curvePoints[0], curvePoints[1], curvePoints[2], curvePoints[3], boundObjectInfo, curveType);
+
+
+
+
+                            }
                         }
+
+
+
                         gl.lineWidth(3.0);
                         gl.bufferSubData(gl.ARRAY_BUFFER, 0, curvePoints);
 
@@ -136,6 +181,7 @@ function curveAnimation(lineCount,
 
 
                     }
+
                     else {
                         gl.bufferSubData(gl.ARRAY_BUFFER, 0, curvePoints);
                         gl.lineWidth(3.0);
@@ -161,7 +207,7 @@ function curveAnimation(lineCount,
             }
         }
     }
-    function shiftNumbers(startX, startY, EndX, EndY, k1, k2, m1, m2, lineCountOffset, lineCount, curveType) {
+    function shiftNumbers(startX, startY, EndX, EndY, k1, k2, m1, m2, lineCountOffset, curveType) {
 
         let shrinkX, shrinkY;
         let arrayNumbers = new Array(2);
@@ -330,16 +376,141 @@ function curveAnimation(lineCount,
         }
         return [newX, newY];
     }
+    function checkBoundariesIntersection(startX, startY, originalXEndPoint, originalYEndPoint, boundObjectsInfo, startingCurveType) {
+
+
+        for (let i = 0; i < boundObjectsInfo.shapeTypeArray.length; i++) {
+            if (boundObjectsInfo.shapeTypeArray[i] === "curve") {
+                if ((boundObjectsInfo.coordinate_array[i][7] == 1) || (boundObjectsInfo.coordinate_array[i][7] == 3)) {
+
+
+                    if ((startX <= boundObjectsInfo.coordinate_array[i][1] && startX >= boundObjectsInfo.coordinate_array[i][3])
+                        || (startX <= boundObjectsInfo.coordinate_array[i][3] && startX >= boundObjectsInfo.coordinate_array[i][1])) {
+                        //Bézier curve with a 
+                        let x, y, t1, t2, t, m, m1, m2, k, k1, k2, shrIStrX, shrIStrY, shiftMoreX, shiftMoreY, vectex;
+
+                        t1 = ((((2 * boundObjectsInfo.coordinate_array[i][1]) - (2 * boundObjectsInfo.coordinate_array[i][3])) - (Math.sqrt(((4 * Math.pow(boundObjectsInfo.coordinate_array[i][3], 2)) - (8 * boundObjectsInfo.coordinate_array[i][1] * boundObjectsInfo.coordinate_array[i][3]) + (4 * Math.pow(boundObjectsInfo.coordinate_array[i][1], 2))) - ((4 * (boundObjectsInfo.coordinate_array[i][1] - originalXEndPoint) * (boundObjectsInfo.coordinate_array[i][1])) + (4 * boundObjectsInfo.coordinate_array[i][3] * (boundObjectsInfo.coordinate_array[i][1] - originalXEndPoint)) - (8 * boundObjectsInfo.coordinate_array[i][3] * (boundObjectsInfo.coordinate_array[i][1] - originalXEndPoint)))))) /
+                            ((2 * boundObjectsInfo.coordinate_array[i][1]) + (2 * boundObjectsInfo.coordinate_array[i][3]) - (4 * boundObjectsInfo.coordinate_array[i][3])));
+                        t2 = ((((2 * boundObjectsInfo.coordinate_array[i][1]) - (2 * boundObjectsInfo.coordinate_array[i][3])) + (Math.sqrt(((4 * Math.pow(boundObjectsInfo.coordinate_array[i][3], 2)) - (8 * boundObjectsInfo.coordinate_array[i][1] * boundObjectsInfo.coordinate_array[i][3]) + (4 * Math.pow(boundObjectsInfo.coordinate_array[i][1], 2))) - ((4 * (boundObjectsInfo.coordinate_array[i][1] - originalXEndPoint) * (boundObjectsInfo.coordinate_array[i][1])) + (4 * boundObjectsInfo.coordinate_array[i][3] * (boundObjectsInfo.coordinate_array[i][1] - originalXEndPoint)) - (8 * boundObjectsInfo.coordinate_array[i][3] * (boundObjectsInfo.coordinate_array[i][1] - originalXEndPoint)))))) /
+                            ((2 * boundObjectsInfo.coordinate_array[i][1]) + (2 * boundObjectsInfo.coordinate_array[i][3]) - (4 * boundObjectsInfo.coordinate_array[i][3])));
+                        if (t1 >= 0 && t1 <= 1) {
+                            t = t1;
+                        }
+                        else if (t2 >= 0 && t2 <= 1) {
+                            t = t2;
+                        }
+                        x = ((Math.pow((1 - t), 2) * boundObjectsInfo.coordinate_array[i][1]) + (2 * (1 - t) * t * boundObjectsInfo.coordinate_array[i][3]) + ((t * t) * boundObjectsInfo.coordinate_array[i][3]));
+                        k = ((boundObjectsInfo.coordinate_array[i][0] - Math.ceil(t * boundObjectsInfo.coordinate_array[i][0])) / boundObjectsInfo.coordinate_array[i][0]);
+                        k1 = (2 / boundObjectsInfo.coordinate_array[i][0]);
+                        k2 = (1 / boundObjectsInfo.coordinate_array[i][0]);
+                        m1 = (k1 - 1) / (k1);
+                        m2 = (k2 - 1) / (k2);
+                        lineCountOffset = ((boundObjectsInfo.coordinate_array[i][0] - 1) / boundObjectsInfo.coordinate_array[i][0]);
+                        m = ((k) - 1) / (k);
+                        vectex = shiftNumbers(boundObjectsInfo.coordinate_array[i][1], boundObjectsInfo.coordinate_array[i][2], boundObjectsInfo.coordinate_array[i][3], boundObjectsInfo.coordinate_array[i][4], k1, k2, m1, m2, lineCountOffset, boundObjectsInfo.coordinate_array[i][7]);
+                        shrIStrX = vertex[0];
+                        shrIStrY = vertex[1]
+                        shiftMoreX = boundObjectsInfo.coordinate_array[i][5];
+                        shiftMoreY = boundObjectsInfo.coordinate_array[i][6];
+                        if (boundObjectsInfo.coordinate_array[i][7] == 1) {
+                            y = shrIStrY * shiftMoreY * ((m * ((shrIStrX * shiftMoreX * ((-x) + boundObjectsInfo.coordinate_array[i][1])) + lineCountOffset)) + 1 - k) + boundObjectsInfo.coordinate_array[i][2];
+                        }
+                        else if (boundObjectsInfo.coordinate_array[i][7] == 3) {
+                            y = shrIStrY * shiftMoreY * (((m) * ((shrIStrX * shiftMoreX * (x - boundObjectsInfo.coordinate_array[i][1])) + lineCountOffset)) + 1 - k) + boundObjectsInfo.coordinate_array[i][2];
+
+                        }
+                        if ((originalYEndPoint <= boundObjectsInfo.coordinate_array[i][2])) {
+                            lineAnimation(originalXEndPoint, originalYEndPoint, startX, startY);
+                            i = boundObjectsInfo.shapeTypeArray.length;;
+                            return false;
+                        }
+                        else if ((originalYEndPoint >= boundObjectsInfo.coordinate_array[i][2]) && (originalYEndPoint < y)) {
+
+                            lineAnimation(originalXEndPoint, originalYEndPoint, startX, startY);
+                            i = boundObjectsInfo.shapeTypeArray.length;;
+                            return false;
+                        }
+                        else if ((originalYEndPoint >= boundObjectsInfo.coordinate_array[i][2]) && (originalYEndPoint >= y)) {
+                            lineAnimation(x, y, startX, startY);
+
+                            return true;
+                        }
+
+
+
+
+
+                    }
+
+                }
+                else if ((boundObjectsInfo.coordinate_array[i][7] == 2) || (boundObjectsInfo.coordinate_array[i][7] == 4)) {
+                    if ((startX >= boundObjectsInfo.coordinate_array[i][1] && startX <= boundObjectsInfo.coordinate_array[i][3])
+                        || (startX >= boundObjectsInfo.coordinate_array[i][3] && startX <= boundObjectsInfo.coordinate_array[i][1])) {
+                        //Bézier curve with a 
+                        let x, y, t1, t2, t, m, m1, m2, k, k1, k2, shrIStrX, shrIStrY, shiftMoreX, shiftMoreY, vertex;
+
+                        t1 = ((((2 * boundObjectsInfo.coordinate_array[i][1]) - (2 * boundObjectsInfo.coordinate_array[i][3])) - (Math.sqrt(((4 * Math.pow(boundObjectsInfo.coordinate_array[i][3], 2)) - (8 * boundObjectsInfo.coordinate_array[i][1] * boundObjectsInfo.coordinate_array[i][3]) + (4 * Math.pow(boundObjectsInfo.coordinate_array[i][1], 2))) - ((4 * (boundObjectsInfo.coordinate_array[i][1] - originalXEndPoint) * (boundObjectsInfo.coordinate_array[i][1])) + (4 * boundObjectsInfo.coordinate_array[i][3] * (boundObjectsInfo.coordinate_array[i][1] - originalXEndPoint)) - (8 * boundObjectsInfo.coordinate_array[i][3] * (boundObjectsInfo.coordinate_array[i][1] - originalXEndPoint)))))) /
+                            ((2 * boundObjectsInfo.coordinate_array[i][1]) + (2 * boundObjectsInfo.coordinate_array[i][3]) - (4 * boundObjectsInfo.coordinate_array[i][3])));
+                        t2 = ((((2 * boundObjectsInfo.coordinate_array[i][1]) - (2 * boundObjectsInfo.coordinate_array[i][3])) + (Math.sqrt(((4 * Math.pow(boundObjectsInfo.coordinate_array[i][3], 2)) - (8 * boundObjectsInfo.coordinate_array[i][1] * boundObjectsInfo.coordinate_array[i][3]) + (4 * Math.pow(boundObjectsInfo.coordinate_array[i][1], 2))) - ((4 * (boundObjectsInfo.coordinate_array[i][1] - originalXEndPoint) * (boundObjectsInfo.coordinate_array[i][1])) + (4 * boundObjectsInfo.coordinate_array[i][3] * (boundObjectsInfo.coordinate_array[i][1] - originalXEndPoint)) - (8 * boundObjectsInfo.coordinate_array[i][3] * (boundObjectsInfo.coordinate_array[i][1] - originalXEndPoint)))))) /
+                            ((2 * boundObjectsInfo.coordinate_array[i][1]) + (2 * boundObjectsInfo.coordinate_array[i][3]) - (4 * boundObjectsInfo.coordinate_array[i][3])));
+                        if (t1 >= 0 && t1 <= 1) {
+                            t = t1;
+                        }
+                        else if (t2 >= 0 && t2 <= 1) {
+                            t = t2;
+                        }
+                        x = ((Math.pow((1 - t), 2) * boundObjectsInfo.coordinate_array[i][1]) + (2 * (1 - t) * t * boundObjectsInfo.coordinate_array[i][3]) + ((t * t) * boundObjectsInfo.coordinate_array[i][3]));
+                        k = ((boundObjectsInfo.coordinate_array[i][0] - Math.ceil(t * boundObjectsInfo.coordinate_array[i][0])) / boundObjectsInfo.coordinate_array[i][0]);
+                        k1 = (2 / boundObjectsInfo.coordinate_array[i][0]);
+                        k2 = (1 / boundObjectsInfo.coordinate_array[i][0]);
+                        m1 = (1 - k1) / (k1);
+                        m2 = (1 - k2) / (k2);
+
+                        lineCountOffset = ((boundObjectsInfo.coordinate_array[i][0] - 1) / boundObjectsInfo.coordinate_array[i][0]);
+                        m = ((1 - k) / (k));
+                        vertex = shiftNumbers(boundObjectsInfo.coordinate_array[i][1], boundObjectsInfo.coordinate_array[i][2], boundObjectsInfo.coordinate_array[i][3], boundObjectsInfo.coordinate_array[i][4], k1, k2, m1, m2, lineCountOffset, boundObjectsInfo.coordinate_array[i][7]);
+                        shrIStrX = vertex[0];
+                        shrIStrY = vertex[1]
+                        shiftMoreX = boundObjectsInfo.coordinate_array[i][5];
+                        shiftMoreY = boundObjectsInfo.coordinate_array[i][6];
+                        if (boundObjectsInfo.coordinate_array[i][7] == 2) {
+                            y = shrIStrY * shiftMoreY * ((m * ((shrIStrX * shiftMoreX * (x - boundObjectsInfo.coordinate_array[i][1])) + lineCountOffset)) - 1 + k) + boundObjectsInfo.coordinate_array[i][2];
+                        }
+                        else if (boundObjectsInfo.coordinate_array[i][7] == 4) {
+                            y = shrIStrY * shiftMoreY * (((m) * ((shrIStrX * shiftMoreX * ((-1 * x) + boundObjectsInfo.coordinate_array[i][1])) + lineCountOffset)) - 1 + k) + boundObjectsInfo.coordinate_array[i][2];
+
+                        }
+                        if ((originalYEndPoint >= boundObjectsInfo.coordinate_array[i][2])) {
+                            lineAnimation(originalXEndPoint, originalYEndPoint, startX, startY);
+                            i = boundObjectsInfo.shapeTypeArray.length;;
+                            return false;
+                        }
+                        else if ((originalYEndPoint <= boundObjectsInfo.coordinate_array[i][2]) && (originalYEndPoint > y)) {
+
+                            lineAnimation(originalXEndPoint, originalYEndPoint, startX, startY);
+                            i = boundObjectsInfo.shapeTypeArray.length;;
+                            return false;
+                        }
+                        else if ((originalYEndPoint <= boundObjectsInfo.coordinate_array[i][2]) && (originalYEndPoint <= y)) {
+                            lineAnimation(x, y, startX, startY);
+
+                            return true;
+                        }
+
+
+
+
+
+                    }
+                }
+            }
+        }
+        return vertex;
+    }
 
 
 }
-// line drawing function
-function lineAnimation(startX, startY, EndX, EndY) {
-    vertices = new Float32Array([startX, startY, EndX, EndY]);
-    gl.bufferSubData(gl.ARRAY_BUFFER, 0, vertices);
-    gl.drawArrays(gl.LINE_STRIP, 0, 2);
 
-}
 
 // circle drawing function
 function circleAnimation(number, radius, h, k) {
@@ -528,10 +699,6 @@ function elipseAnimation(number, a, b, h, k) {
     }
 
 
-}
-function checkBoundaries(x, y, boundObjectInfo) {
-    let withinXBounds = false;
-    let withinYBounds = false;
 }
 
 
