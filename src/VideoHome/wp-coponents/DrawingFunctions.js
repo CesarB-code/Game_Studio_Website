@@ -163,7 +163,7 @@ function curveAnimation(lineCount,
 
 
                                 let y = boundObjectInfo.coordinate_array.toString();
-                                console.log(y);
+
                                 boundXYTouched = checkBoundariesIntersection(curvePoints[0], curvePoints[1], curvePoints[2], curvePoints[3], boundObjectInfo, curveType);
 
 
@@ -376,7 +376,54 @@ function curveAnimation(lineCount,
         }
         return [newX, newY];
     }
+    function curveShrink2(curveX, curveY, x, startX, startY, EndX, EndY, shrinkAmount, curveType) {
+
+        //First line is y-curveY =m1(x-curveX)
+        //Second line is y-StartY = m2(x-startX)
+
+        let newX, newY, m2, y, deltaX, deltaY;
+        if (curveType == 1) {
+            m2 = (EndY - startY) / (EndX - startX);
+
+            y = m2 * (x - startX) + startY;
+            deltaX = Math.abs(x - curveX);
+            deltaY = Math.abs(y - curveY);
+            newX = curveX - (deltaX * shrinkAmount);
+            newY = curveY + (deltaY * shrinkAmount);
+
+        }
+        else if (curveType == 2) {
+            m2 = (EndY - startY) / (EndX - startX)
+
+            y = m2 * (x - startX) + startY;
+            deltaX = Math.abs(x - curveX);
+            deltaY = Math.abs(y - curveY);
+            newX = curveX + (deltaX * shrinkAmount);
+            newY = curveY - (deltaY * shrinkAmount);
+
+        }
+        else if (curveType == 3) {
+            m2 = (EndY - startY) / (EndX - startX);
+
+            y = m2 * (x - startX) + startY;
+            deltaX = Math.abs(x - curveX);
+            deltaY = Math.abs(y - curveY);
+            newX = curveX + (deltaX * shrinkAmount);
+            newY = curveY + (deltaY * shrinkAmount);
+        }
+        else if (curveType == 4) {
+            m2 = (EndY - startY) / (EndX - startX);
+
+            y = m2 * (x - startX) + startY;
+            deltaX = Math.abs(x - curveX);
+            deltaY = Math.abs(y - curveY);
+            newX = curveX - (deltaX * shrinkAmount);
+            newY = curveY - (deltaY * shrinkAmount)
+        }
+        return [newX, newY];
+    }
     function checkBoundariesIntersection(startX, startY, originalXEndPoint, originalYEndPoint, boundObjectsInfo, startingCurveType) {
+
 
 
         for (let i = 0; i < boundObjectsInfo.shapeTypeArray.length; i++) {
@@ -387,8 +434,8 @@ function curveAnimation(lineCount,
                     if ((startX <= boundObjectsInfo.coordinate_array[i][1] && startX >= boundObjectsInfo.coordinate_array[i][3])
                         || (startX <= boundObjectsInfo.coordinate_array[i][3] && startX >= boundObjectsInfo.coordinate_array[i][1])) {
                         //Bézier curve with a 
-                        let x, y, t1, t2, t, m, m1, m2, k, k1, k2, shrIStrX, shrIStrY, shiftMoreX, shiftMoreY, vectex;
-
+                        let x, y, t1, t2, t, m, m1, m2, k, k1, k2, shrIStrX, shrIStrY, shiftMoreX, shiftMoreY, vectex, newVertx;
+                        //find t value for the x coordinate of the curve that is equal to the x coordinate of the end point of the line, then find the y coordinate of the curve at that t value and compare it to the y coordinate of the end point of the line to see if they intersect
                         t1 = ((((2 * boundObjectsInfo.coordinate_array[i][1]) - (2 * boundObjectsInfo.coordinate_array[i][3])) - (Math.sqrt(((4 * Math.pow(boundObjectsInfo.coordinate_array[i][3], 2)) - (8 * boundObjectsInfo.coordinate_array[i][1] * boundObjectsInfo.coordinate_array[i][3]) + (4 * Math.pow(boundObjectsInfo.coordinate_array[i][1], 2))) - ((4 * (boundObjectsInfo.coordinate_array[i][1] - originalXEndPoint) * (boundObjectsInfo.coordinate_array[i][1])) + (4 * boundObjectsInfo.coordinate_array[i][3] * (boundObjectsInfo.coordinate_array[i][1] - originalXEndPoint)) - (8 * boundObjectsInfo.coordinate_array[i][3] * (boundObjectsInfo.coordinate_array[i][1] - originalXEndPoint)))))) /
                             ((2 * boundObjectsInfo.coordinate_array[i][1]) + (2 * boundObjectsInfo.coordinate_array[i][3]) - (4 * boundObjectsInfo.coordinate_array[i][3])));
                         t2 = ((((2 * boundObjectsInfo.coordinate_array[i][1]) - (2 * boundObjectsInfo.coordinate_array[i][3])) + (Math.sqrt(((4 * Math.pow(boundObjectsInfo.coordinate_array[i][3], 2)) - (8 * boundObjectsInfo.coordinate_array[i][1] * boundObjectsInfo.coordinate_array[i][3]) + (4 * Math.pow(boundObjectsInfo.coordinate_array[i][1], 2))) - ((4 * (boundObjectsInfo.coordinate_array[i][1] - originalXEndPoint) * (boundObjectsInfo.coordinate_array[i][1])) + (4 * boundObjectsInfo.coordinate_array[i][3] * (boundObjectsInfo.coordinate_array[i][1] - originalXEndPoint)) - (8 * boundObjectsInfo.coordinate_array[i][3] * (boundObjectsInfo.coordinate_array[i][1] - originalXEndPoint)))))) /
@@ -408,8 +455,8 @@ function curveAnimation(lineCount,
                         lineCountOffset = ((boundObjectsInfo.coordinate_array[i][0] - 1) / boundObjectsInfo.coordinate_array[i][0]);
                         m = ((k) - 1) / (k);
                         vectex = shiftNumbers(boundObjectsInfo.coordinate_array[i][1], boundObjectsInfo.coordinate_array[i][2], boundObjectsInfo.coordinate_array[i][3], boundObjectsInfo.coordinate_array[i][4], k1, k2, m1, m2, lineCountOffset, boundObjectsInfo.coordinate_array[i][7]);
-                        shrIStrX = vertex[0];
-                        shrIStrY = vertex[1]
+                        shrIStrX = vectex[0];
+                        shrIStrY = vectex[1]
                         shiftMoreX = boundObjectsInfo.coordinate_array[i][5];
                         shiftMoreY = boundObjectsInfo.coordinate_array[i][6];
                         if (boundObjectsInfo.coordinate_array[i][7] == 1) {
@@ -419,23 +466,36 @@ function curveAnimation(lineCount,
                             y = shrIStrY * shiftMoreY * (((m) * ((shrIStrX * shiftMoreX * (x - boundObjectsInfo.coordinate_array[i][1])) + lineCountOffset)) + 1 - k) + boundObjectsInfo.coordinate_array[i][2];
 
                         }
+
+
+
+
                         if ((originalYEndPoint <= boundObjectsInfo.coordinate_array[i][2])) {
-                            lineAnimation(originalXEndPoint, originalYEndPoint, startX, startY);
+                            lineAnimation(startX, startY, originalXEndPoint, originalYEndPoint);
                             i = boundObjectsInfo.shapeTypeArray.length;;
                             return false;
                         }
                         else if ((originalYEndPoint >= boundObjectsInfo.coordinate_array[i][2]) && (originalYEndPoint < y)) {
 
-                            lineAnimation(originalXEndPoint, originalYEndPoint, startX, startY);
+                            lineAnimation(startX, startY, originalXEndPoint, originalYEndPoint);
                             i = boundObjectsInfo.shapeTypeArray.length;;
                             return false;
                         }
                         else if ((originalYEndPoint >= boundObjectsInfo.coordinate_array[i][2]) && (originalYEndPoint >= y)) {
-                            lineAnimation(x, y, startX, startY);
+
+                            if (boundObjectsInfo.coordinate_array[i][8] > 0) {
+                                let newVertx = curveShrink2(x, y, x, boundObjectsInfo.coordinate_array[i][1], boundObjectsInfo.coordinate_array[i][2], boundObjectsInfo.coordinate_array[i][3], boundObjectsInfo.coordinate_array[i][4], boundObjectsInfo.coordinate_array[i][8], boundObjectsInfo.coordinate_array[i][7]);
+                                x = newVertx[0];
+                                y = newVertx[1];
+                            }
+                            lineAnimation(startX, startY, Math.round(x * 1000) / 1000, Math.round(y * 1000) / 1000);
+
+
+
 
                             return true;
                         }
-
+                        // need to check the curve shrink for the last point of the curve
 
 
 
@@ -447,7 +507,7 @@ function curveAnimation(lineCount,
                     if ((startX >= boundObjectsInfo.coordinate_array[i][1] && startX <= boundObjectsInfo.coordinate_array[i][3])
                         || (startX >= boundObjectsInfo.coordinate_array[i][3] && startX <= boundObjectsInfo.coordinate_array[i][1])) {
                         //Bézier curve with a 
-                        let x, y, t1, t2, t, m, m1, m2, k, k1, k2, shrIStrX, shrIStrY, shiftMoreX, shiftMoreY, vertex;
+                        let x, y, t1, t2, t, m, m1, m2, k, k1, k2, shrIStrX, shrIStrY, shiftMoreX, shiftMoreY, vectex;
 
                         t1 = ((((2 * boundObjectsInfo.coordinate_array[i][1]) - (2 * boundObjectsInfo.coordinate_array[i][3])) - (Math.sqrt(((4 * Math.pow(boundObjectsInfo.coordinate_array[i][3], 2)) - (8 * boundObjectsInfo.coordinate_array[i][1] * boundObjectsInfo.coordinate_array[i][3]) + (4 * Math.pow(boundObjectsInfo.coordinate_array[i][1], 2))) - ((4 * (boundObjectsInfo.coordinate_array[i][1] - originalXEndPoint) * (boundObjectsInfo.coordinate_array[i][1])) + (4 * boundObjectsInfo.coordinate_array[i][3] * (boundObjectsInfo.coordinate_array[i][1] - originalXEndPoint)) - (8 * boundObjectsInfo.coordinate_array[i][3] * (boundObjectsInfo.coordinate_array[i][1] - originalXEndPoint)))))) /
                             ((2 * boundObjectsInfo.coordinate_array[i][1]) + (2 * boundObjectsInfo.coordinate_array[i][3]) - (4 * boundObjectsInfo.coordinate_array[i][3])));
@@ -468,9 +528,9 @@ function curveAnimation(lineCount,
 
                         lineCountOffset = ((boundObjectsInfo.coordinate_array[i][0] - 1) / boundObjectsInfo.coordinate_array[i][0]);
                         m = ((1 - k) / (k));
-                        vertex = shiftNumbers(boundObjectsInfo.coordinate_array[i][1], boundObjectsInfo.coordinate_array[i][2], boundObjectsInfo.coordinate_array[i][3], boundObjectsInfo.coordinate_array[i][4], k1, k2, m1, m2, lineCountOffset, boundObjectsInfo.coordinate_array[i][7]);
-                        shrIStrX = vertex[0];
-                        shrIStrY = vertex[1]
+                        vectex = shiftNumbers(boundObjectsInfo.coordinate_array[i][1], boundObjectsInfo.coordinate_array[i][2], boundObjectsInfo.coordinate_array[i][3], boundObjectsInfo.coordinate_array[i][4], k1, k2, m1, m2, lineCountOffset, boundObjectsInfo.coordinate_array[i][7]);
+                        shrIStrX = vectex[0];
+                        shrIStrY = vectex[1]
                         shiftMoreX = boundObjectsInfo.coordinate_array[i][5];
                         shiftMoreY = boundObjectsInfo.coordinate_array[i][6];
                         if (boundObjectsInfo.coordinate_array[i][7] == 2) {
@@ -492,7 +552,15 @@ function curveAnimation(lineCount,
                             return false;
                         }
                         else if ((originalYEndPoint <= boundObjectsInfo.coordinate_array[i][2]) && (originalYEndPoint <= y)) {
-                            lineAnimation(x, y, startX, startY);
+
+                            if (boundObjectsInfo.coordinate_array[i][8] > 0) {
+                                let newVertx = curveShrink2(x, y, x, boundObjectsInfo.coordinate_array[i][1], boundObjectsInfo.coordinate_array[i][2], boundObjectsInfo.coordinate_array[i][3], boundObjectsInfo.coordinate_array[i][4], boundObjectsInfo.coordinate_array[i][8], boundObjectsInfo.coordinate_array[i][7]);
+                                x = newVertx[0];
+                                y = newVertx[1];
+                            }
+                            lineAnimation(startX, startY, x, y,);
+
+
 
                             return true;
                         }
@@ -701,8 +769,144 @@ function elipseAnimation(number, a, b, h, k) {
 
 }
 
+// elipse drawing function
+function semiElipseAnimation(number, a, b, h, k) {
+
+
+
+    let angle = 0;
+
+    for (let i = 1; i <= number; i++) {
+        angle = (i / number) * 180 * (Math.PI / 180);
+
+        if (i == 1) {
+            let x = h + (a * Math.cos(angle));
+            let y = k + (b * Math.sqrt((1 - (Math.pow(x - h, 2) / (a * a)))));
+
+            vertices = new Float32Array([Math.round(h * 100) / 100, Math.round(k * 100) / 100,
+            Math.round((h + a) * 100) / 100, Math.round(k * 100) / 100, Math.round(x * 100) / 100, Math.round(y * 100) / 100]);
+            let FirstX = Math.round(x * 100) / 100;
+            let FirstY = Math.round(y * 100) / 100;
+            let SecondX = Math.round((h + a) * 100) / 100;
+            let SecondY = Math.round(k * 100) / 100;
+
+
+
+            gl.bufferSubData(gl.ARRAY_BUFFER, 0, vertices);
+            gl.drawArrays(gl.TRIANGLES, 0, 3);
+            /*  for (let copies = 0; copies < 10; copies++, SecondX += 0.001) {
+  
+                  curveAnimation(10, FirstX, FirstY, SecondX, SecondY, 1, 1, 4, 0.6, 0, 0, 0, 0);
+              }
+                  */
+
+        } else if (i == number) {
+
+            let FirstX = vertices[4];
+            let FirstY = vertices[5]
+            let SecondX = Math.round((h + a) * 100) / 100;
+            let SecondY = Math.round(k * 100) / 100;
+
+            let x = h + (a * Math.cos(angle));
+            let y = k + (b * Math.sqrt((1 - (Math.pow(x - h, 2) / (a * a)))));
+            let updatedPositions = new Float32Array([h, k, vertices[4], vertices[5], Math.round(x * 100) / 100, Math.round(y * 100) / 100]);
+
+            gl.bufferSubData(gl.ARRAY_BUFFER, 0, updatedPositions);
+            gl.drawArrays(gl.TRIANGLES, 0, 3);
+            /*   for (let copies = 0; copies < 10; copies++, SecondX += 0.001, SecondY += 0.001, FirstX -= 0.001, FirstY += 0.001) {
+   
+                   curveAnimation(10, FirstX, FirstY, SecondX, SecondY, 1, 1, 1, 0, 0, 0, 0, 0);
+               }
+   
+               */
+
+        } else {
+            let temp1 = vertices[4];
+            let temp2 = vertices[5];
+
+            let x = h + (a * Math.cos(angle)), y = 0;
+            if ((angle <= (180 * Math.PI / 180)) && (angle >= 0)) {
+                y = k + (b * Math.sqrt((1 - (Math.pow(x - h, 2) / (a * a)))));
+            }
+
+            const updatedPositions = new Float32Array(
+                [Math.round(h * 100) / 100, Math.round(k * 100) / 100,
+                Math.round(temp1 * 100) / 100, Math.round(temp2 * 100) / 100,
+                Math.round(x * 100) / 100, Math.round(y * 100) / 100]);
+
+            vertices = updatedPositions;
+            gl.bufferSubData(gl.ARRAY_BUFFER, 0, updatedPositions);
+            gl.drawArrays(gl.TRIANGLES, 0, 3);
+            let FirstX = Math.round(temp1 * 100) / 100;
+            let FirstY = Math.round(temp2 * 100) / 100;
+            let SecondX = Math.round((x) * 100) / 100;
+            let SecondY = Math.round(y * 100) / 100;
+
+            if (((angle < (180 * Math.PI / 180)) && (angle > 0 * Math.PI / 180)) && (hairPoints.length == 2)) {
+
+                temp.push(SecondX, SecondY);
+            }
+
+
+
+            /*
+                        if ((0 <= angle) && (angle <= (90 * Math.PI / 180))) {
+                            for (let copies = 0; copies < 10; copies++, SecondX += 0.001, SecondY -= 0.001, FirstX -= 0.001, FirstY -= 0.001) {
+                                curveAnimation(10, SecondX, SecondY, FirstX, FirstY, 1, 1, 4, 0.6, 0, 0, 0, 0);
+                            }
+                        }
+                        else if (((90 * Math.PI / 180) <= angle) && (angle <= (180 * Math.PI / 180))) {
+                            for (let copies = 0; copies < 10; copies++, SecondX += 0.001, SecondY -= 0.001, FirstX += 0.001, FirstY -= 0.001) {
+            
+                                curveAnimation(10, FirstX, FirstY, SecondX, SecondY, 1, 1, 2, 1, 0, 0, 0, 0);
+                            }
+                        }
+                        else if (((180 * Math.PI / 180) <= angle) && (angle <= (270 * Math.PI / 180))) {
+                            for (let copies = 0; copies < 10; copies++, SecondX += 0.001, SecondY += 0.001, FirstX += 0.001, FirstY += 0.001) {
+            
+                                curveAnimation(10, SecondX, SecondY, FirstX, FirstY, 1, 1, 3, 1, 0, 0, 0, 0);
+                            }
+                        }
+                        else if (((270 * Math.PI / 180) <= angle) && (angle <= (360 * Math.PI / 180))) {
+                            for (let copies = 0; copies < 10; copies++, SecondX -= 0.001, SecondY += 0.001, FirstX -= 0.001, FirstY += 0.001) {
+            
+                                curveAnimation(10, FirstX, FirstY, SecondX, SecondY, 1, 1, 1, 1, 0, 0, 0, 0);
+                            }
+                        }
+            */
+
+        }
+        // semiEllipsieOutline(0.1, a, b, h, k);
+
+    }
+    /*function semiEllipsieOutline(number, a, b, h, k) {
+        let x, y, temp = new Array(4);
+        for (let t = 0; t <= 1; t += number) {
+            if (t = 0) {
+
+                temp[0] = (h + a);
+                temp[1] = k;
+
+            }
+            else {
+                x = (Math.pow((1 - t), 3) * (h + a)) + (3 * Math.pow((1 - t), 2) * t * a) + (3 * Math.pow((1 - t), 2) * (a * 0.55228)) + (Math.pow(t, 3) * h);
+                y = k + (b * Math.sqrt((1 - (Math.pow(x - h, 2) / (a * a)))));
+                temp[2] = x;
+                temp[3] = y;
+                lineAnimation(temp[0], temp[1], x, y);
+                temp[0] = temp[2];
+                temp[1] = temp[3];
+
+            }
+
+        };
+
+    }*/
+    curveAnimation(10, h, k + b, h + a, k, 1, 1, 4, 0, 0, 0, 0, 0);
+
+}
 
 
 
 
-export { curveAnimation, lineAnimation, circleAnimation, elipseAnimation, triangleAnimation, rectangleAnimation };
+export { curveAnimation, lineAnimation, circleAnimation, elipseAnimation, triangleAnimation, rectangleAnimation, semiCircleAnimation, semiElipseAnimation };
