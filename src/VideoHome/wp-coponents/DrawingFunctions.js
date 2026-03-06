@@ -669,54 +669,41 @@ function semiCircleAnimation(number, radius, h, k) {
 // elipse drawing function
 function elipseAnimation(number, a, b, h, k) {
 
-
+    let x, y;
 
     let angle = (360 / number) * (Math.PI / 180);
 
     for (let i = 0; i < number; i++) {
         if (i == 0) {
-            let x = h + (a * Math.cos(angle));
-            let y = k + (b * Math.sin(angle));
-            vertices = new Float32Array([Math.round(h * 100) / 100, Math.round(k * 100) / 100,
-            Math.round((h + a) * 100) / 100, Math.round(k * 100) / 100, Math.round(x * 100) / 100, Math.round(y * 100) / 100]);
-            let FirstX = Math.round(x * 100) / 100;
-            let FirstY = Math.round(y * 100) / 100;
-            let SecondX = Math.round((h + a) * 100) / 100;
-            let SecondY = Math.round(k * 100) / 100;
-
+            x = h + (a * Math.cos(angle));
+            y = k + (b * Math.sin(angle));
+            vertices = new Float32Array([
+                h, k,
+                h + a, k,
+                x, y]);
 
 
             gl.bufferSubData(gl.ARRAY_BUFFER, 0, vertices);
             gl.drawArrays(gl.TRIANGLES, 0, 3);
-            for (let copies = 0; copies < 10; copies++, SecondX -= 0.001, SecondY -= 0.001, FirstX -= 0.001, FirstY -= 0.001) {
 
-                curveAnimation(10, FirstX, FirstY, SecondX, SecondY, 1, 1, 4, 0.6, 0, 0, 0, 0);
-            }
         } else if (i == number - 1) {
-            let x = h + (a * Math.cos(0));
-            let y = k;
-            let FirstX = vertices[4];
-            let FirstY = vertices[5]
-            let SecondX = Math.round((h + a) * 100) / 100;
-            let SecondY = Math.round(k * 100) / 100;
+            x = h + (a * Math.cos(0));
+            y = k;
             let updatedPositions = new Float32Array([h, k, vertices[4], vertices[5], Math.round((h + a) * 100) / 100, Math.round(k * 100) / 100]);
 
             gl.bufferSubData(gl.ARRAY_BUFFER, 0, updatedPositions);
             gl.drawArrays(gl.TRIANGLES, 0, 3);
-            for (let copies = 0; copies < 10; copies++, SecondX -= 0.001, SecondY += 0.001, FirstX -= 0.001, FirstY += 0.001) {
 
-                curveAnimation(10, FirstX, FirstY, SecondX, SecondY, 1, 1, 1, 0.6, 0, 0, 0, 0);
-            }
 
         } else {
             let temp1 = vertices[4];
             let temp2 = vertices[5];
-            let x = h + (a * Math.cos(angle));
-            let y = k + (b * Math.sin(angle));
-            const updatedPositions = new Float32Array(
-                [Math.round(h * 100) / 100, Math.round(k * 100) / 100,
-                Math.round(temp1 * 100) / 100, Math.round(temp2 * 100) / 100,
-                Math.round(x * 100) / 100, Math.round(y * 100) / 100]);
+            x = h + (a * Math.cos(angle));
+            y = k + (b * Math.sin(angle));
+            let updatedPositions = new Float32Array(
+                [h, k,
+                    temp1, temp2,
+                    x, y]);
 
             vertices = updatedPositions;
             gl.bufferSubData(gl.ARRAY_BUFFER, 0, updatedPositions);
@@ -737,29 +724,7 @@ function elipseAnimation(number, a, b, h, k) {
 
 
 
-            if ((0 <= angle) && (angle <= (90 * Math.PI / 180))) {
-                for (let copies = 0; copies < 10; copies++, SecondX -= 0.001, SecondY -= 0.001, FirstX -= 0.001, FirstY -= 0.001) {
-                    curveAnimation(10, SecondX, SecondY, FirstX, FirstY, 1, 1, 4, 0.8, 0, 0, 0, 0);
-                }
-            }
-            else if (((90 * Math.PI / 180) <= angle) && (angle <= (180 * Math.PI / 180))) {
-                for (let copies = 0; copies < 10; copies++, SecondX += 0.001, SecondY -= 0.001, FirstX += 0.001, FirstY -= 0.001) {
 
-                    curveAnimation(10, FirstX, FirstY, SecondX, SecondY, 1, 1, 2, 0.8, 0, 0, 0, 0);
-                }
-            }
-            else if (((180 * Math.PI / 180) <= angle) && (angle <= (270 * Math.PI / 180))) {
-                for (let copies = 0; copies < 10; copies++, SecondX += 0.001, SecondY += 0.001, FirstX += 0.001, FirstY += 0.001) {
-
-                    curveAnimation(10, SecondX, SecondY, FirstX, FirstY, 1, 1, 3, 0.8, 0, 0, 0, 0);
-                }
-            }
-            else if (((270 * Math.PI / 180) <= angle) && (angle <= (360 * Math.PI / 180))) {
-                for (let copies = 0; copies < 10; copies++, SecondX -= 0.001, SecondY += 0.001, FirstX -= 0.001, FirstY += 0.001) {
-
-                    curveAnimation(10, FirstX, FirstY, SecondX, SecondY, 1, 1, 1, 0.8, 0, 0, 0, 0);
-                }
-            }
 
         }
         angle += (360 / number) * (Math.PI / 180);
@@ -774,51 +739,45 @@ function semiElipseAnimation(number, a, b, h, k) {
 
 
 
-    let angle = 0;
-
+    let angle = (180 / number) * (Math.PI / 180);;
+    let x, y;
     for (let i = 1; i <= number; i++) {
-        angle = (i / number) * 180 * (Math.PI / 180);
+
 
         if (i == 1) {
-            let x = h + (a * Math.cos(angle));
-            let y = k + (b * Math.sqrt((1 - (Math.pow(x - h, 2) / (a * a)))));
+            x = h + (a * Math.cos(angle));
+            y = k + (b * Math.sin(angle));
+            vertices = new Float32Array([
+                h, k,
+                (h + a), k,
+                x, y
+            ]);
 
-            vertices = new Float32Array([Math.round(h * 100) / 100, Math.round(k * 100) / 100,
-            Math.round((h + a) * 100) / 100, Math.round(k * 100) / 100, Math.round(x * 100) / 100, Math.round(y * 100) / 100]);
-            let FirstX = Math.round(x * 100) / 100;
-            let FirstY = Math.round(y * 100) / 100;
-            let SecondX = Math.round((h + a) * 100) / 100;
-            let SecondY = Math.round(k * 100) / 100;
+            let FirstX = x;
+            let FirstY = y;
+            let SecondX = h + a;
+            let SecondY = k;
 
 
 
             gl.bufferSubData(gl.ARRAY_BUFFER, 0, vertices);
             gl.drawArrays(gl.TRIANGLES, 0, 3);
-            /*  for (let copies = 0; copies < 10; copies++, SecondX += 0.001) {
-  
-                  curveAnimation(10, FirstX, FirstY, SecondX, SecondY, 1, 1, 4, 0.6, 0, 0, 0, 0);
-              }
-                  */
 
-        } else if (i == number) {
+
+        } else if ((i == number)) {
 
             let FirstX = vertices[4];
-            let FirstY = vertices[5]
-            let SecondX = Math.round((h + a) * 100) / 100;
-            let SecondY = Math.round(k * 100) / 100;
+            let FirstY = vertices[5];
 
             let x = h + (a * Math.cos(angle));
-            let y = k + (b * Math.sqrt((1 - (Math.pow(x - h, 2) / (a * a)))));
+            let y = k + (b * Math.sin(angle));
             let updatedPositions = new Float32Array([h, k, vertices[4], vertices[5], Math.round(x * 100) / 100, Math.round(y * 100) / 100]);
-
+            let SecondX = x;
+            let SecondY = y;
             gl.bufferSubData(gl.ARRAY_BUFFER, 0, updatedPositions);
             gl.drawArrays(gl.TRIANGLES, 0, 3);
-            /*   for (let copies = 0; copies < 10; copies++, SecondX += 0.001, SecondY += 0.001, FirstX -= 0.001, FirstY += 0.001) {
-   
-                   curveAnimation(10, FirstX, FirstY, SecondX, SecondY, 1, 1, 1, 0, 0, 0, 0, 0);
-               }
-   
-               */
+
+
 
         } else {
             let temp1 = vertices[4];
@@ -829,10 +788,10 @@ function semiElipseAnimation(number, a, b, h, k) {
                 y = k + (b * Math.sqrt((1 - (Math.pow(x - h, 2) / (a * a)))));
             }
 
-            const updatedPositions = new Float32Array(
-                [Math.round(h * 100) / 100, Math.round(k * 100) / 100,
-                Math.round(temp1 * 100) / 100, Math.round(temp2 * 100) / 100,
-                Math.round(x * 100) / 100, Math.round(y * 100) / 100]);
+            let updatedPositions = new Float32Array(
+                [h, k,
+                    temp1, temp2,
+                    x, y]);
 
             vertices = updatedPositions;
             gl.bufferSubData(gl.ARRAY_BUFFER, 0, updatedPositions);
@@ -842,66 +801,14 @@ function semiElipseAnimation(number, a, b, h, k) {
             let SecondX = Math.round((x) * 100) / 100;
             let SecondY = Math.round(y * 100) / 100;
 
-            if (((angle < (180 * Math.PI / 180)) && (angle > 0 * Math.PI / 180)) && (hairPoints.length == 2)) {
-
-                temp.push(SecondX, SecondY);
-            }
 
 
-
-            /*
-                        if ((0 <= angle) && (angle <= (90 * Math.PI / 180))) {
-                            for (let copies = 0; copies < 10; copies++, SecondX += 0.001, SecondY -= 0.001, FirstX -= 0.001, FirstY -= 0.001) {
-                                curveAnimation(10, SecondX, SecondY, FirstX, FirstY, 1, 1, 4, 0.6, 0, 0, 0, 0);
-                            }
-                        }
-                        else if (((90 * Math.PI / 180) <= angle) && (angle <= (180 * Math.PI / 180))) {
-                            for (let copies = 0; copies < 10; copies++, SecondX += 0.001, SecondY -= 0.001, FirstX += 0.001, FirstY -= 0.001) {
-            
-                                curveAnimation(10, FirstX, FirstY, SecondX, SecondY, 1, 1, 2, 1, 0, 0, 0, 0);
-                            }
-                        }
-                        else if (((180 * Math.PI / 180) <= angle) && (angle <= (270 * Math.PI / 180))) {
-                            for (let copies = 0; copies < 10; copies++, SecondX += 0.001, SecondY += 0.001, FirstX += 0.001, FirstY += 0.001) {
-            
-                                curveAnimation(10, SecondX, SecondY, FirstX, FirstY, 1, 1, 3, 1, 0, 0, 0, 0);
-                            }
-                        }
-                        else if (((270 * Math.PI / 180) <= angle) && (angle <= (360 * Math.PI / 180))) {
-                            for (let copies = 0; copies < 10; copies++, SecondX -= 0.001, SecondY += 0.001, FirstX -= 0.001, FirstY += 0.001) {
-            
-                                curveAnimation(10, FirstX, FirstY, SecondX, SecondY, 1, 1, 1, 1, 0, 0, 0, 0);
-                            }
-                        }
-            */
 
         }
-        // semiEllipsieOutline(0.1, a, b, h, k);
-
+        angle += (180 / number) * (Math.PI / 180);
     }
-    /*function semiEllipsieOutline(number, a, b, h, k) {
-        let x, y, temp = new Array(4);
-        for (let t = 0; t <= 1; t += number) {
-            if (t = 0) {
+    //semiEllipsieOutline(1, a, b, h, k);
 
-                temp[0] = (h + a);
-                temp[1] = k;
-
-            }
-            else {
-                x = (Math.pow((1 - t), 3) * (h + a)) + (3 * Math.pow((1 - t), 2) * t * a) + (3 * Math.pow((1 - t), 2) * (a * 0.55228)) + (Math.pow(t, 3) * h);
-                y = k + (b * Math.sqrt((1 - (Math.pow(x - h, 2) / (a * a)))));
-                temp[2] = x;
-                temp[3] = y;
-                lineAnimation(temp[0], temp[1], x, y);
-                temp[0] = temp[2];
-                temp[1] = temp[3];
-
-            }
-
-        };
-
-    }*/
     curveAnimation(10, h, k + b, h + a, k, 1, 1, 4, 0, 0, 0, 0, 0);
 
 }

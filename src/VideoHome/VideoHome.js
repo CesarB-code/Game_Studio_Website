@@ -153,7 +153,7 @@ function VideoHome() {
       // Cheeks drawing
       // Hair Drawing
 
-      DrawHair(20, 20, -0.6, -0.54, 0.55, 0.6, 0.13, -0.3);
+      DrawHair(30, 20, -0.6, -0.54, 0.55, 0.6, 0.13, -0.3);
 
 
       //triangleAnimation(0.0, 0.0, 0.3, 0.0, 0.0, 0.3);

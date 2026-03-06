@@ -126,6 +126,7 @@ function DrawHair(linePointsQuantity, hairSplit, leftLowerBoundX, leftUpperBound
         curveAnimation(linePointsQuantity, hairPoints[26] - 0.025, tempArray[3] + 0.2, hairPoints[26] - 0.05, 0, 1, 1, 2, 0, 0, 0, 0, 0);
         curveAnimation(linePointsQuantity, hairPoints[24] - 0.08, 0.5, hairPoints[26] - 0.025, tempArray[3] + 0.2, 1, 1, 2, 0, 0, 0, 0, 0);
 
+
         curveAnimation(linePointsQuantity, hairPoints[24], 0, hairPoints[26] - 0.025, tempArray[3] + 0.2, 1, 1, 3, 0, 0, 0, 0, 0);
         curveAnimation(linePointsQuantity, hairPoints[24] + 0.05, 0.4, hairPoints[24], 0, 1, 1, 2, 0, 0, 0, 0, 0);
         curveAnimation(linePointsQuantity, hairPoints[22], 0.7, hairPoints[24] + 0.05, 0.4, 1, 1, 2, 0, 0, 0, 0, 0);
@@ -148,18 +149,21 @@ function DrawHair(linePointsQuantity, hairSplit, leftLowerBoundX, leftUpperBound
         gl.uniform3fv(uColor1, [0.0600, 0.3, 0]);
         gl.uniform3fv(uColor2, [0.0600, 0.3, 0]);
         //semiCircleAnimation(linePointsQuantity, (Math.abs(hairPoints[26] - 0.025) - (hairPoints[18] + 0.12)), hairPoints[18] + 0.12, 0.4);
-        semiElipseAnimation(linePointsQuantity, (Math.abs(hairPoints[26] - 0.025) - (hairPoints[18] + 0.12)), 0.5, hairPoints[18] + 0.12, 0.4);
+        semiElipseAnimation(linePointsQuantity, (Math.abs((hairPoints[8] + 0.15))), 0.5, hairPoints[18] + 0.12, 0.4);
+        colorHairStrands(hairPoints[26] - 0.05, hairPoints[26] - 0.025, 0, tempArray[3] + 0.2, 2);
 
 
 
     }
-    function colorHairStrands(FirstCurveX, SecondCurveX, EndY) {
+    function colorHairStrands(FirstCurveX, SecondCurveX, StartY, EndY, curveType) {
         // Function to color hair strands
-        gl.uniform3fv(uColor1, [0.1, 0.1, 0.1]);
-        gl.uniform3fv(uColor2, [0.1, 0.1, 0.1]);
-        for (let i = 0.001; ;) {
-            curveAnimation(linePointsQuantity + 50, FirstCurveX, EndY, SecondCurveX, EndY, 1, 1, 1, 0, 0, 0, 0, 0);
+        gl.uniform3fv(uColor1, [0.0600, 0.3, 0]);
+        gl.uniform3fv(uColor2, [0.0600, 0.3, 0]);
+        for (let i = 0.01; SecondCurveX > FirstCurveX; SecondCurveX -= 0.01) {
+            curveAnimation(linePointsQuantity + 50, SecondCurveX, EndY, FirstCurveX, StartY, 1, 1, curveType, 0, 0, 0, 0, 0);
         }
+        gl.uniform3fv(uColor1, [[0.1, 0.1, 0.1]]);
+        gl.uniform3fv(uColor2, [[0.1, 0.1, 0.1]]);
     }
     function sortNumbersAscending(arr) {
 
