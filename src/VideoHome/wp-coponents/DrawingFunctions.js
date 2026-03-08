@@ -251,7 +251,7 @@ function curveAnimation(lineCount,
             m2 = ((k2) - 1) / (k2);
             x = ((((m1 - m2) * shrIStrX * shiftMoreX * startX) + ((m1 - m2) * lineCountOffset) - k1 + k2) / ((m1 - m2) * shiftMoreX * shrIStrX));
             y = shrIStrY * shiftMoreY * ((m1 * ((shrIStrX * shiftMoreX * ((-x) + startX)) + lineCountOffset)) + 1 - k1) + startY;
-            if (shrinkCruve > 0) {
+            if ((shrinkCruve > 0) || (shrinkCruve < 0)) {
                 let newVertx = curveShrink(x, y, startX, startY, EndX, EndY, shrinkCruve, curveType);
                 vertex = [newVertx[0], newVertx[1]];
 
@@ -271,7 +271,7 @@ function curveAnimation(lineCount,
             m2 = (-k2 + 1) / (k2);
             x = (((m2 - m1) * (shrIStrX) * shiftMoreX * (startX)) + ((m1 - m2) * lineCountOffset) + k1 - k2) / ((m2 - m1) * shrIStrX * shiftMoreX);
             y = shrIStrY * shiftMoreY * ((m1 * ((shrIStrX * shiftMoreX * (x - startX)) + lineCountOffset)) - 1 + k1) + startY;
-            if (shrinkCruve > 0) {
+            if ((shrinkCruve > 0) || (shrinkCruve < 0)) {
                 let newVertx = curveShrink(x, y, startX, startY, EndX, EndY, shrinkCruve, curveType);
                 vertex = [newVertx[0], newVertx[1]];
 
@@ -289,7 +289,7 @@ function curveAnimation(lineCount,
             m2 = ((k2) - 1) / (k2);
             x = ((((m1 - m2) * lineCountOffset) - ((m1 - m2) * (shrIStrX) * shiftMoreX * startX) - k1 + k2) / ((m2 - m1) * shrIStrX * shiftMoreX));
             y = shrIStrY * shiftMoreY * (((m1) * ((shrIStrX * shiftMoreX * (x - startX)) + lineCountOffset)) + 1 - k1) + startY;
-            if (shrinkCruve > 0) {
+            if ((shrinkCruve > 0) || (shrinkCruve < 0)) {
                 let newVertx = curveShrink(x, y, startX, startY, EndX, EndY, shrinkCruve, curveType);
                 vertex = [newVertx[0], newVertx[1]];
 
@@ -308,7 +308,7 @@ function curveAnimation(lineCount,
             m2 = (-k2 + 1) / (k2);
             x = (-1) * ((((m1 - m2) * lineCountOffset) + ((m1 - m2) * shrIStrX * shiftMoreX * startX) + k1 - k2) / ((m2 - m1) * shrIStrX * shiftMoreX));
             y = shrIStrY * shiftMoreY * ((m1 * ((shrIStrX * shiftMoreX * ((-1 * x) + startX)) + lineCountOffset)) - 1 + k1) + startY;
-            if (shrinkCruve > 0) {
+            if ((shrinkCruve > 0) || (shrinkCruve < 0)) {
                 let newVertx = curveShrink(x, y, startX, startY, EndX, EndY, shrinkCruve, curveType);
                 vertex = [newVertx[0], newVertx[1]];
             }
@@ -334,7 +334,9 @@ function curveAnimation(lineCount,
         let newX, newY, m2, m1, x, y, deltaX, deltaY;
         if (curveType == 1) {
             m2 = (EndY - startY) / (EndX - startX);
+
             m1 = -1;
+
             x = ((m2 * startX) - (m1 * curveX) + curveY - startY) / (m2 - m1);
             y = m2 * (x - startX) + startY;
             deltaX = Math.abs(x - curveX);
@@ -361,8 +363,11 @@ function curveAnimation(lineCount,
             y = m2 * (x - startX) + startY;
             deltaX = Math.abs(x - curveX);
             deltaY = Math.abs(y - curveY);
+
             newX = curveX + (deltaX * shrinkAmount);
             newY = curveY + (deltaY * shrinkAmount);
+
+
         }
         else if (curveType == 4) {
             m2 = (EndY - startY) / (EndX - startX);

@@ -119,7 +119,7 @@ function DrawHair(linePointsQuantity, hairSplit, leftLowerBoundX, leftUpperBound
         gl.uniform3fv(uColor2, [0.1, 0.1, 0.1]);
         console.log(hairPoints);
         console.log(tempArray);
-        curveAnimation(linePointsQuantity, hairPoints[24] - 0.05, -0.50, tempArray[2], tempArray[3], 1, 1, 3, 0.5, 0, 0, 0, 0);
+        curveAnimation(linePointsQuantity, hairPoints[24] - 0.05, -0.50, tempArray[2], tempArray[3], 1, 1, 3, 1, 0, 0, 0, 0);
         curveAnimation(linePointsQuantity, hairPoints[24] - 0.05, -0.50, tempArray[2], -tempArray[3], 1, 1, 3, 0.5, 0, 0, 0, 0);
 
         curveAnimation(linePointsQuantity, hairPoints[26] - 0.05, 0, tempArray[2], tempArray[3], 1, 1, 3, 0.5, 0, 0, 0, 0);
@@ -150,21 +150,12 @@ function DrawHair(linePointsQuantity, hairSplit, leftLowerBoundX, leftUpperBound
         gl.uniform3fv(uColor2, [0.0600, 0.3, 0]);
         //semiCircleAnimation(linePointsQuantity, (Math.abs(hairPoints[26] - 0.025) - (hairPoints[18] + 0.12)), hairPoints[18] + 0.12, 0.4);
         semiElipseAnimation(linePointsQuantity, (Math.abs((hairPoints[8] + 0.15))), 0.5, hairPoints[18] + 0.12, 0.4);
-        colorHairStrands(hairPoints[26] - 0.05, hairPoints[26] - 0.025, 0, tempArray[3] + 0.2, 2);
+        colorHairStrands(linePointsQuantity, hairPoints[26] - 0.05, hairPoints[26] - 0.025, 0, tempArray[3] + 0.2, 2);
 
 
 
     }
-    function colorHairStrands(FirstCurveX, SecondCurveX, StartY, EndY, curveType) {
-        // Function to color hair strands
-        gl.uniform3fv(uColor1, [0.0600, 0.3, 0]);
-        gl.uniform3fv(uColor2, [0.0600, 0.3, 0]);
-        for (let i = 0.01; SecondCurveX > FirstCurveX; SecondCurveX -= 0.01) {
-            curveAnimation(linePointsQuantity + 50, SecondCurveX, EndY, FirstCurveX, StartY, 1, 1, curveType, 0, 0, 0, 0, 0);
-        }
-        gl.uniform3fv(uColor1, [[0.1, 0.1, 0.1]]);
-        gl.uniform3fv(uColor2, [[0.1, 0.1, 0.1]]);
-    }
+
     function sortNumbersAscending(arr) {
 
         arr.sort((a, b) => a - b); // Sorts in place
@@ -592,6 +583,16 @@ function toggleColor(uColor1, uColor2, color) {
     // Set the uniform value
     gl.uniform3fv(uColor1, color);
     gl.uniform3fv(uColor2, color);
+}
+function colorHairStrands(linePointsQuantity, FirstCurveX, SecondCurveX, StartY, EndY, curveType) {
+    // Function to color hair strands
+    gl.uniform3fv(uColor1, [0.0600, 0.3, 0]);
+    gl.uniform3fv(uColor2, [0.0600, 0.3, 0]);
+    for (let i = 0.01; SecondCurveX > FirstCurveX; SecondCurveX -= 0.01) {
+        curveAnimation(linePointsQuantity + 50, SecondCurveX, EndY, FirstCurveX, StartY, 1, 1, curveType, 0, 0, 0, 0, 0);
+    }
+    gl.uniform3fv(uColor1, [[0.1, 0.1, 0.1]]);
+    gl.uniform3fv(uColor2, [[0.1, 0.1, 0.1]]);
 }
 function shapeObject(shapeTypeArray, coordinate_array) {
     this.shapeTypeArray = shapeTypeArray;
