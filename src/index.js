@@ -2,21 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import AppRoutes from './components/Routes.js';
 
-import VideoHome from './VideoHome/VideoHome';
-
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
 
 
-    <VideoHome>
-
-    </VideoHome>
-
-
+    <AppRoutes />
 
   </React.StrictMode>
 );

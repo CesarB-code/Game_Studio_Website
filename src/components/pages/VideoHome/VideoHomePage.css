@@ -59,7 +59,7 @@ font-family: 'Island Moments', cursive;
 }
 }
 
-.cardChnage {
+.cardChange {
   width: 100%;
   height: 100%;
   display: flex;
@@ -128,3 +128,46 @@ font-family: 'Island Moments', cursive;
 .link:hover{
     color: white;
   }
+  #Scrollbar{
+    overflow: scroll;
+    white-space: nowrap;
+  }
+  .text{
+     display: -webkit-box;
+  -webkit-line-clamp: 5; /* max lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  }
+  .full-width {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: inherit;
+
+}
+.navbarlength{
+  width:inherit;
+}
+.canvas-overlay{
+  position: fixed;
+  z-index: -1;
+}
+.canvas-container{
+  position: fixed;
+}
+.cardContainer{
+ cursor: pointer;
+}
+.cardContainer:hover{
+ 
+  transform: scale(1.05);
+} 
+.card-link{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position:absolute;
+
+  bottom: 0;
+ 
+}

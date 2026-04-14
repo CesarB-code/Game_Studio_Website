@@ -1,5 +1,5 @@
 
-import { gl } from "/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/VideoHome/VideoHome.js";
+import { gl } from "../VideoHome.js";
 import { hairPoints } from "./FaceFunctions";
 
 //temp array
@@ -816,6 +816,28 @@ function semiElipseAnimation(number, a, b, h, k) {
 
     curveAnimation(10, h, k + b, h + a, k, 1, 1, 4, 0, 0, 0, 0, 0);
 
+}
+function fillWithColorAnimation(edgeVerticesArray, color) {
+    /*
+        // Create a new Float32Array to hold the colored vertices
+        const coloredVertices = new Float32Array(edgeVerticesArray.length + 4);
+    
+        // Copy the original vertices
+        coloredVertices.set(edgeVerticesArray);
+    
+        // Add the color information (assuming RGBA)
+        coloredVertices.set(color, edgeVerticesArray.length);
+    
+        // Create a buffer and put the colored vertices in it
+        const colorBuffer = gl.createBuffer();
+        gl.bindBuffer(gl.ARRAY_BUFFER, colorBuffer);
+        gl.bufferData(gl.ARRAY_BUFFER, coloredVertices, gl.STATIC_DRAW);
+    
+        // Set the color attribute pointer
+        const aColor = gl.getAttribLocation(shadesrProgram, "aColor");
+        gl.vertexAttribPointer(aColor, 4, gl.FLOAT, false, 0, 0);
+        gl.enableVertexAttribArray(aColor);
+        */
 }
 
 

@@ -6,7 +6,9 @@ import Pac from './assets/GifPac.webp';
 import logo from './assets/istockphoto-1560833158-1024x1024.jpg'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Card from 'react-bootstrap/Card';
-import React, { useRef, useEffect } from 'react';
+import { useRef, useEffect } from 'react';
+import * as Interaction from './wp-coponents/InterationMethods.js';
+
 
 import {
   Row, Col,
@@ -20,7 +22,7 @@ import {
   Container
 } from 'react-bootstrap';
 import './VideoHomePage.css';
-import { DrawEar, DrawFace, DrawNose, DrawMouth, DrawHair, DrawEye, DrawEyeBrows, hairPoints, leftEarPotentialHairBounds } from "/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/VideoHome/wp-coponents/FaceFunctions.js";
+import { DrawObject } from "/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/VideoHome/wp-coponents/FaceFunctions.js";
 
 
 export let gl;
@@ -46,7 +48,7 @@ export let curveVertices = new Float32Array([
 
 function VideoHome() {
   const canvasRef = useRef(null);
-
+  Interaction.SetState();
   useEffect(() => {
     canvas = canvasRef.current;
     gl = canvas.getContext('webgl', { preserveDrawingBuffer: true });
@@ -125,40 +127,16 @@ function VideoHome() {
       gl.clearColor(0.1, 0.1, 0.1, 1.0);
       gl.clear(gl.COLOR_BUFFER_BIT);
 
-
-      // Face Drawing 
-      DrawFace(35, 0.525, 0.9, 0.0, 0.0);
-
-      // Ear Drawing
-
-      DrawEar("left", 30, 0.5, 0.5, 0.6, 0.3, 0.7);
-      DrawEar("right", 30, 0.5, 0.5, 0.7, 0.4, 0.7);
-
-      // Eye Drawing
-
-      DrawEye();
-
-      // Eyebrows Drawing
-
-      DrawEyeBrows();
-
-
-
-      //Nose Drawing
-      DrawNose(0.0, -0.25, 0.01, -0.30, 0.01, -0.30, 0, -0.33);
-
-      // Mouth drawing
-      DrawMouth();
-
-      // Cheeks drawing
-      // Hair Drawing
-
-      DrawHair(30, 20, -0.6, -0.54, 0.55, 0.6, 0.13, -0.3);
-
-
-      //triangleAnimation(0.0, 0.0, 0.3, 0.0, 0.0, 0.3);
-      //rectangleAnimation(-0.5, 0.0, 0.5, 0.0, -0.5, 0.5, 0.5, 0.5);
-      // request changed frame
+      let face = [35, 0.525, 0.9, 0.0, 0.0];
+      let leftEar = ["left", 30, 0.5, 0.5, 0.6, 0.3, 0.7];
+      let rightEar = ["right", 30, 0.5, 0.5, 0.7, 0.4, 0.7];
+      let hair = [30, 20, -0.6, -0.54, 0.55, 0.6, 0.13, -0.3];
+      let nose = [0.0, -0.25, 0.01, -0.30, 0.01, -0.30, 0, -0.33];
+      let mouth = [10, 0.0, -0.5, -0.10, -0.48, 1, 1, 3, 0, 0, 0, 0];
+      let eye = [40, 0.1, 0.15, 0.25, 0.1];
+      let eyeBrows = [10, 0.13, 0.50, 0.38, 0.45, 1, 1, 4, 0, 0, 0, 0, 0];
+      DrawObject(face, leftEar, rightEar, hair, nose, mouth, eye, eyeBrows);
+      // Request animation frame
       requestAnimationFrame(animateChangedFrame);
     }
     function animateChangedFrame() {
@@ -179,104 +157,160 @@ function VideoHome() {
   return (
 
 
-    <Container fluid style={{ padding: 0, margin: 0 }}>
-
-      <Navbar expand="md" className=" bg-body-tertiary fixedTop  " bg="dark" data-bs-theme="dark" fixed='top' style={{ padding: 0 }} >
-
-
-
-
-        <Navbar.Brand href="#home" className="webHeader" style={{ fontFamily: 'fantasy' }}  >Cyclone<sup style={{ fontSize: 15 }}>TM</sup></Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-ame-auto my-2 my-lg-0uto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#link">Account</Nav.Link>
-            <NavDropdown title="Company" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">About</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                Team Members
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Events</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
-                Store
-              </NavDropdown.Item>
-            </NavDropdown>
-          </Nav>
-        </Navbar.Collapse>
-
-      </Navbar>
+    <Container fluid >
+      <Row >
+        <Navbar expand="md" className=" bg-body-tertiary " fixed="top" data-bs-theme="dark" style={{ padding: 0, margin: 0 }} >
 
 
 
-      <Carousel className="custom-carousel">
-        <CarouselItem>
-          <img
-            className="d-block w-100 carousel-img"
-            src={MyImage}
-            alt="First slide"
-          />
-          <CarouselCaption style={{ bottom: 100, right: 700, inlineBlock: 'true', width: '50%' }}>
-            <h2 style={{ fontSize: 50 }}><b>Drop in and sneak your way to victorys</b></h2>
-            <p style={{ right: 100, width: '100%' }}>Join in on the new game Silent Soldier where you can croos game with your friends</p>
 
-          </CarouselCaption>
-        </CarouselItem>
+          <Navbar.Brand href="#home" className="webHeader" style={{ fontFamily: 'fantasy' }}  >Cyclone<sup style={{ fontSize: 15, justifyContent: 'center' }}>TM</sup></Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="me-ame-auto my-2 my-lg-0uto">
+              <Nav.Link href="home">Home</Nav.Link>
+              <Nav.Link href="link">Account</Nav.Link>
+              <NavDropdown title="Company" id="basic-nav-dropdown">
+                <NavDropdown.Item href="#action/3.1">About</NavDropdown.Item>
+                <NavDropdown.Item href="#action/3.2">
+                  Team Members
+                </NavDropdown.Item>
+                <NavDropdown.Item href="#action/3.3">Events</NavDropdown.Item>
+                <NavDropdown.Divider />
+                <NavDropdown.Item href="#action/3.4">
+                  Store
+                </NavDropdown.Item>
+              </NavDropdown>
+            </Nav>
+          </Navbar.Collapse>
 
-        <CarouselItem>
-          <img
-            className="d-block w-100 carousel-img"
-            src={MyImage2}
-            style={{ width: 100 }}
-            alt="Second slide"
-          />
-          <CarouselCaption style={{ bottom: 50, right: 700, inlineBlock: 'true', width: '50%' }}>
-            <h1 style={{ fontSize: '300%' }}><b>The Newest Anime game that you will ever own now power by AI </b></h1>
-            <p>With our new Ai we can make the power of anime come alive</p>
-          </CarouselCaption>
-        </CarouselItem>
+        </Navbar>
 
-        <CarouselItem>
-          <img
-            className="d-block w-100 carousel-img"
-            src={MyImage3}
-            alt="Third slide"
-
-          />
-          <CarouselCaption style={{ bottom: 100, right: 700, inlineBlock: 'true', width: '50%' }}>
-            <h3 style={{ fontSize: '300%' }}><b> Apply now and see what is in store for you </b></h3>
-            <p style={{ fontFamily: 'fantasy' }} >Want to join the cylcone and help create amazing games</p>
-          </CarouselCaption>
-        </CarouselItem>
-      </Carousel>
-
-
+      </Row>
       <Row className='bg-dark'>
-        <Col className="col-12 col-md-6 col-lg-4">
-          <Card>
+        <Carousel className="custom-carousel ">
+          <CarouselItem>
+            <img
+              className="d-block w-100 carousel-img"
+              src={MyImage}
+              alt="First slide"
+            />
+            <CarouselCaption style={{ bottom: 100, right: 700, inlineBlock: 'true', width: '50%' }}>
+              <h2 style={{ fontSize: 50 }}><b>Drop in and sneak your way to victorys</b></h2>
+              <p style={{ right: 100, width: '100%' }}>Join in on the new game Silent Soldier where you can croos game with your friends</p>
+
+            </CarouselCaption>
+          </CarouselItem>
+
+          <CarouselItem>
+            <img
+              className="d-block w-100 carousel-img"
+              src={MyImage2}
+              style={{ width: 100 }}
+              alt="Second slide"
+            />
+            <CarouselCaption style={{ bottom: 50, right: 700, inlineBlock: 'true', width: '50%' }}>
+              <h1 style={{ fontSize: '300%' }}><b>The Newest Anime game that you will ever own now power by AI </b></h1>
+              <p>With our new Ai we can make the power of anime come alive</p>
+            </CarouselCaption>
+          </CarouselItem>
+
+          <CarouselItem>
+            <img
+              className="d-block w-100 carousel-img"
+              src={MyImage3}
+              alt="Third slide"
+
+            />
+            <CarouselCaption style={{ bottom: 100, right: 700, inlineBlock: 'true', width: '50%' }}>
+              <h3 style={{ fontSize: '300%' }}><b> Apply now and see what is in store for you </b></h3>
+              <p style={{ fontFamily: 'fantasy' }} >Want to join the cylcone and help create amazing games</p>
+            </CarouselCaption>
+          </CarouselItem>
+        </Carousel>
+
+      </Row>
+
+
+
+      <Row className="flex-nowrap overflow-auto bg-dark">
+
+
+
+        <Col xs={6} md={4} onPointerMove={Interaction.handleMouseMove}
+          onPointerUp={Interaction.handleMouseUp} onPointerDown={Interaction.handleMouseDown} style={{ cursor: Interaction.isDragging ? 'grabbing' : 'grab' }}
+        >
+          <Card style={{ width: Interaction.width, height: Interaction.height }} >
             <Card.Img variant="top" src={Pac} />
-            <Card.Body>
+            <Card.Body >
               <Card.Title>The New PacMan of our Generation</Card.Title>
-              <Card.Text>
+              <Card.Text className='text'>
                 Cyclone has been in production of a new  concept of how to take PacMan game stlye to the next level .
                 We have implemented new AI tech to make the game more challenging and fun for all ages. The AI of the game will not
                 only adapt to your playing style but also learn from it  making each game unique and exciting. To increase replayability
                 no one playthrough of the game will be the same.
               </Card.Text>
-              <Card.Link href="#">NYTimes Report</Card.Link>
+              <Card.Link href="#" >NYTimes Report</Card.Link>
               <Card.Link href="#"></Card.Link>
             </Card.Body>
 
           </Card>
 
         </Col>
-        <Col >
-          <Card>
+        <Col xs={6} md={4}  >
+          <Card className='cardContainer'>
             <Card.Img variant="top" src={logo} />
             <Card.Body>
-              <Card.Title>Newest Console has arrived</Card.Title>
-              <Card.Text  >
+              <Card.Title >Newest Console has arrived</Card.Title>
+              <Card.Text className='text'>
+                <b> Cyclone studio has made an effort to keep up with the lateest </b>
+              </Card.Text>
+              <Row>
+                <Col>
+                  <Card.Link href="#" >Card Link</Card.Link>
+                </Col>
+                <Col>
+                  <Card.Link href="#" >Another Link</Card.Link>
+                </Col>
+              </Row>
+            </Card.Body>
+
+          </Card>
+        </Col>
+        <Col xs={6} md={4} >
+          <Card className='cardContainer'>
+            <Card.Img variant="top" src={logo} />
+            <Card.Body>
+              <Card.Title >Newest Console has arrived</Card.Title>
+              <Card.Text className='text'>
+                <b> Cyclone studio has made an effort to keep up with the lateest </b>
+              </Card.Text>
+              <Card.Link href="#">Card Link</Card.Link>
+              <Card.Link href="#">Another Link</Card.Link>
+            </Card.Body>
+
+          </Card>
+        </Col>
+        <Col xs={6} md={4}  >
+          <Card className='cardContainer'>
+            <Card.Img variant="top" src={logo} />
+            <Card.Body>
+              <Card.Title >Newest Console has arrived</Card.Title>
+              <Card.Text className='text'>
+                <b> Cyclone studio has made an effort to keep up with the lateest </b>
+              </Card.Text>
+              <Card.Link href="#">Card Link</Card.Link>
+              <Card.Link href="#">Another Link</Card.Link>
+            </Card.Body>
+
+          </Card>
+        </Col>
+        <Col xs={6} md={4}  >
+          <Card className='cardContainer'>
+            <Card.Img variant="top" src={logo} />
+            <Card.Body>
+              <Card.Title >Newest Console has arrived</Card.Title>
+              <Card.Text className='text'>
                 <b> Cyclone studio has made an effort to keep up with the lateest </b>
               </Card.Text>
               <Card.Link href="#">Card Link</Card.Link>
@@ -286,14 +320,21 @@ function VideoHome() {
           </Card>
         </Col>
 
-        <canvas
-          ref={canvasRef}
-          width={640}
-          height={400}
-          style={{ border: '1px solid black' }}
-        />
 
       </Row>
+
+      <Row className='bg-dark' style={{ position: "relative" }}>
+        <canvas
+          ref={canvasRef}
+          width={800}
+          height={600}
+          style={{ position: 'relative', margin: '0 auto', backgroundColor: '#1a1a1a', width: '100%' }}
+        />
+
+
+
+      </Row>
+
       <Row className='bg-dark'>
         <Col style={{ bottom: 100 }}>
           <img src={MyImage3} style={{ height: 50, width: 50 }} alt="Background" />
@@ -314,7 +355,7 @@ function VideoHome() {
               <p style={{ color: 'white' }} >Store</p>
             </Col>
           </Row>
-          <Row></Row>
+
           <Row>
             <Col className='col-3 '>
               <a href='#' className='link' >Twitter</a>
@@ -325,7 +366,8 @@ function VideoHome() {
             </Col>
             <Col className='col-3 '>
               <a href='#' className='link' >Events</a>
-            </Col>          </Row>
+            </Col>
+          </Row>
           <Row>
 
             <Col className='col-3 '>
