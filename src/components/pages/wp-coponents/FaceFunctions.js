@@ -1,6 +1,6 @@
 import { triangleAnimation, rectangleAnimation, curveAnimation, lineAnimation, circleAnimation, semiCircleAnimation, elipseAnimation, semiElipseAnimation } from
-    './DrawingFunctions.js';
-import { gl, uColor1, uColor2 } from '../VideoHome.js';
+    "./DrawingFunctions.js";
+import { gl, uColor1, uColor2 } from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/VideoHome/VideoHome.js';
 
 export let hairPoints = [], leftEarPotentialHairBounds, rightEarPotentialHairBounds;
 let eyeHeight, noseHeight, UpperEarPosition, LowerEarPosition,

@@ -1,15 +1,15 @@
 
-import MyImage from './assets/maha-khairy-3uuLWb6aQXc-unsplash.jpg'
-import MyImage2 from './assets/maha-khairy-3uuLWb6aQXc-unsplash.jpg'
-import MyImage3 from './assets/sufyan-5NrbL6F68V0-unsplash.jpg'
-import Pac from './assets/GifPac.webp';
-import logo from './assets/istockphoto-1560833158-1024x1024.jpg'
+import MyImage from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/assets/maha-khairy-3uuLWb6aQXc-unsplash.jpg'
+import MyImage2 from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/assets/maha-khairy-3uuLWb6aQXc-unsplash.jpg'
+import MyImage3 from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/assets/sufyan-5NrbL6F68V0-unsplash.jpg'
+import Pac from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/assets/GifPac.webp';
+import logo from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/assets/istockphoto-1560833158-1024x1024.jpg'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Card from 'react-bootstrap/Card';
+import GameList from '../wp-coponents/GameList/GameList.js';
 import { useRef, useEffect } from 'react';
-import * as Interaction from './wp-coponents/InterationMethods.js';
-
-
+import * as Interaction from '../wp-coponents/InterationMethods.js';
+import BoilerPlate from '../BoilerPlate.js/BoilerPlate.js';
+import BottomWebLinks from '../BottomWebLinks/BottomWebLinks.js';
 import {
   Row, Col,
   Carousel,
@@ -22,7 +22,7 @@ import {
   Container
 } from 'react-bootstrap';
 import './VideoHomePage.css';
-import { DrawObject } from "/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/VideoHome/wp-coponents/FaceFunctions.js";
+import { DrawObject } from "../wp-coponents/FaceFunctions.js";
 
 
 export let gl;
@@ -157,36 +157,8 @@ function VideoHome() {
   return (
 
 
-    <Container fluid >
-      <Row >
-        <Navbar expand="md" className=" bg-body-tertiary " fixed="top" data-bs-theme="dark" style={{ padding: 0, margin: 0 }} >
-
-
-
-
-          <Navbar.Brand href="#home" className="webHeader" style={{ fontFamily: 'fantasy' }}  >Cyclone<sup style={{ fontSize: 15, justifyContent: 'center' }}>TM</sup></Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-ame-auto my-2 my-lg-0uto">
-              <Nav.Link href="home">Home</Nav.Link>
-              <Nav.Link href="link">Account</Nav.Link>
-              <NavDropdown title="Company" id="basic-nav-dropdown">
-                <NavDropdown.Item href="#action/3.1">About</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">
-                  Team Members
-                </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">Events</NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item href="#action/3.4">
-                  Store
-                </NavDropdown.Item>
-              </NavDropdown>
-            </Nav>
-          </Navbar.Collapse>
-
-        </Navbar>
-
-      </Row>
+    <Container fluid style={{ overflowX: 'hidden', overflowY: 'hidden' }} >
+      <BoilerPlate className="top" fixed="top" />
       <Row className='bg-dark'>
         <Carousel className="custom-carousel ">
           <CarouselItem>
@@ -230,99 +202,6 @@ function VideoHome() {
         </Carousel>
 
       </Row>
-
-
-
-      <Row className="flex-nowrap overflow-auto bg-dark">
-
-
-
-        <Col xs={6} md={4} onPointerMove={Interaction.handleMouseMove}
-          onPointerUp={Interaction.handleMouseUp} onPointerDown={Interaction.handleMouseDown} style={{ cursor: Interaction.isDragging ? 'grabbing' : 'grab' }}
-        >
-          <Card style={{ width: Interaction.width, height: Interaction.height }} >
-            <Card.Img variant="top" src={Pac} />
-            <Card.Body >
-              <Card.Title>The New PacMan of our Generation</Card.Title>
-              <Card.Text className='text'>
-                Cyclone has been in production of a new  concept of how to take PacMan game stlye to the next level .
-                We have implemented new AI tech to make the game more challenging and fun for all ages. The AI of the game will not
-                only adapt to your playing style but also learn from it  making each game unique and exciting. To increase replayability
-                no one playthrough of the game will be the same.
-              </Card.Text>
-              <Card.Link href="#" >NYTimes Report</Card.Link>
-              <Card.Link href="#"></Card.Link>
-            </Card.Body>
-
-          </Card>
-
-        </Col>
-        <Col xs={6} md={4}  >
-          <Card className='cardContainer'>
-            <Card.Img variant="top" src={logo} />
-            <Card.Body>
-              <Card.Title >Newest Console has arrived</Card.Title>
-              <Card.Text className='text'>
-                <b> Cyclone studio has made an effort to keep up with the lateest </b>
-              </Card.Text>
-              <Row>
-                <Col>
-                  <Card.Link href="#" >Card Link</Card.Link>
-                </Col>
-                <Col>
-                  <Card.Link href="#" >Another Link</Card.Link>
-                </Col>
-              </Row>
-            </Card.Body>
-
-          </Card>
-        </Col>
-        <Col xs={6} md={4} >
-          <Card className='cardContainer'>
-            <Card.Img variant="top" src={logo} />
-            <Card.Body>
-              <Card.Title >Newest Console has arrived</Card.Title>
-              <Card.Text className='text'>
-                <b> Cyclone studio has made an effort to keep up with the lateest </b>
-              </Card.Text>
-              <Card.Link href="#">Card Link</Card.Link>
-              <Card.Link href="#">Another Link</Card.Link>
-            </Card.Body>
-
-          </Card>
-        </Col>
-        <Col xs={6} md={4}  >
-          <Card className='cardContainer'>
-            <Card.Img variant="top" src={logo} />
-            <Card.Body>
-              <Card.Title >Newest Console has arrived</Card.Title>
-              <Card.Text className='text'>
-                <b> Cyclone studio has made an effort to keep up with the lateest </b>
-              </Card.Text>
-              <Card.Link href="#">Card Link</Card.Link>
-              <Card.Link href="#">Another Link</Card.Link>
-            </Card.Body>
-
-          </Card>
-        </Col>
-        <Col xs={6} md={4}  >
-          <Card className='cardContainer'>
-            <Card.Img variant="top" src={logo} />
-            <Card.Body>
-              <Card.Title >Newest Console has arrived</Card.Title>
-              <Card.Text className='text'>
-                <b> Cyclone studio has made an effort to keep up with the lateest </b>
-              </Card.Text>
-              <Card.Link href="#">Card Link</Card.Link>
-              <Card.Link href="#">Another Link</Card.Link>
-            </Card.Body>
-
-          </Card>
-        </Col>
-
-
-      </Row>
-
       <Row className='bg-dark' style={{ position: "relative" }}>
         <canvas
           ref={canvasRef}
@@ -334,86 +213,14 @@ function VideoHome() {
 
 
       </Row>
-
-      <Row className='bg-dark'>
-        <Col style={{ bottom: 100 }}>
-          <img src={MyImage3} style={{ height: 50, width: 50 }} alt="Background" />
-
-          <a href="#" style={{ color: 'white', fontFamily: 'fantasy', fontSize: 30, marginTop: 30 }}>Cyclone</a>
-
-        </Col>
-
-        <Col>
-          <Row>
-            <Col className='col-3 '>
-              <p style={{ color: 'white', fontSize: 15 }}>Social Media</p>
-            </Col>
-            <Col className='col-3 '>
-              <p style={{ color: 'white' }} >Company</p>
-            </Col>
-            <Col className='col-3 '>
-              <p style={{ color: 'white' }} >Store</p>
-            </Col>
-          </Row>
-
-          <Row>
-            <Col className='col-3 '>
-              <a href='#' className='link' >Twitter</a>
-            </Col>
-            <Col className='col-3 '>
-              <a href='#' className='link' >Carrers</a>
-
-            </Col>
-            <Col className='col-3 '>
-              <a href='#' className='link' >Events</a>
-            </Col>
-          </Row>
-          <Row>
-
-            <Col className='col-3 '>
-              <a href='#' className='link' >Tiktok</a>
-            </Col>
-            <Col className='col-3 '>
-              <a href='#' className='link' >FAQ</a>
-
-            </Col>
-            <Col className='col-3 '>
-              <a href='#' className='link' >Youtube</a>
-            </Col>
-
-          </Row>
-
-
-          <Row>
-            <Col className='col-3 '>
-              <a href='#' className='link' >Instagram</a>
-            </Col>
-            <Col className='col-3 '>
-              <a href='#' className='link' >Location</a>
-
-            </Col>
-            <Col className='col-3 '>
-              <a href='#' className='link' >Games</a>
-
-            </Col>
-          </Row>
-
-          <Row>
-            <Col className='col-3 '>
-              <a href='#' className='link' >Discord</a>
-            </Col>
-            <Col className='col-3 '>
-              <a href='#' className='link' >About</a>
-
-            </Col>
-            <Col className='col-3 '>
-              <a href='#' className='link' >Merch</a>
-            </Col>
-          </Row>
-        </Col>
+      <Row>
+        <GameList />
       </Row>
 
 
+      <Row>
+        <BottomWebLinks />
+      </Row>
 
     </Container >
 

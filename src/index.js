@@ -11,7 +11,7 @@ root.render(
   <React.StrictMode>
 
 
-    <AppRoutes />
+    <AppRoutes style={{ overflowX: 'hidden', overflowY: 'hidden' }} />
 
   </React.StrictMode>
 );

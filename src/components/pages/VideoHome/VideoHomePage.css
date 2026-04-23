@@ -31,7 +31,7 @@ font-family: 'Island Moments', cursive;
 
 }
 .background-container {
-  background-image: url('./assets/istockphoto-1560833158-1024x1024.jpg');
+  background-image: url('/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/assets/istockphoto-1560833158-1024x1024.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -133,6 +133,7 @@ font-family: 'Island Moments', cursive;
     white-space: nowrap;
   }
   .text{
+    color: black;
      display: -webkit-box;
   -webkit-line-clamp: 5; /* max lines */
   -webkit-box-orient: vertical;
@@ -170,4 +171,8 @@ font-family: 'Island Moments', cursive;
 
   bottom: 0;
  
+}
+.top{
+position: fixed; 
+ padding: 20px;
 }
