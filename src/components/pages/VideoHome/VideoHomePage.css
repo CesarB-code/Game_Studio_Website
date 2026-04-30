@@ -176,3 +176,13 @@ font-family: 'Island Moments', cursive;
 position: fixed; 
  padding: 20px;
 }
+.canvas-container{
+  position: relative;
+  justify-content: center;
+}
+canvas{
+  border: 1px solid #f28752;
+ width: 600px;
+  height: 500px;
+  
+}

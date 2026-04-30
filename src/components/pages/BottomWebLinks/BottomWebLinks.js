@@ -14,7 +14,7 @@ import MyImage3 from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/s
 function BottomWebLinks() {
     return (
         <Container className='bottomWebPage'  >
-            <Row className='bg-dark '>
+            <Row className='bg-grey '>
                 <Col style={{ bottom: 100 }}>
                     <img src={MyImage3} style={{ height: 50, width: 50 }} alt="Background" />
 

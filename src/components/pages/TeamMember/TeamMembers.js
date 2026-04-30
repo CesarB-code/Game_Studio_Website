@@ -9,9 +9,8 @@ import {
     NavDropdown,
     Container
 } from 'react-bootstrap';
-
 import BoilderPlate from '../BoilerPlate.js/BoilerPlate.js';
-function Events() {
+function TeamMembers() {
     return (
         <Container fluid>
             <Row >
@@ -21,4 +20,4 @@ function Events() {
         </Container>
     );
 }
-export default Events;
+export default TeamMembers;

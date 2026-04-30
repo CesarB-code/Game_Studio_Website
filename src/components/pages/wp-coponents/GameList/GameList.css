@@ -5,3 +5,21 @@ h1{
     font-family:fantasy;
     
 }
+.Card{
+    border: 5px solid #F2a3a8;
+}
+.card-link{
+    color: #D852f2;
+}
+.Card-Body-Background{
+    background-color: #403c5f;
+}
+.card-Title{
+    color: white;
+}
+.card-text{
+    color: white;
+  max-height: 100px;
+  overflow: hidden;
+  transition: 0.3s;
+}

@@ -627,8 +627,8 @@ function colorHairStrands(linePointsQuantity, FirstCurveX, SecondCurveX, StartY,
     for (let i = 0.01; SecondCurveX > FirstCurveX; SecondCurveX -= 0.01) {
         curveAnimation(linePointsQuantity + 50, SecondCurveX, EndY, FirstCurveX, StartY, 1, 1, curveType, 0, 0, 0, 0, 0);
     }
-    gl.uniform3fv(uColor1, [[0.1, 0.1, 0.1]]);
-    gl.uniform3fv(uColor2, [[0.1, 0.1, 0.1]]);
+    gl.uniform3fv(uColor1, [0.1, 0.1, 0.1]);
+    gl.uniform3fv(uColor2, [0.1, 0.1, 0.1]);
 }
 function DrawObject(FaceInputArray, LeftEarInputArray, RightEarInputArray, HairInputArray, NoseInputArray, MouthInputArray, EyeInputArray, EyeBrowsInputArray) {
 

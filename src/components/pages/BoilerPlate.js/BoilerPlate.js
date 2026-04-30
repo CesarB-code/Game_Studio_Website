@@ -15,7 +15,7 @@ function BoilerPlate() {
     return (
 
         <Row >
-            <Navbar expand="md" className=" bg-body-tertiary " fixed="top" data-bs-theme="dark" style={{ padding: 0, margin: 0 }} >
+            <Navbar expand="md" className=" bg-grey " fixed="top" data-bs-theme="dark" style={{ padding: 0, margin: 0 }} >
 
 
 
