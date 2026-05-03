@@ -11,3 +11,9 @@
 .bg-grey{
     background-color: #403c5f;
 }
+.nav-link{
+  font-family:fantasy;
+}
+.nav-links.expand{
+  display:block
+}

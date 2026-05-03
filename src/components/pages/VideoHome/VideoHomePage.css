@@ -184,5 +184,14 @@ canvas{
   border: 1px solid #f28752;
  width: 600px;
   height: 500px;
+  margin-bottom: 50px;
   
+}
+.body{
+    font-family: Didot, serif;
+    color: white;
+}
+.title{
+    font-family:fantasy;
+    color: white;
 }

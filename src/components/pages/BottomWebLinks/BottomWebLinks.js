@@ -9,8 +9,9 @@ import {
     NavDropdown,
     Container
 } from 'react-bootstrap';
-import MyImage3 from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/assets/sufyan-5NrbL6F68V0-unsplash.jpg'
 
+import MyImage3 from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/assets/sufyan-5NrbL6F68V0-unsplash.jpg';
+import "src/components/pages/BottomWebLinks/BottomWebPage.css ";
 function BottomWebLinks() {
     return (
         <Container className='bottomWebPage'  >

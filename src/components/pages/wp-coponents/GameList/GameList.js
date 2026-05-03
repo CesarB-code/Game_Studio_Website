@@ -1,12 +1,7 @@
 import {
     Row, Col,
-    Carousel,
-    CarouselItem,
-    CarouselCaption,
-    Nav,
-    Navbar,
 
-    NavDropdown,
+
     Container
 } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
@@ -34,10 +29,10 @@ function GameList() {
                     <Card.Body className="Card-Body-Background">
                         <Card.Title className="card-Title">Celestial Blade Chronicle</Card.Title>
                         <Card.Text className="card-text">
-                            <b>Cyclone has been in production of a new  concept of how to take PacMan game stlye to the next level .
-                                We have implemented new AI tech to make the game more challenging and fun for all ages. The AI of the game will not
-                                only adapt to your playing style but also learn from it  making each game unique and exciting. To increase replayability
-                                no one playthrough of the game will be the same.</b>
+                            Cyclone has been in production of a new  concept of how to take PacMan game stlye to the next level .
+                            We have implemented new AI tech to make the game more challenging and fun for all ages. The AI of the game will not
+                            only adapt to your playing style but also learn from it  making each game unique and exciting. To increase replayability
+                            no one playthrough of the game will be the same.
                         </Card.Text>
                         <Card.Link href="#" >NYTimes Report</Card.Link>
                         <Card.Link href="#"></Card.Link>
@@ -52,7 +47,7 @@ function GameList() {
                     <Card.Body className="Card-Body-Background">
                         <Card.Title className="card-Title">Blades of the Spirit Realm</Card.Title>
                         <Card.Text className="card-text">
-                            <b> Cyclone studio has made an effort to keep up with the lateest </b>
+                            Cyclone studio has made an effort to keep up with the latest
                         </Card.Text>
                         <Row>
                             <Col>
@@ -72,7 +67,7 @@ function GameList() {
                     <Card.Body className="Card-Body-Background">
                         <Card.Title className="card-Title">Tokyo Phase Tactics</Card.Title>
                         <Card.Text className="card-text">
-                            <b> Cyclone studio has made an effort to keep up with the lateest </b>
+                            Cyclone studio has made an effort to keep up with the latest
                         </Card.Text>
                         <Row>
                             <Col>
@@ -92,7 +87,7 @@ function GameList() {
                     <Card.Body className="Card-Body-Background">
                         <Card.Title className='card-Title' >Requiem of Broken Heroes</Card.Title>
                         <Card.Text className='card-text'>
-                            <b> Cyclone studio has made an effort to keep up with the lateest </b>
+                            Cyclone studio has made an effort to keep up with the latest
                         </Card.Text>
                         <Row>
                             <Col>
@@ -110,9 +105,9 @@ function GameList() {
                 <Card className='Card'>
                     <Card.Img variant="top" src={Kingdom} />
                     <Card.Body className="Card-Body-Background">
-                        <Card.Title >Kingdoms of the Silent Moon</Card.Title>
-                        <Card.Text >
-                            <b>Cyclone studio has made an effort to keep up with the lateest </b>
+                        <Card.Title className='card-Title' >Kingdoms of the Silent Moon</Card.Title>
+                        <Card.Text className='card-text'>
+                            Cyclone studio has made an effort to keep up with the latest
                         </Card.Text>
                         <Row>
                             <Col>

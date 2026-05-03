@@ -155,10 +155,10 @@ function VideoHome() {
     <Container fluid style={{ overflowX: 'hidden', overflowY: 'hidden' }} >
       <BoilerPlate className="top" fixed="top" />
       <ContentCarousel />
-      <Row className='bg-dark text-light' >
-        <h1>Hi</h1>
+      <Row className=' text-light' style={{ backgroundColor: '#403053' }} >
+        <h1>AI Demonstration</h1>
       </Row>
-      <Row className='bg-dark  align-items-center justify-content-center' >
+      <Row className=' align-items-center justify-content-center' style={{ backgroundColor: '#403053' }}>
 
         <Col className='col-8' >
           <canvas

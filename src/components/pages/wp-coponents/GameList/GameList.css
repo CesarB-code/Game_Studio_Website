@@ -8,18 +8,31 @@ h1{
 .Card{
     border: 5px solid #F2a3a8;
 }
+.Card:hover{
+    border: 5px solid #D852f2;
+    transform: scale(1.05);
+    transition: 0.3s;
+}
 .card-link{
     color: #D852f2;
+    font-family: fantasy;
+    font-size: 15px;
 }
 .Card-Body-Background{
     background-color: #403c5f;
 }
 .card-Title{
-    color: white;
+        font-family:fantasy;
+        font-size: 22px;
+    font-weight: bold;
+        color: white;
+
 }
 .card-text{
     color: white;
+        font-family: Trebuchet MS, sans-serif;
+font-size: 12px;
   max-height: 100px;
-  overflow: hidden;
+  overflow:scroll;
   transition: 0.3s;
 }
