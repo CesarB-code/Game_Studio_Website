@@ -8,3 +8,6 @@ p{
 .link{
     font-family:fantasy;
 } 
+a{
+    text-decoration: none;
+}

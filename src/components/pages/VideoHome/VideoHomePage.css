@@ -83,9 +83,7 @@ font-family: 'Island Moments', cursive;
 #row{
   margin-top: 100px;
 }
-.nav-links.expand{
-  display:block
-}
+
 .container{
 
   margin: 0;
@@ -188,10 +186,18 @@ canvas{
   
 }
 .body{
-    font-family: Didot, serif;
+    font-family: Trebuchet MS, sans-serif;;
     color: white;
 }
 .title{
     font-family:fantasy;
     color: white;
+}
+.ai{
+  color: white;
+  font-family: fantasy;
+}
+.text{
+  color: white;
+  font-family: Didot, serif;
 }

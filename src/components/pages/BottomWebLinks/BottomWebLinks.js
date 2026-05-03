@@ -11,7 +11,7 @@ import {
 } from 'react-bootstrap';
 
 import MyImage3 from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/assets/sufyan-5NrbL6F68V0-unsplash.jpg';
-import "src/components/pages/BottomWebLinks/BottomWebPage.css ";
+import './BottomWebPage.css';
 function BottomWebLinks() {
     return (
         <Container className='bottomWebPage'  >
@@ -19,7 +19,7 @@ function BottomWebLinks() {
                 <Col style={{ bottom: 100 }}>
                     <img src={MyImage3} style={{ height: 50, width: 50 }} alt="Background" />
 
-                    <a href="#" style={{ color: 'white', fontFamily: 'fantasy', fontSize: 30, marginTop: 30 }}>Cyclone</a>
+                    <a href="#" style={{ color: 'white', fontFamily: 'fantasy', fontSize: 30, marginTop: 30 }}>Cyclone<sup>TM</sup></a>
 
                 </Col>
 

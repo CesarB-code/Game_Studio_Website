@@ -1,7 +1,4 @@
 
-import MyImage from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/assets/maha-khairy-3uuLWb6aQXc-unsplash.jpg'
-import MyImage2 from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/assets/maha-khairy-3uuLWb6aQXc-unsplash.jpg'
-import MyImage3 from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/assets/sufyan-5NrbL6F68V0-unsplash.jpg'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import GameList from '../wp-coponents/GameList/GameList.js';
 import { useRef, useEffect } from 'react';
@@ -11,9 +8,7 @@ import BottomWebLinks from '../BottomWebLinks/BottomWebLinks.js';
 import ContentCarousel from '../wp-coponents/ContentCarousel/ContentCarousel.js';
 import {
   Row, Col,
-  Carousel,
-  CarouselItem,
-  CarouselCaption,
+
   Container
 } from 'react-bootstrap';
 import './VideoHomePage.css';
@@ -156,7 +151,7 @@ function VideoHome() {
       <BoilerPlate className="top" fixed="top" />
       <ContentCarousel />
       <Row className=' text-light' style={{ backgroundColor: '#403053' }} >
-        <h1>AI Demonstration</h1>
+        <h1 style={{ color: 'white' }}>AI Drawing Software </h1>
       </Row>
       <Row className=' align-items-center justify-content-center' style={{ backgroundColor: '#403053' }}>
 
@@ -167,6 +162,15 @@ function VideoHome() {
             height={500}
             style={{ backgroundColor: 'white' }}
           />
+          <h2 className='ai'>
+            This text
+          </h2>
+          <p className='text'>This is a description for the AI Drawing Software.
+            Most advanced  ai software for drawing.
+            Implemented with mathmatical recunstruction ofimaghie and calcualtion of repeated animation based on user desire.
+            Based on artist labeling and animation , AI makes animantion predication on what the airtist
+
+          </p>
         </Col>
 
 

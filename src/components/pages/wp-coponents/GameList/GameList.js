@@ -22,7 +22,7 @@ function GameList() {
 
 
             <Col xs={6} md={4} onPointerMove={Interaction.handleMouseMove}
-                onPointerUp={Interaction.handleMouseUp} onPointerDown={Interaction.handleMouseDown} style={{ cursor: Interaction.isDragging ? 'grabbing' : 'grab' }}
+                onPointerUp={Interaction.handleMouseUp} onPointerDown={Interaction.handleMouseDown} style={{ cursor: Interaction.isDragging ? 'text' : 'pointer' }}
             >
                 <Card className="Card"  >
                     <Card.Img variant="top" src={Celestial} />
@@ -41,13 +41,22 @@ function GameList() {
                 </Card>
 
             </Col>
-            <Col xs={6} md={4}  >
+            <Col xs={6} md={4} onPointerMove={Interaction.handleMouseMove}
+                onPointerUp={Interaction.handleMouseUp} onPointerDown={Interaction.handleMouseDown} style={{ cursor: Interaction.isDragging ? 'pointer' : 'pointer' }}
+            >
                 <Card className='Card'>
                     <Card.Img variant="top" src={Blades} />
                     <Card.Body className="Card-Body-Background">
                         <Card.Title className="card-Title">Blades of the Spirit Realm</Card.Title>
                         <Card.Text className="card-text">
                             Cyclone studio has made an effort to keep up with the latest
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis faucibus risus. Vivamus in sodales felis.
+                            Sed nec quam condimentum, ullamcorper mauris non, scelerisque tortor. Cras massa velit, dapibus id lobortis nec, a
+                            liquam ac nunc. Etiam ac felis eget justo aliquam porttitor. Quisque nec massa vel dui blandit mattis a id enim. Suspendisse tempus
+                            condimentum eros eu ultricies. Vestibulum dignissim, massa vehicula dapibus sodales, erat turpis convallis lorem, ut suscipit sapien velit a
+                            enim. Proin commodo imperdiet convallis. Donec quis dictum erat. Proin eget eleifend eros, eu dignissim lectus.
+
+
                         </Card.Text>
                         <Row>
                             <Col>
@@ -61,13 +70,20 @@ function GameList() {
 
                 </Card>
             </Col>
-            <Col xs={6} md={4} >
+            <Col xs={6} md={4} onPointerMove={Interaction.handleMouseMove}
+                onPointerUp={Interaction.handleMouseUp} onPointerDown={Interaction.handleMouseDown} style={{ cursor: Interaction.isDragging ? 'pointer' : 'pointer' }}
+            >
                 <Card className='Card'>
                     <Card.Img variant="top" src={Tokyo} />
                     <Card.Body className="Card-Body-Background">
                         <Card.Title className="card-Title">Tokyo Phase Tactics</Card.Title>
                         <Card.Text className="card-text">
                             Cyclone studio has made an effort to keep up with the latest
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis faucibus risus. Vivamus in sodales felis.
+                            Sed nec quam condimentum, ullamcorper mauris non, scelerisque tortor. Cras massa velit, dapibus id lobortis nec, a
+                            liquam ac nunc. Etiam ac felis eget justo aliquam porttitor. Quisque nec massa vel dui blandit mattis a id enim. Suspendisse tempus
+                            condimentum eros eu ultricies. Vestibulum dignissim, massa vehicula dapibus sodales, erat turpis convallis lorem, ut suscipit sapien velit a
+                            enim. Proin commodo imperdiet convallis. Donec quis dictum erat. Proin eget eleifend eros, eu dignissim lectus.
                         </Card.Text>
                         <Row>
                             <Col>
@@ -81,13 +97,20 @@ function GameList() {
 
                 </Card>
             </Col>
-            <Col xs={6} md={4}  >
+            <Col xs={6} md={4} onPointerMove={Interaction.handleMouseMove}
+                onPointerUp={Interaction.handleMouseUp} onPointerDown={Interaction.handleMouseDown} style={{ cursor: Interaction.isDragging ? 'pointer' : 'pointer' }}
+            >
                 <Card className='Card'>
                     <Card.Img variant="top" src={Requiem} />
                     <Card.Body className="Card-Body-Background">
                         <Card.Title className='card-Title' >Requiem of Broken Heroes</Card.Title>
                         <Card.Text className='card-text'>
                             Cyclone studio has made an effort to keep up with the latest
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis faucibus risus. Vivamus in sodales felis.
+                            Sed nec quam condimentum, ullamcorper mauris non, scelerisque tortor. Cras massa velit, dapibus id lobortis nec, a
+                            liquam ac nunc. Etiam ac felis eget justo aliquam porttitor. Quisque nec massa vel dui blandit mattis a id enim. Suspendisse tempus
+                            condimentum eros eu ultricies. Vestibulum dignissim, massa vehicula dapibus sodales, erat turpis convallis lorem, ut suscipit sapien velit a
+                            enim. Proin commodo imperdiet convallis. Donec quis dictum erat. Proin eget eleifend eros, eu dignissim lectus.
                         </Card.Text>
                         <Row>
                             <Col>
@@ -101,13 +124,20 @@ function GameList() {
 
                 </Card>
             </Col>
-            <Col xs={6} md={4}  >
+            <Col xs={6} md={4} onPointerMove={Interaction.handleMouseMove}
+                onPointerUp={Interaction.handleMouseUp} onPointerDown={Interaction.handleMouseDown} style={{ cursor: Interaction.isDragging ? 'pointer' : 'pointer' }}
+            >
                 <Card className='Card'>
                     <Card.Img variant="top" src={Kingdom} />
                     <Card.Body className="Card-Body-Background">
                         <Card.Title className='card-Title' >Kingdoms of the Silent Moon</Card.Title>
                         <Card.Text className='card-text'>
                             Cyclone studio has made an effort to keep up with the latest
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis faucibus risus. Vivamus in sodales felis.
+                            Sed nec quam condimentum, ullamcorper mauris non, scelerisque tortor. Cras massa velit, dapibus id lobortis nec, a
+                            liquam ac nunc. Etiam ac felis eget justo aliquam porttitor. Quisque nec massa vel dui blandit mattis a id enim. Suspendisse tempus
+                            condimentum eros eu ultricies. Vestibulum dignissim, massa vehicula dapibus sodales, erat turpis convallis lorem, ut suscipit sapien velit a
+                            enim. Proin commodo imperdiet convallis. Donec quis dictum erat. Proin eget eleifend eros, eu dignissim lectus.
                         </Card.Text>
                         <Row>
                             <Col>

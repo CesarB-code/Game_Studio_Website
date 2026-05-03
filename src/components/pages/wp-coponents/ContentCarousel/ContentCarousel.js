@@ -3,11 +3,7 @@ import {
     Carousel,
     CarouselItem,
     CarouselCaption,
-    Nav,
-    Navbar,
 
-    NavDropdown,
-    Container
 } from 'react-bootstrap';
 import MyImage from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/assets/maha-khairy-3uuLWb6aQXc-unsplash.jpg'
 import MyImage2 from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/assets/maha-khairy-3uuLWb6aQXc-unsplash.jpg'
