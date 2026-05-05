@@ -17,3 +17,10 @@
 .nav-links.expand{
   display:block
 }
+#nav-dropdown{
+  font-family:fantasy;
+}
+.disabled{
+  pointer-events: none;
+  
+}

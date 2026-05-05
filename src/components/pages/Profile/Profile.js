@@ -9,6 +9,7 @@ import {
     NavDropdown,
     Container
 } from 'react-bootstrap';
+import { useState } from 'react';
 import BoilerPlate from '../BoilerPlate.js/BoilerPlate';
 import ProfileImage from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/assets/istockphoto-828763406-1024x1024.jpg'
 import './Profile.css'

@@ -22,7 +22,7 @@ function GameList() {
 
 
             <Col xs={6} md={4} onPointerMove={Interaction.handleMouseMove}
-                onPointerUp={Interaction.handleMouseUp} onPointerDown={Interaction.handleMouseDown} style={{ cursor: Interaction.isDragging ? 'text' : 'pointer' }}
+                onPointerUp={Interaction.handleMouseUp} onPointerDown={Interaction.handleMouseDown} onClicked={Interaction.isClicked} style={{ cursor: Interaction.isDragging ? 'text' : 'pointer' }}
             >
                 <Card className="Card"  >
                     <Card.Img variant="top" src={Celestial} />

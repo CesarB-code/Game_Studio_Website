@@ -11,8 +11,8 @@ import MyImage3 from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/s
 
 import './ContentCarousel.css';
 function ContentCarousel() {
-    return (<Row className='bg-light'>
-        <Carousel className="custom-carousel ">
+    return (<Row className='bg-grey'>
+        <Carousel className="carousel ">
             <CarouselItem>
                 <img
                     className="d-block w-100 carousel-img"

@@ -9,9 +9,10 @@ import {
     NavDropdown,
     Container
 } from 'react-bootstrap';
-import MyImage3 from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/assets/sufyan-5NrbL6F68V0-unsplash.jpg'
+import { useState } from "react";
 import '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/BoilerPlate.js/BoilerPlate.css'
 function BoilerPlate() {
+    const [isDropped, setIsDropped] = useState(false);
     return (
 
         <Row >
@@ -28,7 +29,8 @@ function BoilerPlate() {
                         <Nav.Link href="profile">Profile</Nav.Link>
                         <Nav.Link href="store">Store</Nav.Link>
 
-                        <NavDropdown title="Company" id="basic-nav-dropdown">
+                        <NavDropdown title="Company" id="nav-dropdown" show={isDropped} onMouseEnter={() => setIsDropped(true)} onMouseLeave={() => setIsDropped(false)} >
+
                             <NavDropdown.Item href="about">About</NavDropdown.Item>
                             <NavDropdown.Item href="teamMembers">
                                 Team Members

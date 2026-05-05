@@ -1,13 +1,25 @@
-import { set } from "nerdamer";
 import { useState } from "react";
 let width, setWidth, height, setHeight;
 let isDragging, setIsDragging;
+let isClicked, setIsClicked;
+let isDropped, setIsDropped;
 function SetState() {
     [height, setHeight] = useState(260);
     [width, setWidth] = useState(250);
     [isDragging, setIsDragging] = useState(false);
-}
+    [isClicked, setIsClicked] = useState(false);
+    [isDropped, setIsDropped] = useState(false);
 
+}
+function handleMouseEnter() {
+    setIsDropped(true);
+}
+function handleMouseLeave() {
+    setIsDropped(false);
+}
+function handleClick() {
+    setIsClicked(false);
+}
 function handleMouseUp() {
     setIsDragging(false);
 }
@@ -30,4 +42,5 @@ function handleMouseRight(e) {
     e.target.setPointerCapture(e.pointerId);
 
 }
-export { SetState, handleMouseDown, handleMouseUp, handleMouseMove, handleMouseRight, width, isDragging, height };
+
+export { SetState, handleClick, handleMouseDown, handleMouseUp, handleMouseMove, handleMouseRight, handleMouseEnter, handleMouseLeave, width, isDragging, height, isDropped, setIsDropped, isClicked, setIsClicked };
