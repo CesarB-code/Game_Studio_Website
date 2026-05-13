@@ -1,48 +1,91 @@
 import {
     Row, Col,
-    Carousel,
-    CarouselItem,
-    CarouselCaption,
-    Nav,
-    Navbar,
+    Card,
 
-    NavDropdown,
     Container
 } from 'react-bootstrap';
 import { useState } from 'react';
 import BoilerPlate from '../BoilerPlate.js/BoilerPlate';
 import ProfileImage from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/assets/istockphoto-828763406-1024x1024.jpg'
+import Background from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/wp-coponents/image/vista-wei-OiERUvVrioU-unsplash.jpg';
 import './Profile.css'
 import BottomWebLinks from '../BottomWebLinks/BottomWebLinks.js';
 function Profile() {
     return (
-        <Container fluid className='Container full-page'>
-            <Row style={{ marginBottom: 30 }}>
-                <BoilerPlate />
+        <Container fluid style={{
+            height: '100%',
+            width: '100%',
+        }} >
 
-            </Row>
+            <BoilerPlate />
 
-            <Row className=' justify-content-center ' style={{ marginTop: 30 }} >
-                <Col xs={6} className='ProfileImg'>
-                    <img src={ProfileImage} alt="Profile" className='ProfileImg' />
-                </Col>
-            </Row>
-            <Row className='justify-content-center'>
-                <Row style={{ color: 'white', fontFamily: 'fantasy', fontSize: 20, marginTop: 30 }}>
-                    <p>UserName: Fenrir</p>
-                </Row>
-                <Row style={{ color: 'white', fontFamily: 'fantasy', fontSize: 20, marginTop: 30 }}>
-                    <p>Name: John Doe</p>
-                </Row>
-                <Row style={{ color: 'white', fontFamily: 'fantasy', fontSize: 20, marginTop: 30 }}>
-                    <p>Email: john.doe@example.com</p>
-                </Row>
-                <Row style={{ color: 'white', fontFamily: 'fantasy', fontSize: 20, marginTop: 30, maxWidth: 'none' }}>
-                    <p>: Game developer and designer.</p>
+
+            <Row id='Profile-container'>
+                <Row style={{ marginTop: '70px' }} >
+                    <Col xs={{ span: 10, offset: 5 }} className='ProfileImg'>
+                        <img src={ProfileImage} style={{ border: '2px solid #F2a3a8' }} alt="Profile" className='ProfileImg' />
+                    </Col>
                 </Row>
 
+                <Row style={{ paddingTop: "20px" }} >
+                    <Col xs={{ span: 4, order: 'first' }}>
+                        <Card>
+                            <Row >
+                                <p className="Text">UserName: Fenrir</p>
+
+
+                            </Row>
+                            <Row>
+                                <p className="Text">Name: John Doe</p>
+
+                            </Row>
+                            <Row>
+                                <p className="Text">Name: John Doe</p>
+
+                            </Row>
+                            <Row>
+                                <p className="Text">Name: John Doe</p>
+
+                            </Row>
+                            <Row>
+                                <p className="Text">Name: John Doe</p>
+
+                            </Row>
+                        </Card>
+                    </Col>
+
+                    <Col xs={{ span: 4, offset: 4, order: "last" }}>
+                        <Card>
+                            <Row >
+                                <p className="Text">Email: john.doe@example.com</p>
+
+
+                            </Row>
+                            <Row>
+                                <p className="Text">Billing Address : 777 Luca Street</p>
+
+                            </Row>
+                            <Row>
+                                <p className="Text">Name: John Doe</p>
+
+                            </Row>
+                            <Row>
+                                <p className="Text">Name: John Doe</p>
+
+                            </Row>
+                            <Row>
+                                <p className="Text">Name: John Doe</p>
+
+                            </Row>
+                        </Card>
+                    </Col>
+
+
+
+                </Row>
             </Row>
-            <Row className='BottomWebLinks' >
+
+            <Row style={{ padding: '0px' }} >
                 <BottomWebLinks />
             </Row>
 

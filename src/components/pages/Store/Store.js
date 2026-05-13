@@ -19,25 +19,7 @@ function Store() {
 
             </Row>
 
-            <Row className=' justify-content-center ' style={{ marginTop: 30 }} >
-                <Col xs={6} className='ProfileImg'>
-                </Col>
-            </Row>
-            <Row className='justify-content-center'>
-                <Row style={{ color: 'white', fontFamily: 'fantasy', fontSize: 20, marginTop: 30 }}>
-                    <p>UserName: Fenrir</p>
-                </Row>
-                <Row style={{ color: 'white', fontFamily: 'fantasy', fontSize: 20, marginTop: 30 }}>
-                    <p>Name: John Doe</p>
-                </Row>
-                <Row style={{ color: 'white', fontFamily: 'fantasy', fontSize: 20, marginTop: 30 }}>
-                    <p>Email: john.doe@example.com</p>
-                </Row>
-                <Row style={{ color: 'white', fontFamily: 'fantasy', fontSize: 20, marginTop: 30, maxWidth: 'none' }}>
-                    <p>: Game developer and designer.</p>
-                </Row>
 
-            </Row>
             <Row className='BottomWebLinks' >
                 <BottomWebLinks />
             </Row>

@@ -1,13 +1,46 @@
 
-.bg-grey{
-    background-color: #403c5f;
+
+div.row{
+    margin: 0px;
+    padding: 0px;
 }
 p{
     font-family: Trebuchet MS, sans-serif;
+    margin: 0px;
 }
 .link{
+    color: white;
+    text-decoration: none;
     font-family:fantasy;
 } 
-a{
-    text-decoration: none;
+.link:hover {
+    color: #F1535d;
+    text-decoration: underline;
+}
+
+
+.cyclone:hover{
+    color:#F1535d;
+}
+
+.col{
+    
+  margin: 0px;
+    padding: 0px;  
+}
+.col-4{
+    text-align: center;
+}
+.col-2{
+    text-align: center;
+}
+.bottomWebPage{
+    position:sticky;
+    bottom: 0;
+    background-color: #403c5f;;
+    
+}
+#label{
+    background-image: url('/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/assets/sufyan-5NrbL6F68V0-unsplash.jpg');
+    background-size:cover;
 }

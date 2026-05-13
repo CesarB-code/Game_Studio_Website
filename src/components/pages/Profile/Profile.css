@@ -4,14 +4,7 @@
     width: 200px;
     height: 200px;
 }
-.Container{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100vw;
-  height: 100vh;
-    background-color: black;
-}
+
 
 .BottomWebLinks{
 
@@ -24,15 +17,40 @@ body{
     padding: 0;
 }
 .footer {
-  
   bottom: 0;
-  width: 100vw;
 }
 p{
     width: 100%;
     max-width: none;
 }
-.text{
+.Text{
     color: white;
-    font-size: 20px;
+  text-shadow: 
+    -1px -1px 0 black,
+     1px -1px 0 black,
+    -1px  1px 0 black,
+     1px  1px 0 black;;
+ font-family: Trebuchet MS, sans-serif;
+ font-size: 20;
+ text-align: center;
+
+ 
+}
+
+row{
+width: 100vw;    
+}
+#Profile-container{
+    background-image: url('/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/wp-coponents/image/jase-bloor-oCZHIa1D4EU-unsplash.jpg');
+   background-size: cover;
+   
+}
+#root{
+    height: 100vh;
+    width: 100vw;
+}
+.card{
+    background: none;
+    justify-content: center;
+
 }

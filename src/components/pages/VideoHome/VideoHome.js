@@ -7,7 +7,7 @@ import BoilerPlate from '../BoilerPlate.js/BoilerPlate.js';
 import BottomWebLinks from '../BottomWebLinks/BottomWebLinks.js';
 import ContentCarousel from '../wp-coponents/ContentCarousel/ContentCarousel.js';
 import {
-  Row, Col,
+  Row, Col, Card,
 
   Container
 } from 'react-bootstrap';
@@ -147,30 +147,46 @@ function VideoHome() {
   return (
 
 
-    <Container fluid style={{ overflowX: 'hidden', overflowY: 'hidden' }} >
-      <BoilerPlate className="top" fixed="top" />
-      <ContentCarousel />
-      <Row className=' text-light' style={{ backgroundColor: '#403053' }} >
-        <h1 style={{ color: 'white' }}>AI Drawing Software </h1>
-      </Row>
-      <Row className=' align-items-center justify-content-center' style={{ backgroundColor: '#403053' }}>
+    <Container fluid style={{ overflowX: 'hidden', overflowY: 'scroll' }} >
+      <BoilerPlate className="video-Row" fixed="top" />
+      <Row className="video-Row"><ContentCarousel /></Row>
 
-        <Col className='col-8' >
-          <canvas
-            ref={canvasRef}
-            width={500}
-            height={500}
-            style={{ backgroundColor: 'white' }}
-          />
-          <h2 className='ai'>
-            This text
-          </h2>
-          <p className='text'>This is a description for the AI Drawing Software.
-            Most advanced  ai software for drawing.
-            Implemented with mathmatical recunstruction ofimaghie and calcualtion of repeated animation based on user desire.
-            Based on artist labeling and animation , AI makes animantion predication on what the airtist
+      <Row className='video-Row align-items-center justify-content-center' style={{ backgroundColor: 'white' }}>
+        <Col>
+          <Row className=' video-Row ' style={{ backgroundColor: 'white' }} >
+            <h1 style={{ textAlign: 'center', padding: '0px', margin: '10px', color: 'black' }}>AI Drawing Software </h1>
+          </Row>
+          <Row className="align-items-center justify-content-center">
+            <Col className=' col-8' >
+              <Row className="align-items-center justify-content-center">
+                <Card className="align-items-center justify-content-center">
+                  <canvas
+                    ref={canvasRef}
+                    width={600}
+                    height={500}
+                    style={{ width: '100%', margin: '0px', padding: '0px' }}
+                  />
+                </Card>
 
-          </p>
+              </Row>
+
+
+
+            </Col>
+            <Col>
+              <Row style={{ paddingTop: '10px' }}>
+                <h2 className='title'>
+                  Description
+                </h2>
+                <p className='text'>This is a description for the AI Drawing Software.
+                  Most advanced  ai software for drawing.
+                  Implemented with mathmatical recunstruction ofimaghie and calcualtion of repeated animation based on user desire.
+                  Based on artist labeling and animation , AI makes animantion predication on what the airtist.
+
+                </p>
+              </Row>
+            </Col>
+          </Row>
         </Col>
 
 
@@ -179,13 +195,17 @@ function VideoHome() {
 
 
 
-      </Row>
-      <Row>
-        <GameList />
-      </Row>
+
+      </Row >
+      <Container style={{ height: '650px', width: '100vw' }}>
+        <Row className="video-Row">
+          <GameList />
+        </Row>
+      </Container>
 
 
-      <Row>
+
+      <Row className="video-Row">
         <BottomWebLinks />
       </Row>
 

@@ -12,7 +12,7 @@ import MyImage3 from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/s
 import './ContentCarousel.css';
 function ContentCarousel() {
     return (<Row className='bg-grey'>
-        <Carousel className="carousel ">
+        <Carousel interval={1000} className="carousel">
             <CarouselItem>
                 <img
                     className="d-block w-100 carousel-img"
