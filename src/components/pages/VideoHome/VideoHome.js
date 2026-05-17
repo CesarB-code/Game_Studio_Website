@@ -159,7 +159,7 @@ function VideoHome() {
           <Row className="align-items-center justify-content-center">
             <Col className=' col-8' >
               <Row className="align-items-center justify-content-center">
-                <Card className="align-items-center justify-content-center">
+                <Card className="align-items-center " style={{ width: '100%', height: '100%', padding: '0px' }}>
                   <canvas
                     ref={canvasRef}
                     width={600}

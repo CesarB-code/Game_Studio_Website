@@ -19,15 +19,20 @@ h1{
     animation: pulse 2s linear infinite;
 }
 .card{
-    padding: 0%;
-    height: 100%;
-    max-height: 700px;
+ 
+    max-height: 440px;
     width: 100%;
     max-width: 490px;
     border: 5px solid #F2a3a8;
     cursor: pointer;
     display: flex;
+    flex-direction: column;
+   
 
+}
+.card-img-top.card-img{
+  height: 200px;
+  object-fit: cover;
 }
 .Card:hover{
     border: 5px solid #F1535d;
@@ -40,8 +45,9 @@ h1{
     max-height: 300px;
 }
 .card-body{
-    height: 100%;
-    max-height: 230px;
+    height:max-content;
+    position: relative;
+    padding-bottom: 0px;
 }
 .card-img.switch{
      transform: rotateY(180deg);
@@ -64,9 +70,11 @@ background-color: black;
 
 .card-link{
     color: #F1535d;
+    position: bottom;
     font-family: fantasy;
     font-size: 13px;
     padding: 0px;;
+;
 }
 .card-link-spacing{
    padding:0px;
@@ -95,8 +103,14 @@ text-decoration: underline;
 }
 .card-Title{
         font-family:fantasy;
-        font-size: 22px;
-    font-weight: bold;
+font-size: clamp(20px, 1vw, 22px);
+
+  overflow: hidden;
+
+  display: -webkit-box;
+  webkit-line-clamp: 6;
+  -webkit-box-orient: horizontal;   
+   font-weight: bold;
         color: white;
 
 }
