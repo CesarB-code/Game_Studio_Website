@@ -13,7 +13,7 @@ import {
 } from 'react-bootstrap';
 import './VideoHomePage.css';
 import { DrawObject } from "../wp-coponents/FaceFunctions.js";
-
+import UnityCharacter from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/UnityCharacter.js';
 
 export let gl;
 export let canvas;
@@ -171,8 +171,11 @@ function VideoHome() {
               </Row>
 
 
-
             </Col>
+            <Col className='col-4 ' >
+              <UnityCharacter />
+            </Col>
+
             <Col>
               <Row style={{ paddingTop: '10px' }}>
                 <h2 className='title'>
