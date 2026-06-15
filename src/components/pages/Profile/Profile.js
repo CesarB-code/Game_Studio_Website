@@ -11,83 +11,120 @@ import Background from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website
 import './Profile.css'
 import BottomWebLinks from '../BottomWebLinks/BottomWebLinks.js';
 function Profile() {
+    const element = document.querySelector(".ProfileImg");
+
+    const currentMargin =
+        parseFloat(getComputedStyle(element).paddingLeft);
+
+    element.style.paddingLeft = `${currentMargin - 25}px`;
     return (
-        <Container fluid style={{
-            height: '100%',
-            width: '100%',
+        <Container id='Profile-container' fluid style={{
+            height: '100vh',
+            width: '100vw',
+            padding: '60px',
         }} >
 
             <BoilerPlate />
 
+            <Card id='cardR'>
+                <Row >
+                    <Row style={{ marginTop: '70px' }} >
+                        <Col xs={{ span: 2, offset: 5 }} className='ProfileImg'>
+                            <img src={ProfileImage} style={{ border: '2px solid #F2a3a8' }} alt="Profile" className='ProfileImg' />
+                        </Col>
+                    </Row>
 
-            <Row id='Profile-container'>
-                <Row style={{ marginTop: '70px' }} >
-                    <Col xs={{ span: 10, offset: 5 }} className='ProfileImg'>
-                        <img src={ProfileImage} style={{ border: '2px solid #F2a3a8' }} alt="Profile" className='ProfileImg' />
-                    </Col>
+                    <Row style={{ paddingTop: "20px" }} >
+                        <Col xs={{ span: 4, order: 'first' }}>
+                            <Card>
+                                <Row >
+                                    <Card id="cardR">
+                                        <p className="Text">UserName: Fenrir</p>
+                                    </Card>
+
+
+
+                                </Row>
+                                <Row>
+                                    <Card id="cardR">
+                                        <p className="Text">Name: John Doe</p>
+                                    </Card>
+
+                                </Row>
+                                <Row>
+                                    <Card id="cardR">
+                                        <p className="Text">Name: John Doe</p>
+                                    </Card>
+
+                                </Row>
+                                <Row>
+                                    <Card id="cardR">
+                                        <p className="Text">Name: John Doe</p>
+                                    </Card>
+
+                                </Row>
+                                <Row>
+                                    <Card id="cardR">
+                                        <p className="Text">Name: John Doe</p>
+                                    </Card>
+
+                                </Row>
+                                <Row>
+                                    <Card id="cardR">
+                                        <p className="Text">Name: John Doe</p>
+                                    </Card>
+
+                                </Row>
+                                <Row>
+                                    <Card id="cardR">
+                                        <p className="Text">Name: John Doe</p>
+                                    </Card>
+
+                                </Row>
+                            </Card>
+                        </Col>
+
+                        <Col xs={{ span: 4, offset: 4, order: "last" }}>
+                            <Card>
+                                <Row >
+                                    <Card id="cardR">
+                                        <p className="Text">Email: john.doe@example.com</p>
+                                    </Card>
+
+                                </Row>
+                                <Row>
+                                    <Card id="cardR">
+                                        <p className="Text">Billing Address : 777 Luca Street</p>
+                                    </Card>
+
+                                </Row>
+                                <Row>
+                                    <Card id="cardR">
+                                        <p className="Text">Shipping Address: 777 Luca Street</p>
+                                    </Card>
+
+                                </Row>
+                                <Row>
+                                    <Card id="cardR">
+                                        <p className="Text">Payment Method: Credit Card</p>
+                                    </Card>
+
+                                </Row>
+                                <Row>
+                                    <Card id="cardR">
+                                        <p className="Text">Name: John Doe</p>
+                                    </Card>
+
+                                </Row>
+                            </Card>
+                        </Col>
+
+
+
+                    </Row>
                 </Row>
+            </Card>
 
-                <Row style={{ paddingTop: "20px" }} >
-                    <Col xs={{ span: 4, order: 'first' }}>
-                        <Card>
-                            <Row >
-                                <p className="Text">UserName: Fenrir</p>
-
-
-                            </Row>
-                            <Row>
-                                <p className="Text">Name: John Doe</p>
-
-                            </Row>
-                            <Row>
-                                <p className="Text">Name: John Doe</p>
-
-                            </Row>
-                            <Row>
-                                <p className="Text">Name: John Doe</p>
-
-                            </Row>
-                            <Row>
-                                <p className="Text">Name: John Doe</p>
-
-                            </Row>
-                        </Card>
-                    </Col>
-
-                    <Col xs={{ span: 4, offset: 4, order: "last" }}>
-                        <Card>
-                            <Row >
-                                <p className="Text">Email: john.doe@example.com</p>
-
-
-                            </Row>
-                            <Row>
-                                <p className="Text">Billing Address : 777 Luca Street</p>
-
-                            </Row>
-                            <Row>
-                                <p className="Text">Name: John Doe</p>
-
-                            </Row>
-                            <Row>
-                                <p className="Text">Name: John Doe</p>
-
-                            </Row>
-                            <Row>
-                                <p className="Text">Name: John Doe</p>
-
-                            </Row>
-                        </Card>
-                    </Col>
-
-
-
-                </Row>
-            </Row>
-
-            <Row style={{ padding: '0px' }} >
-                <BottomWebLinks />
-            </Row>
 
         </Container >
 

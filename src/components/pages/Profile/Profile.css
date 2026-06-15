@@ -3,6 +3,7 @@
     
     width: 200px;
     height: 200px;
+    margin-left: margin-left + 100px;
 }
 
 
@@ -37,9 +38,7 @@ p{
  
 }
 
-row{
-width: 100vw;    
-}
+
 #Profile-container{
     background-image: url('/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/wp-coponents/image/jase-bloor-oCZHIa1D4EU-unsplash.jpg');
    background-size: cover;
@@ -53,4 +52,10 @@ width: 100vw;
     background: none;
     justify-content: center;
 
+}
+#cardR{
+    border-color: white;
+    border-width: 5px;
+    border-style: solid;
+    border-radius: 10px;
 }

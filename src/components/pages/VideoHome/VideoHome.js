@@ -1,20 +1,20 @@
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import GameList from '../wp-coponents/GameList/GameList.js';
-import { useRef, useEffect } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import * as Interaction from '../wp-coponents/InterationMethods.js';
 import BoilerPlate from '../BoilerPlate.js/BoilerPlate.js';
 import BottomWebLinks from '../BottomWebLinks/BottomWebLinks.js';
 import ContentCarousel from '../wp-coponents/ContentCarousel/ContentCarousel.js';
 import {
-  Row, Col, Card,
+  Row, Col, Card, Overlay,
 
   Container
 } from 'react-bootstrap';
 import './VideoHomePage.css';
 import { DrawObject } from "../wp-coponents/FaceFunctions.js";
 import UnityCharacter from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/UnityCharacter.js';
-
+import overlayImage from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/assets/takashi-miyazaki-64ajtpEzlYc-unsplash.jpg';
 export let gl;
 export let canvas;
 export let uColor2;
@@ -38,8 +38,14 @@ export let curveVertices = new Float32Array([
 
 function VideoHome() {
   const canvasRef = useRef(null);
+  const canvasRef1 = useRef(null);
+  const [unityInstance1, setUnityInstance1] = useState(null);
+
+
+
   Interaction.SetState();
   useEffect(() => {
+
     canvas = canvasRef.current;
     gl = canvas.getContext('webgl', { preserveDrawingBuffer: true });
 
@@ -147,48 +153,75 @@ function VideoHome() {
   return (
 
 
-    <Container fluid style={{ overflowX: 'hidden', overflowY: 'scroll' }} >
+    <Container fluid style={{ overflowX: 'hidden', overflowY: 'scroll', backgroundImage: `url(${overlayImage})` }} >
       <BoilerPlate className="video-Row" fixed="top" />
-      <Row className="video-Row"><ContentCarousel /></Row>
+      <Row className="video-Row" style={{ paddingTop: '60px' }}>
+        <ContentCarousel />
+      </Row>
 
-      <Row className='video-Row align-items-center justify-content-center' style={{ backgroundColor: 'white' }}>
+      <Row className='video-Row align-items-center justify-content-center' style={{ backgroundColor: 'transparent' }}>
+
         <Col>
-          <Row className=' video-Row ' style={{ backgroundColor: 'white' }} >
-            <h1 style={{ textAlign: 'center', padding: '0px', margin: '10px', color: 'black' }}>AI Drawing Software </h1>
-          </Row>
+
           <Row className="align-items-center justify-content-center">
-            <Col className=' col-8' >
-              <Row className="align-items-center justify-content-center">
-                <Card className="align-items-center " style={{ width: '100%', height: '100%', padding: '0px' }}>
-                  <canvas
-                    ref={canvasRef}
-                    width={600}
-                    height={500}
-                    style={{ width: '100%', margin: '0px', padding: '0px' }}
-                  />
+            <Row>
+              <Col className='col-4 ' md={{ span: 4, offset: 2 }} >
+                <Card id='cardR' className="rounded-5">
+
+
+                  <Col className=' col-8' >
+
+                    <Row className="align-items-center justify-content-center">
+                      <Row className=' video-Row ' style={{ backgroundColor: 'transparent' }} >
+                        <h1 style={{ textAlign: 'center', padding: '0px', margin: '10px', color: 'white' }}>AI Drawing Software </h1>
+                      </Row>
+                      <Card id="cardR" className="align-items-center " style={{ width: '300px', height: '300px', padding: '0px' }}>
+                        <canvas
+                          ref={canvasRef}
+                          width={300}
+                          height={300}
+                          style={{ width: '100%', margin: '0px', padding: '0px', border: '4px solid #f2a3a8 ' }}
+                        />
+                      </Card>
+
+                    </Row>
+                  </Col>
                 </Card>
+              </Col>
+              <Col className='col-4 '  >
+                <Card id="cardR" className="rounded-5">
+                  <Row>
+                    <h2 className='title'>
+                      Description
+                    </h2>
+                  </Row>
+                  <Row>
+                    <Col className='col-4 ' >
+                      <UnityCharacter useRef={canvasRef1} useState={[unityInstance1, setUnityInstance1]} />
+                    </Col>
 
-              </Row>
+                    <Col>
+                      <Col style={{ paddingTop: '10px' }}>
+
+                        <p className='text'>This is a description for the AI Drawing Software.
+                          Most advanced  ai software for drawing.
+                          Implemented with mathmatical recunstruction ofimaghie and calcualtion of repeated animation based on user desire.
+                          Based on artist labeling and animation , AI makes animantion predication on what the airtist.
+
+                        </p>
+                      </Col>
+
+                    </Col>
+                  </Row>
+
+                </Card>
+              </Col>
+
+            </Row>
 
 
-            </Col>
-            <Col className='col-4 ' >
-              <UnityCharacter />
-            </Col>
 
-            <Col>
-              <Row style={{ paddingTop: '10px' }}>
-                <h2 className='title'>
-                  Description
-                </h2>
-                <p className='text'>This is a description for the AI Drawing Software.
-                  Most advanced  ai software for drawing.
-                  Implemented with mathmatical recunstruction ofimaghie and calcualtion of repeated animation based on user desire.
-                  Based on artist labeling and animation , AI makes animantion predication on what the airtist.
 
-                </p>
-              </Row>
-            </Col>
           </Row>
         </Col>
 
@@ -200,17 +233,15 @@ function VideoHome() {
 
 
       </Row >
-      <Container style={{ height: '650px', width: '100vw' }}>
-        <Row className="video-Row">
+      <Container style={{ height: '650px', width: '100vw', backgroundColor: 'transparent' }}>
+        <Row className="video-Row" style={{ backgroundColor: 'transparent' }}>
           <GameList />
         </Row>
       </Container>
 
 
 
-      <Row className="video-Row">
-        <BottomWebLinks />
-      </Row>
+
 
     </Container >
 

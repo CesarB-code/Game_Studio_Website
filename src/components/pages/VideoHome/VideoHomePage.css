@@ -12,7 +12,11 @@
 .container-fluid{
   padding: 0px;
 }
-
+#cardR{
+    border-color: white;
+    border-width: 5px;
+    border-style: solid
+}
 .custom-carosel{
   width: 50%;        /* Change width */
   height: 50%;     /* Set height */
@@ -42,6 +46,8 @@
 
 .title{
     font-family:fantasy;
+    font-size: 32px;
+    text-align: center;
     color: white;
     justify-content: center;
 }

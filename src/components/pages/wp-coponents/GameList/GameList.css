@@ -18,10 +18,10 @@ h1{
 .Move{
     animation: pulse 2s linear infinite;
 }
-.card{
- 
-    max-height: 440px;
+.Card{
+    max-height: 450px;
     width: 100%;
+    height: 100%;
     max-width: 490px;
     border: 5px solid #F2a3a8;
     cursor: pointer;
@@ -31,8 +31,8 @@ h1{
 
 }
 .card-img-top.card-img{
-  height: 200px;
-  object-fit: cover;
+  max-height: 200px;
+  object-fit:fill;
 }
 .Card:hover{
     border: 5px solid #F1535d;
@@ -40,10 +40,7 @@ h1{
     
    
 }
-.card-img{
-    height: 100%;
-    max-height: 300px;
-}
+
 .card-body{
     height:max-content;
     position: relative;
@@ -96,6 +93,7 @@ text-decoration: underline;
 
 .Card-Body-Background{
     background-color: #403c5f;
+    padding-top: 5px;
 }
 .Card-Body-Background.switch{
         transform: rotateY(180deg);
@@ -107,8 +105,7 @@ font-size: clamp(20px, 1vw, 22px);
 
   overflow: hidden;
 
-  display: -webkit-box;
-  webkit-line-clamp: 6;
+  -webkit-line-clamp: 6;
   -webkit-box-orient: horizontal;   
    font-weight: bold;
         color: white;
@@ -146,6 +143,60 @@ font-size: 12px;
     height: auto;
     
 }
+.col-6{
+
+    padding-left: 20px;
+    padding-right: 20px;
+}
+#cardRow{
+    border-color: white;
+    border-width: 5px;
+    border-style: solid
+}
+.btn{
+    color: white;
+    padding: 2px;
+    font-size: 15px;
+    justify-content:center;
+    text-align: center;
+    width: 80px;
+    height: 50px;
+    background-color: #f2a3a8;
+    border: 1px solid #f2a3a8;
+}
+.btn:hover{
+    background-color: #f1535d;
+    border: 1px solid #f1535d;
+    color: white;
+}
+
+#buttonRow{
+    justify-content: center;
+    display: flex;
+    margin-right: 0px;
+    margin-left: 0px;
+}
+
+.col-md-4{
+    max-height: 440px;;
+}
+.container::-webkit-scrollbar {
+  height: 12px; /* horizontal scrollbar size */
+}
+
+.container::-webkit-scrollbar-track {
+  background: blue; /* background track */
+}
+
+.container::-webkit-scrollbar-thumb {
+  background: blue; /* draggable part */
+  border-radius: 10px;
+}
+
+.container::-webkit-scrollbar-thumb:hover {
+  background: darkblue;
+}
+
 @keyframes pulse{
     0% {
         transform: scale(1);

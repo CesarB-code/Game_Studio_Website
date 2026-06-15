@@ -1,5 +1,5 @@
 import {
-    Row, Col,
+    Row, Col, Card,
     Carousel,
     CarouselItem,
     CarouselCaption,
@@ -11,7 +11,7 @@ import MyImage3 from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/s
 
 import './ContentCarousel.css';
 function ContentCarousel() {
-    return (<Row className='bg-grey'>
+    return (<Card id='cardR' className="rounded-5 mainElement">
         <Carousel interval={1000} className="carousel">
             <CarouselItem>
                 <img
@@ -53,7 +53,7 @@ function ContentCarousel() {
             </CarouselItem>
         </Carousel>
 
-    </Row>
+    </Card>
     );
 }
 export default ContentCarousel;

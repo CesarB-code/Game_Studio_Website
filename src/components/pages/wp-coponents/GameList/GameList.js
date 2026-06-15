@@ -1,16 +1,18 @@
 import {
-    Row, Col,
+    Row, Col, Button,
     CardImgOverlay, CardBody, CardTitle, CardText, CardImg, Card,
 
     Container
 } from 'react-bootstrap';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Celestial from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/wp-coponents/image/Celestial Blade Chronicle.png';
 import Blades from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/wp-coponents/image/Blades Of The Spirit Realm.png';
 import Tokyo from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/wp-coponents/image/Tokyo Phase Tactics.png';
 import Kingdom from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/wp-coponents/image/Kingdoms Of The Silent Moon.png';
 import Requiem from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/wp-coponents/image/Requiem Of Broken Heroes.png'
-import Back from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/wp-coponents/image/vista-wei-OiERUvVrioU-unsplash.jpg';
+import Back from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/wp-coponents/image/Glitter_Particles_Motion_Background_04.gif';
+import UnityCharacter from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/UnityCharacter.js';
+
 import './GameList.css';
 function GameList() {
     const [cardSide1, setCardSide1] = useState(true);
@@ -20,43 +22,54 @@ function GameList() {
     const [cardSide4, setCardSide4] = useState(true);
 
     const [cardSide5, setCardSide5] = useState(true);
+    const canvasRef1 = useRef(null);
+    const [unityInstance1, setUnityInstance1] = useState(null);
+    const canvasRef2 = useRef(null);
+    const [unityInstance2, setUnityInstance2] = useState(null);
 
 
 
-    return (<Container>
-        <Row ><h1 style={{ color: 'black', margin: '10px', paddingTop: '20px', textAlign: 'center' }} >Game List</h1></Row>
 
-        <Row className=" h-100 flex-nowrap  bg-light" style={{ overflowY: 'hidden', overflowX: 'auto' }}>
+    return (<Card id="cardRow" className="rounded-5">
+        <Row ><h1 style={{ color: 'white', paddingTop: '20px', textAlign: 'center' }} >Game List</h1></Row>
+
+        <Row className="  flex-nowrap  " style={{ overflowY: 'hidden', overflowX: 'auto', height: '450px', backgroundColor: 'transparent' }} >
 
 
 
-            <Col xs={6} md={4} className='h-100' >
-                <Container className='h-100' onClick={() => setCardSide1(!cardSide1)} >
+            <Col xs={6} md={4} className='d-flex' style={{ backgroundColor: 'transparent' }} >
+                <Container onClick={() => setCardSide1(!cardSide1)} >
                     {cardSide1 ? (
                         <Card className={`h-100 Card ${cardSide1 ? "switch" : ""}`}>
 
-                            <CardImg id='startSwitch' src={Back} className='h-100' variant="top"></CardImg>
-                            <CardImgOverlay>
-
+                            <CardImg id='startSwitch' variant="top" src={Back} style={{
+                                width: "100%",
+                                height: "440px",
+                                objectFit: "stretch",
+                            }}></CardImg>
+                            <CardImgOverlay id='startSwitch'>
+                                <Row>
+                                    {/* <UnityCharacter useRef={canvasRef1} useState={[unityInstance1, setUnityInstance1]} /> */}
+                                </Row>
                             </CardImgOverlay>
 
-                        </Card>) : (<Card className={` h-100 Card ${cardSide1 ? "switch" : ""}`}>
-                            <CardImg className={` card-img ${cardSide1 ? "switch" : ""}`} variant="top" src={Celestial} />
-                            <CardBody className={` Card-Body-Background ${cardSide1 ? "switch" : ""}`}>
-                                <Card.Title className={`card-Title `}>Celestial Blade Chronicle</Card.Title>
+                        </Card>) : (<Card className={`  h-100" Card ${cardSide1 ? "switch" : ""}`}>
+                            <CardImg className={`card-img ${cardSide1 ? "switch" : ""}`} variant="top" src={Celestial} />
+                            <CardBody className={` d-flex flex-column Card-Body-Background ${cardSide1 ? "switch" : ""}`}>
+                                <Card.Title className={` card-Title `}>Celestial Blade Chronicle</Card.Title>
                                 <Card.Text className={`card-text `}>
                                     Cyclone has been in production of a new  concept of how to take PacMan game stlye to the next level .
                                     We have implemented new AI tech to make the game more challenging and fun for all ages. The AI of the game will not
                                     only adapt to your playing style but also learn from it  making each game unique and exciting. To increase replayability
                                     no one playthrough of the game will be the same.
                                 </Card.Text>
-                                <Row>
-                                    <Col>
-                                        <Card.Link className='shiftLeft' href="#" >CardLink</Card.Link>
+                                <Row className='mt-auto'>
+                                    <Col id='buttonRow'>
+                                        <Button className='mt-auto ' href="#" >Card<br></br> Link</Button>
 
                                     </Col>
-                                    <Col>
-                                        <Card.Link href="#" >Another Link</Card.Link>
+                                    <Col id='buttonRow'>
+                                        <Button className='mt-auto ' href="#" >Another Link</Button>
 
                                     </Col>
                                 </Row>
@@ -68,16 +81,20 @@ function GameList() {
 
                 </Container>
 
-            </Col>
-            <Col xs={6} md={4} className='h-100'   >
-                <Container className='h-100' onClick={() => setCardSide2(!cardSide2)}>
+            </Col >
+            <Col xs={6} md={4} className='d-flex'   >
+                <Container onClick={() => setCardSide2(!cardSide2)}>
                     {cardSide2 ? (
                         <Card className={`h-100 Card ${cardSide2 ? "switch" : ""}`}>
-                            <CardImg id='startSwitch' className='h-100' variant="top" src={Back}></CardImg>
+                            <CardImg id='startSwitch' variant="top" src={Back} style={{
+                                width: "100%",
+                                height: "440px",
+                                objectFit: "stretch",
+                            }}></CardImg>
 
-                        </Card>) : (<Card className={`h-100 Card ${cardSide2 ? "switch" : ""}`}>
+                        </Card>) : (<Card className={`d-flex flex-column h-100 Card ${cardSide2 ? "switch" : ""}`}>
                             <CardImg className={`  card-img ${cardSide2 ? "switch" : ""}`} variant="top" src={Blades} />
-                            <CardBody className={` Card-Body-Background ${cardSide2 ? "switch" : ""}`}>
+                            <CardBody className={`d-flex flex-column Card-Body-Background ${cardSide2 ? "switch" : ""}`}>
                                 <Card.Title className={`card-Title `}>Blades Of The Spirit Realm</Card.Title>
                                 <Card.Text className={`card-text `}>
                                     Cyclone has been in production of a new  concept of how to take PacMan game stlye to the next level .
@@ -85,13 +102,13 @@ function GameList() {
                                     only adapt to your playing style but also learn from it  making each game unique and exciting. To increase replayability
                                     no one playthrough of the game will be the same.
                                 </Card.Text>
-                                <Row>
-                                    <Col>
-                                        <Card.Link className='shiftLeft' href="#" >CardLink</Card.Link>
+                                <Row className='mt-auto'>
+                                    <Col id='buttonRow'>
+                                        <Button className='mt-auto ' href="#" >Card <br></br> Link</Button>
 
                                     </Col>
-                                    <Col>
-                                        <Card.Link href="#" >Another Link</Card.Link>
+                                    <Col id='buttonRow'>
+                                        <Button className='mt-auto ' href="#" >Another Link</Button>
 
                                     </Col>
                                 </Row>
@@ -104,15 +121,19 @@ function GameList() {
                 </Container>
 
             </Col>
-            <Col xs={6} md={4} className='h-100'  >
-                <Container className='h-100' onClick={() => setCardSide3(!cardSide3)} >
+            <Col xs={6} md={4} className='d-flex'>
+                <Container onClick={() => setCardSide3(!cardSide3)} >
                     {cardSide3 ? (
                         <Card className={`h-100 Card ${cardSide3 ? "switch" : ""}`} >
-                            <CardImg id='startSwitch' className='h-100' variant="top" src={Back} ></CardImg>
+                            <CardImg id='startSwitch' variant="top" src={Back} style={{
+                                width: "100%",
+                                height: "440px",
+                                objectFit: "stretch",
+                            }}></CardImg>
 
                         </Card>) : (<Card className={`h-100 Card ${cardSide3 ? "switch" : ""}`}>
                             <CardImg className={`'h-100' card-img ${cardSide3 ? "switch" : ""}`} variant="top" src={Tokyo} />
-                            <Card.Body className={`h-100 Card-Body-Background ${cardSide3 ? "switch" : ""}`}>
+                            <Card.Body className={` d-flex flex-column h-100 Card-Body-Background ${cardSide3 ? "switch" : ""}`}>
                                 <Card.Title className={`card-Title `}>Tokyo Phase Tactics</Card.Title>
                                 <Card.Text className={`card-text `}>
                                     Cyclone has been in production of a new  concept of how to take PacMan game stlye to the next level .
@@ -121,13 +142,13 @@ function GameList() {
                                     no one playthrough of the game will be the same.
                                 </Card.Text>
 
-                                <Row>
-                                    <Col>
-                                        <Card.Link className='shiftLeft' href="#" >CardLink</Card.Link>
+                                <Row className='mt-auto'>
+                                    <Col id='buttonRow'>
+                                        <Button className='shiftLeft' href="#" >Card <br></br> Link</Button>
 
                                     </Col>
-                                    <Col>
-                                        <Card.Link href="#" >Another Link</Card.Link>
+                                    <Col id='buttonRow'>
+                                        <Button href="#" >Another Link</Button>
 
                                     </Col>
                                 </Row>
@@ -140,15 +161,19 @@ function GameList() {
                 </Container>
 
             </Col>
-            <Col xs={6} md={4} className='h-100' >
-                <Container className='h-100' onClick={() => setCardSide4(!cardSide4)}>
+            <Col xs={6} md={4} className='d-flex'  >
+                <Container onClick={() => setCardSide4(!cardSide4)}>
                     {cardSide4 ? (
                         <Card className={`h-100 Card ${cardSide4 ? "switch" : ""}`}>
-                            <CardImg id='startSwitch' className='h-100' variant="top" src={Back}></CardImg>
+                            <CardImg id='startSwitch' variant="top" src={Back} style={{
+                                width: "100%",
+                                height: "440px",
+                                objectFit: "stretch",
+                            }}></CardImg>
 
-                        </Card>) : (<Card className={` h-100 Card ${cardSide4 ? "switch" : ""}`}>
+                        </Card>) : (<Card className={`  Card ${cardSide4 ? "switch" : ""}`}>
                             <CardImg className={`card-img ${cardSide4 ? "switch" : ""}`} variant="top" src={Requiem} />
-                            <Card.Body className={`Card-Body-Background ${cardSide4 ? "switch" : ""}`}>
+                            <Card.Body className={`d-flex flex-column Card-Body-Background ${cardSide4 ? "switch" : ""}`}>
                                 <Card.Title className={`card-Title `}>Requiem Of Broken Heroes</Card.Title>
                                 <Card.Text className={`card-text `}>
                                     Cyclone has been in production of a new  concept of how to take PacMan game stlye to the next level .
@@ -157,13 +182,13 @@ function GameList() {
                                     no one playthrough of the game will be the same.
                                 </Card.Text>
 
-                                <Row>
-                                    <Col>
-                                        <Card.Link className='shiftLeft' href="#" >CardLink</Card.Link>
+                                <Row className='mt-auto'>
+                                    <Col id='buttonRow'>
+                                        <Button className='shiftLeft' href="#" >Card <br></br> Link</Button>
 
                                     </Col>
-                                    <Col>
-                                        <Card.Link href="#" >Another Link</Card.Link>
+                                    <Col id='buttonRow'>
+                                        <Button href="#" >Another Link</Button>
 
                                     </Col>
                                 </Row>
@@ -176,15 +201,19 @@ function GameList() {
                 </Container>
 
             </Col>
-            <Col xs={6} md={4} className='h-100'  >
-                <Container className='h-100' onClick={() => setCardSide5(!cardSide5)}>
+            <Col xs={6} md={4} className='d-flex' >
+                <Container onClick={() => setCardSide5(!cardSide5)}>
                     {cardSide5 ? (
                         <Card className={`h-100 Card ${cardSide5 ? "switch" : ""}`}>
-                            <CardImg id='startSwitch' className='h-100' variant="top" src={Back}></CardImg>
+                            <CardImg id='startSwitch' variant="top" src={Back} style={{
+                                width: "100%",
+                                height: "440px",
+                                objectFit: "stretch",
+                            }}></CardImg>
 
                         </Card>) : (<Card className={`h-100 Card ${cardSide5 ? "switch" : ""}`}>
                             <CardImg className={`card-img ${cardSide5 ? "switch" : ""}`} variant="top" src={Kingdom} />
-                            <Card.Body className={`Card-Body-Background ${cardSide5 ? "switch" : ""}`}>
+                            <Card.Body className={`d-flex flex-column Card-Body-Background ${cardSide5 ? "switch" : ""}`}>
                                 <Card.Title className={`card-Title `}>Kingdoms Of The Silent Moon</Card.Title>
                                 <Card.Text className={`card-text `}>
                                     Cyclone has been in production of a new  concept of how to take PacMan game stlye to the next level .
@@ -193,13 +222,13 @@ function GameList() {
                                     no one playthrough of the game will be the same.
                                 </Card.Text>
 
-                                <Row>
-                                    <Col>
-                                        <Card.Link className='shiftLeft' href="#" >CardLink</Card.Link>
+                                <Row className='mt-auto'>
+                                    <Col id='buttonRow'>
+                                        <Button className='shiftLeft' href="#" >Card <br></br> Link</Button>
 
                                     </Col>
-                                    <Col>
-                                        <Card.Link href="#" >Another Link</Card.Link>
+                                    <Col id='buttonRow'>
+                                        <Button href="#" >Another Link</Button>
 
                                     </Col>
                                 </Row>
@@ -214,9 +243,9 @@ function GameList() {
             </Col>
 
 
-        </Row>
+        </Row >
 
 
-    </Container >);
+    </Card >);
 }
 export default GameList;
