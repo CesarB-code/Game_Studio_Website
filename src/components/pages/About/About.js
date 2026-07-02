@@ -9,23 +9,20 @@ import {
     NavDropdown,
     Container
 } from 'react-bootstrap';
+
 import MyImage3 from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/assets/sufyan-5NrbL6F68V0-unsplash.jpg'
 import BottomWebLinks from '../BottomWebLinks/BottomWebLinks.js';
 import BoilerPlate from '../BoilerPlate.js/BoilerPlate.js';
 import './About.css'
 function About() {
     return (
-        <Container fluid className='Container full-page'>
+        <Container fluid className='custom-Container '>
             <Row >
                 <BoilerPlate />
 
             </Row>
-            <Row>
 
-                <Image className='companyImg' src={MyImage3} alt="MyImage3" fluid />
-
-            </Row>
-            <Row className='justify-content-center' style={{ color: 'white', fontFamily: 'fantasy', margin: 30, maxWidth: 'none' }}>
+            <Row className='justify-content-center' style={{ color: 'white', fontFamily: 'fantasy', margin: 30, maxWidth: 'none', overflow: 'auto' }}>
                 <Row className='justify-content-center'>
                     <Col>
                         <h3>About the Company</h3>
@@ -56,10 +53,10 @@ function About() {
                         <p id='text'>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                     </Col>
                 </Row>
+                <Row className='BottomWebLinks' >
+                    <BottomWebLinks />
+                </Row>
 
-            </Row>
-            <Row className='BottomWebLinks' >
-                <BottomWebLinks />
             </Row>
 
 

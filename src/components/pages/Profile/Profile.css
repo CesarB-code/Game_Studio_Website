@@ -3,7 +3,8 @@
     
     width: 200px;
     height: 200px;
-    margin-left: margin-left + 100px;
+    margin-top: 20px;
+    margin-left:  100px;
 }
 
 
@@ -39,23 +40,57 @@ p{
 }
 
 
-#Profile-container{
+.Profile-container{
+    margin-top: 50px;
+    height: 100%;
     background-image: url('/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/wp-coponents/image/jase-bloor-oCZHIa1D4EU-unsplash.jpg');
-   background-size: cover;
+   background-size:cover;
    
 }
 #root{
     height: 100vh;
-    width: 100vw;
 }
 .card{
+    height: 100%;
     background: none;
     justify-content: center;
 
 }
-#cardR{
+
+
+
+#cardP{
     border-color: white;
     border-width: 5px;
     border-style: solid;
     border-radius: 10px;
+    transition: border-color 0.3s ease;
+
+}
+#cardP:hover{
+    border-color: #F1535d;
+    border-width: 5px;
+    border-style: solid;
+    transition: 0.3s;
+}
+#pencil{
+    color: white;
+    text-align: center;
+    border-color: black;
+background-color: black;
+}
+#pencil:hover{
+    color: #F1535d;
+    transition: 0.3s;
+}
+.infoRightFormat{
+    margin-right: 0px;
+    
+}
+.infoLeftFormat{
+    margin-left: 10px;
+    margin-right: 0px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+
 }

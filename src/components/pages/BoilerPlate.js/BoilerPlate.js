@@ -17,7 +17,7 @@ function BoilerPlate() {
     return (
 
 
-        <Navbar expand="md" className=" bg-grey " fixed="top" data-bs-theme="dark" style={{ padding: '0px', margin: 0 }} >
+        <Navbar id='custom-navbar' expand="md" className=" bg-grey " fixed="top" data-bs-theme="dark" style={{ padding: '0px', margin: 0 }} >
 
             <Navbar.Brand href="/home" className="webHeader" style={{ fontFamily: 'fantasy' }}  >
                 <Row >

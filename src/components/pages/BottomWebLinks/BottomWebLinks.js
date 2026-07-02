@@ -12,6 +12,12 @@ import {
 
 import MyImage3 from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/assets/sufyan-5NrbL6F68V0-unsplash.jpg';
 import './BottomWebPage.css';
+import { RiTiktokLine } from "react-icons/ri";
+import { FaXTwitter } from "react-icons/fa6";
+import { CiYoutube } from "react-icons/ci";
+import { FaInstagram } from "react-icons/fa6";
+import { RxDiscordLogo } from "react-icons/rx";
+
 function BottomWebLinks() {
     return (
         <Container className=' bottomWebPage' >
@@ -23,30 +29,34 @@ function BottomWebLinks() {
                 <Col xs={10}>
                     <Row >
                         <Col style={{ textAlign: 'center', justifyContent: 'center' }} >
-                            <p style={{ color: 'white', fontSize: 15 }}>Social Media</p>
+                            <p style={{ color: 'white', fontSize: 22 }}>Social Media</p>
                         </Col>
                     </Row>
                     <Row style={{ justifyContent: 'center' }}>
 
                         <Col xs={2}  >
-                            <a href='#' className='link' >Twitter</a>
+                            <a href='#' className='link' ><FaXTwitter /></a>
                         </Col>
                         <Col xs={2}  >
-                            <a href='#' className='link' >Tiktok</a>
+                            <a href='#' className='link' ><RiTiktokLine />
+                            </a>
                         </Col>
                         <Col xs={2} >
-                            <a href='#' className='link' >Youtube</a>
+                            <a href='#' className='link' ><CiYoutube />
+                            </a>
                         </Col>
                         <Col xs={2} >
-                            <a href='#' className='link' >Instagram</a>
+                            <a href='#' className='link' ><FaInstagram />
+                            </a>
                         </Col>
                         <Col xs={2} >
-                            <a href='#' className='link' >Discord</a>
+                            <a href='#' className='link' ><RxDiscordLogo />
+                            </a>
                         </Col>
                     </Row>
                     <Row >
                         <Col xs={{ span: 4, offset: 4 }} style={{ textAlign: 'center' }} >
-                            <p style={{ color: 'white' }} >Company</p>
+                            <p style={{ color: 'white', fontSize: 22 }} >Company</p>
                         </Col>
                     </Row>
 
@@ -70,7 +80,7 @@ function BottomWebLinks() {
 
 
                         <Col xs={{ span: 4, offset: 4 }} style={{ textAlign: 'center' }} >
-                            <p style={{ color: 'white' }} >Store</p>
+                            <p style={{ color: 'white', fontSize: 22 }} >Store</p>
                         </Col>
 
 

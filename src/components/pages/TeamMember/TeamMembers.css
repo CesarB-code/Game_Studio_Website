@@ -1,0 +1,24 @@
+
+#Card{
+    max-height: 450px;
+    width: 100%;
+    height: 100%;
+    max-width: 490px;
+    border: 5px solid #F2a3a8;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    transition: border-color 0.3s ease;
+
+
+}
+#Card:hover{
+    border: 5px solid #F1535d;
+    transition: 0.3s;
+    
+   
+}
+#animeProfile{
+    width:100%;
+    height: 100%;
+}

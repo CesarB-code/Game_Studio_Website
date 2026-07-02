@@ -4,126 +4,177 @@ import {
 
     Container
 } from 'react-bootstrap';
-import { useState } from 'react';
+import { GoPencil } from "react-icons/go";
+import { useEffect, useRef, useState } from 'react';
 import BoilerPlate from '../BoilerPlate.js/BoilerPlate';
 import ProfileImage from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/assets/istockphoto-828763406-1024x1024.jpg'
 import Background from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/wp-coponents/image/vista-wei-OiERUvVrioU-unsplash.jpg';
 import './Profile.css'
 import BottomWebLinks from '../BottomWebLinks/BottomWebLinks.js';
+import { WiDayStormShowers } from 'react-icons/wi';
 function Profile() {
-    const element = document.querySelector(".ProfileImg");
 
-    const currentMargin =
-        parseFloat(getComputedStyle(element).paddingLeft);
+    let element = useRef(null);
+    let rowElement = useRef(null);
 
-    element.style.paddingLeft = `${currentMargin - 25}px`;
+    const addMargin = () => {
+        let currentMargin = parseFloat(getComputedStyle(element.current).marginLeft);
+        const rowWidth = parseFloat(getComputedStyle(rowElement.current).width);
+        const middleOfRow = rowWidth / 2;
+        const remainderRow = middleOfRow - currentMargin
+
+        element.current.style.marginLeft = `${currentMargin + remainderRow - 220}px`;
+    };
+    window.addEventListener('load', addMargin);
+    window.addEventListener('resize', addMargin);
+
     return (
-        <Container id='Profile-container' fluid style={{
-            height: '100vh',
-            width: '100vw',
-            padding: '60px',
-        }} >
+        <Container className='Profile-container' fluid style={{ overflowX: 'hidden', overflowY: 'scroll' }}>
 
             <BoilerPlate />
 
-            <Card id='cardR'>
-                <Row >
-                    <Row style={{ marginTop: '70px' }} >
-                        <Col xs={{ span: 2, offset: 5 }} className='ProfileImg'>
-                            <img src={ProfileImage} style={{ border: '2px solid #F2a3a8' }} alt="Profile" className='ProfileImg' />
-                        </Col>
-                    </Row>
-
-                    <Row style={{ paddingTop: "20px" }} >
-                        <Col xs={{ span: 4, order: 'first' }}>
-                            <Card>
-                                <Row >
-                                    <Card id="cardR">
-                                        <p className="Text">UserName: Fenrir</p>
-                                    </Card>
 
 
-
-                                </Row>
-                                <Row>
-                                    <Card id="cardR">
-                                        <p className="Text">Name: John Doe</p>
-                                    </Card>
-
-                                </Row>
-                                <Row>
-                                    <Card id="cardR">
-                                        <p className="Text">Name: John Doe</p>
-                                    </Card>
-
-                                </Row>
-                                <Row>
-                                    <Card id="cardR">
-                                        <p className="Text">Name: John Doe</p>
-                                    </Card>
-
-                                </Row>
-                                <Row>
-                                    <Card id="cardR">
-                                        <p className="Text">Name: John Doe</p>
-                                    </Card>
-
-                                </Row>
-                                <Row>
-                                    <Card id="cardR">
-                                        <p className="Text">Name: John Doe</p>
-                                    </Card>
-
-                                </Row>
-                                <Row>
-                                    <Card id="cardR">
-                                        <p className="Text">Name: John Doe</p>
-                                    </Card>
-
-                                </Row>
-                            </Card>
-                        </Col>
-
-                        <Col xs={{ span: 4, offset: 4, order: "last" }}>
-                            <Card>
-                                <Row >
-                                    <Card id="cardR">
-                                        <p className="Text">Email: john.doe@example.com</p>
-                                    </Card>
-
-                                </Row>
-                                <Row>
-                                    <Card id="cardR">
-                                        <p className="Text">Billing Address : 777 Luca Street</p>
-                                    </Card>
-
-                                </Row>
-                                <Row>
-                                    <Card id="cardR">
-                                        <p className="Text">Shipping Address: 777 Luca Street</p>
-                                    </Card>
-
-                                </Row>
-                                <Row>
-                                    <Card id="cardR">
-                                        <p className="Text">Payment Method: Credit Card</p>
-                                    </Card>
-
-                                </Row>
-                                <Row>
-                                    <Card id="cardR">
-                                        <p className="Text">Name: John Doe</p>
-                                    </Card>
-
-                                </Row>
-                            </Card>
-                        </Col>
-
-
-
-                    </Row>
+            <Row  >
+                <Row ref={rowElement} style={{ marginTop: '70px' }} >
+                    <Col ref={element} xs={{ span: 2, offset: 5 }} >
+                        <img src={ProfileImage} style={{ border: '2px solid #F2a3a8' }} alt="Profile" className='ProfileImg' />
+                    </Col>
                 </Row>
-            </Card>
+
+                <Row >
+                    <Col xs={{ span: 4, order: 'first', height: '100%' }} >
+
+                        <Row >
+                            <Col className="col-8 infoRightFormat">
+                                <Card id="cardR">
+                                    <p className="Text">UserName: Fenrir
+                                    </p>
+                                </Card>
+                            </Col>
+                            <Col className="col-2 infoLeftFormat" >
+                                <p className="Text"> <GoPencil id='pencil' /></p>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col className='col-8'>
+                                <Card id="cardR">
+                                    <p className="Text">Name: John Doe</p>
+                                </Card>
+                            </Col>
+
+                            <Col className="col-2 infoLeftFormat">
+                                <p className="Text"> <GoPencil id='pencil' /></p>
+                            </Col>
+
+                        </Row>
+                        <Row>
+                            <Col className='col-8' >
+                                <Card id="cardR">
+                                    <p className="Text">Name: John Doe</p>
+                                </Card>
+                            </Col>
+
+                            <Col className="col-2 infoLeftFormat">
+                                <p className="Text"> <GoPencil id='pencil' /></p>
+                            </Col>
+
+                        </Row>
+                        <Row>
+                            <Col className='col-8'>
+                                <Card id="cardR">
+                                    <p className="Text">Name: John Doe</p>
+                                </Card>
+                            </Col>
+                            <Col className="col-2 infoLeftFormat">
+                                <p className="Text"> <GoPencil id='pencil' /></p>
+                            </Col>
+
+                        </Row>
+                        <Row>
+                            <Col className='col-8'>
+                                <Card id="cardR">
+                                    <p className="Text">Name: John Doe</p>
+                                </Card>
+                            </Col>
+                            <Col className="col-2 infoLeftFormat">
+                                <p className="Text"> <GoPencil id='pencil' /></p>
+                            </Col>
+
+                        </Row>
+
+
+                    </Col>
+
+                    <Col xs={{ span: 4, offset: 3, order: "last", height: '100%' }}>
+
+                        <Row >
+                            <Col className='col-8'>
+                                <Card id="cardR">
+                                    <p className="Text">Email: john.doe@example.com</p>
+                                </Card>
+                            </Col>
+                            <Col className="col-2 infoLeftFormat">
+                                <p className="Text"> <GoPencil id='pencil' /></p>
+                            </Col>
+
+                        </Row>
+                        <Row>
+                            <Col className='col-8'>
+                                <Card id="cardR">
+                                    <p className="Text">Billing Address : 777 Luca Street</p>
+                                </Card>
+                            </Col>
+                            <Col className="col-2 infoLeftFormat">
+                                <p className="Text"> <GoPencil id='pencil' /></p>
+                            </Col>
+
+                        </Row>
+                        <Row>
+                            <Col className='col-8'>
+                                <Card id="cardR">
+                                    <p className="Text">Shipping Address: 777 Luca Street</p>
+                                </Card>
+
+                            </Col>
+                            <Col className="col-2 infoLeftFormat">
+                                <p className="Text"> <GoPencil id='pencil' /></p>
+                            </Col>
+
+                        </Row>
+                        <Row>
+                            <Col className='col-8'>
+                                <Card id="cardR">
+                                    <p className="Text">Payment Method: Credit Card</p>
+                                </Card>
+                            </Col>
+                            <Col className="col-2 infoLeftFormat">
+                                <p className="Text"> <GoPencil id='pencil' /></p>
+                            </Col>
+
+                        </Row>
+                        <Row>
+                            <Col className='col-8'>
+                                <Card id="cardR">
+                                    <p className="Text">Name: John Doe</p>
+                                </Card>
+
+                            </Col>
+                            <Col className="col-2 infoLeftFormat">
+                                <p className="Text"> <GoPencil id='pencil' /></p>
+                            </Col>
+                        </Row>
+
+                    </Col>
+
+
+
+                </Row>
+            </Row>
+
+
+
+
 
 
         </Container >

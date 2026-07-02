@@ -2,9 +2,10 @@
     margin-top: auto;
     padding: auto;
 }
-.navbar{
+.custom-navbar{
     position: fixed;
   top: 0;
+height: 100%;
 
 
 }
@@ -24,9 +25,13 @@
   font-family:fantasy;
 }
 .webHeader{
-  color:#F1535d ;
-  text-shadow: 1px 1px 10px #F1535d ;
+  color:white ;
+  text-shadow: 1px 1px 10px white ;
   width: 80%;
+}
+.webHeader:hover{
+  color: #F1535d ;
+  text-shadow: 1px 1px 10px #F1535d ;
 }
 .disabled{
   pointer-events: none;

@@ -11,7 +11,6 @@ import Tokyo from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/
 import Kingdom from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/wp-coponents/image/Kingdoms Of The Silent Moon.png';
 import Requiem from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/wp-coponents/image/Requiem Of Broken Heroes.png'
 import Back from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/wp-coponents/image/Glitter_Particles_Motion_Background_04.gif';
-import UnityCharacter from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/UnityCharacter.js';
 
 import './GameList.css';
 function GameList() {
@@ -22,18 +21,25 @@ function GameList() {
     const [cardSide4, setCardSide4] = useState(true);
 
     const [cardSide5, setCardSide5] = useState(true);
-    const canvasRef1 = useRef(null);
-    const [unityInstance1, setUnityInstance1] = useState(null);
-    const canvasRef2 = useRef(null);
-    const [unityInstance2, setUnityInstance2] = useState(null);
+    const timeoutRef = useRef(null);
+    const [isScrolling, setIsScrolling] = useState(false);
+    const handleScroll = () => {
+        setIsScrolling(true);
+
+        clearTimeout(timeoutRef.current);
+
+        timeoutRef.current = setTimeout(() => {
+            setIsScrolling(false);
+        }, 200);
+    };
 
 
 
 
-    return (<Card id="cardRow" className="rounded-5">
-        <Row ><h1 style={{ color: 'white', paddingTop: '20px', textAlign: 'center' }} >Game List</h1></Row>
+    return (<Card id="cardRow" className="rounded-5 flex-column" style={{ backgroundColor: 'transparent' }}>
+        <Row ><h1 style={{ color: 'white', paddingTop: '20px', textAlign: 'center', marginLeft: "0px" }} >Game List</h1></Row>
 
-        <Row className="  flex-nowrap  " style={{ overflowY: 'hidden', overflowX: 'auto', height: '450px', backgroundColor: 'transparent' }} >
+        <Row className="  flex-nowrap  " id="gameList">
 
 
 
@@ -57,12 +63,12 @@ function GameList() {
                             <CardImg className={`card-img ${cardSide1 ? "switch" : ""}`} variant="top" src={Celestial} />
                             <CardBody className={` d-flex flex-column Card-Body-Background ${cardSide1 ? "switch" : ""}`}>
                                 <Card.Title className={` card-Title `}>Celestial Blade Chronicle</Card.Title>
-                                <Card.Text className={`card-text `}>
+                                <CardText className={`card-text ${isScrolling ? "scrolling" : ""}`} onScroll={handleScroll}>
                                     Cyclone has been in production of a new  concept of how to take PacMan game stlye to the next level .
                                     We have implemented new AI tech to make the game more challenging and fun for all ages. The AI of the game will not
                                     only adapt to your playing style but also learn from it  making each game unique and exciting. To increase replayability
                                     no one playthrough of the game will be the same.
-                                </Card.Text>
+                                </CardText>
                                 <Row className='mt-auto'>
                                     <Col id='buttonRow'>
                                         <Button className='mt-auto ' href="#" >Card<br></br> Link</Button>
@@ -96,12 +102,12 @@ function GameList() {
                             <CardImg className={`  card-img ${cardSide2 ? "switch" : ""}`} variant="top" src={Blades} />
                             <CardBody className={`d-flex flex-column Card-Body-Background ${cardSide2 ? "switch" : ""}`}>
                                 <Card.Title className={`card-Title `}>Blades Of The Spirit Realm</Card.Title>
-                                <Card.Text className={`card-text `}>
+                                <CardText className={`card-text ${isScrolling ? "scrolling" : ""}`} onScroll={handleScroll}>
                                     Cyclone has been in production of a new  concept of how to take PacMan game stlye to the next level .
                                     We have implemented new AI tech to make the game more challenging and fun for all ages. The AI of the game will not
                                     only adapt to your playing style but also learn from it  making each game unique and exciting. To increase replayability
                                     no one playthrough of the game will be the same.
-                                </Card.Text>
+                                </CardText>
                                 <Row className='mt-auto'>
                                     <Col id='buttonRow'>
                                         <Button className='mt-auto ' href="#" >Card <br></br> Link</Button>
@@ -135,16 +141,16 @@ function GameList() {
                             <CardImg className={`'h-100' card-img ${cardSide3 ? "switch" : ""}`} variant="top" src={Tokyo} />
                             <Card.Body className={` d-flex flex-column h-100 Card-Body-Background ${cardSide3 ? "switch" : ""}`}>
                                 <Card.Title className={`card-Title `}>Tokyo Phase Tactics</Card.Title>
-                                <Card.Text className={`card-text `}>
+                                <CardText className={`card-text ${isScrolling ? "scrolling" : ""}`} onScroll={handleScroll}>
                                     Cyclone has been in production of a new  concept of how to take PacMan game stlye to the next level .
                                     We have implemented new AI tech to make the game more challenging and fun for all ages. The AI of the game will not
                                     only adapt to your playing style but also learn from it  making each game unique and exciting. To increase replayability
                                     no one playthrough of the game will be the same.
-                                </Card.Text>
+                                </CardText>
 
                                 <Row className='mt-auto'>
                                     <Col id='buttonRow'>
-                                        <Button className='shiftLeft' href="#" >Card <br></br> Link</Button>
+                                        <Button  >Card  Link</Button>
 
                                     </Col>
                                     <Col id='buttonRow'>
@@ -161,7 +167,7 @@ function GameList() {
                 </Container>
 
             </Col>
-            <Col xs={6} md={4} className='d-flex'  >
+            <Col xs={6} md={4} className='d-flex' style={{ marginTop: "5px" }} >
                 <Container onClick={() => setCardSide4(!cardSide4)}>
                     {cardSide4 ? (
                         <Card className={`h-100 Card ${cardSide4 ? "switch" : ""}`}>
@@ -175,16 +181,16 @@ function GameList() {
                             <CardImg className={`card-img ${cardSide4 ? "switch" : ""}`} variant="top" src={Requiem} />
                             <Card.Body className={`d-flex flex-column Card-Body-Background ${cardSide4 ? "switch" : ""}`}>
                                 <Card.Title className={`card-Title `}>Requiem Of Broken Heroes</Card.Title>
-                                <Card.Text className={`card-text `}>
+                                <CardText className={`card-text ${isScrolling ? "scrolling" : ""}`} onScroll={handleScroll}>
                                     Cyclone has been in production of a new  concept of how to take PacMan game stlye to the next level .
                                     We have implemented new AI tech to make the game more challenging and fun for all ages. The AI of the game will not
                                     only adapt to your playing style but also learn from it  making each game unique and exciting. To increase replayability
                                     no one playthrough of the game will be the same.
-                                </Card.Text>
+                                </CardText>
 
                                 <Row className='mt-auto'>
                                     <Col id='buttonRow'>
-                                        <Button className='shiftLeft' href="#" >Card <br></br> Link</Button>
+                                        <Button href="#" >Card <br></br> Link</Button>
 
                                     </Col>
                                     <Col id='buttonRow'>
@@ -201,7 +207,7 @@ function GameList() {
                 </Container>
 
             </Col>
-            <Col xs={6} md={4} className='d-flex' >
+            <Col xs={6} md={4} className='d-flex' style={{ marginTop: "5px" }} >
                 <Container onClick={() => setCardSide5(!cardSide5)}>
                     {cardSide5 ? (
                         <Card className={`h-100 Card ${cardSide5 ? "switch" : ""}`}>
@@ -215,16 +221,16 @@ function GameList() {
                             <CardImg className={`card-img ${cardSide5 ? "switch" : ""}`} variant="top" src={Kingdom} />
                             <Card.Body className={`d-flex flex-column Card-Body-Background ${cardSide5 ? "switch" : ""}`}>
                                 <Card.Title className={`card-Title `}>Kingdoms Of The Silent Moon</Card.Title>
-                                <Card.Text className={`card-text `}>
+                                <CardText className={`card-text ${isScrolling ? "scrolling" : ""}`} onScroll={handleScroll}>
                                     Cyclone has been in production of a new  concept of how to take PacMan game stlye to the next level .
                                     We have implemented new AI tech to make the game more challenging and fun for all ages. The AI of the game will not
                                     only adapt to your playing style but also learn from it  making each game unique and exciting. To increase replayability
                                     no one playthrough of the game will be the same.
-                                </Card.Text>
+                                </CardText>
 
                                 <Row className='mt-auto'>
                                     <Col id='buttonRow'>
-                                        <Button className='shiftLeft' href="#" >Card <br></br> Link</Button>
+                                        <Button href="#" >Card <br></br> Link</Button>
 
                                     </Col>
                                     <Col id='buttonRow'>

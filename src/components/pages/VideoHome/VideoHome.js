@@ -7,13 +7,13 @@ import BoilerPlate from '../BoilerPlate.js/BoilerPlate.js';
 import BottomWebLinks from '../BottomWebLinks/BottomWebLinks.js';
 import ContentCarousel from '../wp-coponents/ContentCarousel/ContentCarousel.js';
 import {
-  Row, Col, Card, Overlay,
+  Row, Col, Card, Overlay, CardTitle,
 
   Container
 } from 'react-bootstrap';
 import './VideoHomePage.css';
 import { DrawObject } from "../wp-coponents/FaceFunctions.js";
-import UnityCharacter from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/UnityCharacter.js';
+import UnityCharacter from '../../UnityCharacter/UnityCharacter.js';
 import overlayImage from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/assets/takashi-miyazaki-64ajtpEzlYc-unsplash.jpg';
 export let gl;
 export let canvas;
@@ -41,6 +41,21 @@ function VideoHome() {
   const canvasRef1 = useRef(null);
   const [unityInstance1, setUnityInstance1] = useState(null);
 
+  let element = useRef(null);
+  let rowElement = useRef(null);
+
+  const addMargin = () => {
+    let currentMargin = parseFloat(getComputedStyle(element.current).marginRight);
+    let currentWidth = parseFloat(getComputedStyle(element.current).width);
+
+    const rowWidth = parseFloat(getComputedStyle(rowElement.current).width);
+    const middleOfRow = rowWidth / 2;
+    const remainderRow = middleOfRow - currentMargin - currentWidth
+
+    element.current.style.marginRight = currentMargin + remainderRow >= 0 ? `${currentMargin + remainderRow}px` : '0px';
+  };
+  window.addEventListener('load', addMargin);
+  window.addEventListener('resize', addMargin);
 
 
   Interaction.SetState();
@@ -164,40 +179,44 @@ function VideoHome() {
         <Col>
 
           <Row className="align-items-center justify-content-center">
-            <Row>
-              <Col className='col-4 ' md={{ span: 4, offset: 2 }} >
-                <Card id='cardR' className="rounded-5">
+            <Row style={{ margin: '0px', padding: '0px' }} ref={rowElement}>
+              <Col ref={element} className='col-4 '  >
+                <Card id='cardR' className="rounded-5 middleCard">
 
 
-                  <Col className=' col-8' >
+                  <Row >
 
-                    <Row className="align-items-center justify-content-center">
+                    <Row className=" flex-wrap align-items-center justify-content-center " style={{ width: '100%' }}>
                       <Row className=' video-Row ' style={{ backgroundColor: 'transparent' }} >
-                        <h1 style={{ textAlign: 'center', padding: '0px', margin: '10px', color: 'white' }}>AI Drawing Software </h1>
+                        <CardTitle style={{ color: 'white', fontFamily: 'fantasy', fontSize: "32px", padding: "0px" }}>AI Drawing Software</CardTitle>
                       </Row>
-                      <Card id="cardR" className="align-items-center " style={{ width: '300px', height: '300px', padding: '0px' }}>
+                      <Card id="cardR" className="align-items-center " style={{ width: '200px', height: '200px', padding: '0px' }}>
                         <canvas
                           ref={canvasRef}
                           width={300}
                           height={300}
-                          style={{ width: '100%', margin: '0px', padding: '0px', border: '4px solid #f2a3a8 ' }}
+                          style={{ width: '100%', margin: '0px', padding: '0px', border: '4px solid #f2a3a8 ', maxHeight: "300px" }}
                         />
                       </Card>
 
                     </Row>
-                  </Col>
+                  </Row>
                 </Card>
               </Col>
-              <Col className='col-4 '  >
-                <Card id="cardR" className="rounded-5">
-                  <Row>
+              <Col className='col-4 ' >
+                <Card id="cardR" className="rounded-5 middleCard">
+                  <Row >
                     <h2 className='title'>
                       Description
                     </h2>
                   </Row>
                   <Row>
+
                     <Col className='col-4 ' >
-                      <UnityCharacter useRef={canvasRef1} useState={[unityInstance1, setUnityInstance1]} />
+                      <Card id="cardR">
+                        <UnityCharacter useRef={canvasRef1} useState={[unityInstance1, setUnityInstance1]} />
+
+                      </Card>
                     </Col>
 
                     <Col>
