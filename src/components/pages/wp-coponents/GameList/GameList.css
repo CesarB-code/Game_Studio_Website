@@ -32,10 +32,12 @@ h1{
 
 
 }
-.card-img-top.card-img{
+.card-img{
+    min-height: 30%;
+    max-height: 100%;
+    object-fit: stretch;
+    object-position: top
     
-  max-height: 50%;
-  object-fit:fill;
 }
 .Card:hover{
     border: 5px solid #F1535d;
@@ -44,12 +46,7 @@ h1{
    
 }
 
-.card-body{
-    height:max-content;
-    position: relative;
-    padding-bottom: 0px;
-    background-color: #403c5f;
-}
+
 .card-img.switch{
      transform: rotateY(180deg);
    
@@ -97,16 +94,47 @@ text-decoration: underline;
 }
 
 
-.Card-Body-Background{
-    max-height: 50%;
+.card-body{
+   
     background-color: #403c5f;
-    padding-top: 5px;
 }
-.Card-Body-Background.switch{
+.card-body.switch{
         transform: rotateY(180deg);
 
 }
-.card-Title{
+#Card{
+    overflow-y: scroll;
+        background-color: #403c5f;
+
+}
+#CardTitle{
+    background-color: #403c5f;
+    margin-bottom: 0px;
+    margin-right: 10px;
+}
+#CardBody{
+    background-color: #403c5f;
+    height:40%;
+    padding: 0px;
+    margin-top: 0px;
+    margin-right: 10px;
+}
+#CardText{
+    background-color: #403c5f;
+    margin-bottom: 0px;
+    margin-right: 10px;
+    padding:0px;
+}
+#CardButtons{
+        height:20%;
+
+
+}
+
+.card-title{
+    height:  25%;
+    padding-bottom: 0px ;
+
         font-family:fantasy;
 font-size: clamp(20px, 1vw, 22px);
 
@@ -117,18 +145,18 @@ font-size: clamp(20px, 1vw, 22px);
         color: white;
 
 }
-.card-Title.switch{
+.card-title.switch{
         transform: rotateY(180deg);
 
 }
-.card-Title:hover{
+.card-title:hover{
     cursor:text;
 }
 .card-text{
     color: white;
     font-family: Trebuchet MS, sans-serif;
 font-size: 12px;
-  max-height: 100px;
+  height: 60%;
 overflow-y: auto;
   overflow-x: hidden;
   transition: 0.3s;
@@ -160,10 +188,7 @@ overflow-y: auto;
 
   object-fit:fill;
 }
-#img{
-    height: auto;
-    
-}
+
 #gameList{
     overflow-y: hidden;
     overflow-x: auto;
@@ -191,7 +216,8 @@ overflow-y: auto;
     border-width: 5px;
     border-style: solid;
     transition: border-color 0.3s ease;
-    
+     width: '100%';
+     height: '100%';
 }
 #cardRow:hover{
     border-color: #F1535d;
@@ -204,11 +230,11 @@ overflow-y: auto;
     align-items: center;
     justify-content: center;
    display: flex;
-   
+   padding-top: 5px;
    margin-right: 10px;
 
     background-color: #f2a3a8;
-    border: 14px solid #f2a3a8;
+    border: 4px solid #f2a3a8;
 }
 .btn:hover{
     background-color: #f1535d;
@@ -219,16 +245,43 @@ overflow-y: auto;
 #buttonRow{
     justify-content: center;
     display: flex;
+    height: 100%;
     margin-right: 0px;
     margin-left: 0px;
+}
+#buttonRowSize{
+    height: 25%;
+    width: 100%;
 }
 
 .col-md-4{
     max-height: 440px;;
 }
+#GameTitle{
+    height: 20%;
+    color: white;
+    padding-top: 20px;
+    text-align: center;
+    margin-left: 0px;
+}
 
+@media (max-width: 992px) {
+    #GameTitle {
+        font-size: 32px;
+    }
+}
 
+@media (max-width: 768px) {
+    #GameTitle {
+        font-size: 28px;
+    }
+}
 
+@media (max-width: 576px) {
+    #GameTitle {
+        font-size: 24px;
+    }
+}
 
 @keyframes pulse{
     0% {
@@ -241,6 +294,46 @@ overflow-y: auto;
         transform: scale(1);
     }
   
+}
+@media(max-width: 992px){
+    .btn{
+         background-color: #f2a3a8;
+    border: 14px solid #f2a3a8;
+    }
+    .btn:hover{
+        background-color: #f1535d;
+        border: 14px solid #f1535d;
+        color: white;
+    }
+
+
+}
+
+@media(max-width: 768px){
+    .btn{
+         background-color: #f2a3a8;
+    border: 10px solid #f2a3a8;
+    }
+    .btn:hover{
+        background-color: #f1535d;
+        border: 10px solid #f1535d;
+        color: white;
+    }
+
+
+}
+@media(max-width: 576px){
+    .btn{
+         background-color: #f2a3a8;
+    border: 6px solid #f2a3a8;
+    }
+    .btn:hover{
+        background-color: #f1535d;
+        border: 6px solid #f1535d;
+        color: white;
+    }
+
+
 }
   @keyframes fadeOut{
 

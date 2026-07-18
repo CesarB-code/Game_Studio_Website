@@ -1,5 +1,6 @@
-.row{
-    padding-top:10px;
+.mainElement{
+    
+    width:100% 
 }
 .body{
     font-family: Trebuchet MS, sans-serif;
@@ -12,16 +13,47 @@
 }
 .carousel{
     background-color: '#403053';
-    margin-top: 50px;
+    margin-top: 0px;
     margin-bottom: 50px;
+    height: 100%;
+   
 }
 .carousel-img{
-  height: 400px;
-  width: 800px;
+  height: clamp(250px, 50vh, 700px);;
+  width: 60%;
+  
+    padding-bottom: 15px;
+    padding-left: 0px;
+    padding-right: 0px;
+    margin: 0px;
   object-fit: fill;
 }
 #cardRow{
     border-color: white;
     border-width: 5px;
-    border-style: solid
+    border-style: solid;
+    padding: 0px;
+    margin: 0px;
+}
+#cardRow:hover{
+    border-color: #F1535d;
+    border-width: 5px;
+    border-style: solid;
+    transition: 0.3s;
+}
+.carousel.slide{
+    height: 100%;
+
+}
+.carousel-inner{
+    
+    height: 100%;
+}
+#carousel-img{
+    
+    height: 100%;
+}
+.carousel-item{
+    
+    height: 100%;
 }

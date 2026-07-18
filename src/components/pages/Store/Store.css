@@ -6,3 +6,11 @@
     font-family:fantasy;
     color: white;
 }
+.main-background{
+    background-image: url('../wp-coponents/image/KomikoAI (7).png');
+    background-size:stretch;
+    background-position: center;
+    padding-top: 50px;
+
+   
+}
