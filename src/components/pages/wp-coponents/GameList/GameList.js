@@ -45,7 +45,7 @@ function GameList() {
 
 
     return (
-        <Card id="cardRow" className="rounded-5 flex-column" style={{ width: '100%', height: '100%', backgroundColor: 'transparent' }}>
+        <Card id="cardRow" className="rounded-5 flex-column" >
             <Row ><h1 id="GameTitle"  >Game List</h1></Row>
 
             <Row className="  flex-nowrap  " id="gameList">

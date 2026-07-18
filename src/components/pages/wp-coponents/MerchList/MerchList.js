@@ -20,7 +20,7 @@ function MerchList() {
                 <Col xs={6} md={4} className='d-flex' style={{ backgroundColor: 'transparent' }} >
                     <Container  >
 
-                        <Card className='h-100 '>
+                        <Card className='h-100 Card'>
 
                             <CardImg variant="top" src={Jacket} style={{
                                 width: "100%",
@@ -39,7 +39,7 @@ function MerchList() {
                 <Col xs={6} md={4} className='d-flex' style={{ backgroundColor: 'transparent' }} >
                     <Container  >
 
-                        <Card className='h-100 '>
+                        <Card className='h-100 Card'>
 
                             <CardImg id='startSwitch' variant="top" src={Hat} style={{
                                 width: "100%",
@@ -58,7 +58,7 @@ function MerchList() {
                 <Col xs={6} md={4} className='d-flex' style={{ backgroundColor: 'transparent' }} >
                     <Container  >
 
-                        <Card className='h-100 '>
+                        <Card className='h-100  Card'>
 
                             <CardImg id='startSwitch' variant="top" src={Jacket} style={{
                                 width: "100%",
@@ -77,7 +77,7 @@ function MerchList() {
                 <Col xs={6} md={4} className='d-flex' style={{ backgroundColor: 'transparent' }} >
                     <Container  >
 
-                        <Card className='h-100 '>
+                        <Card className='h-100 Card'>
 
                             <CardImg id='startSwitch' variant="top" src={Hat} style={{
                                 width: "100%",
@@ -97,7 +97,7 @@ function MerchList() {
                 <Col xs={6} md={4} className='d-flex' style={{ backgroundColor: 'transparent' }} >
                     <Container  >
 
-                        <Card className='h-100 '>
+                        <Card className='h-100 Card'>
 
                             <CardImg variant="top" src={Jacket} style={{
                                 width: "100%",
