@@ -1,47 +1,82 @@
-
-
-.custom-row{
+.custom-row {
     margin: 0px;
     padding: 0px;
 }
-p{
-    font-family: Trebuchet MS, sans-serif;
-    margin: 0px;
-}
-.link{
+
+
+.link {
     font-size: 20px;
     color: white;
     text-decoration: none;
-    font-family:fantasy;
-} 
+    font-family: fantasy;
+}
+
 .link:hover {
     color: #F1535d;
     text-decoration: underline;
 }
 
 
-.cyclone:hover{
-    color:#F1535d;
+.cyclone:hover {
+    color: #F1535d;
 }
 
-.col{
-    
-  margin: 0px;
-    padding: 0px;  
-}
-.col-4{
-    text-align: center;
-}
-.col-2{
-    text-align: center;
-}
-.bottomWebPage{
+
+.bottomWebPage {
     bottom: 0;
-    background-color: #403c5f;;
-    height:100%;
-    
+    background-color: #403c5f;
+    padding: 0px;
+    margin: 0px;
+    height: 100%;
+    width: 100;
+
 }
-#label{
+
+#label {
     background-image: url('/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/assets/sufyan-5NrbL6F68V0-unsplash.jpg');
-    background-size:cover;
+    background-size: fit;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: 0px;
+    padding: 0px;
+    height: 100%;
+
+
+
+}
+
+
+#info {
+    padding: 0px;
+}
+
+.col-full-height {
+    height: 100%;
+}
+
+.col-centered {
+    text-align: center;
+    justify-content: center;
+    padding: 0px;
+    margin: 0px;
+}
+
+.section-title {
+    color: white;
+    font-size: 22px;
+    margin: 0px;
+}
+
+.row-centered {
+    height: 10%;
+    justify-content: center;
+    margin: 0px;
+}
+
+.col-text-center {
+    text-align: center;
+}
+
+.row-section-header {
+    height: 15%;
 }

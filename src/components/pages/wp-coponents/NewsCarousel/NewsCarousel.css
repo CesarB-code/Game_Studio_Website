@@ -17,7 +17,7 @@
 .carousel {
     background-color: '#403053';
     margin-top: 0px;
-    margin-bottom: 50px;
+    margin-bottom: 0px;
     height: 100%;
 
 }
@@ -37,6 +37,7 @@
 #cardRow {
     border-color: white;
     border-width: 5px;
+    height: 100%;
     border-style: solid;
     padding: 0px;
     margin: 0px;
@@ -51,7 +52,15 @@
 
 .carousel.slide {
     height: 100%;
+    margin-bottom: 0%;
 
+}
+
+.carousel-indicators {
+    margin: 0%;
+    position: absolute;
+    bottom: 10px;
+    z-index: 10;
 }
 
 .carousel-inner {
@@ -67,4 +76,12 @@
 .carousel-item {
 
     height: 100%;
+}
+
+#GameTitle {
+    height: 20%;
+    color: white;
+    padding-top: 20px;
+    text-align: center;
+    margin-left: 0px;
 }

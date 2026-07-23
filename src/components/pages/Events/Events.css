@@ -1,8 +1,21 @@
-.body{
+.body {
     font-family: Didot, serif;
     color: white;
 }
-.title{
-    font-family:fantasy;
+
+.title {
+    font-family: fantasy;
     color: white;
+
+}
+
+#NewsTitle {
+    height: 100%;
+    color: white;
+    padding-top: 20px;
+    text-align: center;
+    font-size: 32px;
+    margin-left: 0px;
+    padding: 0px;
+    margin: 0px;
 }

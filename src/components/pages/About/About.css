@@ -1,24 +1,22 @@
-.companyImg{
-    margin-top: 30px;
-  width:200px;
-  height:200px;
-}
-.custom-Container{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100vw;
-  height: 100vh;
-    background-color: black;
+.companyImg {
+  margin-top: 30px;
+  width: 200px;
+  height: 200px;
 }
 
-.BottomWebLinks{
+.custom-Container {
 
-     position: fixed;
-  bottom: 0;
-    width: 100vw;
+
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  overflow-x: hidden;
 }
-#text{
-    color: white;
-    font-size: 12px;
+
+
+
+
+#text {
+  color: white;
+  font-size: 12px;
 }

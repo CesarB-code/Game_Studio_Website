@@ -11,7 +11,7 @@ import Tokyo from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/
 import Kingdom from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/wp-coponents/image/Kingdoms Of The Silent Moon.png';
 import Requiem from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/wp-coponents/image/Requiem Of Broken Heroes.png'
 import Back from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/wp-coponents/image/Glitter_Particles_Motion_Background_04.gif';
-
+import { RiArrowGoBackLine } from "react-icons/ri";
 import './GameList.css';
 function GameList() {
     const [cardSide1, setCardSide1] = useState(true);
@@ -53,9 +53,9 @@ function GameList() {
 
 
                 <Col xs={6} md={4} className='d-flex' style={{ backgroundColor: 'transparent' }} >
-                    <Container onClick={() => setCardSide1(!cardSide1)} >
+                    <Container  >
                         {cardSide1 ? (
-                            <Card className={`h-100 Card ${cardSide1 ? "switch" : ""}`} >
+                            <Card onClick={() => setCardSide1(!cardSide1)} className={`h-100 Card ${cardSide1 ? "switch" : ""}`} >
 
                                 <CardImg id='startSwitch' variant="top" src={Back} style={{
                                     width: "100%",
@@ -65,6 +65,7 @@ function GameList() {
 
 
                             </Card>) : (<Card id="Card" className={`  flex-column Card ${cardSide1 ? "switch" : ""}`} >
+                                <RiArrowGoBackLine onClick={() => setCardSide1(!cardSide1)} className="card-symbol" />
                                 <CardImg className={`card-img ${cardSide1 ? "switch" : ""}`} src={Celestial} />
                                 <CardTitle id="CardTitle" className={` card-Title `}>Celestial Blade Chronicle</CardTitle>
 
@@ -80,7 +81,7 @@ function GameList() {
 
                                 </CardBody>
                                 <ButtonGroup size="sm">
-                                    <Button className='mt-auto ' >Play<br></br> Demo</Button>
+                                    <Button className='mt-auto ' >Play Demo</Button>
 
 
                                     <Button className='mt-auto ' >Buy Full Game </Button>
@@ -94,9 +95,9 @@ function GameList() {
 
                 </Col >
                 <Col xs={6} md={4} className='d-flex'   >
-                    <Container onClick={() => setCardSide2(!cardSide2)}>
+                    <Container >
                         {cardSide2 ? (
-                            <Card className={`h-100 Card ${cardSide2 ? "switch" : ""}`}>
+                            <Card onClick={() => setCardSide2(!cardSide2)} className={`h-100 Card ${cardSide2 ? "switch" : ""}`}>
                                 <CardImg id='startSwitch' variant="top" src={Back} style={{
                                     width: "100%",
                                     height: "100%",
@@ -104,6 +105,7 @@ function GameList() {
                                 }}></CardImg>
 
                             </Card>) : (<Card id="Card" className={`d-flex flex-column  Card ${cardSide2 ? "switch" : ""}`}>
+                                <RiArrowGoBackLine onClick={() => setCardSide2(!cardSide2)} className="card-symbol" />
                                 <CardImg className={`  card-img ${cardSide2 ? "switch" : ""}`} src={Blades} />
                                 <CardTitle id="CardTitle" className={`card-Title `}>Blades Of The Spirit Realm</CardTitle>
 
@@ -118,7 +120,7 @@ function GameList() {
 
                                 </CardBody>
                                 <ButtonGroup size="sm">
-                                    <Button className='mt-auto ' >Play<br></br> Demo</Button>
+                                    <Button className='mt-auto ' >Play Demo</Button>
 
 
                                     <Button className='mt-auto ' >Buy Full Game </Button>
@@ -131,9 +133,9 @@ function GameList() {
 
                 </Col>
                 <Col xs={6} md={4} className='d-flex'>
-                    <Container onClick={() => setCardSide3(!cardSide3)} >
+                    <Container  >
                         {cardSide3 ? (
-                            <Card className={`h-100 Card ${cardSide3 ? "switch" : ""}`} >
+                            <Card onClick={() => setCardSide3(!cardSide3)} className={`h-100 Card ${cardSide3 ? "switch" : ""}`} >
                                 <CardImg id='startSwitch' variant="top" src={Back} style={{
                                     width: "100%",
                                     height: "100%",
@@ -141,6 +143,7 @@ function GameList() {
                                 }}></CardImg>
 
                             </Card>) : (<Card id="Card" className={` d-flex flex-column  Card  ${cardSide3 ? "switch" : ""}`}>
+                                <RiArrowGoBackLine onClick={() => setCardSide3(!cardSide3)} className="card-symbol" />
                                 <CardImg className={` card-img ${cardSide3 ? "switch" : ""}`} src={Tokyo} />
                                 <CardTitle id="CardTitle" className={`card-Title `}>Tokyo Phase Tactics</CardTitle>
 
@@ -156,7 +159,7 @@ function GameList() {
 
                                 </CardBody>
                                 <ButtonGroup size="sm">
-                                    <Button className='mt-auto ' >Play<br></br> Demo</Button>
+                                    <Button className='mt-auto ' >Play Demo</Button>
 
 
                                     <Button className='mt-auto ' >Buy Full Game </Button>
@@ -169,10 +172,10 @@ function GameList() {
                     </Container>
 
                 </Col>
-                <Col xs={6} md={4} className='d-flex' style={{ marginTop: "5px" }} >
-                    <Container onClick={() => setCardSide4(!cardSide4)}>
+                <Col xs={6} md={4} className='d-flex' >
+                    <Container >
                         {cardSide4 ? (
-                            <Card className={`h-100 Card ${cardSide4 ? "switch" : ""}`}>
+                            <Card onClick={() => setCardSide4(!cardSide4)} className={`h-100 Card ${cardSide4 ? "switch" : ""}`}>
                                 <CardImg id='startSwitch' variant="top" src={Back} style={{
                                     width: "100%",
                                     height: "100%",
@@ -180,6 +183,7 @@ function GameList() {
                                 }}></CardImg>
 
                             </Card>) : (<Card id="Card" className={` d-flex flex-column  Card ${cardSide4 ? "switch" : ""}`}>
+                                <RiArrowGoBackLine onClick={() => setCardSide4(!cardSide4)} className="card-symbol" />
                                 <CardImg className={`card-img ${cardSide4 ? "switch" : ""}`} src={Requiem} />
                                 <CardTitle id="CardTitle" className={`card-Title `}>Requiem Of Broken Heroes</CardTitle>
 
@@ -194,7 +198,7 @@ function GameList() {
 
                                 </CardBody>
                                 <ButtonGroup size="sm">
-                                    <Button className='mt-auto ' >Play<br></br> Demo</Button>
+                                    <Button className='mt-auto ' >Play Demo</Button>
 
 
                                     <Button className='mt-auto ' >Buy Full Game </Button>
@@ -207,10 +211,10 @@ function GameList() {
                     </Container>
 
                 </Col>
-                <Col xs={6} md={4} className='d-flex' style={{ marginTop: "5px" }} >
-                    <Container onClick={() => setCardSide5(!cardSide5)}>
+                <Col xs={6} md={4} className='d-flex' >
+                    <Container >
                         {cardSide5 ? (
-                            <Card className={`h-100 Card ${cardSide5 ? "switch" : ""}`}>
+                            <Card onClick={() => setCardSide5(!cardSide5)} className={`h-100 Card ${cardSide5 ? "switch" : ""}`}>
                                 <CardImg id='startSwitch' variant="top" src={Back} style={{
                                     width: "100%",
                                     height: "100%",
@@ -218,6 +222,7 @@ function GameList() {
                                 }}></CardImg>
 
                             </Card>) : (<Card id="Card" className={` d-flex flex-column  Card ${cardSide5 ? "switch" : ""}`}>
+                                <RiArrowGoBackLine onClick={() => setCardSide5(!cardSide5)} className="card-symbol" />
                                 <CardImg className={`card-img ${cardSide5 ? "switch" : ""}`} src={Kingdom} />
                                 <CardTitle id="CardTitle" className={`card-Title `}>Kingdoms Of The Silent Moon</CardTitle>
 
@@ -232,7 +237,7 @@ function GameList() {
 
                                 </CardBody>
                                 <ButtonGroup id="CardButton" size="sm">
-                                    <Button className='mt-auto ' >Play<br></br> Demo</Button>
+                                    <Button className='mt-auto ' >Play Demo</Button>
 
 
                                     <Button className='mt-auto ' >Buy Full Game </Button>

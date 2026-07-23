@@ -16,34 +16,36 @@ import BoilerPlate from '../BoilerPlate.js/BoilerPlate.js';
 import './About.css'
 function About() {
     return (
-        <Container fluid className='custom-Container '>
-            <Row >
+        <Row style={{ width: "100%", height: "100%", backgroundColor: "black", margin: "0px", overflowX: 'hidden' }}>
+            <Row style={{ width: "100%" }} >
                 <BoilerPlate />
 
             </Row>
 
-            <Row className='justify-content-center' style={{ color: 'white', fontFamily: 'fantasy', margin: 30, maxWidth: 'none', overflow: 'auto' }}>
-                <Row className='justify-content-center'>
+            <Row className='justify-content-center' style={{ width: '100vw', height: '60%', color: 'white', fontFamily: 'fantasy', paddingTop: "60px", paddingBottom: '10px' }}>
+                <Row >
                     <Col>
                         <h3>About the Company</h3>
+
                         <p id='text'>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                     </Col>
                     <Col >
                         <h3>Company Name</h3>
+
                         <p id='text'>Cyclone</p>
                     </Col>
                 </Row>
-                <Row>
-                    <Col>
+                <Row >
+                    <Col >
                         <h3>Company History</h3>
                         <p id='text'>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                     </Col>
-                    <Col>
+                    <Col >
                         <h3>Company Values</h3>
                         <p id='text'>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                     </Col>
                 </Row>
-                <Row>
+                <Row >
                     <Col>
                         <h3>Company Description</h3>
                         <p id='text'>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
@@ -53,15 +55,15 @@ function About() {
                         <p id='text'>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                     </Col>
                 </Row>
-                <Row className='BottomWebLinks' >
-                    <BottomWebLinks />
-                </Row>
+
 
             </Row>
 
+            <Row style={{ width: '100%', height: '100%', margin: '0px', paddingTop: '200px' }}>
+                <BottomWebLinks />
+            </Row>
 
-
-        </Container>
+        </Row >
     );
 }
 export default About;

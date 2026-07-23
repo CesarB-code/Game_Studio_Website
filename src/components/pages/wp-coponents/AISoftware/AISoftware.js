@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { useRef, useState, useEffect } from 'react';
 import { DrawObject } from "/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/wp-coponents/FaceFunctions.js";
 import {
-    Row, Col, Card, CardTitle, Button,
+    Row, Col, Card, CardTitle, Button, ButtonGroup,
 
     Container
 } from 'react-bootstrap';
@@ -146,42 +146,47 @@ function AISoftware() {
 
     }, []);
     return (
-        < Card id='cardR' className="rounded-5 middleCard" >
+        < Card id='cardRow' className='rounded-5 flex-column' >
 
 
-            <Row >
 
-                <Row className=" flex-wrap align-items-center justify-content-center " style={{ width: '100%' }}>
-                    <Row className=' video-Row ' style={{ backgroundColor: 'transparent' }} >
-                        <CardTitle style={{ color: 'white', fontFamily: 'fantasy', fontSize: "32px", paddingTop: '20px', textAlign: 'center', marginLeft: "0px" }}>AI Drawing Software</CardTitle>
-                    </Row>
-                    <Row>
-                        <Col>
-                            <Card id="cardR" style={{ padding: '0px' }}>
-                                <canvas
-                                    ref={canvasRef}
-                                    width={300}
-                                    height={300}
-
-                                    style={{ margin: '0px', padding: '0px', border: '4px solid #f2a3a8 ', maxHeight: "300px" }}
-                                />
-                            </Card>
-                        </Col>
-                        <Col>
-                            <p style={{ color: 'white', borderColor: 'black', fontFamily: 'Trebuchet MS, sans-serif', textAlign: 'center' }}>For a complete demo of our new AI Drawing Software or for a preorder of our software , click on the buttons down below</p>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col>
-                            <Button style={{ margin: '10px' }}>Demo</Button>
-                        </Col>
-                        <Col>
-                            <Button style={{ margin: '10px' }}>Preorder</Button>
-                        </Col>
-                    </Row>
-
-                </Row>
+            <Row id='AITitle'>
+                <h1 id='AITitle' style={{ height: '100%' }} >AI Software</h1>
             </Row>
+            <Row id='ContentRow' className="flex-nowrap" style={{ height: '50%' }}>
+                <Col sm={{ span: 4 }} >
+
+                    <canvas
+                        ref={canvasRef}
+                        width={300}
+                        height={300}
+
+                        style={{ width: '100%', height: '100%', margin: '0px', padding: '0px', border: '4px solid #f2a3a8 ' }}
+                    />
+
+                </Col>
+                <Col sm={{ span: 4, offset: 3 }}>
+                    <p style={{ color: 'white', borderColor: 'black', fontFamily: 'Trebuchet MS, sans-serif', textAlign: 'center', overflowY: 'scroll', height: '70%' }}>For a complete demo of our new AI Drawing Software or for a preorder of our software , click on the buttons down below</p>
+                </Col>
+
+            </Row>
+            <Row>
+                <ButtonGroup size="sm">
+                    <Button className='mt-auto ' > Demo</Button>
+
+
+                    <Button className='mt-auto ' >Buy Software </Button>
+
+                </ButtonGroup>
+
+
+            </Row>
+
+
+
+
+
+
         </Card >
     );
 

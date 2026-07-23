@@ -5,19 +5,21 @@ import {
     CarouselCaption,
 
 } from 'react-bootstrap';
-import MyImage from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/assets/maha-khairy-3uuLWb6aQXc-unsplash.jpg'
-import MyImage2 from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/assets/maha-khairy-3uuLWb6aQXc-unsplash.jpg'
-import MyImage3 from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/assets/sufyan-5NrbL6F68V0-unsplash.jpg'
+import MyImage from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/wp-coponents/image/nooooodles-1337-3OdajQGd9sk-unsplash.jpg'
+import MyImage2 from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/wp-coponents/image/tim-mossholder-tq8Cuap8_wY-unsplash (1).jpg'
+import MyImage3 from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/wp-coponents/image/hongwei-fan-xUDobyOVM7Q-unsplash.jpg'
 
-import './ContentCarousel.css';
-function ContentCarousel() {
+import './NewsCarousel.css';
+function NewsCarousel() {
     return (<Card id='cardRow' className=" mainElement  ">
+
         <Carousel interval={1000} className="carousel" >
             <CarouselItem>
                 <img
-                    className="w-100 carousel-img"
+                    className="w-100  carousel-img"
                     src={MyImage}
                     alt="First slide"
+
                 />
                 <CarouselCaption style={{ textAlign: 'center', top: 100, right: 700, inlineBlock: 'true', width: '50%' }}>
                     <h2 className='title' style={{ fontSize: 50 }}><b>Drop in and sneak your way to victorys</b></h2>
@@ -55,4 +57,4 @@ function ContentCarousel() {
     </Card>
     );
 }
-export default ContentCarousel;
+export default NewsCarousel;

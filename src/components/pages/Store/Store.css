@@ -1,16 +1,27 @@
-.body{
+.body {
     font-family: Didot, serif;
     color: white;
 }
-.title{
-    font-family:fantasy;
+
+.title {
+    font-family: fantasy;
     color: white;
 }
-.main-background{
+
+.main-background {
     background-image: url('../wp-coponents/image/KomikoAI (7).png');
-    background-size:stretch;
+    background-size: cover;
+    background-repeat: no-repeat;
     background-position: center;
     padding-top: 50px;
 
-   
+
+}
+
+#GameTitle {
+    height: 20%;
+    color: white;
+    padding-top: 20px;
+    text-align: center;
+    margin-left: 0px;
 }

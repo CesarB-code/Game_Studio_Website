@@ -18,13 +18,18 @@ function Store() {
 
             </Row>
 
-            <Row style={{ height: '300px', marginBottom: '500px', background: 'transparent' }}>
-                <GameList />
+
+            <Row style={{ height: '300px', marginTop: '500px', background: 'transparent', paddingLeft: '20px', paddingRight: '20px' }}>
+                <Col style={{ height: '100%' }}>
+                    <AISoftware />
+
+                </Col>
+                <Col style={{ height: '100%' }}>
+                    <GameList />
+
+                </Col>
             </Row>
-            <Row style={{ height: '500px', marginTop: '30px', background: 'transparent' }}>
-                <AISoftware />
-            </Row>
-            <Row style={{ height: '500px', marginTop: '30px', background: 'transparent' }}>
+            <Row style={{ height: '200px', marginTop: '30px', background: 'transparent', paddingLeft: '20px', paddingRight: '20px' }}>
                 <MerchList />
             </Row>
 
