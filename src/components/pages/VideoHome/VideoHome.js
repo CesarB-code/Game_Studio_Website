@@ -12,7 +12,7 @@ import {
 } from 'react-bootstrap';
 import './VideoHomePage.css';
 import AISoftware from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/wp-coponents/AISoftware/AISoftware.js';
-import UnityCharacter from '../../UnityCharacter/UnityCharacter.js';
+import UnityDemo from '../wp-coponents/UnityDemo/UnityDemo.js';
 import overlayImage from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/assets/takashi-miyazaki-64ajtpEzlYc-unsplash.jpg';
 export let gl;
 export let canvas;
@@ -64,51 +64,43 @@ function VideoHome() {
 
     <Container fluid style={{ overflowX: 'hidden', overflowY: 'scroll', backgroundImage: `url(${overlayImage})` }} >
       <BoilerPlate className="video-Row" fixed="top" />
-      <Row className="video-Row" style={{ paddingTop: '60px' }}>
-        <ContentCarousel />
-      </Row>
+      <Row style={{ marginTop: '60px' }} ><h1 id="NewsTitle" style={{
+        height: '100%',
+        color: 'white',
+        paddingTop: '20px',
+        textAlign: 'center',
+        fontSize: '52px',
+        marginLeft: '0px',
+        padding: '0px',
+        margin: '0px',
+      }} > Cyclone  </h1></Row>
 
+      <Row style={{ marginTop: '60px' }} ><h1 id="NewsTitle" style={{
+        height: '100%',
+        color: 'white',
+        paddingTop: '20px',
+        textAlign: 'center',
+        fontSize: '52px',
+        marginLeft: '0px',
+        padding: '0px',
+        margin: '0px',
+      }} >Recent News </h1></Row>
       <Row className='video-Row align-items-center justify-content-center' style={{ backgroundColor: 'transparent' }}>
 
         <Col>
 
           <Row className="align-items-center justify-content-center">
             <Row style={{ margin: '0px', padding: '0px' }} ref={rowElement}>
-              <Col ref={element} className='col-4 '  >
-                <AISoftware />
-              </Col>
-              <Col className='col-4 ' >
-                <Card id="cardR" className="rounded-5 middleCard">
-                  <Row >
-                    <h2 className='title'>
-                      Description
-                    </h2>
-                  </Row>
-                  <Row>
-
-                    <Col className='col-4 ' >
-                      <Card id="cardR">
-                        <UnityCharacter useRef={canvasRef1} useState={[unityInstance1, setUnityInstance1]} />
-
-                      </Card>
-                    </Col>
-
-                    <Col>
-                      <Col style={{ paddingTop: '10px' }}>
-
-                        <p className='text'>This is a description for the AI Drawing Software.
-                          Most advanced  ai software for drawing.
-                          Implemented with mathmatical recunstruction ofimaghie and calcualtion of repeated animation based on user desire.
-                          Based on artist labeling and animation , AI makes animantion predication on what the airtist.
-
-                        </p>
-                      </Col>
-
-                    </Col>
-                  </Row>
-
-                </Card>
-              </Col>
+              <Row className="justify-content-start">
+                <Col ref={element} className='col-4 '  >
+                  <AISoftware />
+                </Col>
+              </Row>
+              <Row className="justify-content-end">
+                <Col md={4} className="d-flex justify-content-end">
+                  <UnityDemo useRef={canvasRef1} useState={{ unityInstance: unityInstance1, unityInstance1, setUnityInstance1 }} />
+                </Col>
+              </Row>
 
             </Row>
 

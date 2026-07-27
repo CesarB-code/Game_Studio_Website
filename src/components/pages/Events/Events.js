@@ -12,6 +12,7 @@ import {
 import NewsCarousel from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/wp-coponents/NewsCarousel/NewsCarousel.js';
 import BoilderPlate from '../BoilerPlate.js/BoilerPlate.js';
 import overlayImage from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/assets/takashi-miyazaki-64ajtpEzlYc-unsplash.jpg';
+import EventCards from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/wp-coponents/EventCards/EventCards.js';
 import '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/Events/Events.js';
 function Events() {
     return (
@@ -32,10 +33,23 @@ function Events() {
                     margin: '0px',
                 }} >Recent News </h1></Row>
 
-                <Row style={{ marginTop: '60px', marginLeft: '10px', marginRight: '30px' }}>
+                <Row style={{ marginTop: '60px', paddingLeft: '30px', paddingRight: '30px' }}>
 
                     <NewsCarousel />
 
+                </Row>
+                <Row style={{ marginTop: '100px' }} ><h1 id="NewsTitle" style={{
+                    height: '100%',
+                    color: 'white',
+                    paddingTop: '20px',
+                    textAlign: 'center',
+                    fontSize: '52px',
+                    marginLeft: '0px',
+                    padding: '0px',
+                    margin: '0px',
+                }} >Events </h1></Row>
+                <Row>
+                    <EventCards />
                 </Row>
             </Row>
 

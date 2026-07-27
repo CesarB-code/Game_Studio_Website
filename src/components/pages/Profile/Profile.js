@@ -1,184 +1,88 @@
-import {
-    Row, Col,
-    Card,
-
-    Container
-} from 'react-bootstrap';
-import { GoPencil } from "react-icons/go";
-import { useEffect, useRef, useState } from 'react';
+import { Row, Col, Container } from 'react-bootstrap';
+import { GoPencil } from 'react-icons/go';
 import BoilerPlate from '../BoilerPlate.js/BoilerPlate';
-import ProfileImage from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/assets/istockphoto-828763406-1024x1024.jpg'
-import Background from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/wp-coponents/image/vista-wei-OiERUvVrioU-unsplash.jpg';
-import './Profile.css'
-import BottomWebLinks from '../BottomWebLinks/BottomWebLinks.js';
-import { WiDayStormShowers } from 'react-icons/wi';
+import ProfileImage from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/assets/istockphoto-828763406-1024x1024.jpg';
+import './Profile.css';
+
 function Profile() {
+    const accountDetails = [
+        { label: 'Username', value: 'Fenrir' },
+        { label: 'Full Name', value: 'John Doe' },
+        { label: 'Account Type', value: 'Premium Member' },
+        { label: 'Joined', value: 'March 2024' }
+    ];
 
-    let element = useRef(null);
-    let rowElement = useRef(null);
-
-    const addMargin = () => {
-        let currentMargin = parseFloat(getComputedStyle(element.current).marginLeft);
-        const rowWidth = parseFloat(getComputedStyle(rowElement.current).width);
-        const middleOfRow = rowWidth / 2;
-        const remainderRow = middleOfRow - currentMargin
-
-        element.current.style.marginLeft = `${currentMargin + remainderRow - 220}px`;
-    };
-    window.addEventListener('load', addMargin);
-    window.addEventListener('resize', addMargin);
+    const contactDetails = [
+        { label: 'Email', value: 'john.doe@example.com' },
+        { label: 'Billing Address', value: '777 Luca Street' },
+        { label: 'Shipping Address', value: '777 Luca Street' },
+        { label: 'Payment Method', value: 'Credit Card' }
+    ];
 
     return (
-        <Container className='Profile-container' fluid style={{ overflowX: 'hidden', overflowY: 'scroll' }}>
-
+        <Container className="Profile-container" fluid>
             <BoilerPlate />
 
+            <Row className="justify-content-center profile-shell">
+                <Col xs={12} lg={10}>
+                    <div className="profile-card">
+                        <Row className="align-items-center gy-4">
+                            <Col xs={12} md={4} className="text-center">
+                                <img src={ProfileImage} alt="Profile" className="ProfileImg" />
+                                <div className="profile-badge">Member since 2024</div>
+                            </Col>
 
-
-            <Row  >
-                <Row ref={rowElement} style={{ marginTop: '70px' }} >
-                    <Col ref={element} xs={{ span: 2, offset: 5 }} >
-                        <img src={ProfileImage} style={{ border: '2px solid #F2a3a8' }} alt="Profile" className='ProfileImg' />
-                    </Col>
-                </Row>
-
-                <Row >
-                    <Col xs={{ span: 4, order: 'first', height: '100%' }} >
-
-                        <Row >
-                            <Col className="col-8 infoRightFormat">
-                                <Card id="cardR">
-                                    <p className="Text">UserName: Fenrir
+                            <Col xs={12} md={8}>
+                                <div className="profile-intro">
+                                    <h2 className="profile-name">Fenrir</h2>
+                                    <p className="profile-subtitle">Community Manager • Game Studio</p>
+                                    <p className="profile-bio">
+                                        Keep your profile information current so your account stays polished and easy to recognize across the website.
                                     </p>
-                                </Card>
-                            </Col>
-                            <Col className="col-2 infoLeftFormat" >
-                                <p className="Text"> <GoPencil id='pencil' /></p>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col className='col-8'>
-                                <Card id="cardR">
-                                    <p className="Text">Name: John Doe</p>
-                                </Card>
-                            </Col>
-
-                            <Col className="col-2 infoLeftFormat">
-                                <p className="Text"> <GoPencil id='pencil' /></p>
-                            </Col>
-
-                        </Row>
-                        <Row>
-                            <Col className='col-8' >
-                                <Card id="cardR">
-                                    <p className="Text">Name: John Doe</p>
-                                </Card>
-                            </Col>
-
-                            <Col className="col-2 infoLeftFormat">
-                                <p className="Text"> <GoPencil id='pencil' /></p>
-                            </Col>
-
-                        </Row>
-                        <Row>
-                            <Col className='col-8'>
-                                <Card id="cardR">
-                                    <p className="Text">Name: John Doe</p>
-                                </Card>
-                            </Col>
-                            <Col className="col-2 infoLeftFormat">
-                                <p className="Text"> <GoPencil id='pencil' /></p>
-                            </Col>
-
-                        </Row>
-                        <Row>
-                            <Col className='col-8'>
-                                <Card id="cardR">
-                                    <p className="Text">Name: John Doe</p>
-                                </Card>
-                            </Col>
-                            <Col className="col-2 infoLeftFormat">
-                                <p className="Text"> <GoPencil id='pencil' /></p>
-                            </Col>
-
-                        </Row>
-
-
-                    </Col>
-
-                    <Col xs={{ span: 4, offset: 3, order: "last", height: '100%' }}>
-
-                        <Row >
-                            <Col className='col-8'>
-                                <Card id="cardR">
-                                    <p className="Text">Email: john.doe@example.com</p>
-                                </Card>
-                            </Col>
-                            <Col className="col-2 infoLeftFormat">
-                                <p className="Text"> <GoPencil id='pencil' /></p>
-                            </Col>
-
-                        </Row>
-                        <Row>
-                            <Col className='col-8'>
-                                <Card id="cardR">
-                                    <p className="Text">Billing Address : 777 Luca Street</p>
-                                </Card>
-                            </Col>
-                            <Col className="col-2 infoLeftFormat">
-                                <p className="Text"> <GoPencil id='pencil' /></p>
-                            </Col>
-
-                        </Row>
-                        <Row>
-                            <Col className='col-8'>
-                                <Card id="cardR">
-                                    <p className="Text">Shipping Address: 777 Luca Street</p>
-                                </Card>
-
-                            </Col>
-                            <Col className="col-2 infoLeftFormat">
-                                <p className="Text"> <GoPencil id='pencil' /></p>
-                            </Col>
-
-                        </Row>
-                        <Row>
-                            <Col className='col-8'>
-                                <Card id="cardR">
-                                    <p className="Text">Payment Method: Credit Card</p>
-                                </Card>
-                            </Col>
-                            <Col className="col-2 infoLeftFormat">
-                                <p className="Text"> <GoPencil id='pencil' /></p>
-                            </Col>
-
-                        </Row>
-                        <Row>
-                            <Col className='col-8'>
-                                <Card id="cardR">
-                                    <p className="Text">Name: John Doe</p>
-                                </Card>
-
-                            </Col>
-                            <Col className="col-2 infoLeftFormat">
-                                <p className="Text"> <GoPencil id='pencil' /></p>
+                                </div>
                             </Col>
                         </Row>
 
-                    </Col>
+                        <Row className="profile-grid g-4">
+                            <Col xs={12} lg={6}>
+                                <div className="profile-panel">
+                                    <h3 className="profile-panel-title">Account Details</h3>
+                                    {accountDetails.map((item) => (
+                                        <div className="profile-row" key={item.label}>
+                                            <div className="profile-row-content">
+                                                <span className="profile-row-label">{item.label}</span>
+                                                <span className="profile-row-value">{item.value}</span>
+                                            </div>
+                                            <button className="profile-edit-btn" aria-label={`Edit ${item.label}`}>
+                                                <GoPencil />
+                                            </button>
+                                        </div>
+                                    ))}
+                                </div>
+                            </Col>
 
-
-
-                </Row>
+                            <Col xs={12} lg={6}>
+                                <div className="profile-panel">
+                                    <h3 className="profile-panel-title">Contact & Preferences</h3>
+                                    {contactDetails.map((item) => (
+                                        <div className="profile-row" key={item.label}>
+                                            <div className="profile-row-content">
+                                                <span className="profile-row-label">{item.label}</span>
+                                                <span className="profile-row-value">{item.value}</span>
+                                            </div>
+                                            <button className="profile-edit-btn" aria-label={`Edit ${item.label}`}>
+                                                <GoPencil />
+                                            </button>
+                                        </div>
+                                    ))}
+                                </div>
+                            </Col>
+                        </Row>
+                    </div>
+                </Col>
             </Row>
-
-
-
-
-
-
-        </Container >
-
+        </Container>
     );
 }
+
 export default Profile;

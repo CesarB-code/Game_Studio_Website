@@ -17,15 +17,15 @@ function BoilerPlate() {
     return (
 
 
-        <Navbar id='custom-navbar' expand="md" className=" bg-grey " fixed="top" data-bs-theme="dark" style={{ padding: '0px', margin: 0 }} >
+        <Navbar id='custom-navbar' expand="md" className="bg-grey w-100" fixed="top" data-bs-theme="dark" style={{ padding: '0px', margin: 0 }} >
 
             <Navbar.Brand href="/home" className="webHeader" style={{ fontFamily: 'fantasy' }}  >
                 <Row >
-                    <Col xs={6} sm={6} md={4}>
+                    <Col style={{ margin: "0px", paddinLeft: "20px" }} >
                         Cyclone<sup style={{ fontSize: 15 }}>TM</sup>
 
                     </Col>
-                    <Col xs={{ span: 2, order: 'last' }} sm={{ span: 4, order: 'last' }} md={{ span: 8, order: 'last' }} style={{ padding: '0px', height: '40px' }} >
+                    <Col style={{ margin: "0px", padding: "0px" }} >
                         <BsFan />
 
                     </Col>
@@ -34,9 +34,11 @@ function BoilerPlate() {
             </Navbar.Brand>
 
 
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <div className="ms-auto d-flex align-items-center">
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            </div>
             <NavbarBrand id="label"></NavbarBrand>
-            <Navbar.Collapse style={{ paddingLeft: '10px', marginRight: '65px' }}>
+            <Navbar.Collapse className="justify-content-end" style={{ paddingLeft: '10px', marginRight: '65px' }}>
                 <Nav className=" my-2 ms-lg-auto  "  >
                     <Nav.Link href="home">Home</Nav.Link>
                     <Nav.Link href="profile">Profile</Nav.Link>

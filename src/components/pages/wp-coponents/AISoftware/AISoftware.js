@@ -146,48 +146,40 @@ function AISoftware() {
 
     }, []);
     return (
-        < Card id='cardRow' className='rounded-5 flex-column' >
-
-
-
-            <Row id='AITitle'>
-                <h1 id='AITitle' style={{ height: '100%' }} >AI Software</h1>
+        <Card id='cardRow' className='rounded-5 d-flex flex-column p-3 p-md-4'>
+            <Row className='mb-3 text-center'>
+                <h1 id='AITitle'>AI Software</h1>
             </Row>
-            <Row id='ContentRow' className="flex-nowrap" style={{ height: '50%' }}>
-                <Col sm={{ span: 4 }} >
 
+            <Row className='g-4 align-items-center flex-grow-1' id='ContentRow'>
+                <Col xs={12} md={6} className='d-flex justify-content-center'>
                     <canvas
                         ref={canvasRef}
                         width={300}
                         height={300}
-
-                        style={{ width: '100%', height: '100%', margin: '0px', padding: '0px', border: '4px solid #f2a3a8 ' }}
+                        style={{ width: '100%', maxWidth: '300px', aspectRatio: '1 / 1', margin: '0px', padding: '0px', border: '4px solid #f2a3a8' }}
                     />
+                </Col>
+
+                <Col xs={12} md={6} className='d-flex align-items-center'>
+                    <p style={{ color: 'white', borderColor: 'black', fontFamily: 'Trebuchet MS, sans-serif', textAlign: 'center', overflowY: 'auto', height: '100%', margin: '0px' }}>
+                        For a complete demo of our new AI Drawing Software or for a preorder of our software, click on the buttons below.
+                    </p>
+                </Col>
+            </Row>
+
+            <Row className='mt-4 justify-content-center w-100'>
+                <Col>
+                    <Button className='rounded-3 h-100 flex-grow-1'>Demo</Button>
 
                 </Col>
-                <Col sm={{ span: 4, offset: 3 }}>
-                    <p style={{ color: 'white', borderColor: 'black', fontFamily: 'Trebuchet MS, sans-serif', textAlign: 'center', overflowY: 'scroll', height: '70%' }}>For a complete demo of our new AI Drawing Software or for a preorder of our software , click on the buttons down below</p>
+                <Col>
+                    <Button className='rounded-3 h-100 flex-grow-1'>Buy Software</Button>
+
                 </Col>
 
             </Row>
-            <Row>
-                <ButtonGroup size="sm">
-                    <Button className='mt-auto ' > Demo</Button>
-
-
-                    <Button className='mt-auto ' >Buy Software </Button>
-
-                </ButtonGroup>
-
-
-            </Row>
-
-
-
-
-
-
-        </Card >
+        </Card>
     );
 
 }
