@@ -146,7 +146,7 @@ function AISoftware() {
 
     }, []);
     return (
-        <Card id='cardRow' className='rounded-5 d-flex flex-column p-3 p-md-4'>
+        <Card id='cardRow' className='w-100 rounded-5 d-flex flex-column p-3 p-md-4'>
             <Row className='mb-3 text-center'>
                 <h1 id='AITitle'>AI Software</h1>
             </Row>
@@ -162,7 +162,7 @@ function AISoftware() {
                 </Col>
 
                 <Col xs={12} md={6} className='d-flex align-items-center'>
-                    <p style={{ color: 'white', borderColor: 'black', fontFamily: 'Trebuchet MS, sans-serif', textAlign: 'center', overflowY: 'auto', height: '100%', margin: '0px' }}>
+                    <p style={{ color: 'white', borderColor: 'black', fontFamily: 'Trebuchet MS, sans-serif', textAlign: 'center', overflowY: 'auto', height: '100%', margin: '0px', textShadow: '2px 2px 4px black' }}>
                         For a complete demo of our new AI Drawing Software or for a preorder of our software, click on the buttons below.
                     </p>
                 </Col>

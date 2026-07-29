@@ -14,101 +14,60 @@ import './BottomWebPage.css';
 
 
 function BottomWebLinks() {
+    const socialLinks = [
+        { icon: <FaXTwitter />, label: 'Twitter' },
+        { icon: <RiTiktokLine />, label: 'TikTok' },
+        { icon: <CiYoutube />, label: 'YouTube' },
+        { icon: <FaInstagram />, label: 'Instagram' },
+        { icon: <RxDiscordLogo />, label: 'Discord' }
+    ];
+
+    const companyLinks = ['Careers', 'Events', 'FAQ'];
+    const storeLinks = ['Location', 'Games', 'About', 'Merch'];
+
     return (
+        <Row className='bottomWebPage g-0'>
+            <Col xs={12} md={3} lg={2} id='label' className='footer-hero' />
 
-        <Row className='bottomWebPage'>
-            <Col id='label' xs={2} >
-
-            </Col>
-
-
-            <Col id='info' xs={10} >
-                <Row className='row-section-header' >
-                    <Col className='col-centered' >
+            <Col xs={12} md={9} lg={10} id='info'>
+                <div className='footer-content'>
+                    <div className='footer-section'>
                         <p className='section-title'>Social Media</p>
-                    </Col>
-                </Row>
-                <Row className='row-centered'>
+                        <Row className='g-3 justify-content-center'>
+                            {socialLinks.map((item) => (
+                                <Col key={item.label} xs={6} sm={4} md={2} className='text-center'>
+                                    <a href='#' className='link' aria-label={item.label}>
+                                        {item.icon}
+                                    </a>
+                                </Col>
+                            ))}
+                        </Row>
+                    </div>
 
-                    <Col xs={2}  >
-                        <a href='#' className='link' ><FaXTwitter /></a>
-                    </Col>
-                    <Col xs={2}  >
-                        <a href='#' className='link' ><RiTiktokLine />
-                        </a>
-                    </Col>
-                    <Col xs={2} >
-                        <a href='#' className='link' ><CiYoutube />
-                        </a>
-                    </Col>
-                    <Col xs={2} >
-                        <a href='#' className='link' ><FaInstagram />
-                        </a>
-                    </Col>
-                    <Col xs={2} >
-                        <a href='#' className='link' ><RxDiscordLogo />
-                        </a>
-                    </Col>
-                </Row>
-                <Row className='row-section-header'>
-                    <Col xs={{ span: 4, offset: 4 }} className='col-text-center' >
-                        <p className='section-title' >Company</p>
-                    </Col>
-                </Row>
+                    <div className='footer-section'>
+                        <p className='section-title'>Company</p>
+                        <Row className='g-3 justify-content-center'>
+                            {companyLinks.map((item) => (
+                                <Col key={item} xs={12} sm={4} className='text-center'>
+                                    <a href='#' className='link'>{item}</a>
+                                </Col>
+                            ))}
+                        </Row>
+                    </div>
 
-                <Row className='row-centered'>
-
-
-                    <Col xs={4} className='col-text-center' >
-                        <a href='#' className='link' >Carrers</a>
-
-                    </Col>
-                    <Col xs={4} className='col-text-center' >
-                        <a href='#' className='link' >Events</a>
-                    </Col>
-
-                    <Col xs={4} className='col-text-center'>
-                        <a href='#' className='link' >FAQ</a>
-
-                    </Col>
-                </Row>
-                <Row className='row-section-header'>
-
-
-                    <Col xs={{ span: 4, offset: 4 }} className='col-text-center' >
-                        <p className='section-title' >Store</p>
-                    </Col>
-
-
-                </Row>
-
-
-                <Row className='row-centered'>
-
-                    <Col xs={2}>
-                        <a href='#' className='link' >Location</a>
-
-                    </Col>
-                    <Col xs={2}>
-                        <a href='#' className='link' >Games</a>
-
-                    </Col>
-                    <Col xs={2}>
-                        <a href='#' className='link' >About</a>
-
-                    </Col>
-                    <Col xs={2}>
-                        <a href='#' className='link' >Merch</a>
-                    </Col>
-                </Row>
+                    <div className='footer-section'>
+                        <p className='section-title'>Store</p>
+                        <Row className='g-3 justify-content-center'>
+                            {storeLinks.map((item) => (
+                                <Col key={item} xs={6} sm={3} className='text-center'>
+                                    <a href='#' className='link'>{item}</a>
+                                </Col>
+                            ))}
+                        </Row>
+                    </div>
+                </div>
             </Col>
-
-
-
-        </Row >
-
-
-
+        </Row>
     );
 }
 export default BottomWebLinks;

@@ -23,6 +23,18 @@ function Profile() {
         <Container className="Profile-container" fluid>
             <BoilerPlate />
 
+            <Row style={{ marginTop: '60px' }}><h1 id="ProfileTitle" style={{
+                height: '100%',
+                color: 'white',
+                paddingTop: '20px',
+                textAlign: 'center',
+                fontSize: '52px',
+                marginLeft: '0px',
+                padding: '0px',
+                margin: '0px',
+                textShadow: '2px 2px 4px black',
+            }} >Profile</h1></Row>
+
             <Row className="justify-content-center profile-shell">
                 <Col xs={12} lg={10}>
                     <div className="profile-card">
@@ -35,7 +47,7 @@ function Profile() {
                             <Col xs={12} md={8}>
                                 <div className="profile-intro">
                                     <h2 className="profile-name">Fenrir</h2>
-                                    <p className="profile-subtitle">Community Manager • Game Studio</p>
+                                    <p className="profile-subtitle"> Premium Member</p>
                                     <p className="profile-bio">
                                         Keep your profile information current so your account stays polished and easy to recognize across the website.
                                     </p>

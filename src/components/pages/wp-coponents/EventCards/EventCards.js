@@ -13,202 +13,93 @@ import Requiem from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/sr
 import Back from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/wp-coponents/image/images.png';
 import { RiArrowGoBackLine } from "react-icons/ri";
 import './EventCards.css';
+
+const EventCard = ({ image, title, description, isScrolling, onScroll }) => (
+    <Col xs={6} md={4} className='d-flex'>
+        <Container style={{ paddingTop: '50px', height: '80%' }}>
+            <Card id="Card" className={`d-flex flex-column Card`}>
+                <CardImg className={`card-img`} src={image} />
+                <CardTitle id="CardTitle" className={`card-Title`}>{title}</CardTitle>
+                <CardBody id="CardBody" className={`d-flex flex-column`}>
+                    <CardText
+                        id="CardText"
+                        className={`card-text ${isScrolling ? "scrolling" : ""}`}
+                        onScroll={onScroll}
+                    >
+                        {description}
+                    </CardText>
+                </CardBody>
+                <ButtonGroup id="CardButton" size="sm">
+                    <Button className='mt-auto'>Sign Up</Button>
+                    <Button className='mt-auto'>Directions</Button>
+                </ButtonGroup>
+            </Card>
+        </Container>
+    </Col>
+);
+
 function EventCards() {
-    const [cardSide1, setCardSide1] = useState(true);
-    const [cardSide2, setCardSide2] = useState(true);
-    const [cardSide3, setCardSide3] = useState(true);
-
-    const [cardSide4, setCardSide4] = useState(true);
-
-    const [cardSide5, setCardSide5] = useState(true);
     const timeoutRef = useRef(null);
-    let [isScrolling1, setIsScrolling1] = useState(false);
-    let [isScrolling2, setIsScrolling2] = useState(false);
+    const [isScrollingStates, setIsScrollingStates] = useState([false, false, false, false, false]);
 
-    let [isScrolling3, setIsScrolling3] = useState(false);
+    const cardsData = [
+        {
+            image: Celestial,
+            title: "Video Game Tour",
+            description: "Embark on an exclusive guided tour through iconic video game studios and development facilities. Explore concept art galleries, play unreleased demos, and meet legendary game designers. Discover the creative process behind your favorite games and learn about next-generation technologies shaping the industry. An unforgettable experience for every gaming enthusiast."
+        },
+        {
+            image: Blades,
+            title: "Anime Art",
+            description: "Immerse yourself in stunning displays of hand-drawn and digital anime artwork from legendary studios. View rare animation cels, original character designs, and exclusive behind-the-scenes illustrations. Attend workshops with professional animators and artists. Browse a curated collection of anime merchandise and limited-edition art prints from your favorite series."
+        },
+        {
+            image: Tokyo,
+            title: "Cosplay Meetup",
+            description: "Connect with fellow cosplayers at our casual meetup event. Share tips on costume construction, photography techniques, and character portrayal. Make friends, exchange contact information, and plan group photo shoots. Enjoy food trucks, vendor booths, and networking opportunities with the vibrant cosplay community."
+        },
+        {
+            image: Requiem,
+            title: "Meet the Streamers",
+            description: "Get up close and personal with your favorite content creators and streamers at an intimate meet-and-greet event. Watch live gaming sessions, enjoy Q&A panels, and get autographs from your gaming heroes. Participate in exclusive tournaments, win signed merchandise, and network with other fans and aspiring streamers."
+        },
+        {
+            image: Kingdom,
+            title: "Cosplay Contest",
+            description: "Showcase your best cosplay costume and compete against talented cosplayers from around the world. Compete in multiple categories including craftsmanship, accuracy, and performance. Win incredible prizes, sponsorships, and recognition from industry judges. Feature your winning costume on our website and in promotional materials."
+        }
+    ];
 
-    let [isScrolling4, setIsScrolling4] = useState(false);
+    const handleScroll = (index) => {
+        const newStates = [...isScrollingStates];
+        newStates[index] = true;
+        setIsScrollingStates(newStates);
 
-    let [isScrolling5, setIsScrolling5] = useState(false);
-
-    const handleScroll = (func) => {
-
-        func(true);
         clearTimeout(timeoutRef.current);
-
         timeoutRef.current = setTimeout(() => {
-            func(false);
+            const resetStates = [...isScrollingStates];
+            resetStates[index] = false;
+            setIsScrollingStates(resetStates);
         }, 200);
     };
 
 
 
-
     return (
-        <Card id="cardRow" className="rounded-5 flex-column" >
-
-            <Row className="  flex-nowrap  " id="gameList">
-
-
-
-                <Col xs={6} md={4} className='d-flex' style={{ backgroundColor: 'transparent' }} >
-                    <Container style={{ paddingTop: '50px', height: '80%' }} >
-
-                        <Card id="Card" className={`  flex-column Card `} >
-                            <CardImg className={`card-img `} src={Celestial} />
-                            <CardTitle id="CardTitle" className={` card-Title `}>Celestial Blade Chronicle</CardTitle>
-
-                            <CardBody id="CardBody" className={` d-flex flex-column`}>
-                                <CardText id="CardText" className={`card-text ${isScrolling1 ? "scrolling" : ""}`} onScroll={() => { handleScroll(setIsScrolling1) }}>
-                                    Cyclone has been in production of a new  concept of how to take PacMan game stlye to the next level .
-                                    We have implemented new AI tech to make the game more challenging and fun for all ages. The AI of the game will not
-                                    only adapt to your playing style but also learn from it  making each game unique and exciting. To increase replayability
-                                    no one playthrough of the game will be the same.
-                                </CardText>
-
-
-
-                            </CardBody>
-                            <ButtonGroup id="CardButton" size="sm">
-                                <Button className='mt-auto ' >Play Demo</Button>
-
-
-                                <Button className='mt-auto ' >Buy Full Game </Button>
-
-                            </ButtonGroup>
-
-                        </Card>
-
-
-                    </Container>
-
-                </Col >
-                <Col xs={6} md={4} className='d-flex'   >
-                    <Container style={{ paddingTop: '50px', height: '80%' }} >
-
-                        <Card id="Card" className={`d-flex flex-column  Card `}>
-                            <CardImg className={`  card-img `} src={Blades} />
-                            <CardTitle id="CardTitle" className={`card-Title `}>Blades Of The Spirit Realm</CardTitle>
-
-                            <CardBody id="CardBody" className={`d-flex flex-column `}>
-                                <CardText id="CardText" className={`card-text ${isScrolling2 ? "scrolling" : ""}`} onScroll={() => { handleScroll(setIsScrolling2) }} >
-                                    Cyclone has been in production of a new  concept of how to take PacMan game stlye to the next level .
-                                    We have implemented new AI tech to make the game more challenging and fun for all ages. The AI of the game will not
-                                    only adapt to your playing style but also learn from it  making each game unique and exciting. To increase replayability
-                                    no one playthrough of the game will be the same.
-                                </CardText>
-
-
-                            </CardBody>
-                            <ButtonGroup id="CardButton" size="sm">
-                                <Button className='mt-auto ' >Play Demo</Button>
-
-
-                                <Button className='mt-auto ' >Buy Full Game </Button>
-
-                            </ButtonGroup>
-                        </Card>
-
-
-                    </Container>
-
-                </Col>
-                <Col xs={6} md={4} className='d-flex'>
-                    <Container style={{ paddingTop: '50px', height: '80%' }} >
-                        <Card id="Card" className={` d-flex flex-column  Card `}>
-                            <CardImg className={` card-img `} src={Tokyo} />
-                            <CardTitle id="CardTitle" className={`card-Title `}>Tokyo Phase Tactics</CardTitle>
-
-                            <CardBody id="CardBody" className={` d-flex flex-column   `}>
-                                <CardText id="CardText" className={`card-text ${isScrolling3 ? "scrolling" : ""}`} onScroll={() => { handleScroll(setIsScrolling3) }}>
-                                    Cyclone has been in production of a new  concept of how to take PacMan game stlye to the next level .
-                                    We have implemented new AI tech to make the game more challenging and fun for all ages. The AI of the game will not
-                                    only adapt to your playing style but also learn from it  making each game unique and exciting. To increase replayability
-                                    no one playthrough of the game will be the same.
-                                </CardText>
-
-
-
-                            </CardBody>
-                            <ButtonGroup id="CardButton" size="sm">
-                                <Button className='mt-auto ' >Play Demo</Button>
-
-
-                                <Button className='mt-auto ' >Buy Full Game </Button>
-
-                            </ButtonGroup>
-
-                        </Card>
-
-
-                    </Container>
-
-                </Col>
-                <Col xs={6} md={4} className='d-flex' >
-                    <Container style={{ paddingTop: '50px', height: '80%' }} >
-                        <Card id="Card" className={` d-flex flex-column  Card `}>
-                            <CardImg className={`card-img `} src={Requiem} />
-                            <CardTitle id="CardTitle" className={`card-Title `}>Requiem Of Broken Heroes</CardTitle>
-
-                            <CardBody id="CardBody" className={`d-flex flex-column  `}>
-                                <CardText id="CardText" className={`card-text ${isScrolling4 ? "scrolling" : ""}`} onScroll={() => { handleScroll(setIsScrolling4) }}>
-                                    Cyclone has been in production of a new  concept of how to take PacMan game stlye to the next level .
-                                    We have implemented new AI tech to make the game more challenging and fun for all ages. The AI of the game will not
-                                    only adapt to your playing style but also learn from it  making each game unique and exciting. To increase replayability
-                                    no one playthrough of the game will be the same.
-                                </CardText>
-
-
-                            </CardBody>
-                            <ButtonGroup id="CardButton" size="sm">
-                                <Button className='mt-auto ' >Play Demo</Button>
-
-
-                                <Button className='mt-auto ' >Buy Full Game </Button>
-
-                            </ButtonGroup>
-
-                        </Card>
-
-
-                    </Container>
-
-                </Col>
-                <Col xs={6} md={4} className='d-flex' >
-                    <Container style={{ paddingTop: '50px', height: '80%' }}>
-                        <Card id="Card" className={` d-flex flex-column  Card `}>
-                            <CardImg className={`card-img `} src={Kingdom} />
-                            <CardTitle id="CardTitle" className={`card-Title `}>Kingdoms Of The Silent Moon</CardTitle>
-
-                            <CardBody id="CardBody" className={`d-flex flex-column  `}>
-                                <CardText id="CardText" className={`card-text ${isScrolling5 ? "scrolling" : ""}`} onScroll={() => { handleScroll(setIsScrolling5) }}>
-                                    Cyclone has been in production of a new  concept of how to take PacMan game stlye to the next level .
-                                    We have implemented new AI tech to make the game more challenging and fun for all ages. The AI of the game will not
-                                    only adapt to your playing style but also learn from it  making each game unique and exciting. To increase replayability
-                                    no one playthrough of the game will be the same.
-                                </CardText>
-
-
-                            </CardBody>
-                            <ButtonGroup id="CardButton" size="sm">
-                                <Button className='mt-auto ' >Play Demo</Button>
-
-
-                                <Button className='mt-auto ' >Buy Full Game </Button>
-
-                            </ButtonGroup>
-
-                        </Card>
-
-
-                    </Container>
-
-                </Col>
-
-
-            </Row >
-
-
-        </Card >);
+        <Card id="cardRow" className="rounded-5 flex-column">
+            <Row className="flex-nowrap" id="gameList">
+                {cardsData.map((card, index) => (
+                    <EventCard
+                        key={index}
+                        image={card.image}
+                        title={card.title}
+                        description={card.description}
+                        isScrolling={isScrollingStates[index]}
+                        onScroll={() => handleScroll(index)}
+                    />
+                ))}
+            </Row>
+        </Card>
+    );
 }
 export default EventCards;

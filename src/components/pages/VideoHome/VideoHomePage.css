@@ -1,88 +1,26 @@
-.video-Row{
-  width:100vw;
+.video-Row {
+  width: 100vw;
   display: flex;
   margin: 0px;
   padding: 0px;
 }
 
-
-.col{
+.col {
   margin: 10px;
-  
 }
-.container-fluid{
+
+.container-fluid {
   padding: 0px;
 }
-#cardR{
-    border-color: white;
-    border-width: 5px;
-    border-style: solid;
-    transition: border-color 0.3s ease;
-}
-.middleCard{
+
+.video-home-title {
   height: 100%;
-  display: flex;
-}
-
-#cardR:hover{
-    border-color: #F1535d;
-    border-width: 5px;
-    border-style: solid;
-    transition: 0.3s;
-}
-
-.custom-carosel{
-  width: 50%;        /* Change width */
-  height: 50%;     /* Set height */
-  margin: auto; 
-
-}
-.carousel-img{
-  height: 400px;
-  width: 800px;
-  object-fit: fill;
-}
-
-
-.canvas-overlay{
-  position: fixed;
-  z-index: -1;
-}
-.canvas-container{
-  position: fixed;
-}
-
-.canvas-container{
-  position: relative;
-  justify-content: center;
-}
-
-
-.title{
-    font-family:fantasy;
-    font-size: 32px;
-    text-align: center;
-    color: white;
-    justify-content: center;
-}
-
-.text{
   color: white;
-   font-family: Trebuchet MS, sans-serif;
-   text-shadow: 
-    -1px -1px 0 black,
-     1px -1px 0 black,
-    -1px  1px 0 black,
-     1px  1px 0 black;
-     overflow-y: auto;
-     max-height: 200px;
-    
+  padding-top: 20px;
+  text-align: center;
+  font-size: 52px;
+  margin-left: 0px;
+  padding: 0px;
+  margin: 0px;
+  text-shadow: 2px 2px 4px black;
 }
-.carousel-indicators button {
-  background-color: white !important;
-}
-
-.carousel-indicators .active {
-  background-color: #F1535d !important;
-}
-

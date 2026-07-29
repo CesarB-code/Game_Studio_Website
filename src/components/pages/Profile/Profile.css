@@ -7,29 +7,6 @@
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
 }
 
-.BottomWebLinks {
-    position: fixed;
-    bottom: 0;
-    width: 100vw;
-}
-
-body {
-    margin: 0;
-    padding: 0;
-}
-
-.footer {
-    bottom: 0;
-}
-
-.Text {
-    color: white;
-    text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
-    font-family: Trebuchet MS, sans-serif;
-    font-size: 20px;
-    text-align: center;
-}
-
 .Profile-container {
     min-height: 100vh;
     padding-top: 70px;

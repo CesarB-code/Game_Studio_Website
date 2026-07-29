@@ -43,6 +43,8 @@ function BoilerPlate() {
                     <Nav.Link href="home">Home</Nav.Link>
                     <Nav.Link href="profile">Profile</Nav.Link>
                     <Nav.Link href="store">Store</Nav.Link>
+                    <Nav.Link href="events">Events</Nav.Link>
+
 
                     <NavDropdown className="custom-dropdown" title="Company" id="nav-dropdown" show={isDropped} onMouseEnter={() => setIsDropped(true)} onMouseLeave={() => setIsDropped(false)} >
 
@@ -50,7 +52,6 @@ function BoilerPlate() {
                         <NavDropdown.Item href="teamMembers">
                             Team Members
                         </NavDropdown.Item>
-                        <NavDropdown.Item href="events">Events</NavDropdown.Item>
 
 
                     </NavDropdown>
