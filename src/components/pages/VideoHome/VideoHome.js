@@ -14,26 +14,6 @@ import './VideoHomePage.css';
 import AISoftware from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/wp-coponents/AISoftware/AISoftware.js';
 import UnityDemo from '../wp-coponents/UnityDemo/UnityDemo.js';
 import overlayImage from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/assets/takashi-miyazaki-64ajtpEzlYc-unsplash.jpg';
-export let gl;
-export let canvas;
-export let uColor2;
-export let uColor1;
-// Triangle vertices
-export let vertices = new Float32Array([
-  0.0, 0.0,
-  0.0, 0.0,
-  0.0, 0.0
-]);
-export let elispeVertices = new Float32Array([
-  0.0, 0.0,
-  0.0, 0.0,
-  0.0, 0.0
-]);
-export let curveVertices = new Float32Array([
-  0.0, 0.0,
-  0.0, 0.0,
-  0.0, 0.0
-]);
 
 function VideoHome() {
   const canvasRef1 = useRef(null);
