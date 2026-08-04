@@ -1,9 +1,12 @@
 # Game Studio Website
-Mockup game studio website that use frontend framework bootstrap , React libray and webGL API.
+Mockup game studio website that use frontend framework bootstrap , React libray and webGL API
 
+
+Design Outline :  https://app.milanote.com/1WeyYy1cxwxE6X?p=htqbP6GD0Ju
 ---
 
 ## Table of Contents
+
 - [About](#19)
 - [Features](#25)
 - [Technologies](#32)
