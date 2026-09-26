@@ -11,7 +11,7 @@
     min-height: 100vh;
     padding-top: 70px;
     padding-bottom: 40px;
-    background-image: url('/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/wp-coponents/image/jase-bloor-oCZHIa1D4EU-unsplash.jpg');
+    background-image: url('../wp-coponents/image/jase-bloor-oCZHIa1D4EU-unsplash.jpg');
     background-size: cover;
     background-position: center;
 }
