@@ -11,7 +11,7 @@ import {
 } from 'react-bootstrap';
 import { useState } from "react";
 import { BsFan } from "react-icons/bs";
-import '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/BoilerPlate.js/BoilerPlate.css'
+import './BoilerPlate.css';
 function BoilerPlate() {
     const [isDropped, setIsDropped] = useState(false);
     return (

@@ -1,7 +1,7 @@
 import { Row, Col, Card, Button } from 'react-bootstrap';
 import useAni from '../useAni.js';
 import { useRef, useState, useEffect } from 'react';
-import "/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/UnityCharacter/UnityCharacter.css";
+import './UnityCharacter.css';
 
 export default function UnityCharacter({ useRef1, useState1 }) {
 

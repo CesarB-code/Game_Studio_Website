@@ -9,11 +9,11 @@ import {
     NavDropdown,
     Container
 } from 'react-bootstrap';
-import NewsCarousel from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/wp-coponents/NewsCarousel/NewsCarousel.js';
+import NewsCarousel from '../wp-coponents/NewsCarousel/NewsCarousel.js';
 import BoilderPlate from '../BoilerPlate.js/BoilerPlate.js';
-import overlayImage from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/assets/takashi-miyazaki-64ajtpEzlYc-unsplash.jpg';
-import EventCards from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/wp-coponents/EventCards/EventCards.js';
-import '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/Events/Events.js';
+import overlayImage from '../assets/takashi-miyazaki-64ajtpEzlYc-unsplash.jpg';
+import EventCards from '../wp-coponents/EventCards/EventCards.js';
+import './Events.css';
 function Events() {
     return (
         <Container fluid style={{ backgroundPosition: 'center', height: '100vh', overflowX: 'hidden', overflowY: 'scroll', backgroundImage: `url(${overlayImage})` }} >
