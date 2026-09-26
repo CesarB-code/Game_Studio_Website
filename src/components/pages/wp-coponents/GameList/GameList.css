@@ -3,7 +3,7 @@ h1 {
     font-size: 3rem;
     text-align: left;
     margin-left: 2rem;
-    font-family: "UnifrakturCook", fantasy;
+    font-family: fantasy;
 }
 
 .container {
@@ -121,7 +121,7 @@ h1 {
 .card-link {
     color: #F1535d;
     position: bottom;
-    font-family: "UnifrakturCook", fantasy;
+    font-family: fantasy;
     font-size: 13px;
     padding: 0px;
 }
@@ -189,7 +189,7 @@ h1 {
     height: 25%;
     padding-bottom: 0px;
 
-    font-family: "UnifrakturCook", fantasy;
+    font-family: fantasy;
     font-size: clamp(20px, 1vw, 22px);
 
 

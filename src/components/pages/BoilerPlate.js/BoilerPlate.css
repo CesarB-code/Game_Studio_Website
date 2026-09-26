@@ -27,7 +27,7 @@
 }
 
 .nav-link {
-  font-family: "UnifrakturCook", fantasy;
+  font-family: fantasy;
 }
 
 .nav-link:hover {
@@ -35,7 +35,7 @@
 }
 
 #nav-dropdown {
-  font-family: "UnifrakturCook", fantasy;
+  font-family: fantasy;
 }
 
 .webHeader {
