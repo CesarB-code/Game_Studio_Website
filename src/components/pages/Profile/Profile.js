@@ -1,7 +1,7 @@
 import { Row, Col, Container } from 'react-bootstrap';
 import { GoPencil } from 'react-icons/go';
 import BoilerPlate from '../BoilerPlate.js/BoilerPlate';
-import ProfileImage from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/assets/istockphoto-828763406-1024x1024.jpg';
+import ProfileImage from '../assets/istockphoto-828763406-1024x1024.jpg';
 import './Profile.css';
 
 function Profile() {

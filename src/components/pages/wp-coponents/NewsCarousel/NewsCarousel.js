@@ -5,9 +5,9 @@ import {
     CarouselCaption,
 
 } from 'react-bootstrap';
-import MyImage from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/wp-coponents/image/nooooodles-1337-3OdajQGd9sk-unsplash.jpg'
-import MyImage2 from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/wp-coponents/image/tim-mossholder-tq8Cuap8_wY-unsplash (1).jpg'
-import MyImage3 from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/wp-coponents/image/hongwei-fan-xUDobyOVM7Q-unsplash.jpg'
+import MyImage from '../image/nooooodles-1337-3OdajQGd9sk-unsplash.jpg'
+import MyImage2 from '../image/tim-mossholder-tq8Cuap8_wY-unsplash (1).jpg'
+import MyImage3 from '../image/hongwei-fan-xUDobyOVM7Q-unsplash.jpg'
 
 import './NewsCarousel.css';
 function NewsCarousel() {

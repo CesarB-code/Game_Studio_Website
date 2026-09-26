@@ -5,9 +5,9 @@ import {
     CarouselCaption,
 
 } from 'react-bootstrap';
-import MyImage from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/assets/maha-khairy-3uuLWb6aQXc-unsplash.jpg'
-import MyImage2 from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/assets/maha-khairy-3uuLWb6aQXc-unsplash.jpg'
-import MyImage3 from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/assets/sufyan-5NrbL6F68V0-unsplash.jpg'
+import MyImage from '../../assets/maha-khairy-3uuLWb6aQXc-unsplash.jpg'
+import MyImage2 from '../../assets/maha-khairy-3uuLWb6aQXc-unsplash.jpg'
+import MyImage3 from '../../assets/sufyan-5NrbL6F68V0-unsplash.jpg'
 
 import './ContentCarousel.css';
 function ContentCarousel() {

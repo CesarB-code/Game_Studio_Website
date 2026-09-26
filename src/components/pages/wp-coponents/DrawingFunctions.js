@@ -1,5 +1,5 @@
 
-import { gl } from "/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/wp-coponents/AISoftware/AISoftware.js";
+import { gl } from "./AISoftware/AISoftware.js";
 import { hairPoints } from "./FaceFunctions";
 
 //temp array

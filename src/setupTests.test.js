@@ -4,4 +4,4 @@
 // learn more: https://github.com/testing-library/jest-dom
 import '@testing-library/jest-dom';
 
-const {add} = require("/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/wp-coponents/FaceFunctions.js");
+const { add } = require("./components/pages/wp-coponents/FaceFunctions.js");

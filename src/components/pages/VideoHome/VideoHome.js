@@ -11,9 +11,9 @@ import {
   Container
 } from 'react-bootstrap';
 import './VideoHomePage.css';
-import AISoftware from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/wp-coponents/AISoftware/AISoftware.js';
+import AISoftware from '../wp-coponents/AISoftware/AISoftware.js';
 import UnityDemo from '../wp-coponents/UnityDemo/UnityDemo.js';
-import overlayImage from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/assets/takashi-miyazaki-64ajtpEzlYc-unsplash.jpg';
+import overlayImage from '../assets/takashi-miyazaki-64ajtpEzlYc-unsplash.jpg';
 
 function VideoHome() {
   const canvasRef1 = useRef(null);

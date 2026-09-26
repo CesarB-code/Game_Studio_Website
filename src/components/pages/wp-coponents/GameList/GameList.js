@@ -5,12 +5,12 @@ import {
     Container
 } from 'react-bootstrap';
 import { useRef, useState } from 'react';
-import Celestial from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/wp-coponents/image/Celestial Blade Chronicle.png';
-import Blades from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/wp-coponents/image/Blades Of The Spirit Realm.png';
-import Tokyo from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/wp-coponents/image/Tokyo Phase Tactics.png';
-import Kingdom from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/wp-coponents/image/Kingdoms Of The Silent Moon.png';
-import Requiem from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/wp-coponents/image/Requiem Of Broken Heroes.png'
-import Back from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/wp-coponents/image/Glitter_Particles_Motion_Background_04.gif';
+import Celestial from '../image/Celestial Blade Chronicle.png';
+import Blades from '../image/Blades Of The Spirit Realm.png';
+import Tokyo from '../image/Tokyo Phase Tactics.png';
+import Kingdom from '../image/Kingdoms Of The Silent Moon.png';
+import Requiem from '../image/Requiem Of Broken Heroes.png'
+import Back from '../image/Glitter_Particles_Motion_Background_04.gif';
 import { RiArrowGoBackLine } from "react-icons/ri";
 import { RiArrowTurnBackFill } from "react-icons/ri";
 import { AiOutlineDollar } from "react-icons/ai";

@@ -5,12 +5,12 @@ import {
     Container
 } from 'react-bootstrap';
 import { useRef, useState } from 'react';
-import Celestial from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/wp-coponents/image/boris-misevic-vQfUboV8Pmk-unsplash.jpg';
-import Blades from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/wp-coponents/image/khanh-nguyen-5X1rpvoQT5A-unsplash.jpg';
-import Tokyo from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/wp-coponents/image/le-anh-Bh-qSsMmTbY-unsplash.jpg';
-import Kingdom from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/wp-coponents/image/le-anh-N9apPcgfj1Q-unsplash.jpg';
-import Requiem from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/wp-coponents/image/le-anh-wHbRlKKq0Xk-unsplash.jpg'
-import Back from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/wp-coponents/image/images.png';
+import Celestial from '../image/boris-misevic-vQfUboV8Pmk-unsplash.jpg';
+import Blades from '../image/khanh-nguyen-5X1rpvoQT5A-unsplash.jpg';
+import Tokyo from '../image/le-anh-Bh-qSsMmTbY-unsplash.jpg';
+import Kingdom from '../image/le-anh-N9apPcgfj1Q-unsplash.jpg';
+import Requiem from '../image/le-anh-wHbRlKKq0Xk-unsplash.jpg'
+import Back from '../image/images.png';
 import { RiArrowGoBackLine } from "react-icons/ri";
 import './EventCards.css';
 

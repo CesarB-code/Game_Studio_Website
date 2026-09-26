@@ -1,7 +1,7 @@
 import { Row, Col, Card, CardImg, Button, Container } from 'react-bootstrap';
 import './MerchList.css';
-import Jacket from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/wp-coponents/image/robert-richman-vcTKFYNZop4-unsplash (1).jpg';
-import Hat from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/wp-coponents/image/istockphoto-2249125500-1024x1024.jpg';
+import Jacket from '../image/robert-richman-vcTKFYNZop4-unsplash (1).jpg';
+import Hat from '../image/istockphoto-2249125500-1024x1024.jpg';
 
 const merchItems = [
     { name: 'Storm Jacket', price: '$59', image: Jacket, tag: 'New' },

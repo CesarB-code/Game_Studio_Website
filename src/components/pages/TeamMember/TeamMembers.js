@@ -7,14 +7,14 @@ import {
 } from 'react-bootstrap';
 import BoilderPlate from '../BoilerPlate.js/BoilerPlate.js';
 import './TeamMembers.css'
-import AnimeLatina from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/wp-coponents/image/KomikoAI.png'
-import latina from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/wp-coponents/image/photo-1524502397800-2eeaad7c3fe5.avif'
-import AnimeEuroFemale from "/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/wp-coponents/image/KomikoAI (2).png";
-import euroFemale from "/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/wp-coponents/image/meritt-thomas-aoQ4DYZLE_E-unsplash.jpg";
-import euroMale from "/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/wp-coponents/image/christian-buehner-DItYlc26zVI-unsplash.jpg"
-import AnimeEuroMale from "/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/wp-coponents/image/KomikoAI (6).png"
-import ArabMale from "/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/wp-coponents/image/irene-strong-v2aKnjMbP_k-unsplash.jpg";
-import AnimeArabMale from "/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/wp-coponents/image/KomikoAI (3).png";
+import AnimeLatina from '../wp-coponents/image/KomikoAI.png'
+import latina from '../wp-coponents/image/photo-1524502397800-2eeaad7c3fe5.avif'
+import AnimeEuroFemale from "../wp-coponents/image/KomikoAI (2).png";
+import euroFemale from "../wp-coponents/image/meritt-thomas-aoQ4DYZLE_E-unsplash.jpg";
+import euroMale from "../wp-coponents/image/christian-buehner-DItYlc26zVI-unsplash.jpg"
+import AnimeEuroMale from "../wp-coponents/image/KomikoAI (6).png"
+import ArabMale from "../wp-coponents/image/irene-strong-v2aKnjMbP_k-unsplash.jpg";
+import AnimeArabMale from "../wp-coponents/image/KomikoAI (3).png";
 function TeamMembers() {
     return (
         <Container fluid className="team-members-page">

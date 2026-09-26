@@ -1,13 +1,13 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import { useRef, useState, useEffect } from 'react';
-import { DrawObject } from "/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/wp-coponents/FaceFunctions.js";
+import { DrawObject } from "../FaceFunctions.js";
 import {
     Row, Col, Card, CardTitle, Button, ButtonGroup,
 
     Container
 } from 'react-bootstrap';
-import * as Interaction from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/wp-coponents/InterationMethods.js';
+import * as Interaction from '../InterationMethods.js';
 
 import './AISoftware.css';
 export let gl;

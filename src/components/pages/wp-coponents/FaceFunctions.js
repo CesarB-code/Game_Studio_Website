@@ -1,6 +1,6 @@
 import { triangleAnimation, rectangleAnimation, curveAnimation, lineAnimation, circleAnimation, semiCircleAnimation, elipseAnimation, semiElipseAnimation } from
     "./DrawingFunctions.js";
-import { gl, uColor1, uColor2 } from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/wp-coponents/AISoftware/AISoftware.js';
+import { gl, uColor1, uColor2 } from './AISoftware/AISoftware.js';
 
 export let hairPoints = [], leftEarPotentialHairBounds, rightEarPotentialHairBounds;
 let eyeHeight, noseHeight, UpperEarPosition, LowerEarPosition,
@@ -645,9 +645,9 @@ function shapeObject(shapeTypeArray, coordinate_array) {
     this.shapeTypeArray = shapeTypeArray;
     this.coordinate_array = coordinate_array;
 }
-function add(a,b){
-    return a+b;
+function add(a, b) {
+    return a + b;
 }
 
 
-export {add, DrawHair, DrawEar, DrawFace, DrawNose, DrawMouth, DrawEye, DrawEyeBrows, DrawObject };
+export { add, DrawHair, DrawEar, DrawFace, DrawNose, DrawMouth, DrawEye, DrawEyeBrows, DrawObject };

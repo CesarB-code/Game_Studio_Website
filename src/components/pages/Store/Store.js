@@ -6,9 +6,9 @@ import {
 import ContentCarousel from '../wp-coponents/ContentCarousel/ContentCarousel.js';
 import GameList from '../wp-coponents/GameList/GameList.js';
 import BoilerPlate from '../BoilerPlate.js/BoilerPlate';
-import AISoftware from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/wp-coponents/AISoftware/AISoftware.js';
-import overLayImg from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/wp-coponents/image/KomikoAI (7).png';
-import MerchList from '/Users/cesarbarrera/Documents/GitHub/Game_Studio_Website/src/components/pages/wp-coponents/MerchList/MerchList.js';
+import AISoftware from '../wp-coponents/AISoftware/AISoftware.js';
+import overLayImg from '../wp-coponents/image/KomikoAI (7).png';
+import MerchList from '../wp-coponents/MerchList/MerchList.js';
 
 
 import './Store.css';
