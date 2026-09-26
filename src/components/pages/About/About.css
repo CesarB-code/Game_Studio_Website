@@ -10,11 +10,25 @@
   width: 100%;
 }
 
+.about-title-row {
+  margin-top: 60px;
+}
+
+.about-title {
+  height: 100%;
+  color: white;
+  padding-top: 20px;
+  text-align: center;
+  font-size: 52px;
+  margin: 0;
+  text-shadow: 2px 2px 4px black;
+}
+
 .about-content-row {
   width: 100vw;
   min-height: 60%;
   color: white;
-  font-family: fantasy;
+  font-family: "UnifrakturCook", fantasy;
   padding: 60px 1rem 10px;
 }
 

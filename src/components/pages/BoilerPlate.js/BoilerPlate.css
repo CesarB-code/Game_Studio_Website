@@ -2,8 +2,32 @@
   background-color: #403c5f;
 }
 
+.boilerplate-navbar {
+  padding: 0;
+  margin: 0;
+}
+
+.boilerplate-brand-text,
+.boilerplate-brand-icon {
+  margin: 0;
+  padding: 0;
+}
+
+.boilerplate-brand-text {
+  padding-left: 20px;
+}
+
+.boilerplate-trademark {
+  font-size: 15px;
+}
+
+.boilerplate-collapse {
+  padding-left: 10px;
+  margin-right: 65px;
+}
+
 .nav-link {
-  font-family: fantasy;
+  font-family: "UnifrakturCook", fantasy;
 }
 
 .nav-link:hover {
@@ -11,7 +35,7 @@
 }
 
 #nav-dropdown {
-  font-family: fantasy;
+  font-family: "UnifrakturCook", fantasy;
 }
 
 .webHeader {

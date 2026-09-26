@@ -16,6 +16,20 @@
     background-position: center;
 }
 
+.profile-title-row {
+    margin-top: 60px;
+}
+
+.profile-title {
+    height: 100%;
+    color: white;
+    padding-top: 20px;
+    text-align: center;
+    font-size: 52px;
+    margin: 0;
+    text-shadow: 2px 2px 4px black;
+}
+
 #root {
     min-height: 100vh;
 }

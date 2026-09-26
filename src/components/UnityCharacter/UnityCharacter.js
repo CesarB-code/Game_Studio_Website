@@ -54,14 +54,12 @@ export default function UnityCharacter({ useRef1, useState1 }) {
             ref={useRef1}
             width={600}
             height={webHeight}
-            className="w-100"
-            style={{ margin: '0px', padding: '5px', display: 'block', width: '100%', height: '100%', maxHeight: '100px' }}
+            className="w-100 unity-character-canvas"
           />
 
           <Button
             onClick={startAudio}
-            className="w-100"
-            style={{ margin: '0px', paddingLeft: '15px', paddingRight: '15px' }}
+            className="w-100 unity-character-audio-button"
           >
             Play Audio
           </Button>

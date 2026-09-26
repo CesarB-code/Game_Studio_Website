@@ -8,3 +8,64 @@
     padding: 0px;
     margin: 0px;
 }
+
+.events-page {
+    background-image: url('../assets/takashi-miyazaki-64ajtpEzlYc-unsplash.jpg');
+    background-position: center;
+    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+.events-title-row {
+    margin-top: 100px;
+}
+
+.events-title {
+    height: 100%;
+    color: white;
+    padding-top: 20px;
+    text-align: center;
+    font-size: 52px;
+    margin: 0;
+    text-shadow: 2px 2px 4px black;
+}
+
+#NewsTitle.events-title {
+    font-size: 52px;
+}
+
+.events-carousel-row {
+    margin-top: 60px;
+    padding-right: 30px;
+    padding-left: 30px;
+}
+
+.events-intro-row {
+    background-color: transparent;
+    margin: 30px 0 40px;
+}
+
+.events-intro-copy {
+    color: white;
+    text-align: center;
+    padding: 30px;
+}
+
+.events-intro-title {
+    font-family: "UnifrakturCook", fantasy;
+    font-size: 32px;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px black;
+}
+
+.events-intro-paragraph {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 4px black;
+}
+
+.events-intro-paragraph-last {
+    margin-bottom: 0;
+}

@@ -8,7 +8,7 @@ import {
 function BackGround() {
 
     return (
-        <img src={logo} style={{}} />
+        <img src={logo} alt="" />
 
     )
 }

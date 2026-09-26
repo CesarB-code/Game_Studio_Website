@@ -26,16 +26,12 @@ const GameCard = ({ image, title, description, isFlipped, isScrolling, onFlip, o
                 <Card className={` h-100 Card ${isFlipped ? "switch" : ""}`} >
                     <CardImgOverlay className="d-flex  p-3">
 
-                        <RiArrowGoBackLine onClick={onFlip} className="card-symbol" style={{ position: 'absolute', left: '8px', cursor: 'pointer', zIndex: 10, fontSize: '32px' }} />
+                        <RiArrowGoBackLine onClick={onFlip} className="card-symbol game-card-back-symbol" />
 
 
 
                     </CardImgOverlay>
-                    <CardImg id='startSwitch' variant="top" src={Back} style={{
-                        width: "100%",
-                        height: "100%",
-                        objectFit: "cover",
-                    }} />
+                    <CardImg id='startSwitch' variant="top" src={Back} className="game-card-back-image" />
                 </Card>
             ) : (
 
@@ -56,8 +52,8 @@ const GameCard = ({ image, title, description, isFlipped, isScrolling, onFlip, o
                         </CardText>
                     </CardBody>
                     <ButtonGroup className='w-100 d-flex gap-2'>
-                        <Button size="sm" className='flex-grow-1' style={{ padding: '2px 8px', fontSize: '12px', lineHeight: '1', overflow: 'hidden' }}>{firstText}</Button>
-                        <Button size="sm" className='flex-grow-1' style={{ padding: '2px 8px', fontSize: '12px', lineHeight: '1', overflow: 'hidden' }}>{secondText}
+                        <Button size="sm" className='flex-grow-1 game-card-action'>{firstText}</Button>
+                        <Button size="sm" className='flex-grow-1 game-card-action'>{secondText}
                         </Button>
                     </ButtonGroup>
                 </Card>

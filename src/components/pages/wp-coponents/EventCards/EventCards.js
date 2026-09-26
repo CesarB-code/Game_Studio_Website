@@ -16,7 +16,7 @@ import './EventCards.css';
 
 const EventCard = ({ image, title, description, isScrolling, onScroll }) => (
     <Col xs={6} md={4} className='d-flex'>
-        <Container style={{ paddingTop: '50px', height: '80%' }}>
+        <Container className="event-card-container">
             <Card id="Card" className={`d-flex flex-column Card`}>
                 <CardImg className={`card-img`} src={image} />
                 <CardTitle id="CardTitle" className={`card-Title`}>{title}</CardTitle>

@@ -21,9 +21,9 @@ function NewsCarousel() {
                     alt="First slide"
 
                 />
-                <CarouselCaption style={{ textAlign: 'center', top: 50, inlineBlock: 'true', width: '50%', maxHeight: '200px', overflow: 'hidden' }}>
-                    <h2 className='title' style={{ fontSize: 50, margin: '0 0 10px 0', whiteSpace: 'normal', overflow: 'hidden', textOverflow: 'ellipsis', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' }}><b>Drop in and sneak your way to victorys</b></h2>
-                    <p className='body' style={{ right: 100, width: '100%', margin: '0', overflow: 'hidden', textOverflow: 'ellipsis', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' }}>Join in on the new game Silent Soldier where you can croos game with your friends</p>
+                <CarouselCaption className="news-carousel-caption news-carousel-caption-top">
+                    <h2 className='title news-carousel-title news-carousel-title-first'><b>Drop in and sneak your way to victorys</b></h2>
+                    <p className='body news-carousel-body'>Join in on the new game Silent Soldier where you can croos game with your friends</p>
 
                 </CarouselCaption>
             </CarouselItem>
@@ -34,9 +34,9 @@ function NewsCarousel() {
                     src={MyImage2}
                     alt="Second slide"
                 />
-                <CarouselCaption style={{ textAlign: 'center', bottom: 20, inlineBlock: 'true', width: '50%', maxHeight: '200px', overflow: 'hidden' }}>
-                    <h3 className='title' style={{ fontSize: '300%', margin: '0 0 10px 0', whiteSpace: 'normal', overflow: 'hidden', textOverflow: 'ellipsis', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' }}><b>The Newest Anime Game  </b></h3>
-                    <p className='body' style={{ margin: '0', overflow: 'hidden', textOverflow: 'ellipsis', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' }}>With our new Ai we can make the power of anime come alive</p>
+                <CarouselCaption className="news-carousel-caption news-carousel-caption-bottom">
+                    <h3 className='title news-carousel-title news-carousel-title-large'><b>The Newest Anime Game  </b></h3>
+                    <p className='body news-carousel-body'>With our new Ai we can make the power of anime come alive</p>
                 </CarouselCaption>
             </CarouselItem>
 
@@ -47,9 +47,9 @@ function NewsCarousel() {
                     alt="Third slide"
 
                 />
-                <CarouselCaption style={{ textAlign: 'center', top: 50, inlineBlock: 'true', width: '50%', maxHeight: '200px', overflow: 'hidden' }}>
-                    <h3 className='title' style={{ fontSize: '300%', margin: '0 0 10px 0', whiteSpace: 'normal', overflow: 'hidden', textOverflow: 'ellipsis', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' }}><b> Apply now and see what is in store for you </b></h3>
-                    <p className="body" style={{ margin: '0', overflow: 'hidden', textOverflow: 'ellipsis', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' }}>Want to join the cylcone and help create amazing games</p>
+                <CarouselCaption className="news-carousel-caption news-carousel-caption-top">
+                    <h3 className='title news-carousel-title news-carousel-title-large'><b> Apply now and see what is in store for you </b></h3>
+                    <p className="body news-carousel-body">Want to join the cylcone and help create amazing games</p>
                 </CarouselCaption>
             </CarouselItem>
         </Carousel>

@@ -10,8 +10,34 @@
 }
 
 .title {
-    font-family: fantasy;
+    font-family: "UnifrakturCook", fantasy;
     color: white;
+}
+
+.content-carousel-caption {
+    text-align: center;
+    width: 50%;
+}
+
+.content-carousel-caption-top {
+    top: 50px;
+}
+
+.content-carousel-caption-bottom {
+    bottom: 20px;
+}
+
+.content-carousel-title-first {
+    font-size: 50px;
+}
+
+.content-carousel-title-large {
+    font-size: 300%;
+}
+
+.content-carousel-body {
+    right: 100px;
+    width: 100%;
 }
 
 .carousel {

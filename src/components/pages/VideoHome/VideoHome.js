@@ -13,7 +13,6 @@ import {
 import './VideoHomePage.css';
 import AISoftware from '../wp-coponents/AISoftware/AISoftware.js';
 import UnityDemo from '../wp-coponents/UnityDemo/UnityDemo.js';
-import overlayImage from '../assets/takashi-miyazaki-64ajtpEzlYc-unsplash.jpg';
 
 function VideoHome() {
   const canvasRef1 = useRef(null);
@@ -46,47 +45,47 @@ function VideoHome() {
   return (
 
 
-    <Container fluid style={{ overflowX: 'hidden', overflowY: 'scroll', backgroundImage: `url(${overlayImage})` }} >
+    <Container fluid className="video-home-page">
       <BoilerPlate className="video-Row" fixed="top" />
-      <Row style={{ marginTop: '60px' }}><h1 id="NewsTitle" className="video-home-title">Cyclone</h1></Row>
+      <Row className="video-home-title-row"><h1 id="NewsTitle" className="video-home-title">Cyclone</h1></Row>
 
-      <Row className='video-Row align-items-center justify-content-center' style={{ backgroundColor: 'transparent', marginBottom: '40px' }}>
+      <Row className='video-Row align-items-center justify-content-center video-home-intro-row'>
         <Col className='col-10'>
-          <div style={{ color: 'white', textAlign: 'center', padding: '30px' }}>
-            <h2 style={{ fontFamily: 'fantasy', fontSize: '32px', marginBottom: '20px', textShadow: '2px 2px 4px black' }}>Welcome to Cyclone Game Studio</h2>
-            <p style={{ fontSize: '16px', lineHeight: '1.6', marginBottom: '15px', textShadow: '2px 2px 4px black' }}>
+          <div className="video-home-copy video-home-intro-copy">
+            <h2 className="video-home-section-title video-home-intro-title">Welcome to Cyclone Game Studio</h2>
+            <p className="video-home-paragraph video-home-paragraph-spaced">
               Cyclone Game Studio is a pioneering force in game development, founded in 2020 with a mission to revolutionize interactive entertainment. We blend cutting-edge technology with creative storytelling to deliver immersive gaming experiences that captivate and inspire players worldwide.
             </p>
-            <p style={{ fontSize: '16px', lineHeight: '1.6', textShadow: '2px 2px 4px black' }}>
+            <p className="video-home-paragraph">
               Our commitment to innovation, integrity, and community drives everything we do. From adaptive AI systems that learn your playstyle to stunning real-time 3D graphics powered by Unity, we showcase the pinnacle of modern game development. Explore our featured games, experience our technology in action, and discover why Cyclone is shaping the future of gaming.
             </p>
           </div>
         </Col>
       </Row>
 
-      <Row className='video-Row align-items-center justify-content-center' style={{ backgroundColor: 'transparent' }}>
+      <Row className='video-Row align-items-center justify-content-center video-home-feature-row'>
 
         <Col>
 
           <Row className="align-items-center justify-content-center">
-            <Row style={{ margin: '0px', padding: '0px' }} >
+            <Row className="video-home-feature-inner-row">
 
               <Row className="justify-content-start" ref={rowElement}>
                 <Col ref={element} className='col-4 '  >
                   <AISoftware />
                 </Col>
                 <Col className='col-4 d-flex d'>
-                  <div style={{ color: 'white', textAlign: 'center', padding: '20px' }}>
-                    <h3 style={{ fontFamily: 'fantasy', fontSize: '28px', textShadow: '2px 2px 4px black' }}>Advanced AI Technology</h3>
-                    <p style={{ textShadow: '2px 2px 4px black' }}>Explore our cutting-edge artificial intelligence systems that power adaptive gameplay. Our AI learns from your playstyle, creates unique challenges, and delivers personalized gaming experiences that keep every session fresh and engaging.</p>
+                  <div className="video-home-copy video-home-feature-copy">
+                    <h3 className="video-home-feature-title">Advanced AI Technology</h3>
+                    <p className="video-home-paragraph">Explore our cutting-edge artificial intelligence systems that power adaptive gameplay. Our AI learns from your playstyle, creates unique challenges, and delivers personalized gaming experiences that keep every session fresh and engaging.</p>
                   </div>
                 </Col>
               </Row>
               <Row ref={rowElement2} >
                 <Col ref={element2} className='col-4 d-flex align-items-center'>
-                  <div style={{ color: 'white', textAlign: 'center', padding: '20px' }}>
-                    <h3 style={{ fontFamily: 'fantasy', fontSize: '28px', textShadow: '2px 2px 4px black' }}>Interactive Unity Demo</h3>
-                    <p style={{ textShadow: '2px 2px 4px black' }}>Experience our real-time 3D game engine capabilities. Interact with fully rendered scenes, dynamic lighting, and immersive graphics powered by Unity. This demo showcases the technical prowess behind Cyclone's latest gaming experiences.</p>
+                  <div className="video-home-copy video-home-feature-copy">
+                    <h3 className="video-home-feature-title">Interactive Unity Demo</h3>
+                    <p className="video-home-paragraph">Experience our real-time 3D game engine capabilities. Interact with fully rendered scenes, dynamic lighting, and immersive graphics powered by Unity. This demo showcases the technical prowess behind Cyclone's latest gaming experiences.</p>
                   </div>
                 </Col>
                 <Col md={4} className="d-flex ">
@@ -111,18 +110,18 @@ function VideoHome() {
 
       </Row >
 
-      <Row className='video-Row align-items-center justify-content-center' style={{ backgroundColor: 'transparent', marginBottom: '30px', marginTop: '40px' }}>
+      <Row className='video-Row align-items-center justify-content-center video-home-games-intro-row'>
         <Col className='col-10'>
-          <div style={{ color: 'white', textAlign: 'center', padding: '20px' }}>
-            <h2 style={{ fontFamily: 'fantasy', fontSize: '28px', marginBottom: '15px', textShadow: '2px 2px 4px black' }}>Explore Our Games</h2>
-            <p style={{ fontSize: '16px', lineHeight: '1.6', textShadow: '2px 2px 4px black' }}>
+          <div className="video-home-copy video-home-games-copy">
+            <h2 className="video-home-feature-title video-home-games-title">Explore Our Games</h2>
+            <p className="video-home-paragraph">
               Discover our latest titles and experience the future of gaming. Each game in our collection features unique gameplay mechanics, stunning visuals, and our signature adaptive AI system that learns from your playstyle. Browse our full game list below to find your next favorite game.
             </p>
           </div>
         </Col>
       </Row>
 
-      <Row style={{ height: '450px', width: '100vw', backgroundColor: 'transparent' }}>
+      <Row className="video-home-game-list-row">
         <GameList button1="Play Demo" button2="Go To Store " />
 
       </Row>

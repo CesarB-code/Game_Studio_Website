@@ -17,15 +17,15 @@ function BoilerPlate() {
     return (
 
 
-        <Navbar id='custom-navbar' expand="md" className="bg-grey w-100" fixed="top" data-bs-theme="dark" style={{ padding: '0px', margin: 0 }} >
+        <Navbar id='custom-navbar' expand="md" className="bg-grey w-100 boilerplate-navbar" fixed="top" data-bs-theme="dark">
 
-            <Navbar.Brand href="/home" className="webHeader" style={{ fontFamily: 'fantasy' }}  >
+            <Navbar.Brand href="/home" className="webHeader"  >
                 <Row >
-                    <Col style={{ margin: "0px", paddinLeft: "20px" }} >
-                        Cyclone<sup style={{ fontSize: 15 }}>TM</sup>
+                    <Col className="boilerplate-brand-text">
+                        Cyclone<sup className="boilerplate-trademark">TM</sup>
 
                     </Col>
-                    <Col style={{ margin: "0px", padding: "0px" }} >
+                    <Col className="boilerplate-brand-icon">
                         <BsFan />
 
                     </Col>
@@ -38,7 +38,7 @@ function BoilerPlate() {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
             </div>
             <NavbarBrand id="label"></NavbarBrand>
-            <Navbar.Collapse className="justify-content-end" style={{ paddingLeft: '10px', marginRight: '65px' }}>
+            <Navbar.Collapse className="justify-content-end boilerplate-collapse">
                 <Nav className=" my-2 ms-lg-auto  "  >
                     <Nav.Link href="home">Home</Nav.Link>
                     <Nav.Link href="profile">Profile</Nav.Link>

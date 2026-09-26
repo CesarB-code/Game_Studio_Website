@@ -5,6 +5,82 @@
   padding: 0px;
 }
 
+.video-home-page {
+  overflow-x: hidden;
+  overflow-y: scroll;
+  background-image: url('../assets/takashi-miyazaki-64ajtpEzlYc-unsplash.jpg');
+}
+
+.video-home-title-row {
+  margin-top: 60px;
+}
+
+.video-home-intro-row {
+  background-color: transparent;
+  margin-bottom: 40px;
+}
+
+.video-home-feature-row {
+  background-color: transparent;
+}
+
+.video-home-feature-inner-row {
+  margin: 0;
+  padding: 0;
+}
+
+.video-home-copy {
+  color: white;
+  text-align: center;
+}
+
+.video-home-intro-copy {
+  padding: 30px;
+}
+
+.video-home-feature-copy,
+.video-home-games-copy {
+  padding: 20px;
+}
+
+.video-home-section-title {
+  font-family: "UnifrakturCook", fantasy;
+  font-size: 32px;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px black;
+}
+
+.video-home-feature-title {
+  font-family: "UnifrakturCook", fantasy;
+  font-size: 28px;
+  text-shadow: 2px 2px 4px black;
+}
+
+.video-home-games-title {
+  margin-bottom: 15px;
+}
+
+.video-home-paragraph {
+  font-size: 16px;
+  line-height: 1.6;
+  text-shadow: 2px 2px 4px black;
+}
+
+.video-home-paragraph-spaced {
+  margin-bottom: 15px;
+}
+
+.video-home-games-intro-row {
+  background-color: transparent;
+  margin: 40px 0 30px;
+}
+
+.video-home-game-list-row {
+  height: 450px;
+  width: 100vw;
+  background-color: transparent;
+}
+
 .col {
   margin: 10px;
 }

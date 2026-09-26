@@ -11,6 +11,45 @@
     margin-bottom: 2rem;
 }
 
+.store-title-row {
+    margin-top: 60px;
+}
+
+.store-title {
+    height: 100%;
+    color: white;
+    padding-top: 20px;
+    text-align: center;
+    font-size: 52px;
+    margin: 0;
+    text-shadow: 2px 2px 4px black;
+}
+
+.store-intro-row {
+    background-color: transparent;
+    margin: 30px 0 40px;
+}
+
+.store-intro-copy {
+    color: white;
+    text-align: center;
+    padding: 30px;
+}
+
+.store-intro-title {
+    font-family: "UnifrakturCook", fantasy;
+    font-size: 28px;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 4px black;
+}
+
+.store-intro-paragraph {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 4px black;
+}
+
 .store-content-row {
     margin: 0;
     align-items: stretch;

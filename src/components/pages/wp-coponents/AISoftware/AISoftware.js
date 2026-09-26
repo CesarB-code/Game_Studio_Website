@@ -157,12 +157,12 @@ function AISoftware() {
                         ref={canvasRef}
                         width={300}
                         height={300}
-                        style={{ width: '100%', maxWidth: '300px', aspectRatio: '1 / 1', margin: '0px', padding: '0px', border: '4px solid #f2a3a8' }}
+                        className="ai-software-canvas"
                     />
                 </Col>
 
                 <Col xs={12} md={6} className='d-flex align-items-center'>
-                    <p style={{ color: 'white', borderColor: 'black', fontFamily: 'Trebuchet MS, sans-serif', textAlign: 'center', overflowY: 'auto', height: '100%', margin: '0px', textShadow: '2px 2px 4px black' }}>
+                    <p className="ai-software-description">
                         For a complete demo of our new AI Drawing Software or for a preorder of our software, click on the buttons below.
                     </p>
                 </Col>

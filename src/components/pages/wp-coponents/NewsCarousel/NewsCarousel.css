@@ -10,8 +10,51 @@
 }
 
 .title {
-    font-family: fantasy;
+    font-family: "UnifrakturCook", fantasy;
     color: white;
+}
+
+.news-carousel-caption {
+    text-align: center;
+    width: 50%;
+    max-height: 200px;
+    overflow: hidden;
+}
+
+.news-carousel-caption-top {
+    top: 50px;
+}
+
+.news-carousel-caption-bottom {
+    bottom: 20px;
+}
+
+.news-carousel-title,
+.news-carousel-body {
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    white-space: normal;
+}
+
+.news-carousel-title {
+    margin-bottom: 10px;
+}
+
+.news-carousel-title-first {
+    font-size: 50px;
+}
+
+.news-carousel-title-large {
+    font-size: 300%;
+}
+
+.news-carousel-body {
+    width: 100%;
 }
 
 .carousel {

@@ -32,6 +32,26 @@
     text-shadow: 2px 2px 4px black;
 }
 
+.ai-software-canvas {
+    width: 100%;
+    max-width: 300px;
+    aspect-ratio: 1 / 1;
+    margin: 0;
+    padding: 0;
+    border: 4px solid #f2a3a8;
+}
+
+.ai-software-description {
+    color: white;
+    border-color: black;
+    font-family: Trebuchet MS, sans-serif;
+    text-align: center;
+    overflow-y: auto;
+    height: 100%;
+    margin: 0;
+    text-shadow: 2px 2px 4px black;
+}
+
 #cardRow:hover {
     border-color: #F1535d;
     border-width: 5px;

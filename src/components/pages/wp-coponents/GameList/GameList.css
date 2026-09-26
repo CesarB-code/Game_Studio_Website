@@ -3,7 +3,7 @@ h1 {
     font-size: 3rem;
     text-align: left;
     margin-left: 2rem;
-    font-family: fantasy;
+    font-family: "UnifrakturCook", fantasy;
 }
 
 .container {
@@ -17,6 +17,27 @@ h1 {
     align-items: stretch;
     justify-content: center;
     padding: 5px;
+}
+
+.game-card-back-symbol {
+    position: absolute;
+    left: 8px;
+    cursor: pointer;
+    z-index: 10;
+    font-size: 32px;
+}
+
+.game-card-back-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.game-card-action {
+    padding: 2px 8px;
+    font-size: 12px;
+    line-height: 1;
+    overflow: hidden;
 }
 
 .game-card-container {
@@ -100,7 +121,7 @@ h1 {
 .card-link {
     color: #F1535d;
     position: bottom;
-    font-family: fantasy;
+    font-family: "UnifrakturCook", fantasy;
     font-size: 13px;
     padding: 0px;
 }
@@ -168,7 +189,7 @@ h1 {
     height: 25%;
     padding-bottom: 0px;
 
-    font-family: fantasy;
+    font-family: "UnifrakturCook", fantasy;
     font-size: clamp(20px, 1vw, 22px);
 
 

@@ -23,17 +23,7 @@ function Profile() {
         <Container className="Profile-container" fluid>
             <BoilerPlate />
 
-            <Row style={{ marginTop: '60px' }}><h1 id="ProfileTitle" style={{
-                height: '100%',
-                color: 'white',
-                paddingTop: '20px',
-                textAlign: 'center',
-                fontSize: '52px',
-                marginLeft: '0px',
-                padding: '0px',
-                margin: '0px',
-                textShadow: '2px 2px 4px black',
-            }} >Profile</h1></Row>
+            <Row className="profile-title-row"><h1 id="ProfileTitle" className="profile-title">Profile</h1></Row>
 
             <Row className="justify-content-center profile-shell">
                 <Col xs={12} lg={10}>

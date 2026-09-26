@@ -10,17 +10,7 @@ function About() {
                 <BoilerPlate />
             </Row>
 
-            <Row style={{ marginTop: '60px' }}><h1 id="AboutTitle" style={{
-                height: '100%',
-                color: 'white',
-                paddingTop: '20px',
-                textAlign: 'center',
-                fontSize: '52px',
-                marginLeft: '0px',
-                padding: '0px',
-                margin: '0px',
-                textShadow: '2px 2px 4px black',
-            }} >About</h1></Row>
+            <Row className="about-title-row"><h1 id="AboutTitle" className="about-title">About</h1></Row>
 
             <Row className='about-content-row justify-content-center'>
                 <Row className='about-grid'>
