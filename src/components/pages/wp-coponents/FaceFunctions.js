@@ -645,6 +645,9 @@ function shapeObject(shapeTypeArray, coordinate_array) {
     this.shapeTypeArray = shapeTypeArray;
     this.coordinate_array = coordinate_array;
 }
+function add(a,b){
+    return a+b;
+}
 
 
-export { DrawHair, DrawEar, DrawFace, DrawNose, DrawMouth, DrawEye, DrawEyeBrows, DrawObject };
+export {add, DrawHair, DrawEar, DrawFace, DrawNose, DrawMouth, DrawEye, DrawEyeBrows, DrawObject };
