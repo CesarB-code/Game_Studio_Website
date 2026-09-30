@@ -2,7 +2,6 @@ import {
     Row, Col,
 } from 'react-bootstrap';
 
-import MyImage3 from '../assets/sufyan-5NrbL6F68V0-unsplash.jpg';
 import { RiTiktokLine } from "react-icons/ri";
 import { FaXTwitter } from "react-icons/fa6";
 import { CiYoutube } from "react-icons/ci";
@@ -47,7 +46,7 @@ function BottomWebLinks() {
                         <Row className='g-3 justify-content-center'>
                             {companyLinks.map((item) => (
                                 <Col key={item} xs={12} sm={4} className='text-center'>
-                                    <a href='#' className='link'>{item}</a>
+                                    <a href='https:/' className='link'>{item}</a>
                                 </Col>
                             ))}
                         </Row>
@@ -58,7 +57,7 @@ function BottomWebLinks() {
                         <Row className='g-3 justify-content-center'>
                             {storeLinks.map((item) => (
                                 <Col key={item} xs={6} sm={3} className='text-center'>
-                                    <a href='#' className='link'>{item}</a>
+                                    <a href='https:/' className='link'>{item}</a>
                                 </Col>
                             ))}
                         </Row>
