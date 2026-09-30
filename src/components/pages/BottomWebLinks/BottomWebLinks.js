@@ -1,7 +1,5 @@
 import {
     Row, Col,
-
-    Container
 } from 'react-bootstrap';
 
 import MyImage3 from '../assets/sufyan-5NrbL6F68V0-unsplash.jpg';
@@ -15,11 +13,11 @@ import './BottomWebPage.css';
 
 function BottomWebLinks() {
     const socialLinks = [
-        { icon: <FaXTwitter />, label: 'Twitter' },
-        { icon: <RiTiktokLine />, label: 'TikTok' },
-        { icon: <CiYoutube />, label: 'YouTube' },
-        { icon: <FaInstagram />, label: 'Instagram' },
-        { icon: <RxDiscordLogo />, label: 'Discord' }
+        { icon: <FaXTwitter />, label: 'Twitter', ref: 'https:/' },
+        { icon: <RiTiktokLine />, label: 'TikTok', ref: 'https:/' },
+        { icon: <CiYoutube />, label: 'YouTube', ref: 'https:/' },
+        { icon: <FaInstagram />, label: 'Instagram', ref: 'https:/' },
+        { icon: <RxDiscordLogo />, label: 'Discord', ref: 'https:/' }
     ];
 
     const companyLinks = ['Careers', 'Events', 'FAQ'];
@@ -36,7 +34,7 @@ function BottomWebLinks() {
                         <Row className='g-3 justify-content-center'>
                             {socialLinks.map((item) => (
                                 <Col key={item.label} xs={6} sm={4} md={2} className='text-center'>
-                                    <a href='#' className='link' aria-label={item.label}>
+                                    <a href={item.ref} className='link' aria-label={item.label}>
                                         {item.icon}
                                     </a>
                                 </Col>
