@@ -38,6 +38,6 @@ export default function useAni(Ref, State, message) {
         return () => {
             document.body.removeChild(script);
         };
-    }, [message]);
+    }, [Ref, State, message]);
 
 }
