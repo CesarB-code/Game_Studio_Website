@@ -3,7 +3,6 @@ import {
 
     Container
 } from 'react-bootstrap';
-import ContentCarousel from '../wp-coponents/ContentCarousel/ContentCarousel.js';
 import GameList from '../wp-coponents/GameList/GameList.js';
 import BoilerPlate from '../BoilerPlate.js/BoilerPlate';
 import AISoftware from '../wp-coponents/AISoftware/AISoftware.js';

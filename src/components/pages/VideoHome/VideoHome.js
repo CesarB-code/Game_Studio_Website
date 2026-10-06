@@ -1,12 +1,11 @@
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import GameList from '../wp-coponents/GameList/GameList.js';
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useState } from 'react';
 import * as Interaction from '../wp-coponents/InterationMethods.js';
 import BoilerPlate from '../BoilerPlate.js/BoilerPlate.js';
-import ContentCarousel from '../wp-coponents/ContentCarousel/ContentCarousel.js';
 import {
-  Row, Col, Card, CardTitle,
+  Row, Col,
 
   Container
 } from 'react-bootstrap';

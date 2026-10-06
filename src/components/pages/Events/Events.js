@@ -1,12 +1,6 @@
 import {
     Row, Col,
-    Carousel,
-    CarouselItem,
-    CarouselCaption,
-    Nav,
-    Navbar,
 
-    NavDropdown,
     Container
 } from 'react-bootstrap';
 import NewsCarousel from '../wp-coponents/NewsCarousel/NewsCarousel.js';

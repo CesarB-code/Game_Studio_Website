@@ -1,11 +1,9 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useEffect } from 'react';
 import { DrawObject } from "../FaceFunctions.js";
 import {
-    Row, Col, Card, CardTitle, Button, ButtonGroup,
-
-    Container
+    Row, Col, Card, Button
 } from 'react-bootstrap';
 import * as Interaction from '../InterationMethods.js';
 
@@ -139,7 +137,7 @@ function AISoftware() {
         animateUnchangedFrame();
 
         canvas.addEventListener('click', (e) => {
-            const rect = canvas.getBoundingClientRect();
+            canvas.getBoundingClientRect();
 
 
         });
