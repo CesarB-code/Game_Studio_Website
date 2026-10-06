@@ -13,14 +13,7 @@ export default function UnityCharacter({ useRef1, useState1 }) {
     await ctx.resume();
   };
 
-  let playAnimation = () => {
-    if (!useState1.unityInstance) return;
 
-    useState1.unityInstance1.SendMessage(
-      "AnimationController",
-      "Walk"
-    );
-  };
 
   useAni(useRef1, useState1, "loadAnimation");
 
